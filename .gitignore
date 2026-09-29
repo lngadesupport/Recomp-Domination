@@ -15,6 +15,7 @@ logs/
 # Local/generated analysis
 analysis/local/
 config/downhill.auto.toml
+config/downhill.extra_entry_points.local.txt
 
 # IDE / OS
 .vs/
