@@ -1,6 +1,7 @@
 name: Probe watchdog CI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - bootstrap/compiler
@@ -63,3 +64,7 @@ jobs:
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))){throw 'Combined probe log missing'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_triage.json'))){throw 'Triage JSON missing'}
           Write-Host ('Probe duration: ' + $meta.duration_seconds + ' s')
+          # The probe intentionally returns 124 on timeout. Verification above
+          # consumed that expected code; do not let GitHub's PowerShell wrapper
+          # propagate the stale native LASTEXITCODE as a failed step.
+          $global:LASTEXITCODE = 0
