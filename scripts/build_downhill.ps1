@@ -25,6 +25,7 @@ $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 $StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
+$SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -615,6 +616,8 @@ try {
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
 
     $runCmdLines = @(
         "@echo off",
@@ -657,6 +660,8 @@ try {
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
         recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        staged_config = (Join-Path $DistDir "downhill.auto.toml")
+        bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
         transcript = $Transcript
         metrics = $metrics
     }
