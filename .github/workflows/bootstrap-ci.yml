@@ -71,3 +71,33 @@ jobs:
           if (!$analyzer) { throw 'ps2_analyzer.exe not produced' }
           Write-Host "ps2_recomp: $($recomp.FullName)"
           Write-Host "ps2_analyzer: $($analyzer.FullName)"
+      - name: Stage Downhill override in runtime runner
+        shell: pwsh
+        run: Copy-Item src/downhill_domination_overrides.cpp _ci/PS2Recomp/ps2xRuntime/src/runner/downhill_domination_overrides.cpp -Force
+
+      - name: Configure native runtime skeleton
+        shell: pwsh
+        run: >-
+          cmake -S _ci/PS2Recomp -B _ci/build
+          -A x64
+          -DPS2X_BUILD_RUNTIME=ON
+          -DPS2X_BUILD_RECOMP=ON
+          -DPS2X_BUILD_ANALYZER=ON
+          -DPS2X_BUILD_TEST=OFF
+          -DPS2X_BUILD_STUDIO=OFF
+          -DPS2X_ENABLE_FFMPEG=OFF
+          -DPS2X_ENABLE_DEBUG_UI=OFF
+          -DPS2X_ENABLE_RUNTIME_LOGS=ON
+          -DPS2X_ENABLE_AGRESSIVE_LOGS=ON
+          -DPS2X_ENABLE_IOP_RPC_TRACE=ON
+
+      - name: Build native runtime skeleton
+        shell: pwsh
+        run: cmake --build _ci/build --config Release --target ps2EntryRunner --parallel
+
+      - name: Verify native runner
+        shell: pwsh
+        run: |
+          $runner = Get-ChildItem _ci/build -Recurse -Filter ps2EntryRunner.exe -File | Select-Object -First 1
+          if (!$runner) { throw 'ps2EntryRunner.exe not produced' }
+          Write-Host "ps2EntryRunner: $($runner.FullName)"
