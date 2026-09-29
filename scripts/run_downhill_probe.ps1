@@ -83,6 +83,105 @@ function Append-LogTail {
     }
 }
 
+if (-not ('DownhillProbeJob' -as [type])) {
+    Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+
+public static class DownhillProbeJob
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct IO_COUNTERS
+    {
+        public ulong ReadOperationCount;
+        public ulong WriteOperationCount;
+        public ulong OtherOperationCount;
+        public ulong ReadTransferCount;
+        public ulong WriteTransferCount;
+        public ulong OtherTransferCount;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct JOBOBJECT_BASIC_LIMIT_INFORMATION
+    {
+        public long PerProcessUserTimeLimit;
+        public long PerJobUserTimeLimit;
+        public uint LimitFlags;
+        public UIntPtr MinimumWorkingSetSize;
+        public UIntPtr MaximumWorkingSetSize;
+        public uint ActiveProcessLimit;
+        public UIntPtr Affinity;
+        public uint PriorityClass;
+        public uint SchedulingClass;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION
+    {
+        public JOBOBJECT_BASIC_LIMIT_INFORMATION BasicLimitInformation;
+        public IO_COUNTERS IoInfo;
+        public UIntPtr ProcessMemoryLimit;
+        public UIntPtr JobMemoryLimit;
+        public UIntPtr PeakProcessMemoryUsed;
+        public UIntPtr PeakJobMemoryUsed;
+    }
+
+    const uint JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000;
+    const int JobObjectExtendedLimitInformation = 9;
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    static extern IntPtr CreateJobObject(IntPtr lpJobAttributes, string lpName);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool SetInformationJobObject(IntPtr hJob, int infoType, IntPtr lpJobObjectInfo, uint cbJobObjectInfoLength);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool AssignProcessToJobObject(IntPtr job, IntPtr process);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool CloseHandle(IntPtr handle);
+
+    public static IntPtr CreateKillOnCloseJob()
+    {
+        IntPtr job = CreateJobObject(IntPtr.Zero, null);
+        if (job == IntPtr.Zero)
+            throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+
+        var info = new JOBOBJECT_EXTENDED_LIMIT_INFORMATION();
+        info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+        int length = Marshal.SizeOf(typeof(JOBOBJECT_EXTENDED_LIMIT_INFORMATION));
+        IntPtr ptr = Marshal.AllocHGlobal(length);
+        try
+        {
+            Marshal.StructureToPtr(info, ptr, false);
+            if (!SetInformationJobObject(job, JobObjectExtendedLimitInformation, ptr, (uint)length))
+            {
+                int error = Marshal.GetLastWin32Error();
+                CloseHandle(job);
+                throw new System.ComponentModel.Win32Exception(error);
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(ptr);
+        }
+        return job;
+    }
+
+    public static void Assign(IntPtr job, IntPtr process)
+    {
+        if (!AssignProcessToJobObject(job, process))
+            throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+    }
+
+    public static void Close(IntPtr job)
+    {
+        if (job != IntPtr.Zero)
+            CloseHandle(job);
+    }
+}
+'@
+}
 $startedAt = Get-Date
 
 Write-Host "============================================================"
@@ -117,34 +216,31 @@ $psi.Arguments = '/d /s /c ""' + $launchPath + '""'
 
 $process = New-Object System.Diagnostics.Process
 $process.StartInfo = $psi
-if (!$process.Start()) { throw 'Failed to start diagnostic runner wrapper.' }
-$runnerWrapperPid = $process.Id
-$timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
+$jobHandle = [IntPtr]::Zero
+$normalExitCode = 0
 
-if ($timedOut) {
-    Write-Warning "Probe timeout reached; scheduling process-tree termination."
+try {
+    $jobHandle = [DownhillProbeJob]::CreateKillOnCloseJob()
+    if (!$process.Start()) { throw 'Failed to start diagnostic runner wrapper.' }
+    [DownhillProbeJob]::Assign($jobHandle, $process.Handle)
 
-    # Do not touch the original process handle again after the timeout. Some
-    # Windows/.NET combinations can block while refreshing a killed Process.
-    # Launch taskkill independently and continue; the logs are normal files.
-    try {
-        $killPsi = New-Object System.Diagnostics.ProcessStartInfo
-        $killPsi.FileName = $env:ComSpec
-        $killPsi.UseShellExecute = $false
-        $killPsi.CreateNoWindow = $true
-        $killPsi.Arguments = ('/d /c start "" /b taskkill.exe /PID {0} /T /F ^>nul 2^>^&1' -f $runnerWrapperPid)
-        [void][System.Diagnostics.Process]::Start($killPsi)
+    $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
+    if ($timedOut) {
+        Write-Warning 'Probe timeout reached; closing Windows Job Object to terminate the complete process tree.'
+        [DownhillProbeJob]::Close($jobHandle)
+        $jobHandle = [IntPtr]::Zero
+        # Do not access the process object again after killing the job.
+        Start-Sleep -Milliseconds 150
     }
-    catch {
-        Write-Warning ("Could not schedule taskkill: " + $_.Exception.Message)
+    else {
+        $normalExitCode = $process.ExitCode
     }
-
-    Start-Sleep -Milliseconds 350
 }
-else {
-    # The wrapper exited normally; capture its real exit code while the handle
-    # is known to be signaled.
-    $normalExitCode = $process.ExitCode
+finally {
+    if ($jobHandle -ne [IntPtr]::Zero) {
+        [DownhillProbeJob]::Close($jobHandle)
+        $jobHandle = [IntPtr]::Zero
+    }
 }
 
 Remove-Item -Force -ErrorAction SilentlyContinue $launchPath
