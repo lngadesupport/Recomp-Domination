@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
-    [string]$GhidraHome = ""
+    [string]$GhidraHome = "",
+    [switch]$Optional
 )
 
 $ErrorActionPreference = "Stop"
@@ -44,6 +45,15 @@ function Find-GhidraHeadless {
     return $null
 }
 
+$ghidra=Find-GhidraHeadless $GhidraHome
+if(!$ghidra){
+    if($Optional){
+        Write-Host 'Ghidra not found; skipping optional function-map generation and keeping analyzer fallback.' -ForegroundColor Yellow
+        exit 0
+    }
+    throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'
+}
+
 $git=(Get-Command git -ErrorAction SilentlyContinue)
 if(!$git){throw 'Git is required to obtain the pinned PS2Recomp Ghidra exporter.'}
 
@@ -63,9 +73,6 @@ if(!$pinnedCached){
 
 & $git.Source -C $Ps2RecompRoot reset --hard $PinnedPs2Recomp
 if($LASTEXITCODE -ne 0){throw 'Failed to reset PS2Recomp to pinned commit.'}
-
-$ghidra=Find-GhidraHeadless $GhidraHome
-if(!$ghidra){throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'}
 
 $scriptDir=Join-Path $Ps2RecompRoot 'ps2xRecomp\tools\ghidra'
 $script=Join-Path $scriptDir 'ExportPS2Functions.java'
