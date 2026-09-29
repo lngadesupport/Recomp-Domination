@@ -53,9 +53,11 @@ jobs:
         timeout-minutes: 1
         run: |
           $probe=(Resolve-Path .\probe_smoke).Path
-          $args=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $probe 'run_downhill_probe.ps1'),'-Elf',(Join-Path $probe 'SCUS_971.77'),'-TimeoutSeconds','1')
-          $p=Start-Process powershell.exe -ArgumentList $args -Wait -PassThru -NoNewWindow
-          if($p.ExitCode -ne 124){throw "Expected exit 124, got $($p.ExitCode)"}
+          $script=(Join-Path $probe 'run_downhill_probe.ps1')
+          $elf=(Join-Path $probe 'SCUS_971.77')
+          & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $script -Elf $elf -TimeoutSeconds 1
+          $rc=$LASTEXITCODE
+          if($rc -ne 124){throw "Expected exit 124, got $rc"}
           $meta=Get-Content (Join-Path $probe 'first_boot_probe.json') -Raw | ConvertFrom-Json
           if(!$meta.timed_out){throw 'Probe did not record timeout'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))){throw 'Combined probe log missing'}
