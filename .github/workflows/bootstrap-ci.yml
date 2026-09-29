@@ -82,6 +82,14 @@ jobs:
       - name: Recompile synthetic MIPS ELF end to end
         shell: pwsh
         run: .\scripts\ci_recompile_smoke.ps1 -Ps2RecompRoot _ci/PS2Recomp -BuildRoot _ci/build
+      - name: Analyze synthetic generated output
+        shell: pwsh
+        run: |
+          .\scripts\analyze_recompiled_output.ps1 `
+            -Config _ci\smoke\smoke.toml `
+            -GeneratedDir _ci\PS2Recomp\ps2xRuntime\src\runner `
+            -Out _ci\smoke\recompiled_report.json
+          if (!(Test-Path _ci\smoke\recompiled_report.json)) { throw 'recompiled_report.json not produced' }
       - name: Stage Downhill override in runtime runner
         shell: pwsh
         run: Copy-Item src/downhill_domination_overrides.cpp _ci/PS2Recomp/ps2xRuntime/src/runner/downhill_domination_overrides.cpp -Force
