@@ -5,6 +5,7 @@
 #include <cctype>
 #include <cstdint>
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -23,6 +24,37 @@ namespace
         return extension == ".iso";
     }
 
+
+    std::filesystem::path readPathSidecar(const std::filesystem::path &file)
+    {
+        std::ifstream stream(file);
+        if (!stream)
+        {
+            return {};
+        }
+
+        std::string value;
+        std::getline(stream, value);
+        while (!value.empty() && std::isspace(static_cast<unsigned char>(value.back())))
+        {
+            value.pop_back();
+        }
+
+        size_t first = 0;
+        while (first < value.size() && std::isspace(static_cast<unsigned char>(value[first])))
+        {
+            ++first;
+        }
+        value.erase(0, first);
+
+        if (value.empty())
+        {
+            return {};
+        }
+
+        return std::filesystem::path(value);
+    }
+
     void configureDownhillIoPaths()
     {
         namespace fs = std::filesystem;
@@ -36,12 +68,27 @@ namespace
         std::error_code ec;
         const fs::path root = paths.elfDirectory;
 
+        const fs::path configuredCdRoot = readPathSidecar(root / "downhill_cd_root.txt");
+        if (!configuredCdRoot.empty() && fs::is_directory(configuredCdRoot, ec))
+        {
+            paths.cdRoot = configuredCdRoot;
+            std::cerr << "[downhill] configured CD root: " << configuredCdRoot.string() << "\n";
+        }
+
+        ec.clear();
+        const fs::path configuredCdImage = readPathSidecar(root / "downhill_cd_image.txt");
+        if (!configuredCdImage.empty() && fs::is_regular_file(configuredCdImage, ec))
+        {
+            paths.cdImage = configuredCdImage;
+            std::cerr << "[downhill] configured CD image: " << configuredCdImage.string() << "\n";
+        }
+
         // Prefer an extracted disc root when SYSTEM.CNF is directly beside the ELF.
-        if (fs::exists(root / "SYSTEM.CNF", ec))
+        if (paths.cdRoot == root && fs::exists(root / "SYSTEM.CNF", ec))
         {
             paths.cdRoot = root;
         }
-        else
+        else if (configuredCdRoot.empty())
         {
             // Also support a one-level extracted-disc directory under the game root.
             for (fs::directory_iterator it(root, ec), end; !ec && it != end; it.increment(ec))
