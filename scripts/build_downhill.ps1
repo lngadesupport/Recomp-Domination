@@ -677,8 +677,7 @@ try {
         "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
         "-DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF",
         "-DPS2X_SHOW_WINDOWS_CONSOLE=ON",
-        "-DCMAKE_CXX_FLAGS=/bigobj",
-        ("-DPS2X_DEFAULT_BOOT_ELF=" + $Elf)
+        "-DCMAKE_CXX_FLAGS=/bigobj"
     )
     Invoke-Native $CMake @configureRuntimeArgs
 
@@ -719,7 +718,7 @@ try {
     $runCmdLines = @(
         "@echo off",
         "cd /d ""%~dp0""",
-        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""$Elf""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
         "echo.",
         "pause"
     )
