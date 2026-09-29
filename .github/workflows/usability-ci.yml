@@ -1,0 +1,43 @@
+name: Usability smoke CI
+
+on:
+  push:
+    branches:
+      - bootstrap/usability-cache
+  workflow_dispatch:
+
+jobs:
+  windows-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell with Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $failed=$false
+          Get-ChildItem .\scripts -Filter *.ps1 -File -Recurse | ForEach-Object {
+            $tokens=$null; $errors=$null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if($errors.Count -ne 0){
+              Write-Host "Parser errors in $($_.FullName):"
+              $errors | Format-List | Out-String | Write-Host
+              $failed=$true
+            }
+          }
+          if($failed){throw 'PowerShell parser failure'}
+
+      - name: Verify optional Ghidra fallback without Ghidra
+        shell: powershell
+        run: |
+          $root=(New-Item -ItemType Directory -Force _ci\optional_ghidra).FullName
+          [IO.File]::WriteAllBytes((Join-Path $root 'SCUS_971.77'), [byte[]](1..16))
+          .\scripts\generate_ghidra_map.ps1 -GameRoot $root -GhidraHome (Join-Path $root 'missing-ghidra') -Optional
+          if($LASTEXITCODE -ne 0){throw "Optional Ghidra fallback returned $LASTEXITCODE"}
+
+      - name: Verify full pipeline rejects missing game root cleanly
+        shell: cmd
+        run: >-
+          FULL_PIPELINE_DOWNHILL.cmd "%CD%\_ci\missing_game" ^<nul
+          || if %ERRORLEVEL%==2 (exit /b 0) else (exit /b %ERRORLEVEL%)
