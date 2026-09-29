@@ -1,0 +1,64 @@
+name: Usability smoke CI
+
+on:
+  push:
+    branches:
+      - bootstrap/usability-cache
+  workflow_dispatch:
+
+jobs:
+  windows-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell with Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $failed=$false
+          Get-ChildItem .\scripts -Filter *.ps1 -File -Recurse | ForEach-Object {
+            $tokens=$null; $errors=$null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if($errors.Count -ne 0){
+              Write-Host "Parser errors in $($_.FullName):"
+              $errors | Format-List | Out-String | Write-Host
+              $failed=$true
+            }
+          }
+          if($failed){throw 'PowerShell parser failure'}
+
+      - name: Verify optional Ghidra fallback without Ghidra
+        shell: powershell
+        run: |
+          $root=(New-Item -ItemType Directory -Force _ci\optional_ghidra).FullName
+          [IO.File]::WriteAllBytes((Join-Path $root 'SCUS_971.77'), [byte[]](1..16))
+          .\scripts\generate_ghidra_map.ps1 -GameRoot $root -GhidraHome (Join-Path $root 'missing-ghidra') -Optional
+          if($LASTEXITCODE -ne 0){throw "Optional Ghidra fallback returned $LASTEXITCODE"}
+
+      - name: Verify first-boot triage parser
+        shell: powershell
+        timeout-minutes: 1
+        run: |
+          New-Item -ItemType Directory -Force _ci\triage | Out-Null
+          @(
+            'ELF file loaded successfully. Entry point: 0x0010A008',
+            '>> main enter',
+            'sceSifSendCmd IOP RPC',
+            'scePadRead gamepad',
+            'VIF1 MSCAL VU1',
+            'GIF GS processGIFPacket',
+            '[run:tick] tick=120 pc=0x001FB6C0 activeThreads=1 dma=2 gif=3 gsw=4 vif=5'
+          ) | Set-Content _ci\triage\boot.log -Encoding ascii
+          .\scripts\triage_first_boot.ps1 -Log _ci\triage\boot.log -Out _ci\triage\report.json
+          $r=Get-Content _ci\triage\report.json -Raw | ConvertFrom-Json
+          if($r.furthest_milestone -ne 'guest-graphics'){throw "Unexpected milestone: $($r.furthest_milestone)"}
+          if(!$r.milestones.main_reached){throw 'main milestone was not detected'}
+          if(!$r.milestones.guest_graphics_activity){throw 'guest graphics activity was not detected'}
+          if([int]$r.runtime_counters.max_gif -ne 3){throw "Unexpected max_gif: $($r.runtime_counters.max_gif)"}
+          if([int]$r.runtime_counters.max_gs_writes -ne 4){throw "Unexpected max_gs_writes: $($r.runtime_counters.max_gs_writes)"}
+      - name: Verify full pipeline rejects missing game root cleanly
+        shell: cmd
+        run: >-
+          FULL_PIPELINE_DOWNHILL.cmd "%CD%\_ci\missing_game" ^<nul
+          || if %ERRORLEVEL%==2 (exit /b 0) else (exit /b %ERRORLEVEL%)
