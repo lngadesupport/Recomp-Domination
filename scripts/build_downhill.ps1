@@ -24,6 +24,7 @@ $ExtraEntryPointsFile = Join-Path $ConfigDir "downhill.extra_entry_points.local.
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
+$ProbeRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_probe.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 $StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
 $SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
@@ -715,6 +716,7 @@ try {
         }
 
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
     Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
@@ -730,6 +732,17 @@ try {
     )
     $runCmd = $runCmdLines -join [Environment]::NewLine
     Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $probeCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_probe.ps1"" -Elf ""%~dp0..\SCUS_971.77"" -TimeoutSeconds 90",
+        "echo.",
+        "echo Diagnostic probe exit code: %ERRORLEVEL%",
+        "pause"
+    )
+    $probeCmd = $probeCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_PROBE_90S.cmd") -Value $probeCmd -Encoding ASCII
 
     $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
     $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
@@ -760,6 +773,7 @@ try {
         game_data = $GameData
         runner = $StagedRunner
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        probe_script = (Join-Path $DistDir "RUN_PROBE_90S.cmd")
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
         recompiled_report = (Join-Path $DistDir "recompiled_report.json")
