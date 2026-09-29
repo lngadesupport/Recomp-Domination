@@ -590,7 +590,7 @@ try {
     $runnerToml = $RunnerDir.Replace("\", "/")
     $ghidraTomlPath = ""
     $GhidraImportedStubs = @()
-    $GhidraImportedEntryPoints = @()
+    $GhidraImportedUntrackedStubs = @()
 
     if (Test-Path -LiteralPath $GhidraCsv) {
         $ghidraTomlPath = $GhidraCsv.Replace("\", "/")
@@ -599,9 +599,9 @@ try {
         if (Test-Path -LiteralPath $GhidraToml) {
             $ghidraExport = Get-Content -Raw -LiteralPath $GhidraToml
             $GhidraImportedStubs = @(Get-TomlArrayEntries $ghidraExport "stubs" | Sort-Object -Unique)
-            $GhidraImportedEntryPoints = @(Get-TomlArrayEntries $ghidraExport "untracked_stubs" | Sort-Object -Unique)
+            $GhidraImportedUntrackedStubs = @(Get-TomlArrayEntries $ghidraExport "untracked_stubs" | Sort-Object -Unique)
             Write-Host ("      Ghidra classifications: stubs=" + $GhidraImportedStubs.Count +
-                        ", entry hints=" + $GhidraImportedEntryPoints.Count) -ForegroundColor DarkGray
+                        ", untracked stubs=" + $GhidraImportedUntrackedStubs.Count) -ForegroundColor DarkGray
         }
         else {
             Write-Warning "Ghidra CSV exists but SCUS_971.77.ghidra.toml is missing; using Ghidra boundaries without Ghidra stub classifications."
@@ -631,8 +631,8 @@ try {
     if ($GhidraImportedStubs.Count -gt 0) {
         $toml = Ensure-TomlArrayEntries $toml "stubs" $GhidraImportedStubs
     }
-    if ($GhidraImportedEntryPoints.Count -gt 0) {
-        $toml = Ensure-TomlArrayEntries $toml "entry_points" $GhidraImportedEntryPoints
+    if ($GhidraImportedUntrackedStubs.Count -gt 0) {
+        $toml = Ensure-TomlArrayEntries $toml "untracked_stubs" $GhidraImportedUntrackedStubs
     }
 
     $toml = Ensure-TomlArrayEntries $toml "stubs" @(
@@ -903,7 +903,7 @@ try {
         ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
         ghidra_toml_used = (Test-Path -LiteralPath $GhidraToml)
         ghidra_imported_stubs = $GhidraImportedStubs
-        ghidra_imported_entry_points = $GhidraImportedEntryPoints
+        ghidra_imported_untracked_stubs = $GhidraImportedUntrackedStubs
         patch_policy = [ordered]@{
             patch_syscalls = $false
             patch_cop0 = $false
