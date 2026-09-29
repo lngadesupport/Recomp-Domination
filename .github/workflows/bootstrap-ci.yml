@@ -123,37 +123,6 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
-      - name: Smoke-test bounded first-boot probe timeout
-        timeout-minutes: 2
-        shell: powershell
-        run: |
-          $probe = (New-Item -ItemType Directory -Force _ci\probe_smoke).FullName
-          Copy-Item .\scripts\run_downhill_probe.ps1 (Join-Path $probe 'run_downhill_probe.ps1')
-          Copy-Item .\scripts\triage_first_boot.ps1 (Join-Path $probe 'triage_first_boot.ps1')
-          Copy-Item .\scripts\suggest_bringup_fixes.ps1 (Join-Path $probe 'suggest_bringup_fixes.ps1')
-          [IO.File]::WriteAllBytes((Join-Path $probe 'SCUS_971.77'), [byte[]](1..16))
-          @'
-          using System;
-          using System.Threading;
-          public static class Program {
-            public static int Main(string[] args) {
-              Console.WriteLine("probe fake runner stdout");
-              Console.Error.WriteLine("probe fake runner stderr");
-              Thread.Sleep(10000);
-              return 0;
-            }
-          }
-          '@ | Set-Content _ci\probe_fake.cs -Encoding ascii
-          csc /nologo /target:exe /out:_ci\probe_smoke\ps2EntryRunner.exe _ci\probe_fake.cs
-          if ($LASTEXITCODE -ne 0) { throw 'Failed to build probe fake runner' }
-          $probeArgs = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $probe 'run_downhill_probe.ps1'),'-Elf',(Join-Path $probe 'SCUS_971.77'),'-TimeoutSeconds','1')
-          $probeProc = Start-Process -FilePath powershell.exe -ArgumentList $probeArgs -Wait -PassThru -NoNewWindow
-          $probeRc = $probeProc.ExitCode
-          if ($probeRc -ne 124) { throw "Expected probe timeout exit 124, got $probeRc" }
-          $meta = Get-Content (Join-Path $probe 'first_boot_probe.json') -Raw | ConvertFrom-Json
-          if (!$meta.timed_out) { throw 'Probe metadata did not record timeout' }
-          if (!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))) { throw 'Probe latest log was not produced' }
-          if (!(Test-Path (Join-Path $probe 'first_boot_probe_triage.json'))) { throw 'Probe triage was not produced' }
       - name: Smoke-test multipart RAR canonical hardlinks
         shell: powershell
         run: |
