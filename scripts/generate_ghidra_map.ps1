@@ -36,10 +36,10 @@ function Find-GhidraHeadless {
             Sort-Object LastWriteTime -Descending |
             ForEach-Object {$homes.Add($_.FullName)}
     }
-    foreach($home in $homes){
-        $candidate=Join-Path $home 'support\analyzeHeadless.bat'
+    foreach($ghidraCandidateHome in $homes){
+        $candidate=Join-Path $ghidraCandidateHome 'support\analyzeHeadless.bat'
         if(Test-Path -LiteralPath $candidate){
-            return [pscustomobject]@{home=[IO.Path]::GetFullPath($home);exe=[IO.Path]::GetFullPath($candidate)}
+            return [pscustomobject]@{home=[IO.Path]::GetFullPath($ghidraCandidateHome);exe=[IO.Path]::GetFullPath($candidate)}
         }
     }
     return $null
