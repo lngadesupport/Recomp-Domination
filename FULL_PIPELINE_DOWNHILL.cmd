@@ -51,14 +51,14 @@ echo.
 echo [3/6] Preparando mapa Ghidra quando disponivel...
 set "GHIDRA_CSV=%~dp0analysis\SCUS_971.77.functions.csv"
 set "GHIDRA_TOML=%~dp0analysis\SCUS_971.77.ghidra.toml"
-if exist "%GHIDRA_CSV%" if exist "%GHIDRA_TOML%" (
-    echo Mapa Ghidra existente; reutilizando.
-) else (
+set "NEED_GHIDRA=0"
+if not exist "%GHIDRA_CSV%" set "NEED_GHIDRA=1"
+if not exist "%GHIDRA_TOML%" set "NEED_GHIDRA=1"
+if "%NEED_GHIDRA%"=="1" (
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
-    set "GHIDRA_RC=%ERRORLEVEL%"
-    if not "%GHIDRA_RC%"=="0" (
-        echo [AVISO] Ghidra falhou com codigo %GHIDRA_RC%. Continuando com ps2_analyzer fallback.
-    )
+    if errorlevel 1 echo [AVISO] Ghidra falhou. Continuando com ps2_analyzer fallback.
+) else (
+    echo Mapa Ghidra existente; reutilizando.
 )
 if exist "%GHIDRA_CSV%" (
     echo Mapa Ghidra pronto para o build.
