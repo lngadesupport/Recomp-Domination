@@ -1,5 +1,5 @@
 @echo off
-setlocal EnableExtensions
+setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
 
 title Recomp Domination - full local pipeline
@@ -79,7 +79,7 @@ echo.
 echo [5/6] Executando probe nativo de 90 segundos...
 if exist "%DIST%\run_downhill_probe.ps1" (
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%DIST%\run_downhill_probe.ps1" -Elf "%GAME_ROOT%\SCUS_971.77" -TimeoutSeconds 90
-    set "PROBE_RC=%ERRORLEVEL%"
+    set "PROBE_RC=!ERRORLEVEL!"
 ) else (
     echo [AVISO] run_downhill_probe.ps1 nao encontrado.
     set "PROBE_RC=9009"
