@@ -12,6 +12,8 @@ if (!$GameRoot) {
 }
 $GameRoot = [IO.Path]::GetFullPath($GameRoot)
 $Elf = Join-Path $GameRoot 'SCUS_971.77'
+$PinnedPs2Recomp = '75d729ce40d7eed9649fd4bb05628dee520f3d0c'
+$Ps2RecompRoot = Join-Path $RepoRoot 'third_party\PS2Recomp'
 
 $checks = New-Object System.Collections.Generic.List[object]
 function Add-Check([string]$Name,[bool]$Ok,[string]$Detail) {
@@ -71,6 +73,13 @@ try {
     Add-Check 'Free disk space' $false $_.Exception.Message
 }
 
+$cachedPinned=$false
+if($git -and (Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
+    & $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+    $cachedPinned=($LASTEXITCODE -eq 0)
+}
+Add-Check 'Pinned PS2Recomp cache' ($cachedPinned -or !(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))) $(if($cachedPinned){'pinned commit cached locally'}elseif(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git')){'checkout exists but pinned commit is missing'}else{'checkout not created yet'})
+
 $internetOk=$false
 try{
     $tcp=New-Object Net.Sockets.TcpClient
@@ -79,13 +88,26 @@ try{
     if($internetOk){$tcp.EndConnect($ar)}
     $tcp.Close()
 }catch{}
-Add-Check 'GitHub connectivity' $internetOk $(if($internetOk){'github.com:443 reachable'}else{'not reachable; first build needs internet'})
+
+$internetRequired = -not $cachedPinned
+$networkReady = $internetOk -or $cachedPinned
+$networkDetail = if($internetOk){
+    'github.com:443 reachable'
+}elseif($cachedPinned){
+    'offline rebuild available; pinned PS2Recomp commit is cached'
+}else{
+    'not reachable; first build needs internet'
+}
+Add-Check 'GitHub connectivity' $networkReady $networkDetail
 
 $failed=@($checks | Where-Object { -not $_.ok })
 $report=[ordered]@{
     generated=(Get-Date -Format o)
     repo_root=$RepoRoot
     game_root=$GameRoot
+    pinned_ps2recomp_cached=$cachedPinned
+    internet_required=$internetRequired
+    github_reachable=$internetOk
     checks=$checks
     success=($failed.Count -eq 0)
 }
