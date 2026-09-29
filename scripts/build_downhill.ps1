@@ -477,7 +477,7 @@ try {
         "0x00254050",
         "0x0025C440"
     )) {
-        $hexBody = $requiredAddress.Substring(2).TrimStart("0")
+        $hexBody = $requiredAddress.Substring(2).TrimStart([char]'0')
         if (!$hexBody) { $hexBody = "0" }
         if ($registrationCheck -notmatch ("(?i)//\s*0x0*" + [regex]::Escape($hexBody) + "\b")) {
             throw "Generated function table does not contain required guest entry $requiredAddress."
