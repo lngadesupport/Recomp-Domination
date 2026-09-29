@@ -28,6 +28,9 @@ $cdImageSidecar = Join-Path $GameRoot "downhill_cd_image.txt"
 $ghidraCsv = Join-Path $RepoRoot "analysis\SCUS_971.77.functions.csv"
 $config = Join-Path $RepoRoot "config\downhill.auto.toml"
 $identity = Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json"
+$environmentReport = Join-Path $RepoRoot "analysis\local\environment.json"
+$deepReport = Join-Path $RepoRoot "analysis\local\SCUS_971.77.deep.json"
+$ghidraToml = Join-Path $RepoRoot "analysis\SCUS_971.77.ghidra.toml"
 $buildReport = Join-Path $DistDir "build_report.json"
 $runner = Join-Path $DistDir "ps2EntryRunner.exe"
 $probe = Join-Path $DistDir "first_boot_probe.json"
@@ -57,7 +60,10 @@ $ghidraOk = Test-PathBool $ghidraCsv
 $ghidraDetail = if ($ghidraOk) { ((@(Get-Content -LiteralPath $ghidraCsv).Count - 1).ToString() + " functions") } else { "analyzer fallback" }
 Status-Line "Ghidra function map" $ghidraOk $ghidraDetail
 
+Status-Line "Environment preflight" (Test-PathBool $environmentReport) $environmentReport
 Status-Line "Validated identity report" (Test-PathBool $identity) $identity
+Status-Line "Deep ELF census" (Test-PathBool $deepReport) $deepReport
+Status-Line "Ghidra TOML" (Test-PathBool $ghidraToml) $ghidraToml
 Status-Line "Generated TOML" (Test-PathBool $config) $config
 Status-Line "Native runner" (Test-PathBool $runner) $runner
 Status-Line "Build report" (Test-PathBool $buildReport) $buildReport
@@ -65,6 +71,23 @@ Status-Line "90s probe metadata" (Test-PathBool $probe) $probe
 Status-Line "Probe triage" (Test-PathBool $triage) $triage
 Status-Line "Bring-up suggestions" (Test-PathBool $suggestions) $suggestions
 
+if (Test-Path -LiteralPath $deepReport) {
+    try {
+        $deep = Get-Content -Raw -LiteralPath $deepReport | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "Deep ELF census:" -ForegroundColor Cyan
+        Write-Host ("  Words:       " + $deep.instruction_words)
+        if ($deep.families) {
+            Write-Host ("  COP0:        " + $deep.families.cop0)
+            Write-Host ("  COP1:        " + $deep.families.cop1)
+            Write-Host ("  COP2/VU0:    " + $deep.families.cop2_vu0_macro)
+            Write-Host ("  MMI:         " + $deep.families.mmi)
+            Write-Host ("  JAL targets: " + $deep.families.unique_jal_targets)
+        }
+    } catch {
+        Write-Warning ("Could not parse deep ELF report: " + $_.Exception.Message)
+    }
+}
 if (Test-Path -LiteralPath $buildReport) {
     try {
         $build = Get-Content -Raw -LiteralPath $buildReport | ConvertFrom-Json
