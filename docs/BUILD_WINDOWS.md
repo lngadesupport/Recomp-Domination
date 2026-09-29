@@ -117,3 +117,17 @@ To package only non-proprietary diagnostics for review, run:
     COLLECT_DIAGNOSTICS.cmd
 
 The diagnostics ZIP deliberately excludes SCUS_971.77, ISO/BIN/CHD/RAR files and extracted proprietary game data.
+
+## Multi-file fallback
+
+The default build uses one combined `ps2_recompiled_functions.cpp` because it simplifies bring-up and minimizes CMake overhead.
+
+If MSVC reports compiler memory/resource exhaustion, object-size problems, or becomes impractical on the combined translation unit, use:
+
+```cmd
+BUILD_DOWNHILL_MULTIFILE.cmd "D:\Recomp Domination"
+```
+
+This invokes the same validated pipeline with `-MultiFileOutput`, which sets `general.single_file_output = false`. PS2Recomp then emits flat per-function C++ files into `ps2xRuntime/src/runner`, where the runtime CMake `*.cpp` glob picks them up automatically.
+
+The analyzer TOML, exact Downhill bindings, Ghidra map, entry points, CRC locking, static reports, runtime override, and diagnostics remain the same. `build_report.json` records `metrics.output_mode` and the hashes/sizes of all generated C++ files.
