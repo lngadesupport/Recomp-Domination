@@ -14,6 +14,7 @@ on:
 jobs:
   windows-toolchain:
     runs-on: windows-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout Recomp Domination
         uses: actions/checkout@v4
@@ -114,6 +115,7 @@ jobs:
         with:
           arch: x64
       - name: Smoke-test bounded first-boot probe timeout
+        timeout-minutes: 2
         shell: powershell
         run: |
           $probe = (New-Item -ItemType Directory -Force _ci\probe_smoke).FullName
