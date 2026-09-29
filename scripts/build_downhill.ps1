@@ -164,33 +164,80 @@ function Detect-GameData {
     param([string]$Root)
 
     $systemCnf = ""
-    $directSystemCnf = Join-Path $Root "SYSTEM.CNF"
-    if (Test-Path -LiteralPath $directSystemCnf) {
-        $systemCnf = $directSystemCnf
-    }
-    else {
-        foreach ($dir in @(Get-ChildItem -LiteralPath $Root -Directory -ErrorAction SilentlyContinue)) {
-            $candidate = Join-Path $dir.FullName "SYSTEM.CNF"
+    $isoPath = ""
+    $source = "none"
+
+    $rootSidecar = Join-Path $Root "downhill_cd_root.txt"
+    if (Test-Path -LiteralPath $rootSidecar) {
+        $sidecarValue = (Get-Content -LiteralPath $rootSidecar -TotalCount 1).Trim()
+        if ($sidecarValue -and (Test-Path -LiteralPath $sidecarValue -PathType Container)) {
+            $candidate = Join-Path $sidecarValue "SYSTEM.CNF"
             if (Test-Path -LiteralPath $candidate) {
                 $systemCnf = $candidate
-                break
+                $source = "cd-root-sidecar"
             }
         }
     }
 
-    $iso = Get-ChildItem -LiteralPath $Root -File -ErrorAction SilentlyContinue |
-        Where-Object { $_.Extension -ieq ".iso" } |
+    $imageSidecar = Join-Path $Root "downhill_cd_image.txt"
+    if (Test-Path -LiteralPath $imageSidecar) {
+        $sidecarValue = (Get-Content -LiteralPath $imageSidecar -TotalCount 1).Trim()
+        if ($sidecarValue -and (Test-Path -LiteralPath $sidecarValue -PathType Leaf)) {
+            $isoPath = [IO.Path]::GetFullPath($sidecarValue)
+            $source = if ($source -eq "none") { "cd-image-sidecar" } else { $source + "+cd-image-sidecar" }
+        }
+    }
+
+    if (!$systemCnf) {
+        $directSystemCnf = Join-Path $Root "SYSTEM.CNF"
+        if (Test-Path -LiteralPath $directSystemCnf) {
+            $systemCnf = $directSystemCnf
+            $source = "direct-system-cnf"
+        }
+        else {
+            foreach ($dir in @(Get-ChildItem -LiteralPath $Root -Directory -ErrorAction SilentlyContinue)) {
+                $candidate = Join-Path $dir.FullName "SYSTEM.CNF"
+                if (Test-Path -LiteralPath $candidate) {
+                    $systemCnf = $candidate
+                    $source = "child-system-cnf"
+                    break
+                }
+            }
+        }
+    }
+
+    if (!$isoPath) {
+        $iso = Get-ChildItem -LiteralPath $Root -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.Extension -ieq ".iso" } |
+            Sort-Object Length -Descending |
+            Select-Object -First 1
+        if ($iso) {
+            $isoPath = $iso.FullName
+            $source = if ($source -eq "none") { "direct-iso" } else { $source + "+direct-iso" }
+        }
+    }
+
+    $archive = Get-ChildItem -LiteralPath $Root -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -match '(?i)\.part0*1\.rar$' } |
+        Sort-Object Name |
         Select-Object -First 1
 
     $mode = "elf-only"
-    if ($systemCnf) { $mode = "extracted-disc" }
-    elseif ($iso) { $mode = "iso" }
+    if ($systemCnf -and $isoPath) { $mode = "extracted-disc+iso" }
+    elseif ($systemCnf) { $mode = "extracted-disc" }
+    elseif ($isoPath) { $mode = "iso" }
+    elseif ($archive) { $mode = "multipart-rar" }
 
     return [pscustomobject][ordered]@{
         mode = $mode
+        source = $source
         system_cnf = $systemCnf
-        cd_root = if ($systemCnf) { Split-Path $systemCnf -Parent } else { $Root }
-        iso = if ($iso) { $iso.FullName } else { "" }
+        cd_root = if ($systemCnf) { Split-Path $systemCnf -Parent } else { "" }
+        iso = $isoPath
+        multipart_archive = if ($archive) { $archive.FullName } else { "" }
+        prepare_command = if ($archive -and !$systemCnf -and !$isoPath) {
+            (Join-Path $RepoRoot "PREPARE_GAME_DATA.cmd")
+        } else { "" }
     }
 }
 
@@ -407,10 +454,14 @@ try {
     $GameData = Detect-GameData $GameRoot
 
     if ($GameData.mode -eq "elf-only") {
-        Write-Warning "No SYSTEM.CNF or ISO was found beside the ELF. Native compilation can continue, but game file access may block during first boot."
+        Write-Warning "No SYSTEM.CNF, ISO, or multipart RAR was found beside the ELF. Native compilation can continue, but game file access may block during first boot."
+    }
+    elseif ($GameData.mode -eq "multipart-rar") {
+        Write-Warning ("Multipart game archive found but not prepared: " + $GameData.multipart_archive)
+        Write-Warning ("Run PREPARE_GAME_DATA.cmd before first boot: " + $GameData.prepare_command)
     }
     else {
-        Write-Host ("      Game data mode: " + $GameData.mode) -ForegroundColor DarkGray
+        Write-Host ("      Game data mode: " + $GameData.mode + " (" + $GameData.source + ")") -ForegroundColor DarkGray
     }
 
     $ElfIdentity = Validate-Elf $Elf
