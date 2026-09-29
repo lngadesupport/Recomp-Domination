@@ -89,6 +89,14 @@ jobs:
           git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
           git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
 
+      - name: Apply Downhill VIF1 compatibility patch
+        shell: powershell
+        run: |
+          .\scripts\patch_downhill_ps2recomp.ps1 -Ps2RecompRoot _ci\PS2Recomp
+          $src = Get-Content _ci\PS2Recomp\ps2xRuntime\src\lib\ps2_memory.cpp -Raw
+          if ($src -notmatch 'savedRow\[4\]' -or $src -notmatch 'savedCol\[4\]') {
+            throw 'Downhill VIF1 ROW/COL patch is not present after patch step.'
+          }
       - name: Set up MSVC developer environment
         uses: ilammy/msvc-dev-cmd@v1
         with:
