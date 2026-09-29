@@ -469,6 +469,22 @@ try {
         }
     }
 
+    $registrationCheck = Get-Content -Raw -LiteralPath $GeneratedRegistration
+    foreach ($requiredAddress in @(
+        "0x0010A008",
+        "0x001FB6C0",
+        "0x00254050",
+        "0x0025C440"
+    )) {
+        $hexBody = $requiredAddress.Substring(2).TrimStart("0")
+        if (!$hexBody) { $hexBody = "0" }
+        if ($registrationCheck -notmatch ("(?i)//\s*0x0*" + [regex]::Escape($hexBody) + "\b")) {
+            throw "Generated function table does not contain required guest entry $requiredAddress."
+        }
+    }
+
+    Write-Host "      Required Downhill entry/binding addresses are present in the generated function table." -ForegroundColor Green
+
     Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
     Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
     Copy-Item -Force $OverrideSource (Join-Path $RunnerDir "downhill_domination_overrides.cpp")
@@ -542,7 +558,7 @@ try {
         generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
         generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
         todo_named_occurrences = ([regex]::Matches($generatedCppText, "TODO_NAMED")).Count
-        registered_function_slots = ([regex]::Matches($registrationText, "g_ps2RecompiledFunctionTable\s*\[")).Count
+        registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
         generated_cpp_bytes = (Get-Item -LiteralPath $GeneratedFunctionsCpp).Length
         generated_cpp_sha256 = (Get-FileHash -LiteralPath $GeneratedFunctionsCpp -Algorithm SHA256).Hash
         config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
