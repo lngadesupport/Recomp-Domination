@@ -103,8 +103,9 @@ if($FunctionCsv -and (Test-Path -LiteralPath $FunctionCsv)){
 
                 # R5900 instructions are 4-byte aligned. Trim Ghidra label/body
                 # edges instead of counting partial words.
-                $start=($start+3u)-band 0xFFFFFFFFFFFFFFFC
-                $end=$end-band 0xFFFFFFFFFFFFFFFC
+                $start=$start+[uint64]3
+                $start=$start-($start%[uint64]4)
+                $end=$end-($end%[uint64]4)
 
                 if($start-lt$end){
                     $scanRanges.Add([pscustomobject]@{start=$start;end=$end;segment=$s})
@@ -120,7 +121,7 @@ if($scanRanges.Count-eq 0){
     foreach($s in $exec){
         [uint64]$start=$s.vaddr
         [uint64]$end=[uint64]$s.vaddr+[uint64]$s.filesz
-        $end=$end-band 0xFFFFFFFFFFFFFFFC
+        $end=$end-($end%[uint64]4)
         if($start-lt$end){$scanRanges.Add([pscustomobject]@{start=$start;end=$end;segment=$s})}
     }
 }
