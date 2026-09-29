@@ -53,7 +53,7 @@ For the authoritative function-boundary pass, export PS2Recomp's Ghidra function
 
     analysis\SCUS_971.77.functions.csv
 
-The build script detects this automatically and sets general.ghidra_output. Until that file exists, the first bring-up uses ps2_analyzer discovery.
+The build script detects this automatically and sets `general.ghidra_output`. When `analysis\\SCUS_971.77.ghidra.toml` is also present, runtime-known Ghidra classifications are merged into `stubs`, while `untracked_stubs` are imported as exact entry-point hints. Until the Ghidra outputs exist, the first bring-up uses `ps2_analyzer` discovery.
 
 ## Initial host features
 
@@ -131,3 +131,11 @@ BUILD_DOWNHILL_MULTIFILE.cmd "D:\Recomp Domination"
 This invokes the same validated pipeline with `-MultiFileOutput`, which sets `general.single_file_output = false`. PS2Recomp then emits flat per-function C++ files into `ps2xRuntime/src/runner`, where the runtime CMake `*.cpp` glob picks them up automatically.
 
 The analyzer TOML, exact Downhill bindings, Ghidra map, entry points, CRC locking, static reports, runtime override, and diagnostics remain the same. `build_report.json` records `metrics.output_mode` and the hashes/sizes of all generated C++ files.
+
+## Retail patch policy
+
+The initial correctness baseline explicitly sets `patch_syscalls = false`, `patch_cop0 = false`, and `patch_cache = false`. These flags only suppress configured instruction replacements for those instruction classes; normal COP0/CACHE translation remains available. Generic analyzer patches, such as a detected self-modifying store, remain eligible. Presentation patches (deinterlace, widescreen, 60 FPS) are kept out of the correctness build.
+
+## Cached offline rebuilds
+
+After the pinned PS2Recomp commit and its CMake `FetchContent` dependencies have been cached under `third_party\\PS2Recomp\\out\\build-downhill`, the preflight accepts an offline rebuild. The build skips the Git fetch when the pinned commit object already exists locally. A clean/first build still requires network access.
