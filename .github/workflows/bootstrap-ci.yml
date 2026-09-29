@@ -102,6 +102,15 @@ jobs:
           git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
           git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
 
+      - name: Patch Ghidra exporter for headless arguments
+        shell: powershell
+        run: |
+          $exporter = '_ci\PS2Recomp\ps2xRecomp\tools\ghidra\ExportPS2Functions.java'
+          .\scripts\patch_ghidra_exporter.ps1 -ExporterPath $exporter
+          $src = Get-Content $exporter -Raw
+          if ($src -notmatch 'getScriptArgs\(\)' -or $src -notmatch 'scriptArgs\.length >= 2') {
+            throw 'Headless Ghidra exporter patch is not present.'
+          }
       - name: Apply Downhill VIF1 compatibility patch
         shell: powershell
         run: |
