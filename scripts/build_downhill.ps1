@@ -23,6 +23,7 @@ $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
+$TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -538,6 +539,7 @@ try {
         }
 
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
 
     $runCmdLines = @(
         "@echo off",
@@ -576,6 +578,7 @@ try {
         runner = $StagedRunner
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
+        first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
         transcript = $Transcript
         metrics = $metrics
     }
