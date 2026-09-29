@@ -1,0 +1,61 @@
+name: Compiler bootstrap CI
+
+on:
+  push:
+    branches:
+      - bootstrap/compiler
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  windows-toolchain:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Recomp Domination
+        uses: actions/checkout@v4
+
+      - name: Parse PowerShell bootstrap
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path '.\scripts\build_downhill.ps1'),
+            [ref]$tokens,
+            [ref]$errors
+          ) | Out-Null
+          if ($errors.Count -ne 0) {
+            $errors | Format-List | Out-String | Write-Host
+            throw "PowerShell parser reported $($errors.Count) error(s)."
+          }
+
+      - name: Clone pinned PS2Recomp
+        shell: pwsh
+        run: |
+          git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
+          git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+
+      - name: Configure compiler tools
+        shell: pwsh
+        run: >-
+          cmake -S _ci/PS2Recomp -B _ci/build -A x64
+          -DPS2X_BUILD_RUNTIME=OFF
+          -DPS2X_BUILD_RECOMP=ON
+          -DPS2X_BUILD_ANALYZER=ON
+          -DPS2X_BUILD_TEST=OFF
+          -DPS2X_BUILD_STUDIO=OFF
+
+      - name: Build ps2_recomp and ps2_analyzer
+        shell: pwsh
+        run: cmake --build _ci/build --config Release --target ps2_recomp ps2_analyzer --parallel
+
+      - name: Verify expected executables
+        shell: pwsh
+        run: |
+          $recomp = Get-ChildItem _ci/build -Recurse -Filter ps2_recomp.exe -File | Select-Object -First 1
+          $analyzer = Get-ChildItem _ci/build -Recurse -Filter ps2_analyzer.exe -File | Select-Object -First 1
+          if (!$recomp) { throw 'ps2_recomp.exe not produced' }
+          if (!$analyzer) { throw 'ps2_analyzer.exe not produced' }
+          Write-Host "ps2_recomp: $($recomp.FullName)"
+          Write-Host "ps2_analyzer: $($analyzer.FullName)"
