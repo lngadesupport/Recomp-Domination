@@ -93,6 +93,49 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
+      - name: Smoke-test multipart RAR canonical hardlinks
+        shell: powershell
+        run: |
+          $root = (New-Item -ItemType Directory -Force _ci\multipart_smoke).FullName
+          [IO.File]::WriteAllBytes((Join-Path $root 'SCUS_971.77'), [byte[]](1..16))
+          foreach ($name in @('Game.part1.rar','Game.part2.rar','Game.part3(1).rar','Game.part4.rar')) {
+            [IO.File]::WriteAllBytes((Join-Path $root $name), [byte[]](1..32))
+          }
+          $fakeBin = (New-Item -ItemType Directory -Force _ci\fake7z).FullName
+          @'
+          using System;
+          using System.IO;
+          public static class Program {
+            public static int Main(string[] args) {
+              if (args == null || args.Length < 2) return 2;
+              string archive = args[args.Length - 1];
+              string dir = Path.GetDirectoryName(Path.GetFullPath(archive));
+              if (!File.Exists(Path.Combine(dir, "Game.part3.rar"))) return 13;
+              if (String.Equals(args[0], "t", StringComparison.OrdinalIgnoreCase)) return 0;
+              if (String.Equals(args[0], "x", StringComparison.OrdinalIgnoreCase)) {
+                string output = null;
+                foreach (string arg in args) {
+                  if (arg.StartsWith("-o", StringComparison.OrdinalIgnoreCase)) output = arg.Substring(2);
+                }
+                if (String.IsNullOrWhiteSpace(output)) return 14;
+                Directory.CreateDirectory(output);
+                File.WriteAllText(Path.Combine(output, "SYSTEM.CNF"), "BOOT2 = cdrom0:\\SCUS_971.77;1");
+                return 0;
+              }
+              return 3;
+            }
+          }
+          '@ | Set-Content _ci\fake7z.cs -Encoding ascii
+          csc /nologo /target:exe /out:_ci\fake7z\7z.exe _ci\fake7z.cs
+          if ($LASTEXITCODE -ne 0) { throw 'Failed to build fake 7z.exe' }
+          $env:PATH = $fakeBin + ';' + $env:PATH
+          .\scripts\prepare_game_data.ps1 -GameRoot $root
+          if (!(Test-Path (Join-Path $root 'game_data\SYSTEM.CNF'))) { throw 'Multipart smoke did not produce SYSTEM.CNF' }
+          $cdRoot = (Get-Content (Join-Path $root 'downhill_cd_root.txt') -Raw).Trim()
+          if ([IO.Path]::GetFullPath($cdRoot) -ne [IO.Path]::GetFullPath((Join-Path $root 'game_data'))) {
+            throw "Multipart CD root mismatch: $cdRoot"
+          }
+          if (Test-Path (Join-Path $root '.downhill_rar_staging')) { throw 'Multipart staging directory was not cleaned up' }
       - name: Compile Downhill override against pinned runtime headers
         shell: cmd
         run: >-
