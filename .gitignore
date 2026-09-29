@@ -1,0 +1,26 @@
+# Proprietary game data - never commit
+SCUS_971.77
+*.iso
+*.bin
+*.img
+*.chd
+*.rar
+*.7z
+
+# Managed third-party checkout and native build output
+third_party/
+dist/
+logs/
+
+# Local/generated analysis
+analysis/local/
+config/downhill.auto.toml
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
