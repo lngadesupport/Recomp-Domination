@@ -36,6 +36,7 @@ try {
     Copy-Diagnostic (Join-Path $DistDir "recompiled_report.json") "runtime\recompiled_report.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_latest.log") "runtime\first_boot_latest.log"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_triage.json") "runtime\first_boot_triage.json"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_suggestions.json") "runtime\first_boot_suggestions.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_exit_code.txt") "runtime\first_boot_exit_code.txt"
 
     $latestBuildLog = Get-ChildItem -LiteralPath (Join-Path $RepoRoot "logs") -Filter "build_downhill_*.log" -File -ErrorAction SilentlyContinue |
