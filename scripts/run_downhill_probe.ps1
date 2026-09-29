@@ -105,17 +105,34 @@ $process = Start-Process `
 $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
 
 if ($timedOut) {
-    Write-Warning "Probe timeout reached; terminating diagnostic runner process."
+    Write-Warning "Probe timeout reached; terminating diagnostic runner process tree."
+
+    # Do not call an unbounded WaitForExit() after a timeout. On Windows,
+    # redirected stdout/stderr can keep process handles alive even after the
+    # direct child exits. Kill the whole tree and only use bounded waits.
     try {
-        Stop-Process -Id $process.Id -Force -ErrorAction Stop
+        & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
     }
     catch {
-        Write-Warning ("Could not force-stop runner: " + $_.Exception.Message)
+        Write-Warning ("taskkill failed: " + $_.Exception.Message)
     }
-    try { $process.WaitForExit() } catch {}
+
+    try {
+        if (!$process.HasExited) {
+            Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+        }
+    }
+    catch {}
+
+    try {
+        [void]$process.WaitForExit(5000)
+    }
+    catch {}
 }
 else {
-    $process.WaitForExit()
+    # The process already signaled completion through the bounded wait above.
+    # Give redirected streams a small bounded drain window, never an infinite wait.
+    try { [void]$process.WaitForExit(5000) } catch {}
 }
 
 $exitCode = if ($timedOut) { 124 } else { $process.ExitCode }
