@@ -85,6 +85,20 @@ function Hex32 {
     return ("0x{0:X8}" -f $Value)
 }
 
+function Get-TextSha256 {
+    param([string]$Text)
+
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        [byte[]]$bytes = (New-Object Text.UTF8Encoding($false)).GetBytes($Text)
+        [byte[]]$hash = $sha.ComputeHash($bytes)
+        return ([BitConverter]::ToString($hash)).Replace("-", "")
+    }
+    finally {
+        $sha.Dispose()
+    }
+}
+
 function Read-U32 {
     param([byte[]]$Data, [int]$Offset)
 
@@ -484,6 +498,21 @@ try {
         throw "Downhill PS2Recomp runtime patch failed."
     }
 
+    $RuntimePatchSha256 = (Get-FileHash -LiteralPath $RuntimePatchSource -Algorithm SHA256).Hash
+    $RuntimePatchDiff = (& $Git -C $Ps2RecompRoot diff -- ps2xRuntime/src/lib/ps2_memory.cpp ps2xTest/src/ps2_memory_tests.cpp) -join [Environment]::NewLine
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to capture patched PS2Recomp diff."
+    }
+    if (!$RuntimePatchDiff) {
+        throw "Expected Downhill runtime patch diff is empty."
+    }
+    $RuntimePatchDiffSha256 = Get-TextSha256 $RuntimePatchDiff
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "PS2Recomp.downhill.patch.diff"),
+        $RuntimePatchDiff + [Environment]::NewLine,
+        (New-Object Text.UTF8Encoding($false))
+    )
+
     $RunnerDir = Join-Path $Ps2RecompRoot "ps2xRuntime\src\runner"
     $RuntimeInclude = Join-Path $Ps2RecompRoot "ps2xRuntime\include"
 
@@ -765,6 +794,8 @@ try {
     $summary = [ordered]@{
         result = "build-complete"
         ps2recomp_commit = $PinnedPs2Recomp
+        runtime_patch_script_sha256 = $RuntimePatchSha256
+        runtime_patch_diff_sha256 = $RuntimePatchDiffSha256
         game_root = $GameRoot
         elf = $Elf
         config = $AutoConfig
