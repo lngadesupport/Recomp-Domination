@@ -62,7 +62,7 @@ $topPcs = @(
     $pcs.GetEnumerator() |
         Sort-Object Value -Descending |
         Select-Object -First 32 |
-        ForEach-Object { [ordered]@{ address = $_.Key; count = $_.Value } }
+        ForEach-Object { [pscustomobject][ordered]@{ address = [string]$_.Key; count = [int]$_.Value } }
 )
 
 $firstFatal = $lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' } | Select-Object -First 1
@@ -81,48 +81,25 @@ elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 $tailCount = [Math]::Min(120, $lines.Count)
 $tail = if ($tailCount -gt 0) { @($lines | Select-Object -Last $tailCount) } else { @() }
 
-function Convert-TopLevelReportToJson {
-    param([System.Collections.IDictionary]$Object)
-
-    $parts = New-Object System.Collections.Generic.List[string]
-    foreach($key in $Object.Keys){
-        $keyText = [string]$key
-        $escapedKey = $keyText.Replace('\\','\\\\').Replace('"','\\"')
-        $value = $Object[$key]
-        if ($null -eq $value) {
-            $valueJson = 'null'
-        }
-        elseif ($value -is [System.Array] -and $value.Count -eq 0) {
-            $valueJson = '[]'
-        }
-        else {
-            $valueJson = $value | ConvertTo-Json -Depth 7 -Compress
-        }
-        $parts.Add(('"' + $escapedKey + '":' + $valueJson))
-    }
-
-    return "{`r`n  " + ($parts -join ",`r`n  ") + "`r`n}"
-}
-
-$report = [ordered]@{
+$report = [pscustomobject][ordered]@{
     source_log = $Log
     line_count = $lines.Count
     primary_classification = $primary
-    categories = $categories
-    milestones = $milestones
+    categories = [pscustomobject]$categories
+    milestones = [pscustomobject]$milestones
     furthest_milestone = $furthestMilestone
-    known_address_hits = $knownAddressHits
-    first_markers = [ordered]@{
-        fatal_or_exception = $firstFatal
-        missing_function = $firstMissing
-        todo_or_stub = $firstTodo
-        unsupported_instruction = $firstInstruction
+    known_address_hits = [pscustomobject]$knownAddressHits
+    first_markers = [pscustomobject][ordered]@{
+        fatal_or_exception = if($null -ne $firstFatal){[string]$firstFatal}else{$null}
+        missing_function = if($null -ne $firstMissing){[string]$firstMissing}else{$null}
+        todo_or_stub = if($null -ne $firstTodo){[string]$firstTodo}else{$null}
+        unsupported_instruction = if($null -ne $firstInstruction){[string]$firstInstruction}else{$null}
     }
     frequent_pc_or_ra = $topPcs
-    tail = $tail
+    tail = @($tail | ForEach-Object { [string]$_ })
 }
 
-$json = Convert-TopLevelReportToJson $report
+$json = $report | ConvertTo-Json -Depth 8
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out), $json, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
