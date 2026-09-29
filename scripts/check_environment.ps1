@@ -4,6 +4,9 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$PinnedPs2Recomp = '75d729ce40d7eed9649fd4bb05628dee520f3d0c'
+$Ps2RecompRoot = Join-Path $RepoRoot 'third_party\PS2Recomp'
+$Ps2RecompBuildRoot = Join-Path $Ps2RecompRoot 'out\build-downhill'
 if (!$GameRoot) {
     $parent = Split-Path $RepoRoot -Parent
     if (Test-Path -LiteralPath (Join-Path $parent 'SCUS_971.77')) { $GameRoot = $parent }
@@ -71,6 +74,22 @@ try {
     Add-Check 'Free disk space' $false $_.Exception.Message
 }
 
+$pinnedCached=$false
+if($git -and (Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
+    & $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+    $pinnedCached=($LASTEXITCODE -eq 0)
+}
+Add-Check 'Pinned PS2Recomp cache' $pinnedCached $(if($pinnedCached){$PinnedPs2Recomp}else{'not cached yet'})
+
+$requiredDepCaches=@('raylib-src','elfio-src','toml11-src','nlohmann_json-src')
+$missingDepCaches=New-Object System.Collections.Generic.List[string]
+foreach($dep in $requiredDepCaches){
+    if(!(Test-Path -LiteralPath (Join-Path $Ps2RecompBuildRoot ('_deps\' + $dep)))){
+        $missingDepCaches.Add($dep)
+    }
+}
+$dependencyCacheReady=($missingDepCaches.Count -eq 0)
+
 $internetOk=$false
 try{
     $tcp=New-Object Net.Sockets.TcpClient
@@ -79,7 +98,16 @@ try{
     if($internetOk){$tcp.EndConnect($ar)}
     $tcp.Close()
 }catch{}
-Add-Check 'GitHub connectivity' $internetOk $(if($internetOk){'github.com:443 reachable'}else{'not reachable; first build needs internet'})
+
+$dependencyAccessOk=$internetOk -or ($pinnedCached -and $dependencyCacheReady)
+$dependencyAccessDetail=if($internetOk){
+    'github.com:443 reachable'
+}elseif($pinnedCached -and $dependencyCacheReady){
+    'offline rebuild cache ready'
+}else{
+    'GitHub unreachable and one or more first-build dependency caches are missing: ' + ($missingDepCaches -join ', ')
+}
+Add-Check 'Dependency access' $dependencyAccessOk $dependencyAccessDetail
 
 $failed=@($checks | Where-Object { -not $_.ok })
 $report=[ordered]@{
