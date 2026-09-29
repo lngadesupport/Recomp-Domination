@@ -36,7 +36,9 @@ function Find-SystemCnf {
         }
         return $null
     }
-    return (Get-ChildItem -LiteralPath $Root -Filter 'SYSTEM.CNF' -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName
+    $hit = Get-ChildItem -LiteralPath $Root -Filter 'SYSTEM.CNF' -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+    if($hit){return $hit.FullName}
+    return $null
 }
 
 function Find-Iso {
