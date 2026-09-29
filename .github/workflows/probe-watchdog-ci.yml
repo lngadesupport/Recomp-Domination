@@ -1,0 +1,59 @@
+name: Probe watchdog CI
+
+on:
+  push:
+    branches:
+      - bootstrap/compiler
+    paths:
+      - scripts/run_downhill_probe.ps1
+      - scripts/triage_first_boot.ps1
+      - scripts/suggest_bringup_fixes.ps1
+      - .github/workflows/probe-watchdog-ci.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/run_downhill_probe.ps1
+      - scripts/triage_first_boot.ps1
+      - scripts/suggest_bringup_fixes.ps1
+      - .github/workflows/probe-watchdog-ci.yml
+
+concurrency:
+  group: probe-watchdog-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  timeout-probe:
+    runs-on: windows-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build fake long-running runner
+        shell: cmd
+        run: >-
+          echo using System; using System.Threading; public static class Program { public static int Main(string[] args) { Console.WriteLine("probe fake runner stdout"); Console.Error.WriteLine("probe fake runner stderr"); Thread.Sleep(10000); return 0; } } > probe_fake.cs
+          && mkdir probe_smoke
+          && csc /nologo /target:exe /out:probe_smoke\ps2EntryRunner.exe probe_fake.cs
+
+      - name: Prepare probe inputs
+        shell: powershell
+        run: |
+          Copy-Item .\scripts\run_downhill_probe.ps1 .\probe_smoke\run_downhill_probe.ps1
+          Copy-Item .\scripts\triage_first_boot.ps1 .\probe_smoke\triage_first_boot.ps1
+          Copy-Item .\scripts\suggest_bringup_fixes.ps1 .\probe_smoke\suggest_bringup_fixes.ps1
+          [IO.File]::WriteAllBytes((Resolve-Path .\probe_smoke).Path + '\SCUS_971.77', [byte[]](1..16))
+
+      - name: Verify one-second diagnostic timeout
+        shell: powershell
+        timeout-minutes: 1
+        run: |
+          $probe=(Resolve-Path .\probe_smoke).Path
+          $args=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $probe 'run_downhill_probe.ps1'),'-Elf',(Join-Path $probe 'SCUS_971.77'),'-TimeoutSeconds','1')
+          $p=Start-Process powershell.exe -ArgumentList $args -Wait -PassThru -NoNewWindow
+          if($p.ExitCode -ne 124){throw "Expected exit 124, got $($p.ExitCode)"}
+          $meta=Get-Content (Join-Path $probe 'first_boot_probe.json') -Raw | ConvertFrom-Json
+          if(!$meta.timed_out){throw 'Probe did not record timeout'}
+          if(!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))){throw 'Combined probe log missing'}
+          if(!(Test-Path (Join-Path $probe 'first_boot_probe_triage.json'))){throw 'Triage JSON missing'}
+          Write-Host ('Probe duration: ' + $meta.duration_seconds + ' s')
