@@ -523,7 +523,18 @@ try {
         Invoke-Native $Git "clone" "https://github.com/ran-j/PS2Recomp.git" $Ps2RecompRoot
     }
 
-    Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
+    # The toolchain is pinned. Once that exact commit exists locally, repeated
+    # bring-up builds no longer need network access just to reset to it.
+    & $Git -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + "^{commit}") 2>$null
+    $PinnedCommitCached = ($LASTEXITCODE -eq 0)
+    if (!$PinnedCommitCached) {
+        Write-Host "      Pinned PS2Recomp commit is not cached; fetching once..." -ForegroundColor DarkGray
+        Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
+    }
+    else {
+        Write-Host "      Pinned PS2Recomp commit already cached; network fetch skipped." -ForegroundColor DarkGray
+    }
+
     Invoke-Native $Git "-C" $Ps2RecompRoot "reset" "--hard" $PinnedPs2Recomp
 
     & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $RuntimePatchSource -Ps2RecompRoot $Ps2RecompRoot
