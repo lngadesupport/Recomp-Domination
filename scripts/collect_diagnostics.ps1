@@ -33,6 +33,7 @@ try {
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json") "analysis\SCUS_971.77.identity.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\last_build.json") "analysis\last_build.json"
     Copy-Diagnostic (Join-Path $DistDir "build_report.json") "runtime\build_report.json"
+    Copy-Diagnostic (Join-Path $DistDir "recompiled_report.json") "runtime\recompiled_report.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_latest.log") "runtime\first_boot_latest.log"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_triage.json") "runtime\first_boot_triage.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_exit_code.txt") "runtime\first_boot_exit_code.txt"
