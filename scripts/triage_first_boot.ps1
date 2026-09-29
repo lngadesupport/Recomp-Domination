@@ -11,9 +11,12 @@ if (!$Out) {
     $Out = Join-Path (Split-Path $Log -Parent) "first_boot_triage.json"
 }
 
+Write-Host "[triage] reading log"
 $lines = @(Get-Content -LiteralPath $Log -ErrorAction Stop)
 $text = $lines -join [Environment]::NewLine
+Write-Host ("[triage] loaded log lines=" + $lines.Count)
 
+Write-Host "[triage] computing categories"
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -25,6 +28,8 @@ $categories = [ordered]@{
     pad = @($lines | Where-Object { $_ -match '(?i)scePad|padread|gamepad' }).Count
 }
 
+Write-Host "[triage] categories ready"
+Write-Host "[triage] computing milestones"
 $milestones = [ordered]@{
     elf_loaded = [regex]::IsMatch($text,'(?i)ELF file loaded successfully|Entry point:\s*0x0010A008|0010A008.*enter')
     main_reached = [regex]::IsMatch($text,'(?i)\bmain\b.*enter|001FB6C0')
@@ -34,6 +39,7 @@ $milestones = [ordered]@{
     gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
 }
 
+Write-Host "[triage] milestones ready"
 $furthestMilestone = "none"
 foreach($candidate in @(
     [pscustomobject]@{name="elf-loaded";hit=[bool]$milestones.elf_loaded},
@@ -46,11 +52,14 @@ foreach($candidate in @(
     if($candidate.hit){$furthestMilestone=$candidate.name}
 }
 
+Write-Host "[triage] milestone order ready"
 $knownAddressHits = [ordered]@{}
 foreach($knownPc in @("0010A008","001FB6C0","00254050","0025C440")){
     $knownAddressHits["0x" + $knownPc] = ([regex]::Matches($text,'(?i)(?:0x)?'+$knownPc)).Count
 }
 
+Write-Host "[triage] known-address counts ready"
+Write-Host "[triage] scanning PC/RA matches"
 $pcMatches = [regex]::Matches($text, '(?i)(?:\bpc\b|\bra\b)\s*[=:]\s*(0x[0-9a-f]{6,8})')
 $pcs = @{}
 foreach ($m in $pcMatches) {
@@ -65,11 +74,13 @@ $topPcs = @(
         ForEach-Object { [ordered]@{ address = $_.Key; count = $_.Value } }
 )
 
+Write-Host "[triage] PC/RA summary ready"
 $firstFatal = $lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' } | Select-Object -First 1
 $firstMissing = $lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' } | Select-Object -First 1
 $firstTodo = $lines | Where-Object { $_ -match '(?i)TODO_NAMED|\bTODO\b|unimplemented.+stub|stub.+unimplemented' } | Select-Object -First 1
 $firstInstruction = $lines | Where-Object { $_ -match '(?i)unhandled.+instruction|unsupported.+instruction|reserved instruction|unknown opcode' } | Select-Object -First 1
 
+Write-Host "[triage] first markers ready"
 $primary = "no-obvious-fatal-marker"
 if ($categories.fatal_or_exception -gt 0) { $primary = "fatal-or-exception" }
 elseif ($categories.missing_function -gt 0) { $primary = "missing-function" }
@@ -78,9 +89,11 @@ elseif ($categories.todo_or_stub -gt 0) { $primary = "todo-or-stub" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
+Write-Host "[triage] primary classification ready"
 $tailCount = [Math]::Min(120, $lines.Count)
 $tail = if ($tailCount -gt 0) { @($lines | Select-Object -Last $tailCount) } else { @() }
 
+Write-Host "[triage] tail ready"
 $report = [ordered]@{
     source_log = $Log
     line_count = $lines.Count
@@ -99,7 +112,9 @@ $report = [ordered]@{
     tail = $tail
 }
 
+Write-Host "[triage] report object ready; serializing JSON"
 $json = $report | ConvertTo-Json -Depth 8
+Write-Host "[triage] JSON ready"
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out), $json, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
