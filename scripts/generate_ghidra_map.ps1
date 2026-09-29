@@ -66,6 +66,7 @@ if(!(Test-Path -LiteralPath $script)){throw "Missing exporter: $script"}
 $toml=Join-Path $AnalysisDir 'SCUS_971.77.ghidra.toml'
 $csv=Join-Path $AnalysisDir 'SCUS_971.77.functions.csv'
 $projectDir=Join-Path $LocalDir 'ghidra_project'
+$projectName='Downhill_SCUS_97177_' + (Get-Date -Format 'yyyyMMdd_HHmmss')
 $log=Join-Path $LocalDir 'ghidra_headless.log'
 $scriptLog=Join-Path $LocalDir 'ghidra_script.log'
 New-Item -ItemType Directory -Force -Path $projectDir | Out-Null
@@ -81,7 +82,7 @@ Write-Host ''
 
 $args=@(
     $projectDir,
-    'Downhill_SCUS_97177',
+    $projectName,
     '-import',$Elf,
     '-analysisTimeoutPerFile','1200',
     '-deleteProject',
