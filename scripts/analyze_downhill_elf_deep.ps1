@@ -1,6 +1,7 @@
 param(
     [string]$Elf = "",
-    [string]$Out = ""
+    [string]$Out = "",
+    [string]$FunctionCsv = ""
 )
 
 $ErrorActionPreference = 'Stop'
@@ -39,6 +40,91 @@ for($i=0;$i-lt$phnum;$i++){
 $exec=@($segments|Where-Object{$_.type-eq 1-and($_.flags-band 1)-ne 0-and$_.filesz-gt 0})
 if($exec.Count-eq 0){throw 'No executable PT_LOAD segment'}
 
+$scanMode='pt-load-fallback'
+$functionCsvPath=$null
+$functionCsvRecords=0
+$scanRanges=New-Object System.Collections.Generic.List[object]
+
+if(!$FunctionCsv){
+    $candidate=Join-Path $RepoRoot 'analysis\SCUS_971.77.functions.csv'
+    if(Test-Path -LiteralPath $candidate){$FunctionCsv=$candidate}
+}
+
+if($FunctionCsv -and (Test-Path -LiteralPath $FunctionCsv)){
+    $functionCsvPath=(Resolve-Path -LiteralPath $FunctionCsv).Path
+    $rawRanges=New-Object System.Collections.Generic.List[object]
+
+    foreach($row in @(Import-Csv -LiteralPath $functionCsvPath)){
+        try{
+            $startText=[string]$row.Start
+            $endText=[string]$row.End
+            if([string]::IsNullOrWhiteSpace($startText)-or[string]::IsNullOrWhiteSpace($endText)){continue}
+
+            [uint64]$start=if($startText.StartsWith('0x',[StringComparison]::OrdinalIgnoreCase)){
+                [Convert]::ToUInt32($startText.Substring(2),16)
+            }else{[uint32]::Parse($startText)}
+
+            [uint64]$end=if($endText.StartsWith('0x',[StringComparison]::OrdinalIgnoreCase)){
+                [Convert]::ToUInt32($endText.Substring(2),16)
+            }else{[uint32]::Parse($endText)}
+
+            if($end-le$start){continue}
+            $rawRanges.Add([pscustomobject]@{start=$start;end=$end})
+            $functionCsvRecords++
+        }catch{
+            Write-Warning ('Ignoring malformed Ghidra CSV row: '+($_|ConvertTo-Json -Compress))
+        }
+    }
+
+    if($rawRanges.Count-gt 0){
+        $merged=New-Object System.Collections.Generic.List[object]
+        foreach($range in @($rawRanges|Sort-Object start,end)){
+            if($merged.Count-eq 0){
+                $merged.Add([pscustomobject]@{start=[uint64]$range.start;end=[uint64]$range.end})
+                continue
+            }
+
+            $last=$merged[$merged.Count-1]
+            if([uint64]$range.start-le[uint64]$last.end){
+                if([uint64]$range.end-gt[uint64]$last.end){$last.end=[uint64]$range.end}
+            }else{
+                $merged.Add([pscustomobject]@{start=[uint64]$range.start;end=[uint64]$range.end})
+            }
+        }
+
+        foreach($range in $merged){
+            foreach($s in $exec){
+                [uint64]$segStart=$s.vaddr
+                [uint64]$segEnd=[uint64]$s.vaddr+[uint64]$s.filesz
+                [uint64]$start=[uint64]$range.start
+                [uint64]$end=[uint64]$range.end
+                if($segStart-gt$start){$start=$segStart}
+                if($segEnd-lt$end){$end=$segEnd}
+
+                # R5900 instructions are 4-byte aligned. Trim Ghidra label/body
+                # edges instead of counting partial words.
+                $start=($start+3u)-band 0xFFFFFFFFFFFFFFFC
+                $end=$end-band 0xFFFFFFFFFFFFFFFC
+
+                if($start-lt$end){
+                    $scanRanges.Add([pscustomobject]@{start=$start;end=$end;segment=$s})
+                }
+            }
+        }
+
+        if($scanRanges.Count-gt 0){$scanMode='ghidra-functions'}
+    }
+}
+
+if($scanRanges.Count-eq 0){
+    foreach($s in $exec){
+        [uint64]$start=$s.vaddr
+        [uint64]$end=[uint64]$s.vaddr+[uint64]$s.filesz
+        $end=$end-band 0xFFFFFFFFFFFFFFFC
+        if($start-lt$end){$scanRanges.Add([pscustomobject]@{start=$start;end=$end;segment=$s})}
+    }
+}
+
 $opNames=@{
   0='SPECIAL';1='REGIMM';2='J';3='JAL';4='BEQ';5='BNE';6='BLEZ';7='BGTZ';
   8='ADDI';9='ADDIU';10='SLTI';11='SLTIU';12='ANDI';13='ORI';14='XORI';15='LUI';
@@ -58,12 +144,14 @@ $specialNames=@{
 $opCounts=@{};$specialCounts=@{};$jal=@{};$jump=@{};$branchCount=0
 $cop0=0;$cop1=0;$cop2=0;$mmi=0;$syscalls=0;$breaks=0;$jr=0;$jalr=0;$words=0
 
-foreach($s in $exec){
-  [uint64]$max=[Math]::Min([uint64]$s.filesz,[uint64]$b.Length-[uint64]$s.offset)
-  for([uint64]$rel=0;$rel+4-le$max;$rel+=4){
-    $fo=[int]([uint64]$s.offset+$rel)
+foreach($range in $scanRanges){
+  $s=$range.segment
+  for([uint64]$pc64=[uint64]$range.start;$pc64+4-le[uint64]$range.end;$pc64+=4){
+    [uint64]$file64=[uint64]$s.offset+($pc64-[uint64]$s.vaddr)
+    if($file64+4-gt[uint64]$b.Length){break}
+    $fo=[int]$file64
     [uint32]$w=[BitConverter]::ToUInt32($b,$fo)
-    [uint32]$pc=[uint32]([uint64]$s.vaddr+$rel)
+    [uint32]$pc=[uint32]$pc64
     $op=[int](($w-shr 26)-band 0x3F)
     $name=if($opNames.ContainsKey($op)){$opNames[$op]}else{('OP_{0:X2}'-f$op)}
     if(!$opCounts.ContainsKey($name)){$opCounts[$name]=0};$opCounts[$name]++;$words++
@@ -131,6 +219,10 @@ foreach($addr in @([uint32]0x0010A008,[uint32]0x001FB6C0,[uint32]0x00254050,[uin
 $report=[ordered]@{
   generated=(Get-Date -Format o); file=[IO.Path]::GetFileName($Elf); size_bytes=$b.Length; entry=H $entry;
   executable_segments=@($exec|ForEach-Object{[pscustomobject]@{vaddr=H $_.vaddr;offset=H $_.offset;filesz=H $_.filesz;memsz=H $_.memsz;flags=H $_.flags}});
+  scan_mode=$scanMode;
+  function_csv=$functionCsvPath;
+  function_csv_records=$functionCsvRecords;
+  scan_ranges=@($scanRanges|ForEach-Object{[pscustomobject]@{start=H ([uint32]$_.start);end_exclusive=H ([uint32]$_.end)}});
   instruction_words=$words;
   opcode_counts=SortedCounts $opCounts;
   special_counts=SortedCounts $specialCounts;
@@ -143,6 +235,8 @@ $report=[ordered]@{
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out),($report|ConvertTo-Json -Depth 8),(New-Object Text.UTF8Encoding($false)))
 
 Write-Host 'Deep ELF census complete.' -ForegroundColor Green
+Write-Host ('Scan mode:     ' + $scanMode)
+if($functionCsvPath){Write-Host ('Function CSV:  ' + $functionCsvPath)}
 Write-Host ('Words scanned: ' + $words)
 Write-Host ('JAL targets:    ' + $jal.Count)
 Write-Host ('COP1 words:     ' + $cop1)
