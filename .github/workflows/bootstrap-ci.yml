@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - bootstrap/compiler
+      - bootstrap/bringup-hardening
   pull_request:
     branches:
       - main
@@ -58,6 +59,77 @@ jobs:
             }
           }
           if ($failed) { throw 'Windows PowerShell parser reported one or more errors.' }
+      - name: Smoke-test retail TOML merge helpers
+        shell: powershell
+        run: |
+          $tokens = $null
+          $errors = $null
+          $scriptPath = (Resolve-Path '.\scripts\build_downhill.ps1').Path
+          $ast = [System.Management.Automation.Language.Parser]::ParseFile(
+            $scriptPath,
+            [ref]$tokens,
+            [ref]$errors
+          )
+          if ($errors.Count -ne 0) { throw 'build_downhill.ps1 did not parse' }
+
+          foreach ($name in @('Set-TomlScalar','Ensure-TomlArrayEntries','Get-TomlArrayEntries')) {
+            $fn = $ast.Find({
+              param($node)
+              $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $name
+            }, $true)
+            if (!$fn) { throw "Missing helper function $name" }
+            Invoke-Expression $fn.Extent.Text
+          }
+
+          $config = @'
+          [general]
+          input = "smoke.elf"
+          output = "out"
+          ghidra_output = ""
+          patch_syscalls = true
+          patch_cop0 = true
+          patch_cache = true
+          stubs = [
+          ]
+          entry_points = [
+          ]
+          '@
+
+          $ghidra = @'
+          [general]
+          stubs = [
+            "scePadRead@0x00254050",
+            "sceSifSendCmd@0x0025C440",
+          ]
+          untracked_stubs = [
+            "legacy_callback@0x00123450",
+          ]
+          '@
+
+          $stubs = @(Get-TomlArrayEntries $ghidra 'stubs')
+          $entries = @(Get-TomlArrayEntries $ghidra 'untracked_stubs')
+          if ($stubs.Count -ne 2) { throw "Expected 2 Ghidra stubs, got $($stubs.Count)" }
+          if ($entries.Count -ne 1) { throw "Expected 1 Ghidra entry hint, got $($entries.Count)" }
+
+          $config = Ensure-TomlArrayEntries $config 'stubs' $stubs
+          $config = Ensure-TomlArrayEntries $config 'entry_points' $entries
+          $config = Set-TomlScalar $config 'patch_syscalls' 'false'
+          $config = Set-TomlScalar $config 'patch_cop0' 'false'
+          $config = Set-TomlScalar $config 'patch_cache' 'false'
+
+          foreach ($needle in @(
+            '"scePadRead@0x00254050"',
+            '"sceSifSendCmd@0x0025C440"',
+            '"legacy_callback@0x00123450"',
+            'patch_syscalls = false',
+            'patch_cop0 = false',
+            'patch_cache = false'
+          )) {
+            if ($config -notmatch [regex]::Escape($needle)) {
+              throw "Merged config is missing: $needle"
+            }
+          }
+
       - name: Smoke-test local game-data preparation
         shell: powershell
         run: |
