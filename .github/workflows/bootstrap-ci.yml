@@ -101,6 +101,9 @@ jobs:
           -DPS2X_ENABLE_RUNTIME_LOGS=ON
           -DPS2X_ENABLE_AGRESSIVE_LOGS=ON
           -DPS2X_ENABLE_IOP_RPC_TRACE=ON
+          -DPS2X_STRICT_RETURN_DIAGNOSTICS=ON
+          -DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF
+          -DCMAKE_CXX_FLAGS=/bigobj
 
       - name: Build runtime with generated C++
         shell: pwsh
