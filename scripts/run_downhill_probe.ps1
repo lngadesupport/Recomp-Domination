@@ -173,39 +173,28 @@ if ($timedOut) {
 
     # Kill only the uniquely named probe copy. No redirected Process object is
     # touched here, so there are no .NET stream pumps to drain.
-    Write-Host "[watchdog] locating unique runner process..."
     $targets = @(Get-Process -Name $probeBase -ErrorAction SilentlyContinue)
-    Write-Host ("[watchdog] runner matches: " + $targets.Count)
     foreach ($target in $targets) {
-        Write-Host ("[watchdog] killing runner PID " + $target.Id)
         try {
             $target.Kill()
-            Write-Host ("[watchdog] Kill() returned for PID " + $target.Id)
         }
         catch {
             Write-Warning ("Failed to kill probe PID {0}: {1}" -f $target.Id, $_.Exception.Message)
         }
         finally {
-            Write-Host ("[watchdog] disposing runner PID " + $target.Id)
             $target.Dispose()
-            Write-Host "[watchdog] runner Process disposed"
         }
     }
 
     # The cmd wrapper normally exits as soon as its child dies. Keep this wait
     # bounded and kill only the wrapper if Windows does not signal it promptly.
-    Write-Host ("[watchdog] waiting up to 5s for wrapper PID " + $wrapper.Id)
     if (!$wrapper.WaitForExit(5000)) {
         Write-Warning ("Probe wrapper PID {0} did not exit after child termination; forcing wrapper exit." -f $wrapper.Id)
         try {
-            Write-Host "[watchdog] forcing wrapper Kill()"
             $wrapper.Kill()
-            Write-Host "[watchdog] wrapper Kill() returned"
         } catch {}
-        Write-Host "[watchdog] waiting final 1s for wrapper"
         [void]$wrapper.WaitForExit(1000)
     }
-    Write-Host "[watchdog] timeout cleanup complete"
 
     $exitCode = 124
 }
@@ -213,15 +202,10 @@ else {
     $exitCode = $wrapper.ExitCode
 }
 
-Write-Host "[watchdog] disposing wrapper"
 $wrapper.Dispose()
-Write-Host "[watchdog] wrapper disposed"
-Write-Host "[watchdog] removing temporary launcher/image"
 Remove-Item -Force -ErrorAction SilentlyContinue $launchCmd,$probeExe
-Write-Host "[watchdog] temporary cleanup returned"
 $endedAt = Get-Date
 
-Write-Host "[watchdog] opening combined log"
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
 try {
     Write-Utf8Text $combined "=== Recomp Domination diagnostic probe ===`r`n"
@@ -232,14 +216,10 @@ try {
     Write-Utf8Text $combined ("exit_code={0}`r`n`r`n" -f $exitCode)
 
     Write-Utf8Text $combined "=== STDOUT (tail) ===`r`n"
-    Write-Host "[watchdog] appending stdout"
     $stdoutInfo = Append-LogTail $combined $stdoutPath $MaxStreamCaptureBytes
-    Write-Host "[watchdog] stdout appended"
 
     Write-Utf8Text $combined "`r`n=== STDERR (tail) ===`r`n"
-    Write-Host "[watchdog] appending stderr"
     $stderrInfo = Append-LogTail $combined $stderrPath $MaxStreamCaptureBytes
-    Write-Host "[watchdog] stderr appended"
 
     Write-Utf8Text $combined "`r`n=== AGGRESSIVE FUNCTION TRACE (tail) ===`r`n"
     if (Test-Path -LiteralPath $functionTraceSource) {
@@ -254,9 +234,7 @@ finally {
     $combined.Dispose()
 }
 
-Write-Host "[watchdog] copying combined log to latest"
 Copy-Item -Force $combinedPath $latestPath
-Write-Host "[watchdog] latest log ready"
 if (Test-Path -LiteralPath $functionTraceSource) {
     Copy-Item -Force $functionTraceSource $functionTraceLatest
 }
@@ -286,32 +264,27 @@ $meta = [ordered]@{
     max_stream_capture_bytes = $MaxStreamCaptureBytes
 }
 
-Write-Host "[watchdog] writing metadata"
 [IO.File]::WriteAllText(
     $metaPath,
     ($meta | ConvertTo-Json -Depth 5),
     (New-Object Text.UTF8Encoding($false))
 )
-Write-Host "[watchdog] metadata ready"
 
 $triageScript = Join-Path $Here "triage_first_boot.ps1"
 $triageOut = Join-Path $Here "first_boot_probe_triage.json"
 if (Test-Path -LiteralPath $triageScript) {
-    Write-Host "[watchdog] running triage in bounded helper"
     $triageRun = Invoke-BoundedPowerShellScript -Script $triageScript -ScriptArguments @('-Log',$latestPath,'-Out',$triageOut) -TimeoutSeconds 10
     if($triageRun.timed_out){
         Write-Warning "Triage helper timed out after 10 seconds."
     } elseif($triageRun.exit_code -ne 0){
         Write-Warning ("Triage helper exited with code " + $triageRun.exit_code)
     }
-    Write-Host "[watchdog] triage helper returned"
 }
 
 $suggestScript = Join-Path $Here "suggest_bringup_fixes.ps1"
 $suggestOut = Join-Path $Here "first_boot_probe_suggestions.json"
 $stagedConfig = Join-Path $Here "downhill.auto.toml"
 if (Test-Path -LiteralPath $suggestScript) {
-    Write-Host "[watchdog] running suggestion parser in bounded helper"
     $suggestArgs=@('-Log',$latestPath,'-Out',$suggestOut)
     if (Test-Path -LiteralPath $stagedConfig) {
         $suggestArgs += @('-Config',$stagedConfig)
@@ -322,7 +295,6 @@ if (Test-Path -LiteralPath $suggestScript) {
     } elseif($suggestRun.exit_code -ne 0){
         Write-Warning ("Suggestion helper exited with code " + $suggestRun.exit_code)
     }
-    Write-Host "[watchdog] suggestion helper returned"
 }
 
 Write-Host ""
