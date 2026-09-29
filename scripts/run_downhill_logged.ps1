@@ -51,12 +51,25 @@ $triageOut = Join-Path $Here "first_boot_triage.json"
 if (Test-Path -LiteralPath $triageScript) {
     & $triageScript -Log $lastLog -Out $triageOut
 }
+$suggestScript = Join-Path $Here "suggest_bringup_fixes.ps1"
+$suggestOut = Join-Path $Here "first_boot_suggestions.json"
+$stagedConfig = Join-Path $Here "downhill.auto.toml"
+if (Test-Path -LiteralPath $suggestScript) {
+    if (Test-Path -LiteralPath $stagedConfig) {
+        & $suggestScript -Log $lastLog -Config $stagedConfig -Out $suggestOut
+    } else {
+        & $suggestScript -Log $lastLog -Out $suggestOut
+    }
+}
 
 Write-Host ""
 Write-Host "Runner exit code: $rc"
 Write-Host "Latest boot log: $lastLog"
 if (Test-Path -LiteralPath $triageOut) {
     Write-Host "Triage report: $triageOut"
+}
+if (Test-Path -LiteralPath $suggestOut) {
+    Write-Host "Bring-up suggestions: $suggestOut"
 }
 
 exit $rc
