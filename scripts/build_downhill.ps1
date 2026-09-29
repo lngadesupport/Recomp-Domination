@@ -426,7 +426,7 @@ try {
         "0x0025C440"
     )
 
-    Set-Content -LiteralPath $AutoConfig -Value $toml -Encoding UTF8
+    [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
 
     Write-Host "[5/7] Generating recompiled C++..." -ForegroundColor Cyan
     Invoke-Native $RecompExe $AutoConfig
