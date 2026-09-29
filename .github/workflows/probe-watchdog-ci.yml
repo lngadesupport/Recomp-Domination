@@ -29,12 +29,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up MSVC developer environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
       - name: Build fake long-running runner
         shell: cmd
         run: >-
-          echo using System; using System.Threading; public static class Program { public static int Main(string[] args) { Console.WriteLine("probe fake runner stdout"); Console.Error.WriteLine("probe fake runner stderr"); Thread.Sleep(10000); return 0; } } > probe_fake.cs
+          echo #include ^<cstdio^> > probe_fake.cpp && echo #include ^<windows.h^> >> probe_fake.cpp && echo int main(){puts("probe fake runner stdout"); fputs("probe fake runner stderr\n", stderr); fflush(stdout); fflush(stderr); Sleep(10000); return 0;} >> probe_fake.cpp
           && mkdir probe_smoke
-          && csc /nologo /target:exe /out:probe_smoke\ps2EntryRunner.exe probe_fake.cs
+          && cl /nologo /EHsc probe_fake.cpp /Fe:probe_smoke\ps2EntryRunner.exe
 
       - name: Prepare probe inputs
         shell: powershell
