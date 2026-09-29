@@ -145,3 +145,28 @@ COLLECT_DIAGNOSTICS.cmd
 ```
 
 O ZIP de diagnóstico exclui ELF, ISO, RAR e assets do jogo.
+
+## One-click local pipeline
+
+For the validated local layout at `D:\Recomp Domination`, the most complete path is:
+
+```cmd
+cd /d "D:\Recomp Domination\Recomp-Domination"
+git checkout bootstrap/compiler
+git pull
+FULL_PIPELINE_DOWNHILL.cmd
+```
+
+`FULL_PIPELINE_DOWNHILL.cmd` performs, in order:
+
+1. game-data preparation / multipart RAR normalization and extraction;
+2. `SYSTEM.CNF` validation against `SCUS_971.77`;
+3. exact ELF identity and anchor validation;
+4. pinned PS2Recomp analyzer/recompiler build;
+5. static recompilation to generated C++;
+6. native Windows x64 runner build;
+7. bounded 90-second first-boot probe;
+8. triage/suggestion generation;
+9. non-proprietary diagnostics ZIP collection.
+
+The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
