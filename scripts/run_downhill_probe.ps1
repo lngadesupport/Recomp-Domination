@@ -93,23 +93,34 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-$arguments = '"' + $Elf.Replace('"', '\"') + '"'
+# Redirect in cmd.exe rather than Start-Process. Windows PowerShell 5.1 can
+# keep redirected Start-Process pipes alive after a forced termination, which
+# defeats the watchdog itself. A tiny wrapper gives the OS-owned shell all
+# stream handles, while PowerShell only waits on the cmd.exe process handle.
+$wrapperPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
+$escapedRunner = $Runner.Replace("%", "%%")
+$escapedElf = $Elf.Replace("%", "%%")
+$escapedStdout = $stdoutPath.Replace("%", "%%")
+$escapedStderr = $stderrPath.Replace("%", "%%")
+$wrapperLines = @(
+    "@echo off",
+    "cd /d ""$Here""",
+    """$escapedRunner"" ""$escapedElf"" 1>""$escapedStdout"" 2>""$escapedStderr""",
+    "exit /b %ERRORLEVEL%"
+)
+[IO.File]::WriteAllLines($wrapperPath, $wrapperLines, [Text.Encoding]::ASCII)
+
+$cmdArguments = '/d /s /c ""' + $wrapperPath + '""'
 $process = Start-Process `
-    -FilePath $Runner `
-    -ArgumentList $arguments `
+    -FilePath $env:ComSpec `
+    -ArgumentList $cmdArguments `
     -WorkingDirectory $Here `
-    -RedirectStandardOutput $stdoutPath `
-    -RedirectStandardError $stderrPath `
     -PassThru
 
 $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
 
 if ($timedOut) {
     Write-Warning "Probe timeout reached; terminating diagnostic runner process tree."
-
-    # Do not call an unbounded WaitForExit() after a timeout. On Windows,
-    # redirected stdout/stderr can keep process handles alive even after the
-    # direct child exits. Kill the whole tree and only use bounded waits.
     try {
         & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
     }
@@ -124,16 +135,13 @@ if ($timedOut) {
     }
     catch {}
 
-    try {
-        [void]$process.WaitForExit(5000)
-    }
-    catch {}
-}
-else {
-    # The process already signaled completion through the bounded wait above.
-    # Give redirected streams a small bounded drain window, never an infinite wait.
     try { [void]$process.WaitForExit(5000) } catch {}
 }
+else {
+    try { [void]$process.WaitForExit(1000) } catch {}
+}
+
+Remove-Item -Force -ErrorAction SilentlyContinue $wrapperPath
 
 $exitCode = if ($timedOut) { 124 } else { $process.ExitCode }
 $endedAt = Get-Date
