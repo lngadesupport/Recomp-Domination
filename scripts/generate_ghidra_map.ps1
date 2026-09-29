@@ -51,8 +51,19 @@ if(!(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
     & $git.Source clone https://github.com/ran-j/PS2Recomp.git $Ps2RecompRoot
     if($LASTEXITCODE -ne 0){throw 'Failed to clone PS2Recomp.'}
 }
-& $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
-if($LASTEXITCODE -ne 0){throw 'Failed to fetch pinned PS2Recomp commit.'}
+
+$hasPinned=$false
+& $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+if($LASTEXITCODE -eq 0){$hasPinned=$true}
+
+if(!$hasPinned){
+    & $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
+    if($LASTEXITCODE -ne 0){throw 'Failed to fetch pinned PS2Recomp commit.'}
+}
+else{
+    Write-Host 'Pinned PS2Recomp commit already cached locally; network fetch skipped.' -ForegroundColor DarkGray
+}
+
 & $git.Source -C $Ps2RecompRoot reset --hard $PinnedPs2Recomp
 if($LASTEXITCODE -ne 0){throw 'Failed to reset PS2Recomp to pinned commit.'}
 
