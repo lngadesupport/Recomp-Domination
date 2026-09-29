@@ -24,6 +24,7 @@ $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
 $ExtraEntryPointsFile = Join-Path $ConfigDir "downhill.extra_entry_points.local.txt"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $GhidraToml = Join-Path $AnalysisDir "SCUS_971.77.ghidra.toml"
+$GhidraReport = Join-Path $LocalAnalysisDir "ghidra_map_report.json"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $DeepElfAnalyzer = Join-Path $RepoRoot "scripts\analyze_downhill_elf_deep.ps1"
 $DeepElfReport = Join-Path $LocalAnalysisDir "SCUS_971.77.deep.json"
@@ -508,11 +509,55 @@ try {
 
     $ElfIdentity = Validate-Elf $Elf
 
+    $VerifiedGhidraCsv = ""
+    $VerifiedGhidraToml = ""
+    if (Test-Path -LiteralPath $GhidraCsv) {
+        if (!(Test-Path -LiteralPath $GhidraReport)) {
+            Write-Warning "Ghidra CSV exists without provenance report; ignoring it until GENERATE_GHIDRA_MAP.cmd regenerates a verified map."
+        }
+        else {
+            try {
+                $mapReport = Get-Content -Raw -LiteralPath $GhidraReport | ConvertFrom-Json
+                $actualCsvSha = (Get-FileHash -LiteralPath $GhidraCsv -Algorithm SHA256).Hash.ToUpperInvariant()
+                $reportedElfSha = [string]$mapReport.elf_sha256
+                $reportedCsvSha = [string]$mapReport.function_csv_sha256
+                $reportedCommit = [string]$mapReport.ps2recomp_commit
+
+                if ($reportedElfSha.ToUpperInvariant() -ne $ExpectedSha256) {
+                    Write-Warning "Ghidra provenance ELF SHA-256 does not match the validated retail ELF; map ignored."
+                }
+                elseif (!$reportedCsvSha -or $reportedCsvSha.ToUpperInvariant() -ne $actualCsvSha) {
+                    Write-Warning "Ghidra CSV SHA-256 does not match its provenance report; map ignored."
+                }
+                elseif ($reportedCommit -ne $PinnedPs2Recomp) {
+                    Write-Warning "Ghidra map was exported with a different PS2Recomp revision; map ignored."
+                }
+                else {
+                    $VerifiedGhidraCsv = $GhidraCsv
+                    if (Test-Path -LiteralPath $GhidraToml) {
+                        $actualTomlSha = (Get-FileHash -LiteralPath $GhidraToml -Algorithm SHA256).Hash.ToUpperInvariant()
+                        $reportedTomlSha = [string]$mapReport.export_toml_sha256
+                        if ($reportedTomlSha -and $reportedTomlSha.ToUpperInvariant() -eq $actualTomlSha) {
+                            $VerifiedGhidraToml = $GhidraToml
+                        }
+                        else {
+                            Write-Warning "Ghidra TOML hash does not match its provenance report; function CSV remains usable but classifications are ignored."
+                        }
+                    }
+                    Write-Host "      Verified Ghidra map provenance for the retail ELF." -ForegroundColor Green
+                }
+            }
+            catch {
+                Write-Warning ("Ghidra provenance validation failed; map ignored: " + $_.Exception.Message)
+            }
+        }
+    }
+
     if (!(Test-Path -LiteralPath $DeepElfAnalyzer)) {
         throw "Missing deep ELF analyzer: $DeepElfAnalyzer"
     }
     Write-Host "      Running deep R5900/COP/VU/MMI census..." -ForegroundColor DarkCyan
-    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $DeepElfAnalyzer -Elf $Elf -Out $DeepElfReport -FunctionCsv $GhidraCsv
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $DeepElfAnalyzer -Elf $Elf -Out $DeepElfReport -FunctionCsv $VerifiedGhidraCsv
     if ($LASTEXITCODE -ne 0 -or !(Test-Path -LiteralPath $DeepElfReport)) {
         throw "Deep ELF analysis failed."
     }
@@ -609,8 +654,8 @@ try {
         $ghidraTomlPath = $GhidraCsv.Replace("\", "/")
         Write-Host "      Ghidra function map found and enabled." -ForegroundColor Green
 
-        if (Test-Path -LiteralPath $GhidraToml) {
-            $ghidraExport = Get-Content -Raw -LiteralPath $GhidraToml
+        if ($VerifiedGhidraToml) {
+            $ghidraExport = Get-Content -Raw -LiteralPath $VerifiedGhidraToml
             $GhidraImportedStubs = @(Get-TomlArrayEntries $ghidraExport "stubs" | Sort-Object -Unique)
             $GhidraImportedUntrackedStubs = @(Get-TomlArrayEntries $ghidraExport "untracked_stubs" | Sort-Object -Unique)
             Write-Host ("      Ghidra classifications: stubs=" + $GhidraImportedStubs.Count +
@@ -913,8 +958,8 @@ try {
         game_root = $GameRoot
         elf = $Elf
         config = $AutoConfig
-        ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
-        ghidra_toml_used = (Test-Path -LiteralPath $GhidraToml)
+        ghidra_map_used = [bool]$VerifiedGhidraCsv
+        ghidra_toml_used = [bool]$VerifiedGhidraToml
         ghidra_imported_stubs = $GhidraImportedStubs
         ghidra_imported_untracked_stubs = $GhidraImportedUntrackedStubs
         patch_policy = [ordered]@{
