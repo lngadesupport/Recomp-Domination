@@ -46,8 +46,17 @@ Copy-Item -Force $log $lastLog
     (New-Object Text.UTF8Encoding($false))
 )
 
+$triageScript = Join-Path $Here "triage_first_boot.ps1"
+$triageOut = Join-Path $Here "first_boot_triage.json"
+if (Test-Path -LiteralPath $triageScript) {
+    & $triageScript -Log $lastLog -Out $triageOut
+}
+
 Write-Host ""
 Write-Host "Runner exit code: $rc"
 Write-Host "Latest boot log: $lastLog"
+if (Test-Path -LiteralPath $triageOut) {
+    Write-Host "Triage report: $triageOut"
+}
 
 exit $rc
