@@ -83,8 +83,8 @@ try {
     $writer.Write([uint32]0x1000)
     $writer.Write([uint32]0x00100000)
     $writer.Write([uint32]0x00100000)
-    $writer.Write([uint32]20)
-    $writer.Write([uint32]20)
+    $writer.Write([uint32]28)
+    $writer.Write([uint32]28)
     $writer.Write([uint32]5)            # RX
     $writer.Write([uint32]0x1000)
 
@@ -92,8 +92,11 @@ try {
     $writer.Write([uint32]0x2402002A)   # addiu v0, zero, 42
     $writer.Write([uint32]0x03E00008)   # jr ra
     $writer.Write([uint32]0x00000000)   # delay-slot nop
-    $writer.Write([uint32]0x03E00008)   # second function: jr ra
-    $writer.Write([uint32]0x00000000)   # second function delay-slot nop
+    $writer.Write([uint32]0x03E00008)   # stubbed function: jr ra
+    $writer.Write([uint32]0x00000000)   # stubbed function delay-slot nop
+    $writer.Write([uint32]0x24030007)   # third function: addiu v1, zero, 7
+    $writer.Write([uint32]0x03E00008)   # jr ra
+    $writer.Write([uint32]0x00000000)   # delay-slot nop
 }
 finally {
     $writer.Dispose()
@@ -102,7 +105,7 @@ finally {
 
 [IO.File]::WriteAllText(
     $MapPath,
-    "name,start,end,size`r`nsmoke_main,0x00100000,0x0010000C,12`r`nanonymous_pad_target,0x0010000C,0x00100014,8`r`n",
+    "name,start,end,size`r`nsmoke_main,0x00100000,0x0010000C,12`r`nanonymous_pad_target,0x0010000C,0x00100014,8`r`nsmoke_worker,0x00100014,0x0010001C,8`r`n",
     (New-Object Text.UTF8Encoding($false))
 )
 
