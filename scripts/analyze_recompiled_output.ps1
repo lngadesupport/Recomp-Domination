@@ -12,17 +12,37 @@ $GeneratedDir = (Resolve-Path -LiteralPath $GeneratedDir).Path
 
 $functionsHeader = Join-Path $GeneratedDir "ps2_recompiled_functions.h"
 $stubsHeader = Join-Path $GeneratedDir "ps2_recompiled_stubs.h"
-$functionsCpp = Join-Path $GeneratedDir "ps2_recompiled_functions.cpp"
+$combinedFunctionsCpp = Join-Path $GeneratedDir "ps2_recompiled_functions.cpp"
 $registrationCpp = Join-Path $GeneratedDir "register_functions.cpp"
 
-foreach ($path in @($functionsHeader,$stubsHeader,$functionsCpp,$registrationCpp)) {
+foreach ($path in @($functionsHeader,$stubsHeader,$registrationCpp)) {
     if (!(Test-Path -LiteralPath $path)) { throw "Missing generated artifact: $path" }
+}
+
+$generatedCppFiles = @()
+if (Test-Path -LiteralPath $combinedFunctionsCpp) {
+    $generatedCppFiles = @((Get-Item -LiteralPath $combinedFunctionsCpp))
+    $outputMode = "single-file"
+}
+else {
+    $generatedCppFiles = @(
+        Get-ChildItem -LiteralPath $GeneratedDir -Filter "*.cpp" -File |
+        Where-Object {
+            $_.Name -ne "register_functions.cpp" -and
+            $_.Name -ne "downhill_domination_overrides.cpp"
+        } |
+        Sort-Object Name
+    )
+    $outputMode = "multi-file"
+}
+
+if ($generatedCppFiles.Count -eq 0) {
+    throw "No generated function C++ files were found in $GeneratedDir"
 }
 
 $toml = Get-Content -Raw -LiteralPath $Config
 $fh = Get-Content -Raw -LiteralPath $functionsHeader
 $sh = Get-Content -Raw -LiteralPath $stubsHeader
-$cpp = Get-Content -Raw -LiteralPath $functionsCpp
 $reg = Get-Content -Raw -LiteralPath $registrationCpp
 
 function Count-Matches([string]$Text,[string]$Pattern) {
@@ -53,11 +73,34 @@ foreach($addr in $critical){
     $criticalPresence[$addr]=[regex]::IsMatch($reg,"(?i)//\s*0x0*"+[regex]::Escape($body)+"\b")
 }
 
+$todoCounts = @{}
+[int64]$generatedCppBytes = 0
+$generatedCppHashes = New-Object System.Collections.Generic.List[object]
+$todoNamedOccurrences = 0
+
+foreach ($file in $generatedCppFiles) {
+    $text = Get-Content -Raw -LiteralPath $file.FullName
+    $generatedCppBytes += [int64]$file.Length
+    $matches = [regex]::Matches($text,'TODO_NAMED\(\"([^\"]+)\"')
+    $todoNamedOccurrences += $matches.Count
+    foreach ($match in $matches) {
+        $name = $match.Groups[1].Value
+        if (!$todoCounts.ContainsKey($name)) { $todoCounts[$name] = 0 }
+        $todoCounts[$name]++
+    }
+
+    $generatedCppHashes.Add([ordered]@{
+        file = $file.Name
+        bytes = [int64]$file.Length
+        sha256 = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash
+    })
+}
+
 $todoNames=@(
-    [regex]::Matches($cpp,'TODO_NAMED\(\"([^\"]+)\"') |
-    ForEach-Object { $_.Groups[1].Value } |
-    Group-Object | Sort-Object Count -Descending | Select-Object -First 50 |
-    ForEach-Object { [ordered]@{ name=$_.Name; count=$_.Count } }
+    $todoCounts.GetEnumerator() |
+    Sort-Object Value -Descending |
+    Select-Object -First 50 |
+    ForEach-Object { [ordered]@{ name=$_.Key; count=[int]$_.Value } }
 )
 
 $report=[ordered]@{
@@ -76,13 +119,15 @@ $report=[ordered]@{
     generated=[ordered]@{
         function_declarations=Count-Matches $fh '^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\('
         stub_declarations=Count-Matches $sh '^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\('
-        todo_named_occurrences=([regex]::Matches($cpp,'TODO_NAMED')).Count
+        output_mode=$outputMode
+        cpp_file_count=$generatedCppFiles.Count
+        todo_named_occurrences=$todoNamedOccurrences
         registered_entries=Count-Matches $reg '^\s*g_ps2RecompiledFunctionTable\[[0-9]+\]\s*='
         table_base=$tableBase
         table_end=$tableEnd
         table_slot_count=$slotCount
-        cpp_bytes=(Get-Item -LiteralPath $functionsCpp).Length
-        cpp_sha256=(Get-FileHash -LiteralPath $functionsCpp -Algorithm SHA256).Hash
+        cpp_bytes=$generatedCppBytes
+        cpp_files=$generatedCppHashes
         registration_bytes=(Get-Item -LiteralPath $registrationCpp).Length
         registration_sha256=(Get-FileHash -LiteralPath $registrationCpp -Algorithm SHA256).Hash
     }
