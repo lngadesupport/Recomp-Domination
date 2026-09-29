@@ -1,6 +1,7 @@
 name: Probe watchdog CI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - bootstrap/compiler
