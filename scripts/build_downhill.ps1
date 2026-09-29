@@ -56,6 +56,22 @@ function Require-Command {
     return $cmd.Source
 }
 
+function Require-MsvcToolchain {
+    $vswhere = Join-Path $env:ProgramFiles(x86) "Microsoft Visual Studio\Installer\vswhere.exe"
+
+    if (!(Test-Path -LiteralPath $vswhere)) {
+        throw "Visual Studio Installer/vswhere was not found. Install Visual Studio 2022 or Build Tools 2022 with Desktop development with C++."
+    }
+
+    $installation = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+
+    if ($LASTEXITCODE -ne 0 -or !$installation) {
+        throw "MSVC x64 tools were not found. Add the Desktop development with C++ workload in Visual Studio Installer."
+    }
+
+    Write-Host ("      MSVC toolchain: " + $installation) -ForegroundColor DarkGray
+}
+
 function Hex32 {
     param([uint32]$Value)
     return ("0x{0:X8}" -f $Value)
@@ -339,6 +355,7 @@ function Find-BuiltTool {
 try {
     $Git = Require-Command "git"
     $CMake = Require-Command "cmake"
+    Require-MsvcToolchain
 
     $GameRoot = Resolve-GameRoot $GameRoot
     $Elf = Join-Path $GameRoot "SCUS_971.77"
