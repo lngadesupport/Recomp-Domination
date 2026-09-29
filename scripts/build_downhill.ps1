@@ -27,6 +27,7 @@ $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 $StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
 $SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
+$StubAuditSource = Join-Path $RepoRoot "scripts\audit_runtime_stubs.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -597,6 +598,20 @@ try {
     if ($LASTEXITCODE -ne 0) {
         throw "Static recompilation report failed."
     }
+
+    $StubAuditOut = Join-Path $LocalAnalysisDir "SCUS_971.77.runtime_stubs.json"
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $StubAuditSource `
+        -Config $AutoConfig `
+        -Ps2RecompRoot $Ps2RecompRoot `
+        -Out $StubAuditOut
+    if ($LASTEXITCODE -ne 0) {
+        throw "Runtime stub audit failed."
+    }
+    $StubAudit = Get-Content -Raw -LiteralPath $StubAuditOut | ConvertFrom-Json
+    if ([int]$StubAudit.todo -gt 0 -or [int]$StubAudit.not_found -gt 0) {
+        Write-Warning ("Runtime stub audit found TODO/not-found handlers: TODO=" + $StubAudit.todo + ", missing=" + $StubAudit.not_found)
+    }
+
     Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
     Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
     $OverrideTarget = Join-Path $RunnerDir "downhill_domination_overrides.cpp"
@@ -673,6 +688,7 @@ try {
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
     Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
     Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
 
@@ -718,6 +734,7 @@ try {
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
         recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
         staged_config = (Join-Path $DistDir "downhill.auto.toml")
         bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
         transcript = $Transcript
