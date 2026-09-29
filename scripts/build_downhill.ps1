@@ -57,7 +57,7 @@ function Require-Command {
 }
 
 function Require-MsvcToolchain {
-    $vswhere = Join-Path $env:ProgramFiles(x86) "Microsoft Visual Studio\Installer\vswhere.exe"
+    $vswhere = Join-Path ${env:ProgramFiles(x86)} "Microsoft Visual Studio\Installer\vswhere.exe"
 
     if (!(Test-Path -LiteralPath $vswhere)) {
         throw "Visual Studio Installer/vswhere was not found. Install Visual Studio 2022 or Build Tools 2022 with Desktop development with C++."
