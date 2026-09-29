@@ -28,6 +28,7 @@ $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 $StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
 $SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
 $StubAuditSource = Join-Path $RepoRoot "scripts\audit_runtime_stubs.ps1"
+$RuntimePatchSource = Join-Path $RepoRoot "scripts\patch_downhill_ps2recomp.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -476,6 +477,11 @@ try {
 
     Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
     Invoke-Native $Git "-C" $Ps2RecompRoot "reset" "--hard" $PinnedPs2Recomp
+
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $RuntimePatchSource -Ps2RecompRoot $Ps2RecompRoot
+    if ($LASTEXITCODE -ne 0) {
+        throw "Downhill PS2Recomp runtime patch failed."
+    }
 
     $RunnerDir = Join-Path $Ps2RecompRoot "ps2xRuntime\src\runner"
     $RuntimeInclude = Join-Path $Ps2RecompRoot "ps2xRuntime\include"
