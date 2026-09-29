@@ -57,6 +57,32 @@ jobs:
             }
           }
           if ($failed) { throw 'Windows PowerShell parser reported one or more errors.' }
+      - name: Smoke-test local game-data preparation
+        shell: powershell
+        run: |
+          $root = (New-Item -ItemType Directory -Force _ci\game_data_smoke).FullName
+          $disc = (New-Item -ItemType Directory -Force (Join-Path $root 'disc')).FullName
+          [IO.File]::WriteAllBytes((Join-Path $root 'SCUS_971.77'), [byte[]](1..16))
+          'BOOT2 = cdrom0:\SCUS_971.77;1' | Set-Content (Join-Path $disc 'SYSTEM.CNF') -Encoding ascii
+          .\scripts\prepare_game_data.ps1 -GameRoot $root
+          $sidecar = (Get-Content (Join-Path $root 'downhill_cd_root.txt') -Raw).Trim()
+          if ([IO.Path]::GetFullPath($sidecar) -ne [IO.Path]::GetFullPath($disc)) {
+            throw "CD root sidecar mismatch: $sidecar"
+          }
+
+      - name: Smoke-test explicit entry suggestion acceptance
+        shell: powershell
+        run: |
+          $root = (New-Item -ItemType Directory -Force _ci\entry_accept_smoke).FullName
+          $dist = (New-Item -ItemType Directory -Force (Join-Path $root 'DownhillRecompiled')).FullName
+          @{
+            new_entry_point_candidates = @('0x00123450','0x90000000')
+          } | ConvertTo-Json | Set-Content (Join-Path $dist 'first_boot_suggestions.json') -Encoding utf8
+          .\scripts\accept_entry_suggestions.ps1 -GameRoot $root
+          $accepted = @(Get-Content .\config\downhill.extra_entry_points.local.txt)
+          if ($accepted -notcontains '0x00123450') { throw 'Valid entry suggestion was not accepted' }
+          if ($accepted -contains '0x90000000') { throw 'Out-of-range entry suggestion was accepted' }
+          Remove-Item .\config\downhill.extra_entry_points.local.txt -Force
       - name: Clone pinned PS2Recomp
         shell: pwsh
         run: |
