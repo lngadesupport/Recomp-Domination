@@ -146,7 +146,7 @@ if ($generated -notmatch "ps2_stubs::scePadRead") {
 }
 
 $registration = Get-Content -Raw -LiteralPath (Join-Path $RunnerDir "register_functions.cpp")
-if ($registration -notmatch "(?i)//\s*0x0010000c\b") {
+if ($registration -notmatch "(?i)//\s*0x0*10000c\b") {
     throw "Address-bound stub target 0x0010000C is missing from the generated function table."
 }
 
