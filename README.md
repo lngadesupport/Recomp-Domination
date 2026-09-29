@@ -127,7 +127,7 @@ Depois rode:
 BUILD_DOWNHILL.cmd
 ```
 
-Se o CSV do Ghidra existir, o build o usa automaticamente. Caso contrário, usa o `ps2_analyzer` como fallback de bring-up.
+Se o CSV/TOML do Ghidra existirem, o build usa automaticamente as fronteiras de função **e** importa as classificações de stubs/entry hints do exporter. Caso contrário, usa o `ps2_analyzer` como fallback de bring-up.
 
 Após o build, execute:
 
@@ -169,14 +169,18 @@ FULL_PIPELINE_DOWNHILL.cmd
 
 `FULL_PIPELINE_DOWNHILL.cmd` performs, in order:
 
-1. game-data preparation / multipart RAR normalization and extraction;
-2. `SYSTEM.CNF` validation against `SCUS_971.77`;
-3. exact ELF identity and anchor validation;
-4. pinned PS2Recomp analyzer/recompiler build;
-5. static recompilation to generated C++;
-6. native Windows x64 runner build;
-7. bounded 90-second first-boot probe;
-8. triage/suggestion generation;
-9. non-proprietary diagnostics ZIP collection.
+1. environment preflight;
+2. game-data preparation / multipart RAR normalization and extraction;
+3. optional Ghidra headless map generation when Ghidra is available (otherwise analyzer fallback);
+4. `SYSTEM.CNF`, ELF identity and anchor validation;
+5. pinned PS2Recomp analyzer/recompiler build;
+6. static recompilation to generated C++;
+7. native Windows x64 runner build;
+8. bounded 90-second first-boot probe;
+9. triage/suggestion generation and non-proprietary diagnostics ZIP collection.
 
 The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
+
+## Compatibility research
+
+Downhill-specific VIF/VU/timing evidence and the rules for when **not** to apply emulator-derived hacks are tracked in `docs/DOWNHILL_COMPATIBILITY_NOTES.md`.
