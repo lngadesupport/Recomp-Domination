@@ -523,7 +523,17 @@ try {
         Invoke-Native $Git "clone" "https://github.com/ran-j/PS2Recomp.git" $Ps2RecompRoot
     }
 
-    Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
+    $PinnedCommitAvailable = $false
+    & $Git -C $Ps2RecompRoot "cat-file" "-e" ($PinnedPs2Recomp + "^{commit}") 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        $PinnedCommitAvailable = $true
+        Write-Host "      Pinned PS2Recomp commit already cached locally." -ForegroundColor DarkGray
+    }
+
+    if (!$PinnedCommitAvailable) {
+        Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
+    }
+
     Invoke-Native $Git "-C" $Ps2RecompRoot "reset" "--hard" $PinnedPs2Recomp
 
     & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $RuntimePatchSource -Ps2RecompRoot $Ps2RecompRoot
