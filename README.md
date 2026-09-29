@@ -47,6 +47,16 @@ Anchors conferidos byte a byte no ELF:
 - Visual Studio 2022 ou Build Tools 2022 com **Desktop development with C++**
 - internet na primeira execução para dependências do PS2Recomp
 
+## Preflight recomendado
+
+Antes do primeiro build, rode:
+
+```cmd
+CHECK_ENVIRONMENT.cmd
+```
+
+Ele verifica Git, CMake, MSVC x64, o ELF validado, SHA-256, espaço livre e conectividade com GitHub, e grava `analysis\local\environment.json`.
+
 ## Um comando
 
 Abra o repositório e execute:
@@ -104,7 +114,7 @@ Para melhorar as fronteiras de função do retail, com Ghidra instalado:
 GENERATE_GHIDRA_MAP.cmd
 ```
 
-O comando roda Ghidra headless, importa o `SCUS_971.77`, executa o exporter do PS2Recomp e gera:
+O comando roda Ghidra headless, importa o `SCUS_971.77`, adapta de forma verificável o exporter fixado para receber os caminhos TOML/CSV por argumentos (sem diálogos interativos), executa o exporter do PS2Recomp e gera:
 
 ```text
 analysis\SCUS_971.77.functions.csv
