@@ -86,3 +86,62 @@ ELF -> entry -> main -> SIF/IOP -> PAD -> VIF1/VU1 -> GIF/GS -> primeiro frame
 ```
 
 A partir do primeiro bloqueio real de runtime, a implementação passa a ser iterativa e baseada em logs, sem emulação embutida.
+
+
+## Fluxo recomendado
+
+Na primeira preparação local:
+
+```cmd
+PREPARE_GAME_DATA.cmd
+```
+
+Esse comando é opcional. Ele procura `SYSTEM.CNF`, uma ISO local ou volumes multipart RAR. Se houver multipart RAR e 7-Zip disponível, os dados são extraídos localmente para `game_data` e o caminho correto é gravado em sidecars `downhill_cd_root.txt` / `downhill_cd_image.txt`. Nenhum dado proprietário é adicionado ao Git.
+
+Para melhorar as fronteiras de função do retail, com Ghidra instalado:
+
+```cmd
+GENERATE_GHIDRA_MAP.cmd
+```
+
+O comando roda Ghidra headless, importa o `SCUS_971.77`, executa o exporter do PS2Recomp e gera:
+
+```text
+analysis\SCUS_971.77.functions.csv
+analysis\SCUS_971.77.ghidra.toml
+```
+
+Depois rode:
+
+```cmd
+BUILD_DOWNHILL.cmd
+```
+
+Se o CSV do Ghidra existir, o build o usa automaticamente. Caso contrário, usa o `ps2_analyzer` como fallback de bring-up.
+
+Após o build, execute:
+
+```text
+D:\Recomp Domination\DownhillRecompiled\RUN_DOWNHILL.cmd
+```
+
+O primeiro boot gera automaticamente:
+
+```text
+first_boot_latest.log
+first_boot_exit_code.txt
+first_boot_triage.json
+first_boot_suggestions.json
+recompiled_report.json
+build_report.json
+```
+
+`first_boot_suggestions.json` identifica PCs de função ausentes dentro do segmento executável validado e stubs PS2 ainda não implementados. As sugestões não alteram o TOML automaticamente.
+
+Para empacotar apenas diagnósticos seguros:
+
+```cmd
+COLLECT_DIAGNOSTICS.cmd
+```
+
+O ZIP de diagnóstico exclui ELF, ISO, RAR e assets do jogo.
