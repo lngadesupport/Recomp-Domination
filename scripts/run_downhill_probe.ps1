@@ -83,6 +83,47 @@ function Append-LogTail {
     }
 }
 
+function Convert-ToProcessArgument {
+    param([string]$Value)
+    if ($null -eq $Value) { return '""' }
+    if ($Value -notmatch '[\s"]') { return $Value }
+    return '"' + $Value.Replace('"','\"') + '"'
+}
+
+function Invoke-BoundedPowerShellScript {
+    param(
+        [Parameter(Mandatory=$true)][string]$Script,
+        [string[]]$ScriptArguments = @(),
+        [int]$TimeoutSeconds = 10
+    )
+
+    $tokens = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$Script) + $ScriptArguments
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = 'powershell.exe'
+    $psi.UseShellExecute = $false
+    $psi.CreateNoWindow = $true
+    $psi.WorkingDirectory = $Here
+    $psi.Arguments = (($tokens | ForEach-Object { Convert-ToProcessArgument ([string]$_) }) -join ' ')
+
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $psi
+    if (!$p.Start()) {
+        throw ("Failed to start helper script: " + $Script)
+    }
+
+    $finished = $p.WaitForExit($TimeoutSeconds * 1000)
+    if (!$finished) {
+        try { $p.Kill() } catch {}
+        [void]$p.WaitForExit(1000)
+        $p.Dispose()
+        return [pscustomobject]@{ timed_out=$true; exit_code=124 }
+    }
+
+    $rc=$p.ExitCode
+    $p.Dispose()
+    return [pscustomobject]@{ timed_out=$false; exit_code=$rc }
+}
+
 $startedAt = Get-Date
 
 
@@ -237,23 +278,32 @@ Write-Host "[watchdog] metadata ready"
 $triageScript = Join-Path $Here "triage_first_boot.ps1"
 $triageOut = Join-Path $Here "first_boot_probe_triage.json"
 if (Test-Path -LiteralPath $triageScript) {
-    Write-Host "[watchdog] running triage"
-    & $triageScript -Log $latestPath -Out $triageOut
-    Write-Host "[watchdog] triage returned"
+    Write-Host "[watchdog] running triage in bounded helper"
+    $triageRun = Invoke-BoundedPowerShellScript -Script $triageScript -ScriptArguments @('-Log',$latestPath,'-Out',$triageOut) -TimeoutSeconds 10
+    if($triageRun.timed_out){
+        Write-Warning "Triage helper timed out after 10 seconds."
+    } elseif($triageRun.exit_code -ne 0){
+        Write-Warning ("Triage helper exited with code " + $triageRun.exit_code)
+    }
+    Write-Host "[watchdog] triage helper returned"
 }
 
 $suggestScript = Join-Path $Here "suggest_bringup_fixes.ps1"
 $suggestOut = Join-Path $Here "first_boot_probe_suggestions.json"
 $stagedConfig = Join-Path $Here "downhill.auto.toml"
 if (Test-Path -LiteralPath $suggestScript) {
-    Write-Host "[watchdog] running suggestion parser"
+    Write-Host "[watchdog] running suggestion parser in bounded helper"
+    $suggestArgs=@('-Log',$latestPath,'-Out',$suggestOut)
     if (Test-Path -LiteralPath $stagedConfig) {
-        & $suggestScript -Log $latestPath -Config $stagedConfig -Out $suggestOut
+        $suggestArgs += @('-Config',$stagedConfig)
     }
-    else {
-        & $suggestScript -Log $latestPath -Out $suggestOut
+    $suggestRun = Invoke-BoundedPowerShellScript -Script $suggestScript -ScriptArguments $suggestArgs -TimeoutSeconds 10
+    if($suggestRun.timed_out){
+        Write-Warning "Suggestion helper timed out after 10 seconds."
+    } elseif($suggestRun.exit_code -ne 0){
+        Write-Warning ("Suggestion helper exited with code " + $suggestRun.exit_code)
     }
-    Write-Host "[watchdog] suggestion parser returned"
+    Write-Host "[watchdog] suggestion helper returned"
 }
 
 Write-Host ""
