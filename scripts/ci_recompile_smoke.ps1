@@ -40,6 +40,23 @@ function Set-TomlScalar {
     return [regex]::Replace($Text, $pattern, ($Key + " = " + $Value), 1)
 }
 
+function Ensure-TomlArrayEntries {
+    param([string]$Text, [string]$Key, [string[]]$Entries)
+    $pattern = "(?ms)(^" + [regex]::Escape($Key) + "\s*=\s*\[\s*\r?\n)(.*?)(^\s*\])"
+    $match = [regex]::Match($Text, $pattern)
+    if (!$match.Success) { throw "Missing TOML array: $Key" }
+    $body = $match.Groups[2].Value
+    foreach ($entry in $Entries) {
+        $quoted = '"' + $entry + '"'
+        if ($body -notmatch [regex]::Escape($quoted)) {
+            $body += "  " + $quoted + "," + [Environment]::NewLine
+        }
+    }
+    return $Text.Substring(0,$match.Index) +
+        $match.Groups[1].Value + $body + $match.Groups[3].Value +
+        $Text.Substring($match.Index + $match.Length)
+}
+
 # Build a minimal little-endian ELF32/MIPS executable with one RX PT_LOAD.
 $stream = [IO.File]::Open($ElfPath, [IO.FileMode]::Create, [IO.FileAccess]::Write)
 $writer = New-Object IO.BinaryWriter($stream)
@@ -64,8 +81,8 @@ try {
     $writer.Write([uint32]0x1000)
     $writer.Write([uint32]0x00100000)
     $writer.Write([uint32]0x00100000)
-    $writer.Write([uint32]12)
-    $writer.Write([uint32]12)
+    $writer.Write([uint32]20)
+    $writer.Write([uint32]20)
     $writer.Write([uint32]5)            # RX
     $writer.Write([uint32]0x1000)
 
@@ -73,6 +90,8 @@ try {
     $writer.Write([uint32]0x2402002A)   # addiu v0, zero, 42
     $writer.Write([uint32]0x03E00008)   # jr ra
     $writer.Write([uint32]0x00000000)   # delay-slot nop
+    $writer.Write([uint32]0x03E00008)   # second function: jr ra
+    $writer.Write([uint32]0x00000000)   # second function delay-slot nop
 }
 finally {
     $writer.Dispose()
@@ -81,7 +100,7 @@ finally {
 
 [IO.File]::WriteAllText(
     $MapPath,
-    "name,start,end,size`r`nsmoke_main,0x00100000,0x0010000C,12`r`n",
+    "name,start,end,size`r`nsmoke_main,0x00100000,0x0010000C,12`r`nanonymous_pad_target,0x0010000C,0x00100014,8`r`n",
     (New-Object Text.UTF8Encoding($false))
 )
 
@@ -98,6 +117,7 @@ $toml = Set-TomlScalar $toml "input" ('"' + $elfToml + '"')
 $toml = Set-TomlScalar $toml "output" ('"' + $runnerToml + '"')
 $toml = Set-TomlScalar $toml "ghidra_output" ('"' + $mapToml + '"')
 $toml = Set-TomlScalar $toml "single_file_output" "true"
+$toml = Ensure-TomlArrayEntries $toml "stubs" @("scePadRead@0x0010000C")
 [IO.File]::WriteAllText($ConfigPath, $toml, (New-Object Text.UTF8Encoding($false)))
 
 Get-ChildItem -LiteralPath $RunnerDir -Filter "*.cpp" -File | Remove-Item -Force
@@ -119,6 +139,15 @@ foreach ($path in $required) {
 $generated = Get-Content -Raw -LiteralPath (Join-Path $RunnerDir "ps2_recompiled_functions.cpp")
 if ($generated -notmatch "2402002A|ADD32|42") {
     throw "Generated C++ does not contain recognizable output for the smoke function."
+}
+
+if ($generated -notmatch "ps2_stubs::scePadRead") {
+    throw "Address-bound stub selector did not generate scePadRead for anonymous_pad_target."
+}
+
+$registration = Get-Content -Raw -LiteralPath (Join-Path $RunnerDir "register_functions.cpp")
+if ($registration -notmatch "(?i)//\s*0x0010000c\b") {
+    throw "Address-bound stub target 0x0010000C is missing from the generated function table."
 }
 
 Copy-Item -Force (Join-Path $RunnerDir "ps2_recompiled_functions.h") (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
