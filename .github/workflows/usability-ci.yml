@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - bootstrap/usability-cache
+      - bootstrap/integration
   workflow_dispatch:
 
 jobs:
