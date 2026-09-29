@@ -39,6 +39,8 @@ $stderrPath = Join-Path $Here ("probe_stderr_" + $stamp + ".log")
 $combinedPath = Join-Path $Here ("first_boot_probe_" + $stamp + ".log")
 $latestPath = Join-Path $Here "first_boot_probe_latest.log"
 $metaPath = Join-Path $Here "first_boot_probe.json"
+$functionTraceSource = Join-Path $Here "ps2_log.txt"
+$functionTraceLatest = Join-Path $Here "first_boot_probe_function_trace_latest.log"
 
 function Write-Utf8Text {
     param([System.IO.Stream]$Stream, [string]$Text)
@@ -83,7 +85,50 @@ function Append-LogTail {
     }
 }
 
+function Convert-ToProcessArgument {
+    param([string]$Value)
+    if ($null -eq $Value) { return '""' }
+    if ($Value -notmatch '[\s"]') { return $Value }
+    return '"' + $Value.Replace('"','\"') + '"'
+}
+
+function Invoke-BoundedPowerShellScript {
+    param(
+        [Parameter(Mandatory=$true)][string]$Script,
+        [string[]]$ScriptArguments = @(),
+        [int]$TimeoutSeconds = 10
+    )
+
+    $tokens = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$Script) + $ScriptArguments
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = 'powershell.exe'
+    $psi.UseShellExecute = $false
+    $psi.CreateNoWindow = $true
+    $psi.WorkingDirectory = $Here
+    $psi.Arguments = (($tokens | ForEach-Object { Convert-ToProcessArgument ([string]$_) }) -join ' ')
+
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $psi
+    if (!$p.Start()) {
+        throw ("Failed to start helper script: " + $Script)
+    }
+
+    $finished = $p.WaitForExit($TimeoutSeconds * 1000)
+    if (!$finished) {
+        try { $p.Kill() } catch {}
+        [void]$p.WaitForExit(1000)
+        $p.Dispose()
+        return [pscustomobject]@{ timed_out=$true; exit_code=124 }
+    }
+
+    $rc=$p.ExitCode
+    $p.Dispose()
+    return [pscustomobject]@{ timed_out=$false; exit_code=$rc }
+}
+
+Remove-Item -Force -ErrorAction SilentlyContinue $functionTraceSource
 $startedAt = Get-Date
+
 
 Write-Host "============================================================"
 Write-Host " Recomp Domination - bounded first-boot probe"
@@ -93,14 +138,12 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Use a unique temporary executable plus an independent timer shell.
-# No process handle is killed or waited after timeout by PowerShell itself.
-$probeExeName = "DownhillProbeRunner_" + $stamp + ".exe"
-$probeExe = Join-Path $Here $probeExeName
-$timeoutMarker = Join-Path $Here ("probe_timeout_" + $stamp + ".marker")
-$launchPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
-$killerPath = Join-Path $Here ("probe_killer_" + $stamp + ".cmd")
-
+# Run a uniquely named copy behind cmd.exe. The shell owns file redirection;
+# PowerShell owns no stdout/stderr pipes. This avoids the Windows PowerShell
+# Start-Process redirection deadlock seen after forced termination.
+$probeBase = "DownhillProbeRunner_" + $stamp
+$probeExe = Join-Path $Here ($probeBase + ".exe")
+$launchCmd = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
 Copy-Item -Force -LiteralPath $Runner -Destination $probeExe
 
 $launchLines = @(
@@ -109,27 +152,58 @@ $launchLines = @(
     """$probeExe"" ""$Elf"" 1>""$stdoutPath"" 2>""$stderrPath""",
     "exit /b %ERRORLEVEL%"
 )
-[IO.File]::WriteAllLines($launchPath, $launchLines, [Text.Encoding]::ASCII)
+[IO.File]::WriteAllLines($launchCmd, $launchLines, [Text.Encoding]::ASCII)
 
-# The timer writes a marker first, then kills only our uniquely named copy.
-$killerLines = @(
-    "@echo off",
-    "timeout /t $TimeoutSeconds /nobreak >nul",
-    "echo timeout>""$timeoutMarker""",
-    "taskkill /IM ""$probeExeName"" /T /F >nul 2>&1",
-    "exit /b 0"
-)
-[IO.File]::WriteAllLines($killerPath, $killerLines, [Text.Encoding]::ASCII)
+$psi = New-Object System.Diagnostics.ProcessStartInfo
+$psi.FileName = $env:ComSpec
+$psi.WorkingDirectory = $Here
+$psi.UseShellExecute = $false
+$psi.CreateNoWindow = $true
+$psi.Arguments = '/d /s /c ""' + $launchCmd + '""'
 
-# Start the independent timer and immediately execute the runner wrapper.
-# When the timer kills the unique runner, cmd.exe naturally returns.
-Start-Process -FilePath $env:ComSpec -ArgumentList @('/d','/s','/c',('"' + $killerPath + '"')) -WindowStyle Hidden | Out-Null
-& $env:ComSpec /d /s /c ('"' + $launchPath + '"')
-$normalExitCode = $LASTEXITCODE
-$timedOut = Test-Path -LiteralPath $timeoutMarker
-$exitCode = if ($timedOut) { 124 } else { $normalExitCode }
+$wrapper = New-Object System.Diagnostics.Process
+$wrapper.StartInfo = $psi
+if (!$wrapper.Start()) { throw 'Failed to start diagnostic wrapper.' }
 
-Remove-Item -Force -ErrorAction SilentlyContinue $launchPath,$killerPath,$timeoutMarker,$probeExe
+$waitMs = [int][Math]::Min([int64][int]::MaxValue, [int64]$TimeoutSeconds * 1000L)
+$timedOut = -not $wrapper.WaitForExit($waitMs)
+
+if ($timedOut) {
+    Write-Host ("Probe timeout reached; terminating unique runner {0}..." -f $probeBase) -ForegroundColor Yellow
+
+    # Kill only the uniquely named probe copy. No redirected Process object is
+    # touched here, so there are no .NET stream pumps to drain.
+    $targets = @(Get-Process -Name $probeBase -ErrorAction SilentlyContinue)
+    foreach ($target in $targets) {
+        try {
+            $target.Kill()
+        }
+        catch {
+            Write-Warning ("Failed to kill probe PID {0}: {1}" -f $target.Id, $_.Exception.Message)
+        }
+        finally {
+            $target.Dispose()
+        }
+    }
+
+    # The cmd wrapper normally exits as soon as its child dies. Keep this wait
+    # bounded and kill only the wrapper if Windows does not signal it promptly.
+    if (!$wrapper.WaitForExit(5000)) {
+        Write-Warning ("Probe wrapper PID {0} did not exit after child termination; forcing wrapper exit." -f $wrapper.Id)
+        try {
+            $wrapper.Kill()
+        } catch {}
+        [void]$wrapper.WaitForExit(1000)
+    }
+
+    $exitCode = 124
+}
+else {
+    $exitCode = $wrapper.ExitCode
+}
+
+$wrapper.Dispose()
+Remove-Item -Force -ErrorAction SilentlyContinue $launchCmd,$probeExe
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
@@ -146,12 +220,24 @@ try {
 
     Write-Utf8Text $combined "`r`n=== STDERR (tail) ===`r`n"
     $stderrInfo = Append-LogTail $combined $stderrPath $MaxStreamCaptureBytes
+
+    Write-Utf8Text $combined "`r`n=== AGGRESSIVE FUNCTION TRACE (tail) ===`r`n"
+    if (Test-Path -LiteralPath $functionTraceSource) {
+        $functionTraceInfo = Append-LogTail $combined $functionTraceSource $MaxStreamCaptureBytes
+    }
+    else {
+        Write-Utf8Text $combined "[function trace file was not produced]`r`n"
+        $functionTraceInfo = [pscustomobject]@{ bytes = 0L; captured = 0L; truncated = $false }
+    }
 }
 finally {
     $combined.Dispose()
 }
 
 Copy-Item -Force $combinedPath $latestPath
+if (Test-Path -LiteralPath $functionTraceSource) {
+    Copy-Item -Force $functionTraceSource $functionTraceLatest
+}
 
 $meta = [ordered]@{
     runner = $Runner
@@ -171,6 +257,10 @@ $meta = [ordered]@{
     stderr_captured_bytes = [int64]$stderrInfo.captured
     stdout_truncated = [bool]$stdoutInfo.truncated
     stderr_truncated = [bool]$stderrInfo.truncated
+    function_trace_log = if(Test-Path -LiteralPath $functionTraceLatest){$functionTraceLatest}else{$null}
+    function_trace_bytes = [int64]$functionTraceInfo.bytes
+    function_trace_captured_bytes = [int64]$functionTraceInfo.captured
+    function_trace_truncated = [bool]$functionTraceInfo.truncated
     max_stream_capture_bytes = $MaxStreamCaptureBytes
 }
 
@@ -183,18 +273,27 @@ $meta = [ordered]@{
 $triageScript = Join-Path $Here "triage_first_boot.ps1"
 $triageOut = Join-Path $Here "first_boot_probe_triage.json"
 if (Test-Path -LiteralPath $triageScript) {
-    & $triageScript -Log $latestPath -Out $triageOut
+    $triageRun = Invoke-BoundedPowerShellScript -Script $triageScript -ScriptArguments @('-Log',$latestPath,'-Out',$triageOut) -TimeoutSeconds 10
+    if($triageRun.timed_out){
+        Write-Warning "Triage helper timed out after 10 seconds."
+    } elseif($triageRun.exit_code -ne 0){
+        Write-Warning ("Triage helper exited with code " + $triageRun.exit_code)
+    }
 }
 
 $suggestScript = Join-Path $Here "suggest_bringup_fixes.ps1"
 $suggestOut = Join-Path $Here "first_boot_probe_suggestions.json"
 $stagedConfig = Join-Path $Here "downhill.auto.toml"
 if (Test-Path -LiteralPath $suggestScript) {
+    $suggestArgs=@('-Log',$latestPath,'-Out',$suggestOut)
     if (Test-Path -LiteralPath $stagedConfig) {
-        & $suggestScript -Log $latestPath -Config $stagedConfig -Out $suggestOut
+        $suggestArgs += @('-Config',$stagedConfig)
     }
-    else {
-        & $suggestScript -Log $latestPath -Out $suggestOut
+    $suggestRun = Invoke-BoundedPowerShellScript -Script $suggestScript -ScriptArguments $suggestArgs -TimeoutSeconds 10
+    if($suggestRun.timed_out){
+        Write-Warning "Suggestion helper timed out after 10 seconds."
+    } elseif($suggestRun.exit_code -ne 0){
+        Write-Warning ("Suggestion helper exited with code " + $suggestRun.exit_code)
     }
 }
 
@@ -204,6 +303,7 @@ Write-Host "Timed out: $timedOut"
 Write-Host "Exit code: $exitCode"
 Write-Host "STDOUT bytes: $($stdoutInfo.bytes)"
 Write-Host "STDERR bytes: $($stderrInfo.bytes)"
+Write-Host "Function trace bytes: $($functionTraceInfo.bytes)"
 Write-Host "Combined log: $combinedPath"
 Write-Host "Metadata: $metaPath"
 if (Test-Path -LiteralPath $triageOut) { Write-Host "Triage: $triageOut" }
