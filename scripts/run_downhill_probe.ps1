@@ -39,6 +39,8 @@ $stderrPath = Join-Path $Here ("probe_stderr_" + $stamp + ".log")
 $combinedPath = Join-Path $Here ("first_boot_probe_" + $stamp + ".log")
 $latestPath = Join-Path $Here "first_boot_probe_latest.log"
 $metaPath = Join-Path $Here "first_boot_probe.json"
+$functionTraceSource = Join-Path $Here "ps2_log.txt"
+$functionTraceLatest = Join-Path $Here "first_boot_probe_function_trace_latest.log"
 
 function Write-Utf8Text {
     param([System.IO.Stream]$Stream, [string]$Text)
@@ -124,6 +126,7 @@ function Invoke-BoundedPowerShellScript {
     return [pscustomobject]@{ timed_out=$false; exit_code=$rc }
 }
 
+Remove-Item -Force -ErrorAction SilentlyContinue $functionTraceSource
 $startedAt = Get-Date
 
 
@@ -237,6 +240,15 @@ try {
     Write-Host "[watchdog] appending stderr"
     $stderrInfo = Append-LogTail $combined $stderrPath $MaxStreamCaptureBytes
     Write-Host "[watchdog] stderr appended"
+
+    Write-Utf8Text $combined "`r`n=== AGGRESSIVE FUNCTION TRACE (tail) ===`r`n"
+    if (Test-Path -LiteralPath $functionTraceSource) {
+        $functionTraceInfo = Append-LogTail $combined $functionTraceSource $MaxStreamCaptureBytes
+    }
+    else {
+        Write-Utf8Text $combined "[function trace file was not produced]`r`n"
+        $functionTraceInfo = [pscustomobject]@{ bytes = 0L; captured = 0L; truncated = $false }
+    }
 }
 finally {
     $combined.Dispose()
@@ -245,6 +257,9 @@ finally {
 Write-Host "[watchdog] copying combined log to latest"
 Copy-Item -Force $combinedPath $latestPath
 Write-Host "[watchdog] latest log ready"
+if (Test-Path -LiteralPath $functionTraceSource) {
+    Copy-Item -Force $functionTraceSource $functionTraceLatest
+}
 
 $meta = [ordered]@{
     runner = $Runner
@@ -264,6 +279,10 @@ $meta = [ordered]@{
     stderr_captured_bytes = [int64]$stderrInfo.captured
     stdout_truncated = [bool]$stdoutInfo.truncated
     stderr_truncated = [bool]$stderrInfo.truncated
+    function_trace_log = if(Test-Path -LiteralPath $functionTraceLatest){$functionTraceLatest}else{$null}
+    function_trace_bytes = [int64]$functionTraceInfo.bytes
+    function_trace_captured_bytes = [int64]$functionTraceInfo.captured
+    function_trace_truncated = [bool]$functionTraceInfo.truncated
     max_stream_capture_bytes = $MaxStreamCaptureBytes
 }
 
@@ -312,6 +331,7 @@ Write-Host "Timed out: $timedOut"
 Write-Host "Exit code: $exitCode"
 Write-Host "STDOUT bytes: $($stdoutInfo.bytes)"
 Write-Host "STDERR bytes: $($stderrInfo.bytes)"
+Write-Host "Function trace bytes: $($functionTraceInfo.bytes)"
 Write-Host "Combined log: $combinedPath"
 Write-Host "Metadata: $metaPath"
 if (Test-Path -LiteralPath $triageOut) { Write-Host "Triage: $triageOut" }
