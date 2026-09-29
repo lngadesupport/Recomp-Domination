@@ -32,6 +32,7 @@ try {
     Copy-Diagnostic (Join-Path $RepoRoot "config\downhill.auto.toml") "config\downhill.auto.toml"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json") "analysis\SCUS_971.77.identity.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\last_build.json") "analysis\last_build.json"
+    Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\PS2Recomp.downhill.patch.diff") "analysis\PS2Recomp.downhill.patch.diff"
     Copy-Diagnostic (Join-Path $DistDir "build_report.json") "runtime\build_report.json"
     Copy-Diagnostic (Join-Path $DistDir "recompiled_report.json") "runtime\recompiled_report.json"
     Copy-Diagnostic (Join-Path $DistDir "runtime_stubs_report.json") "runtime\runtime_stubs_report.json"
