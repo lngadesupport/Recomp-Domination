@@ -25,6 +25,32 @@ $categories = [ordered]@{
     pad = @($lines | Where-Object { $_ -match '(?i)scePad|padread|gamepad' }).Count
 }
 
+$milestones = [ordered]@{
+    elf_loaded = [regex]::IsMatch($text,'(?i)ELF file loaded successfully|Entry point:\s*0x0010A008|0010A008.*enter')
+    main_reached = [regex]::IsMatch($text,'(?i)\bmain\b.*enter|001FB6C0')
+    sif_iop_activity = ($categories.sif_iop_rpc -gt 0)
+    pad_activity = ($categories.pad -gt 0)
+    vif_vu_activity = [regex]::IsMatch($text,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT')
+    gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
+}
+
+$furthestMilestone = "none"
+foreach($candidate in @(
+    [pscustomobject]@{name="elf-loaded";hit=[bool]$milestones.elf_loaded},
+    [pscustomobject]@{name="main";hit=[bool]$milestones.main_reached},
+    [pscustomobject]@{name="sif-iop";hit=[bool]$milestones.sif_iop_activity},
+    [pscustomobject]@{name="pad";hit=[bool]$milestones.pad_activity},
+    [pscustomobject]@{name="vif-vu";hit=[bool]$milestones.vif_vu_activity},
+    [pscustomobject]@{name="gif-gs";hit=[bool]$milestones.gif_gs_activity}
+)){
+    if($candidate.hit){$furthestMilestone=$candidate.name}
+}
+
+$knownAddressHits = [ordered]@{}
+foreach($knownPc in @("0010A008","001FB6C0","00254050","0025C440")){
+    $knownAddressHits["0x" + $knownPc] = ([regex]::Matches($text,'(?i)(?:0x)?'+$knownPc)).Count
+}
+
 $pcMatches = [regex]::Matches($text, '(?i)(?:\bpc\b|\bra\b)\s*[=:]\s*(0x[0-9a-f]{6,8})')
 $pcs = @{}
 foreach ($m in $pcMatches) {
@@ -36,7 +62,7 @@ $topPcs = @(
     $pcs.GetEnumerator() |
         Sort-Object Value -Descending |
         Select-Object -First 32 |
-        ForEach-Object { [ordered]@{ address = $_.Key; count = $_.Value } }
+        ForEach-Object { [pscustomobject][ordered]@{ address = [string]$_.Key; count = [int]$_.Value } }
 )
 
 $firstFatal = $lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' } | Select-Object -First 1
@@ -55,22 +81,26 @@ elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 $tailCount = [Math]::Min(120, $lines.Count)
 $tail = if ($tailCount -gt 0) { @($lines | Select-Object -Last $tailCount) } else { @() }
 
-$report = [ordered]@{
+$report = [pscustomobject][ordered]@{
     source_log = $Log
     line_count = $lines.Count
     primary_classification = $primary
-    categories = $categories
-    first_markers = [ordered]@{
-        fatal_or_exception = $firstFatal
-        missing_function = $firstMissing
-        todo_or_stub = $firstTodo
-        unsupported_instruction = $firstInstruction
+    categories = [pscustomobject]$categories
+    milestones = [pscustomobject]$milestones
+    furthest_milestone = $furthestMilestone
+    known_address_hits = [pscustomobject]$knownAddressHits
+    first_markers = [pscustomobject][ordered]@{
+        fatal_or_exception = if($null -ne $firstFatal){[string]$firstFatal}else{$null}
+        missing_function = if($null -ne $firstMissing){[string]$firstMissing}else{$null}
+        todo_or_stub = if($null -ne $firstTodo){[string]$firstTodo}else{$null}
+        unsupported_instruction = if($null -ne $firstInstruction){[string]$firstInstruction}else{$null}
     }
     frequent_pc_or_ra = $topPcs
-    tail = $tail
+    tail = @($tail | ForEach-Object { [string]$_ })
 }
 
 $json = $report | ConvertTo-Json -Depth 8
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out), $json, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
+Write-Host "Furthest boot milestone: $furthestMilestone"
