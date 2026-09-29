@@ -24,6 +24,8 @@ $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
 $ExtraEntryPointsFile = Join-Path $ConfigDir "downhill.extra_entry_points.local.txt"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
+$DeepElfAnalyzer = Join-Path $RepoRoot "scripts\analyze_downhill_elf_deep.ps1"
+$DeepElfReport = Join-Path $LocalAnalysisDir "SCUS_971.77.deep.json"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 $ProbeRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_probe.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
@@ -485,6 +487,15 @@ try {
 
     $ElfIdentity = Validate-Elf $Elf
 
+    if (!(Test-Path -LiteralPath $DeepElfAnalyzer)) {
+        throw "Missing deep ELF analyzer: $DeepElfAnalyzer"
+    }
+    Write-Host "      Running deep R5900/COP/VU/MMI census..." -ForegroundColor DarkCyan
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $DeepElfAnalyzer -Elf $Elf -Out $DeepElfReport
+    if ($LASTEXITCODE -ne 0 -or !(Test-Path -LiteralPath $DeepElfReport)) {
+        throw "Deep ELF analysis failed."
+    }
+
     Write-Host "[2/7] Preparing pinned PS2Recomp checkout..." -ForegroundColor Cyan
 
     if (!(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot ".git"))) {
@@ -768,6 +779,7 @@ try {
     Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
     Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
     Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
     Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
