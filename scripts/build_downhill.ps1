@@ -762,7 +762,7 @@ finally {
                 throw "Invalid local entry-point literal in $ExtraEntryPointsFile : $value"
             }
             [uint32]$pc = [Convert]::ToUInt32($Matches[1], 16)
-            if ($pc -lt [uint32]0x0010A000 -or $pc -ge [uint32]0x0029DCF0 -or (($pc -band 3u) -ne 0u)) {
+            if ($pc -lt [uint32]0x0010A000 -or $pc -ge [uint32]0x0029DCF0 -or (($pc -band 3) -ne 0)) {
                 throw "Local entry point is outside the validated file-backed executable range or unaligned: $value"
             }
             $LocalExtraEntries += ("0x{0:X8}" -f $pc)
