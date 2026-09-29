@@ -53,10 +53,9 @@ if exist "%~dp0analysis\SCUS_971.77.functions.csv" (
     echo Mapa Ghidra existente sera reutilizado.
 ) else (
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
-    set "GHIDRA_RC=%ERRORLEVEL%"
-    if not "%GHIDRA_RC%"=="0" (
+    if errorlevel 1 (
         echo.
-        echo [AVISO] Ghidra foi detectado mas a geracao do mapa falhou. Codigo: %GHIDRA_RC%
+        echo [AVISO] Ghidra foi detectado mas a geracao do mapa falhou.
         echo O pipeline continuara com ps2_analyzer como fallback.
     )
 )
