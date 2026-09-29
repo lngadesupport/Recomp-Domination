@@ -39,6 +39,10 @@ try {
     Copy-Diagnostic (Join-Path $DistDir "first_boot_triage.json") "runtime\first_boot_triage.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_suggestions.json") "runtime\first_boot_suggestions.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_exit_code.txt") "runtime\first_boot_exit_code.txt"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_latest.log") "runtime\first_boot_probe_latest.log"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_probe.json") "runtime\first_boot_probe.json"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_triage.json") "runtime\first_boot_probe_triage.json"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_suggestions.json") "runtime\first_boot_probe_suggestions.json"
 
     $latestBuildLog = Get-ChildItem -LiteralPath (Join-Path $RepoRoot "logs") -Filter "build_downhill_*.log" -File -ErrorAction SilentlyContinue |
         Sort-Object LastWriteTime -Descending | Select-Object -First 1
