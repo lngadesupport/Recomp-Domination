@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
-    [string]$GhidraHome = ""
+    [string]$GhidraHome = "",
+    [switch]$Optional
 )
 
 $ErrorActionPreference = "Stop"
@@ -35,13 +36,22 @@ function Find-GhidraHeadless {
             Sort-Object LastWriteTime -Descending |
             ForEach-Object {$homes.Add($_.FullName)}
     }
-    foreach($home in $homes){
-        $candidate=Join-Path $home 'support\analyzeHeadless.bat'
+    foreach($ghidraCandidateHome in $homes){
+        $candidate=Join-Path $ghidraCandidateHome 'support\analyzeHeadless.bat'
         if(Test-Path -LiteralPath $candidate){
-            return [pscustomobject]@{home=[IO.Path]::GetFullPath($home);exe=[IO.Path]::GetFullPath($candidate)}
+            return [pscustomobject]@{home=[IO.Path]::GetFullPath($ghidraCandidateHome);exe=[IO.Path]::GetFullPath($candidate)}
         }
     }
     return $null
+}
+
+$ghidra=Find-GhidraHeadless $GhidraHome
+if(!$ghidra){
+    if($Optional){
+        Write-Host 'Ghidra not found; skipping optional function-map generation and keeping analyzer fallback.' -ForegroundColor Yellow
+        exit 0
+    }
+    throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'
 }
 
 $git=(Get-Command git -ErrorAction SilentlyContinue)
@@ -51,13 +61,18 @@ if(!(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
     & $git.Source clone https://github.com/ran-j/PS2Recomp.git $Ps2RecompRoot
     if($LASTEXITCODE -ne 0){throw 'Failed to clone PS2Recomp.'}
 }
-& $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
-if($LASTEXITCODE -ne 0){throw 'Failed to fetch pinned PS2Recomp commit.'}
+
+& $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+$pinnedCached = ($LASTEXITCODE -eq 0)
+if(!$pinnedCached){
+    & $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
+    if($LASTEXITCODE -ne 0){throw 'Failed to fetch pinned PS2Recomp commit.'}
+}else{
+    Write-Host 'Pinned PS2Recomp commit already cached; network fetch skipped.' -ForegroundColor DarkGray
+}
+
 & $git.Source -C $Ps2RecompRoot reset --hard $PinnedPs2Recomp
 if($LASTEXITCODE -ne 0){throw 'Failed to reset PS2Recomp to pinned commit.'}
-
-$ghidra=Find-GhidraHeadless $GhidraHome
-if(!$ghidra){throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'}
 
 $scriptDir=Join-Path $Ps2RecompRoot 'ps2xRecomp\tools\ghidra'
 $script=Join-Path $scriptDir 'ExportPS2Functions.java'
