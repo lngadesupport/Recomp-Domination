@@ -23,6 +23,7 @@ $LogsDir = Join-Path $RepoRoot "logs"
 $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
 $ExtraEntryPointsFile = Join-Path $ConfigDir "downhill.extra_entry_points.local.txt"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
+$GhidraToml = Join-Path $AnalysisDir "SCUS_971.77.ghidra.toml"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $DeepElfAnalyzer = Join-Path $RepoRoot "scripts\analyze_downhill_elf_deep.ps1"
 $DeepElfReport = Join-Path $LocalAnalysisDir "SCUS_971.77.deep.json"
@@ -446,6 +447,26 @@ function Ensure-TomlArrayEntries {
            $Text.Substring($match.Index + $match.Length)
 }
 
+function Get-TomlArrayEntries {
+    param([string]$Text, [string]$Key)
+
+    $pattern = "(?ms)^" + [regex]::Escape($Key) + "\s*=\s*\[(.*?)^\s*\]"
+    $match = [regex]::Match($Text, $pattern)
+    if (!$match.Success) {
+        return @()
+    }
+
+    $entries = New-Object System.Collections.Generic.List[string]
+    foreach ($quoted in [regex]::Matches($match.Groups[1].Value, '"([^"]+)"')) {
+        $value = $quoted.Groups[1].Value.Trim()
+        if ($value) {
+            $entries.Add($value)
+        }
+    }
+
+    return @($entries)
+}
+
 function Find-BuiltTool {
     param([string]$Name)
 
@@ -567,11 +588,24 @@ try {
     $toml = Get-Content -Raw -LiteralPath $AutoConfig
     $elfToml = $Elf.Replace("\", "/")
     $runnerToml = $RunnerDir.Replace("\", "/")
-    $ghidraToml = ""
+    $ghidraTomlPath = ""
+    $GhidraImportedStubs = @()
+    $GhidraImportedEntryPoints = @()
 
     if (Test-Path -LiteralPath $GhidraCsv) {
-        $ghidraToml = $GhidraCsv.Replace("\", "/")
+        $ghidraTomlPath = $GhidraCsv.Replace("\", "/")
         Write-Host "      Ghidra function map found and enabled." -ForegroundColor Green
+
+        if (Test-Path -LiteralPath $GhidraToml) {
+            $ghidraExport = Get-Content -Raw -LiteralPath $GhidraToml
+            $GhidraImportedStubs = @(Get-TomlArrayEntries $ghidraExport "stubs" | Sort-Object -Unique)
+            $GhidraImportedEntryPoints = @(Get-TomlArrayEntries $ghidraExport "untracked_stubs" | Sort-Object -Unique)
+            Write-Host ("      Ghidra classifications: stubs=" + $GhidraImportedStubs.Count +
+                        ", entry hints=" + $GhidraImportedEntryPoints.Count) -ForegroundColor DarkGray
+        }
+        else {
+            Write-Warning "Ghidra CSV exists but SCUS_971.77.ghidra.toml is missing; using Ghidra boundaries without Ghidra stub classifications."
+        }
     }
     else {
         Write-Host "      No Ghidra CSV yet; using analyzer discovery for this pass." -ForegroundColor Yellow
@@ -579,13 +613,27 @@ try {
 
     $toml = Set-TomlScalar $toml "input" ('"' + $elfToml + '"')
     $toml = Set-TomlScalar $toml "output" ('"' + $runnerToml + '"')
-    $toml = Set-TomlScalar $toml "ghidra_output" ('"' + $ghidraToml + '"')
+    $toml = Set-TomlScalar $toml "ghidra_output" ('"' + $ghidraTomlPath + '"')
     $OutputMode = if ($MultiFileOutput) { "multi-file" } else { "single-file" }
     $SingleFileToml = if ($MultiFileOutput) { "false" } else { "true" }
     $toml = Set-TomlScalar $toml "single_file_output" $SingleFileToml
     Write-Host ("      Recompiler output mode: " + $OutputMode) -ForegroundColor DarkGray
     $toml = Set-TomlScalar $toml "low_memory_mode" "true"
     $toml = Set-TomlScalar $toml "output_worker_threads" "1"
+
+    # Conservative first-boot policy. Instruction-class-specific replacements
+    # stay disabled until a concrete retail blocker justifies one. Generic
+    # analyzer patches remain eligible in PS2Recomp.
+    $toml = Set-TomlScalar $toml "patch_syscalls" "false"
+    $toml = Set-TomlScalar $toml "patch_cop0" "false"
+    $toml = Set-TomlScalar $toml "patch_cache" "false"
+
+    if ($GhidraImportedStubs.Count -gt 0) {
+        $toml = Ensure-TomlArrayEntries $toml "stubs" $GhidraImportedStubs
+    }
+    if ($GhidraImportedEntryPoints.Count -gt 0) {
+        $toml = Ensure-TomlArrayEntries $toml "entry_points" $GhidraImportedEntryPoints
+    }
 
     $toml = Ensure-TomlArrayEntries $toml "stubs" @(
         "scePadRead@0x00254050",
@@ -853,6 +901,14 @@ try {
         elf = $Elf
         config = $AutoConfig
         ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
+        ghidra_toml_used = (Test-Path -LiteralPath $GhidraToml)
+        ghidra_imported_stubs = $GhidraImportedStubs
+        ghidra_imported_entry_points = $GhidraImportedEntryPoints
+        patch_policy = [ordered]@{
+            patch_syscalls = $false
+            patch_cop0 = $false
+            patch_cache = $false
+        }
         local_extra_entry_points = $LocalExtraEntries
         game_data = $GameData
         runner = $StagedRunner
