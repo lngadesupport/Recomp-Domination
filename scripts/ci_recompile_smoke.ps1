@@ -1,6 +1,7 @@
 param(
     [string]$Ps2RecompRoot = "_ci/PS2Recomp",
-    [string]$BuildRoot = "_ci/build"
+    [string]$BuildRoot = "_ci/build",
+    [switch]$MultiFileOutput
 )
 
 $ErrorActionPreference = "Stop"
@@ -8,7 +9,8 @@ Set-StrictMode -Version Latest
 
 $Ps2RecompRoot = [IO.Path]::GetFullPath($Ps2RecompRoot)
 $BuildRoot = [IO.Path]::GetFullPath($BuildRoot)
-$SmokeRoot = Join-Path (Split-Path $BuildRoot -Parent) "smoke"
+$SmokeName = if ($MultiFileOutput) { "smoke_multi" } else { "smoke" }
+$SmokeRoot = Join-Path (Split-Path $BuildRoot -Parent) $SmokeName
 $ElfPath = Join-Path $SmokeRoot "SCUS_SMOKE.ELF"
 $ConfigPath = Join-Path $SmokeRoot "smoke.toml"
 $MapPath = Join-Path $SmokeRoot "smoke.functions.csv"
@@ -116,7 +118,7 @@ $mapToml = $MapPath.Replace("\", "/")
 $toml = Set-TomlScalar $toml "input" ('"' + $elfToml + '"')
 $toml = Set-TomlScalar $toml "output" ('"' + $runnerToml + '"')
 $toml = Set-TomlScalar $toml "ghidra_output" ('"' + $mapToml + '"')
-$toml = Set-TomlScalar $toml "single_file_output" "true"
+$toml = Set-TomlScalar $toml "single_file_output" $(if ($MultiFileOutput) { "false" } else { "true" })
 $toml = Ensure-TomlArrayEntries $toml "stubs" @("scePadRead@0x0010000C")
 [IO.File]::WriteAllText($ConfigPath, $toml, (New-Object Text.UTF8Encoding($false)))
 
@@ -127,7 +129,6 @@ Remove-Item -Force -ErrorAction SilentlyContinue (Join-Path $RuntimeInclude "ps2
 Invoke-Native $Recompiler $ConfigPath
 
 $required = @(
-    (Join-Path $RunnerDir "ps2_recompiled_functions.cpp"),
     (Join-Path $RunnerDir "register_functions.cpp"),
     (Join-Path $RunnerDir "ps2_recompiled_functions.h"),
     (Join-Path $RunnerDir "ps2_recompiled_stubs.h")
@@ -136,7 +137,25 @@ foreach ($path in $required) {
     if (!(Test-Path -LiteralPath $path)) { throw "Recompiler did not generate: $path" }
 }
 
-$generated = Get-Content -Raw -LiteralPath (Join-Path $RunnerDir "ps2_recompiled_functions.cpp")
+if ($MultiFileOutput) {
+    $generatedFiles = @(
+        Get-ChildItem -LiteralPath $RunnerDir -Filter "*.cpp" -File |
+        Where-Object { $_.Name -ne "register_functions.cpp" } |
+        Sort-Object Name
+    )
+    if ($generatedFiles.Count -lt 2) {
+        throw "Expected at least two generated C++ files in multi-file smoke; got $($generatedFiles.Count)."
+    }
+}
+else {
+    $combined = Join-Path $RunnerDir "ps2_recompiled_functions.cpp"
+    if (!(Test-Path -LiteralPath $combined)) {
+        throw "Single-file smoke did not generate ps2_recompiled_functions.cpp."
+    }
+    $generatedFiles = @((Get-Item -LiteralPath $combined))
+}
+
+$generated = ($generatedFiles | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join [Environment]::NewLine
 if ($generated -notmatch "2402002A|ADD32|42") {
     throw "Generated C++ does not contain recognizable output for the smoke function."
 }
@@ -153,7 +172,8 @@ if ($registration -notmatch "(?i)//\s*0x0*10000c\b") {
 Copy-Item -Force (Join-Path $RunnerDir "ps2_recompiled_functions.h") (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
 Copy-Item -Force (Join-Path $RunnerDir "ps2_recompiled_stubs.h") (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
 
-Write-Host "Synthetic ELF recompilation smoke test passed."
+$mode = if ($MultiFileOutput) { "multi-file" } else { "single-file" }
+Write-Host "Synthetic ELF recompilation smoke test passed ($mode)."
 Write-Host "ELF: $ElfPath"
 Write-Host "Config: $ConfigPath"
 Write-Host "Generated: $RunnerDir"
