@@ -63,57 +63,10 @@ $scriptDir=Join-Path $Ps2RecompRoot 'ps2xRecomp\tools\ghidra'
 $script=Join-Path $scriptDir 'ExportPS2Functions.java'
 if(!(Test-Path -LiteralPath $script)){throw "Missing exporter: $script"}
 
-# The pinned exporter is interactive by default (askFile). Headless Ghidra
-# cannot display those dialogs, so adapt only the two output-file prompts to
-# consume -postScript arguments when present. The rest of the upstream script
-# remains byte-for-byte unchanged.
-$exporterText = Get-Content -Raw -LiteralPath $script
-$interactiveBlock = @'
-        File tomlFile = askFile("Choose output TOML config file", "Save");
-        if (tomlFile == null) {
-            return;
-        }
-
-        File csvFile = askFile("Choose output CSV file", "Save");
-        if (csvFile == null) {
-            return;
-        }
-'@
-$headlessBlock = @'
-        String[] scriptArgs = getScriptArgs();
-        File tomlFile;
-        File csvFile;
-
-        if (scriptArgs != null && scriptArgs.length >= 2) {
-            tomlFile = new File(scriptArgs[0]);
-            csvFile = new File(scriptArgs[1]);
-        } else {
-            tomlFile = askFile("Choose output TOML config file", "Save");
-            if (tomlFile == null) {
-                return;
-            }
-
-            csvFile = askFile("Choose output CSV file", "Save");
-            if (csvFile == null) {
-                return;
-            }
-        }
-'@
-
-if (!$exporterText.Contains($headlessBlock)) {
-    if (!$exporterText.Contains($interactiveBlock)) {
-        throw 'Pinned Ghidra exporter prompt block no longer matches expected source. Refusing to patch blindly.'
-    }
-    $exporterText = $exporterText.Replace($interactiveBlock, $headlessBlock)
-    [IO.File]::WriteAllText($script, $exporterText, (New-Object Text.UTF8Encoding($false)))
-}
-
-$verifyExporter = Get-Content -Raw -LiteralPath $script
-if ($verifyExporter -notmatch 'getScriptArgs\(\)' -or
-    $verifyExporter -notmatch 'scriptArgs\.length >= 2') {
-    throw 'Headless Ghidra exporter adaptation verification failed.'
-}
-
+$patchExporter = Join-Path $RepoRoot 'scripts\patch_ghidra_exporter.ps1'
+if (!(Test-Path -LiteralPath $patchExporter)) { throw "Missing headless exporter patch helper: $patchExporter" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $patchExporter -ExporterPath $script
+if ($LASTEXITCODE -ne 0) { throw 'Headless Ghidra exporter adaptation failed.' }
 $toml=Join-Path $AnalysisDir 'SCUS_971.77.ghidra.toml'
 $csv=Join-Path $AnalysisDir 'SCUS_971.77.functions.csv'
 $projectDir=Join-Path $LocalDir 'ghidra_project'
