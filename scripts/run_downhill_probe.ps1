@@ -114,24 +114,19 @@ $timedOut = -not $proc.WaitForExit($waitMs)
 if ($timedOut) {
     Write-Host ("Probe timeout reached; terminating PID {0}..." -f $proc.Id) -ForegroundColor Yellow
 
-    # Do not shell out to taskkill here. On hosted/headless Windows runners,
-    # taskkill /T can block while walking a process tree whose redirected
-    # handles are owned by the probing shell. The runtime is a single host
-    # process, so terminating the exact Process object is sufficient.
+    # The runner is a single native host process. Kill the exact Process object
+    # directly; external taskkill and Stop-Process have both shown blocking
+    # behavior under hosted/headless Windows CI.
     try {
-        Stop-Process -Id $proc.Id -Force -ErrorAction Stop
-    }
-    catch {
-        Write-Warning ("Stop-Process failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
-        try {
+        if (!$proc.HasExited) {
             $proc.Kill()
         }
-        catch {
-            Write-Warning ("Process.Kill fallback failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
-        }
+    }
+    catch {
+        Write-Warning ("Process.Kill failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
     }
 
-    $reportedExit = $proc.WaitForExit(5000)
+    $reportedExit = $proc.WaitForExit(3000)
     if (!$reportedExit) {
         Write-Warning ("Runner PID {0} did not report exit within the bounded post-kill wait." -f $proc.Id)
     }
