@@ -83,105 +83,6 @@ function Append-LogTail {
     }
 }
 
-if (-not ('DownhillProbeJob' -as [type])) {
-    Add-Type -TypeDefinition @'
-using System;
-using System.Runtime.InteropServices;
-
-public static class DownhillProbeJob
-{
-    [StructLayout(LayoutKind.Sequential)]
-    public struct IO_COUNTERS
-    {
-        public ulong ReadOperationCount;
-        public ulong WriteOperationCount;
-        public ulong OtherOperationCount;
-        public ulong ReadTransferCount;
-        public ulong WriteTransferCount;
-        public ulong OtherTransferCount;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct JOBOBJECT_BASIC_LIMIT_INFORMATION
-    {
-        public long PerProcessUserTimeLimit;
-        public long PerJobUserTimeLimit;
-        public uint LimitFlags;
-        public UIntPtr MinimumWorkingSetSize;
-        public UIntPtr MaximumWorkingSetSize;
-        public uint ActiveProcessLimit;
-        public UIntPtr Affinity;
-        public uint PriorityClass;
-        public uint SchedulingClass;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION
-    {
-        public JOBOBJECT_BASIC_LIMIT_INFORMATION BasicLimitInformation;
-        public IO_COUNTERS IoInfo;
-        public UIntPtr ProcessMemoryLimit;
-        public UIntPtr JobMemoryLimit;
-        public UIntPtr PeakProcessMemoryUsed;
-        public UIntPtr PeakJobMemoryUsed;
-    }
-
-    const uint JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000;
-    const int JobObjectExtendedLimitInformation = 9;
-
-    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    static extern IntPtr CreateJobObject(IntPtr lpJobAttributes, string lpName);
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    static extern bool SetInformationJobObject(IntPtr hJob, int infoType, IntPtr lpJobObjectInfo, uint cbJobObjectInfoLength);
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    static extern bool AssignProcessToJobObject(IntPtr job, IntPtr process);
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    static extern bool CloseHandle(IntPtr handle);
-
-    public static IntPtr CreateKillOnCloseJob()
-    {
-        IntPtr job = CreateJobObject(IntPtr.Zero, null);
-        if (job == IntPtr.Zero)
-            throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
-
-        var info = new JOBOBJECT_EXTENDED_LIMIT_INFORMATION();
-        info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
-        int length = Marshal.SizeOf(typeof(JOBOBJECT_EXTENDED_LIMIT_INFORMATION));
-        IntPtr ptr = Marshal.AllocHGlobal(length);
-        try
-        {
-            Marshal.StructureToPtr(info, ptr, false);
-            if (!SetInformationJobObject(job, JobObjectExtendedLimitInformation, ptr, (uint)length))
-            {
-                int error = Marshal.GetLastWin32Error();
-                CloseHandle(job);
-                throw new System.ComponentModel.Win32Exception(error);
-            }
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(ptr);
-        }
-        return job;
-    }
-
-    public static void Assign(IntPtr job, IntPtr process)
-    {
-        if (!AssignProcessToJobObject(job, process))
-            throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
-    }
-
-    public static void Close(IntPtr job)
-    {
-        if (job != IntPtr.Zero)
-            CloseHandle(job);
-    }
-}
-'@
-}
 $startedAt = Get-Date
 
 Write-Host "============================================================"
@@ -192,59 +93,43 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Launch through cmd.exe with file redirection. PowerShell owns no redirected
-# pipes, so timeout handling never waits for async stream-drain tasks.
+# Use a unique temporary executable plus an independent timer shell.
+# No process handle is killed or waited after timeout by PowerShell itself.
+$probeExeName = "DownhillProbeRunner_" + $stamp + ".exe"
+$probeExe = Join-Path $Here $probeExeName
+$timeoutMarker = Join-Path $Here ("probe_timeout_" + $stamp + ".marker")
 $launchPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
-$escapedRunner = $Runner.Replace("%", "%%")
-$escapedElf = $Elf.Replace("%", "%%")
-$escapedStdout = $stdoutPath.Replace("%", "%%")
-$escapedStderr = $stderrPath.Replace("%", "%%")
+$killerPath = Join-Path $Here ("probe_killer_" + $stamp + ".cmd")
+
+Copy-Item -Force -LiteralPath $Runner -Destination $probeExe
+
 $launchLines = @(
     "@echo off",
     "cd /d ""$Here""",
-    """$escapedRunner"" ""$escapedElf"" 1>""$escapedStdout"" 2>""$escapedStderr""",
+    """$probeExe"" ""$Elf"" 1>""$stdoutPath"" 2>""$stderrPath""",
     "exit /b %ERRORLEVEL%"
 )
 [IO.File]::WriteAllLines($launchPath, $launchLines, [Text.Encoding]::ASCII)
 
-$psi = New-Object System.Diagnostics.ProcessStartInfo
-$psi.FileName = $env:ComSpec
-$psi.WorkingDirectory = $Here
-$psi.UseShellExecute = $false
-$psi.CreateNoWindow = $true
-$psi.Arguments = '/d /s /c ""' + $launchPath + '""'
+# The timer writes a marker first, then kills only our uniquely named copy.
+$killerLines = @(
+    "@echo off",
+    "timeout /t $TimeoutSeconds /nobreak >nul",
+    "echo timeout>""$timeoutMarker""",
+    "taskkill /IM ""$probeExeName"" /T /F >nul 2>&1",
+    "exit /b 0"
+)
+[IO.File]::WriteAllLines($killerPath, $killerLines, [Text.Encoding]::ASCII)
 
-$process = New-Object System.Diagnostics.Process
-$process.StartInfo = $psi
-$jobHandle = [IntPtr]::Zero
-$normalExitCode = 0
-
-try {
-    $jobHandle = [DownhillProbeJob]::CreateKillOnCloseJob()
-    if (!$process.Start()) { throw 'Failed to start diagnostic runner wrapper.' }
-    [DownhillProbeJob]::Assign($jobHandle, $process.Handle)
-
-    $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
-    if ($timedOut) {
-        Write-Warning 'Probe timeout reached; closing Windows Job Object to terminate the complete process tree.'
-        [DownhillProbeJob]::Close($jobHandle)
-        $jobHandle = [IntPtr]::Zero
-        # Do not access the process object again after killing the job.
-        Start-Sleep -Milliseconds 150
-    }
-    else {
-        $normalExitCode = $process.ExitCode
-    }
-}
-finally {
-    if ($jobHandle -ne [IntPtr]::Zero) {
-        [DownhillProbeJob]::Close($jobHandle)
-        $jobHandle = [IntPtr]::Zero
-    }
-}
-
-Remove-Item -Force -ErrorAction SilentlyContinue $launchPath
+# Start the independent timer and immediately execute the runner wrapper.
+# When the timer kills the unique runner, cmd.exe naturally returns.
+Start-Process -FilePath $env:ComSpec -ArgumentList @('/d','/s','/c',('"' + $killerPath + '"')) -WindowStyle Hidden | Out-Null
+& $env:ComSpec /d /s /c ('"' + $launchPath + '"')
+$normalExitCode = $LASTEXITCODE
+$timedOut = Test-Path -LiteralPath $timeoutMarker
 $exitCode = if ($timedOut) { 124 } else { $normalExitCode }
+
+Remove-Item -Force -ErrorAction SilentlyContinue $launchPath,$killerPath,$timeoutMarker,$probeExe
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
