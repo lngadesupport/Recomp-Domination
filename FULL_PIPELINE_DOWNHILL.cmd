@@ -22,7 +22,7 @@ if not exist "%GAME_ROOT%\SCUS_971.77" (
     exit /b 2
 )
 
-echo [1/5] Verificando ambiente de compilacao...
+echo [1/6] Verificando ambiente de compilacao...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\check_environment.ps1" -GameRoot "%GAME_ROOT%"
 set "ENV_RC=%ERRORLEVEL%"
 if not "%ENV_RC%"=="0" (
@@ -35,7 +35,7 @@ if not "%ENV_RC%"=="0" (
 )
 
 echo.
-echo [2/5] Preparando dados locais do jogo...
+echo [2/6] Preparando dados locais do jogo...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\prepare_game_data.ps1" -GameRoot "%GAME_ROOT%"
 set "PREP_RC=%ERRORLEVEL%"
 if not "%PREP_RC%"=="0" (
@@ -48,7 +48,20 @@ if not "%PREP_RC%"=="0" (
 )
 
 echo.
-echo [3/5] Compilando recompilacao nativa Windows x64...
+echo [3/6] Gerando mapa Ghidra se estiver disponivel...
+if exist "%~dp0analysis\SCUS_971.77.functions.csv" (
+    echo Mapa Ghidra existente sera reutilizado.
+) else (
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
+    set "GHIDRA_RC=%ERRORLEVEL%"
+    if not "%GHIDRA_RC%"=="0" (
+        echo.
+        echo [AVISO] Ghidra foi detectado mas a geracao do mapa falhou. Codigo: %GHIDRA_RC%
+        echo O pipeline continuara com ps2_analyzer como fallback.
+    )
+)
+echo.
+echo [4/6] Compilando recompilacao nativa Windows x64...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%"
 set "BUILD_RC=%ERRORLEVEL%"
 if not "%BUILD_RC%"=="0" (
@@ -64,7 +77,7 @@ if not "%BUILD_RC%"=="0" (
 set "DIST=%GAME_ROOT%\DownhillRecompiled"
 
 echo.
-echo [4/5] Executando probe nativo de 90 segundos...
+echo [5/6] Executando probe nativo de 90 segundos...
 if exist "%DIST%\run_downhill_probe.ps1" (
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%DIST%\run_downhill_probe.ps1" -Elf "%GAME_ROOT%\SCUS_971.77" -TimeoutSeconds 90
     set "PROBE_RC=%ERRORLEVEL%"
@@ -80,7 +93,7 @@ if "%PROBE_RC%"=="124" (
 )
 
 echo.
-echo [5/5] Coletando pacote de diagnosticos...
+echo [6/6] Coletando pacote de diagnosticos...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\collect_diagnostics.ps1" -GameRoot "%GAME_ROOT%"
 set "DIAG_RC=%ERRORLEVEL%"
 
