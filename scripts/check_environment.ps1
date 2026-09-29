@@ -4,6 +4,9 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$PinnedPs2Recomp = '75d729ce40d7eed9649fd4bb05628dee520f3d0c'
+$Ps2RecompRoot = Join-Path $RepoRoot 'third_party\PS2Recomp'
+$Ps2BuildRoot = Join-Path $Ps2RecompRoot 'out\build-downhill'
 if (!$GameRoot) {
     $parent = Split-Path $RepoRoot -Parent
     if (Test-Path -LiteralPath (Join-Path $parent 'SCUS_971.77')) { $GameRoot = $parent }
@@ -79,7 +82,28 @@ try{
     if($internetOk){$tcp.EndConnect($ar)}
     $tcp.Close()
 }catch{}
-Add-Check 'GitHub connectivity' $internetOk $(if($internetOk){'github.com:443 reachable'}else{'not reachable; first build needs internet'})
+
+$pinnedCached=$false
+if($git -and (Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
+    & $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+    $pinnedCached=($LASTEXITCODE -eq 0)
+}
+$cmakeDepsCached = (
+    (Test-Path -LiteralPath (Join-Path $Ps2BuildRoot 'CMakeCache.txt')) -and
+    (Test-Path -LiteralPath (Join-Path $Ps2BuildRoot '_deps'))
+)
+$offlineReady = ($pinnedCached -and $cmakeDepsCached)
+$networkReady = ($internetOk -or $offlineReady)
+$networkDetail = if($internetOk){
+    'github.com:443 reachable'
+}elseif($offlineReady){
+    'offline-ready: pinned PS2Recomp checkout and CMake dependency cache are present'
+}elseif($pinnedCached){
+    'PS2Recomp checkout is cached, but CMake dependencies may still require internet'
+}else{
+    'not reachable and pinned build dependencies are not cached'
+}
+Add-Check 'Dependency availability' $networkReady $networkDetail
 
 $failed=@($checks | Where-Object { -not $_.ok })
 $report=[ordered]@{
