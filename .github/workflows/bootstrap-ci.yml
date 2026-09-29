@@ -90,6 +90,17 @@ jobs:
             -GeneratedDir _ci\PS2Recomp\ps2xRuntime\src\runner `
             -Out _ci\smoke\recompiled_report.json
           if (!(Test-Path _ci\smoke\recompiled_report.json)) { throw 'recompiled_report.json not produced' }
+      - name: Test first-boot suggestion parser
+        shell: pwsh
+        run: |
+          @(
+            'Error: No exact recompiled function for guest PC 0x00123450 tableBase=0x00100000 tableEnd=0x00300000 codeRegion=yes trace=0x00110000',
+            'Warning: Unimplemented PS2 stub called. name=sceCdRead PC=0x00123400, RA=0x00122000, Stub# guess (from $v0)=0x0'
+          ) | Set-Content _ci\smoke\fake_boot.log -Encoding ascii
+          .\scripts\suggest_bringup_fixes.ps1 -Log _ci\smoke\fake_boot.log -Config _ci\smoke\smoke.toml -Out _ci\smoke\suggestions.json
+          $s = Get-Content _ci\smoke\suggestions.json -Raw | ConvertFrom-Json
+          if ($s.new_entry_point_candidates -notcontains '0x00123450') { throw 'Missing expected entry-point suggestion' }
+          if (($s.unimplemented_stubs | Where-Object name -eq 'sceCdRead').Count -ne 1) { throw 'Missing expected stub suggestion' }
       - name: Stage Downhill override in runtime runner
         shell: pwsh
         run: Copy-Item src/downhill_domination_overrides.cpp _ci/PS2Recomp/ps2xRuntime/src/runner/downhill_domination_overrides.cpp -Force
