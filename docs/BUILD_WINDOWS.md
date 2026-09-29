@@ -76,3 +76,23 @@ On a successful build:
     +-- RUN_DOWNHILL.cmd
 
 Build transcripts are written to the repository's logs directory. Generated configuration and local identity reports are ignored by Git.
+
+## Build hardening and diagnostics
+
+The local bootstrap calculates the same IEEE CRC32 algorithm used by the pinned runtime and rewrites the Downhill override before compilation, so a runner built for one validated SCUS_971.77 does not silently apply the game override to another build.
+
+The runtime build also disables runner unity mode, enables strict return diagnostics and adds MSVC /bigobj to reduce failure risk when the retail game produces a very large generated translation unit.
+
+Before compilation, the script detects whether the game directory contains an extracted disc root (SYSTEM.CNF) or a local ISO. The game override also performs a one-level SYSTEM.CNF search and local ISO discovery at runtime. An ELF-only directory is allowed for compilation but emits a warning because later file/CD access can fail.
+
+After a local build, RUN_DOWNHILL.cmd produces:
+
+    first_boot_latest.log
+    first_boot_exit_code.txt
+    first_boot_triage.json
+
+To collect the safe non-game diagnostics into one ZIP, run:
+
+    COLLECT_DIAGNOSTICS.cmd
+
+The diagnostic ZIP intentionally excludes SCUS_971.77, ISO/BIN/CHD archives and game assets.
