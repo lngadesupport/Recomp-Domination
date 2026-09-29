@@ -93,57 +93,62 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Use System.Diagnostics.Process directly. Async reads continuously drain
-# stdout/stderr, so a forced timeout cannot deadlock on full or orphaned pipes.
+# Launch through cmd.exe with file redirection. PowerShell owns no redirected
+# pipes, so timeout handling never waits for async stream-drain tasks.
+$launchPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
+$escapedRunner = $Runner.Replace("%", "%%")
+$escapedElf = $Elf.Replace("%", "%%")
+$escapedStdout = $stdoutPath.Replace("%", "%%")
+$escapedStderr = $stderrPath.Replace("%", "%%")
+$launchLines = @(
+    "@echo off",
+    "cd /d ""$Here""",
+    """$escapedRunner"" ""$escapedElf"" 1>""$escapedStdout"" 2>""$escapedStderr""",
+    "exit /b %ERRORLEVEL%"
+)
+[IO.File]::WriteAllLines($launchPath, $launchLines, [Text.Encoding]::ASCII)
+
 $psi = New-Object System.Diagnostics.ProcessStartInfo
-$psi.FileName = $Runner
+$psi.FileName = $env:ComSpec
 $psi.WorkingDirectory = $Here
 $psi.UseShellExecute = $false
-$psi.CreateNoWindow = $false
-$psi.RedirectStandardOutput = $true
-$psi.RedirectStandardError = $true
-$psi.Arguments = '"' + $Elf.Replace('"', '\"') + '"'
+$psi.CreateNoWindow = $true
+$psi.Arguments = '/d /s /c ""' + $launchPath + '""'
 
 $process = New-Object System.Diagnostics.Process
 $process.StartInfo = $psi
-
-if (!$process.Start()) {
-    throw "Failed to start diagnostic runner."
-}
-
-$stdoutTask = $process.StandardOutput.ReadToEndAsync()
-$stderrTask = $process.StandardError.ReadToEndAsync()
-
+if (!$process.Start()) { throw 'Failed to start diagnostic runner wrapper.' }
+$runnerWrapperPid = $process.Id
 $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
 
 if ($timedOut) {
-    Write-Warning "Probe timeout reached; terminating diagnostic runner."
+    Write-Warning "Probe timeout reached; scheduling process-tree termination."
+
+    # Do not touch the original process handle again after the timeout. Some
+    # Windows/.NET combinations can block while refreshing a killed Process.
+    # Launch taskkill independently and continue; the logs are normal files.
     try {
-        $process.Kill()
+        $killPsi = New-Object System.Diagnostics.ProcessStartInfo
+        $killPsi.FileName = $env:ComSpec
+        $killPsi.UseShellExecute = $false
+        $killPsi.CreateNoWindow = $true
+        $killPsi.Arguments = ('/d /c start "" /b taskkill.exe /PID {0} /T /F ^>nul 2^>^&1' -f $runnerWrapperPid)
+        [void][System.Diagnostics.Process]::Start($killPsi)
     }
     catch {
-        Write-Warning ("Process.Kill failed: " + $_.Exception.Message)
-        try {
-            & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
-        }
-        catch {}
+        Write-Warning ("Could not schedule taskkill: " + $_.Exception.Message)
     }
 
-    try { [void]$process.WaitForExit(5000) } catch {}
+    Start-Sleep -Milliseconds 350
 }
 else {
-    try { [void]$process.WaitForExit(1000) } catch {}
+    # The wrapper exited normally; capture its real exit code while the handle
+    # is known to be signaled.
+    $normalExitCode = $process.ExitCode
 }
 
-$stdoutCompleted = $stdoutTask.Wait(5000)
-$stderrCompleted = $stderrTask.Wait(5000)
-
-$stdoutText = if ($stdoutCompleted) { $stdoutTask.Result } else { "[stdout capture did not drain within 5 seconds]`r`n" }
-$stderrText = if ($stderrCompleted) { $stderrTask.Result } else { "[stderr capture did not drain within 5 seconds]`r`n" }
-
-[IO.File]::WriteAllText($stdoutPath, $stdoutText, (New-Object Text.UTF8Encoding($false)))
-[IO.File]::WriteAllText($stderrPath, $stderrText, (New-Object Text.UTF8Encoding($false)))
-$exitCode = if ($timedOut) { 124 } else { $process.ExitCode }
+Remove-Item -Force -ErrorAction SilentlyContinue $launchPath
+$exitCode = if ($timedOut) { 124 } else { $normalExitCode }
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
