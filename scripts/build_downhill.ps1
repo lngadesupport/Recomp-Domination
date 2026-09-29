@@ -357,6 +357,10 @@ try {
     $CMake = Require-Command "cmake"
     Require-MsvcToolchain
 
+    Remove-Item Env:CMAKE_GENERATOR -ErrorAction SilentlyContinue
+    Remove-Item Env:CMAKE_GENERATOR_PLATFORM -ErrorAction SilentlyContinue
+    Remove-Item Env:CMAKE_GENERATOR_TOOLSET -ErrorAction SilentlyContinue
+
     $GameRoot = Resolve-GameRoot $GameRoot
     $Elf = Join-Path $GameRoot "SCUS_971.77"
     $DistDir = Join-Path $GameRoot "DownhillRecompiled"
