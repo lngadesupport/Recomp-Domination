@@ -24,6 +24,7 @@ $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
+$StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -530,6 +531,14 @@ try {
 
     Write-Host "      Required Downhill entry/binding addresses are present in the generated function table." -ForegroundColor Green
 
+    $StaticAnalysisOut = Join-Path $LocalAnalysisDir "SCUS_971.77.recompiled.json"
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $StaticAnalysisSource `
+        -Config $AutoConfig `
+        -GeneratedDir $RunnerDir `
+        -Out $StaticAnalysisOut
+    if ($LASTEXITCODE -ne 0) {
+        throw "Static recompilation report failed."
+    }
     Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
     Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
     $OverrideTarget = Join-Path $RunnerDir "downhill_domination_overrides.cpp"
@@ -605,6 +614,7 @@ try {
 
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
+    Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
 
     $runCmdLines = @(
         "@echo off",
@@ -646,6 +656,7 @@ try {
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
+        recompiled_report = (Join-Path $DistDir "recompiled_report.json")
         transcript = $Transcript
         metrics = $metrics
     }
