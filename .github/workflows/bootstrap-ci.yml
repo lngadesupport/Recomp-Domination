@@ -228,17 +228,31 @@ jobs:
           if (!$analyzer) { throw 'ps2_analyzer.exe not produced' }
           Write-Host "ps2_recomp: $($recomp.FullName)"
           Write-Host "ps2_analyzer: $($analyzer.FullName)"
-      - name: Recompile synthetic MIPS ELF end to end
+      - name: Recompile synthetic MIPS ELF - single-file
         shell: pwsh
         run: .\scripts\ci_recompile_smoke.ps1 -Ps2RecompRoot _ci/PS2Recomp -BuildRoot _ci/build
-      - name: Analyze synthetic generated output
+      - name: Analyze synthetic single-file output
         shell: pwsh
         run: |
           .\scripts\analyze_recompiled_output.ps1 `
             -Config _ci\smoke\smoke.toml `
             -GeneratedDir _ci\PS2Recomp\ps2xRuntime\src\runner `
             -Out _ci\smoke\recompiled_report.json
-          if (!(Test-Path _ci\smoke\recompiled_report.json)) { throw 'recompiled_report.json not produced' }
+          $report = Get-Content _ci\smoke\recompiled_report.json -Raw | ConvertFrom-Json
+          if ($report.generated.output_mode -ne 'single-file') { throw "Expected single-file report, got $($report.generated.output_mode)" }
+      - name: Recompile synthetic MIPS ELF - multi-file
+        shell: pwsh
+        run: .\scripts\ci_recompile_smoke.ps1 -Ps2RecompRoot _ci/PS2Recomp -BuildRoot _ci/build -MultiFileOutput
+      - name: Analyze synthetic multi-file output
+        shell: pwsh
+        run: |
+          .\scripts\analyze_recompiled_output.ps1 `
+            -Config _ci\smoke_multi\smoke.toml `
+            -GeneratedDir _ci\PS2Recomp\ps2xRuntime\src\runner `
+            -Out _ci\smoke_multi\recompiled_report.json
+          $report = Get-Content _ci\smoke_multi\recompiled_report.json -Raw | ConvertFrom-Json
+          if ($report.generated.output_mode -ne 'multi-file') { throw "Expected multi-file report, got $($report.generated.output_mode)" }
+          if ([int]$report.generated.cpp_file_count -lt 2) { throw 'Expected multiple generated C++ files' }
       - name: Test first-boot suggestion parser
         shell: pwsh
         run: |
