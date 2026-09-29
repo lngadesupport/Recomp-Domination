@@ -79,7 +79,7 @@ if($git -and (Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
     & $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
     $pinnedCached=($LASTEXITCODE -eq 0)
 }
-Add-Check 'Pinned PS2Recomp cache' $pinnedCached $(if($pinnedCached){$PinnedPs2Recomp}else{'not cached yet'})
+Add-Check 'Pinned PS2Recomp cache' $true $(if($pinnedCached){$PinnedPs2Recomp}else{'not cached yet; first build will fetch it'})
 
 $requiredDepCaches=@('raylib-src','elfio-src','toml11-src','nlohmann_json-src')
 $missingDepCaches=New-Object System.Collections.Generic.List[string]
