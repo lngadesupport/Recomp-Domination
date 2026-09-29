@@ -1,5 +1,8 @@
 name: Compiler bootstrap CI
 
+concurrency:
+  group: bootstrap-compiler-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches:
