@@ -223,6 +223,18 @@ jobs:
       - name: Recompile synthetic MIPS ELF - single-file
         shell: pwsh
         run: .\scripts\ci_recompile_smoke.ps1 -Ps2RecompRoot _ci/PS2Recomp -BuildRoot _ci/build
+      - name: Validate Ghidra-ranged deep ELF census
+        shell: powershell
+        run: |
+          .\scripts\analyze_downhill_elf_deep.ps1 `
+            -Elf _ci\smoke\SCUS_SMOKE.ELF `
+            -FunctionCsv _ci\smoke\smoke.functions.csv `
+            -Out _ci\smoke\deep_elf.json
+          $deep = Get-Content _ci\smoke\deep_elf.json -Raw | ConvertFrom-Json
+          if ($deep.scan_mode -ne 'ghidra-functions') { throw "Expected ghidra-functions scan mode, got $($deep.scan_mode)" }
+          if ([int]$deep.function_csv_records -ne 3) { throw "Expected 3 function CSV records, got $($deep.function_csv_records)" }
+          if ([int]$deep.instruction_words -ne 8) { throw "Expected 8 instruction words, got $($deep.instruction_words)" }
+
       - name: Analyze synthetic single-file output
         shell: pwsh
         run: |
