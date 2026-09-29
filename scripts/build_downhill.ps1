@@ -491,7 +491,7 @@ try {
         throw "Missing deep ELF analyzer: $DeepElfAnalyzer"
     }
     Write-Host "      Running deep R5900/COP/VU/MMI census..." -ForegroundColor DarkCyan
-    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $DeepElfAnalyzer -Elf $Elf -Out $DeepElfReport
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $DeepElfAnalyzer -Elf $Elf -Out $DeepElfReport -FunctionCsv $GhidraCsv
     if ($LASTEXITCODE -ne 0 -or !(Test-Path -LiteralPath $DeepElfReport)) {
         throw "Deep ELF analysis failed."
     }
@@ -861,6 +861,7 @@ try {
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
         recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        deep_elf_report = (Join-Path $DistDir "SCUS_971.77.deep.json")
         runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
         staged_config = (Join-Path $DistDir "downhill.auto.toml")
         bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
