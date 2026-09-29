@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - bootstrap/compiler
+      - bootstrap/watchdog-fix
     paths:
       - scripts/run_downhill_probe.ps1
       - scripts/triage_first_boot.ps1
