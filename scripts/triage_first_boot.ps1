@@ -88,7 +88,7 @@ function Convert-TopLevelReportToJson {
     foreach($key in $Object.Keys){
         $keyText = [string]$key
         $escapedKey = $keyText.Replace('\\','\\\\').Replace('"','\\"')
-        $valueJson = ConvertTo-Json -InputObject $Object[$key] -Depth 7 -Compress
+        $valueJson = $Object[$key] | ConvertTo-Json -Depth 7 -Compress
         $parts.Add(('"' + $escapedKey + '":' + $valueJson))
     }
 
