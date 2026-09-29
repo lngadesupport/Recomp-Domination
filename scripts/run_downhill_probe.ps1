@@ -93,47 +93,41 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Redirect in cmd.exe rather than Start-Process. Windows PowerShell 5.1 can
-# keep redirected Start-Process pipes alive after a forced termination, which
-# defeats the watchdog itself. A tiny wrapper gives the OS-owned shell all
-# stream handles, while PowerShell only waits on the cmd.exe process handle.
-$wrapperPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
-$escapedRunner = $Runner.Replace("%", "%%")
-$escapedElf = $Elf.Replace("%", "%%")
-$escapedStdout = $stdoutPath.Replace("%", "%%")
-$escapedStderr = $stderrPath.Replace("%", "%%")
-$wrapperLines = @(
-    "@echo off",
-    "cd /d ""$Here""",
-    """$escapedRunner"" ""$escapedElf"" 1>""$escapedStdout"" 2>""$escapedStderr""",
-    "exit /b %ERRORLEVEL%"
-)
-[IO.File]::WriteAllLines($wrapperPath, $wrapperLines, [Text.Encoding]::ASCII)
+# Use System.Diagnostics.Process directly. Async reads continuously drain
+# stdout/stderr, so a forced timeout cannot deadlock on full or orphaned pipes.
+$psi = New-Object System.Diagnostics.ProcessStartInfo
+$psi.FileName = $Runner
+$psi.WorkingDirectory = $Here
+$psi.UseShellExecute = $false
+$psi.CreateNoWindow = $false
+$psi.RedirectStandardOutput = $true
+$psi.RedirectStandardError = $true
+$psi.Arguments = '"' + $Elf.Replace('"', '\"') + '"'
 
-$cmdArguments = '/d /s /c ""' + $wrapperPath + '""'
-$process = Start-Process `
-    -FilePath $env:ComSpec `
-    -ArgumentList $cmdArguments `
-    -WorkingDirectory $Here `
-    -PassThru
+$process = New-Object System.Diagnostics.Process
+$process.StartInfo = $psi
+
+if (!$process.Start()) {
+    throw "Failed to start diagnostic runner."
+}
+
+$stdoutTask = $process.StandardOutput.ReadToEndAsync()
+$stderrTask = $process.StandardError.ReadToEndAsync()
 
 $timedOut = !$process.WaitForExit($TimeoutSeconds * 1000)
 
 if ($timedOut) {
-    Write-Warning "Probe timeout reached; terminating diagnostic runner process tree."
+    Write-Warning "Probe timeout reached; terminating diagnostic runner."
     try {
-        & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
+        $process.Kill()
     }
     catch {
-        Write-Warning ("taskkill failed: " + $_.Exception.Message)
-    }
-
-    try {
-        if (!$process.HasExited) {
-            Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+        Write-Warning ("Process.Kill failed: " + $_.Exception.Message)
+        try {
+            & taskkill.exe /PID $process.Id /T /F 2>$null | Out-Null
         }
+        catch {}
     }
-    catch {}
 
     try { [void]$process.WaitForExit(5000) } catch {}
 }
@@ -141,8 +135,14 @@ else {
     try { [void]$process.WaitForExit(1000) } catch {}
 }
 
-Remove-Item -Force -ErrorAction SilentlyContinue $wrapperPath
+$stdoutCompleted = $stdoutTask.Wait(5000)
+$stderrCompleted = $stderrTask.Wait(5000)
 
+$stdoutText = if ($stdoutCompleted) { $stdoutTask.Result } else { "[stdout capture did not drain within 5 seconds]`r`n" }
+$stderrText = if ($stderrCompleted) { $stderrTask.Result } else { "[stderr capture did not drain within 5 seconds]`r`n" }
+
+[IO.File]::WriteAllText($stdoutPath, $stdoutText, (New-Object Text.UTF8Encoding($false)))
+[IO.File]::WriteAllText($stderrPath, $stderrText, (New-Object Text.UTF8Encoding($false)))
 $exitCode = if ($timedOut) { 124 } else { $process.ExitCode }
 $endedAt = Get-Date
 
