@@ -158,6 +158,40 @@ function Resolve-GameRoot {
     throw "Could not locate SCUS_971.77. Run BUILD_DOWNHILL.cmd with the game folder as its first argument."
 }
 
+function Detect-GameData {
+    param([string]$Root)
+
+    $systemCnf = ""
+    $directSystemCnf = Join-Path $Root "SYSTEM.CNF"
+    if (Test-Path -LiteralPath $directSystemCnf) {
+        $systemCnf = $directSystemCnf
+    }
+    else {
+        foreach ($dir in @(Get-ChildItem -LiteralPath $Root -Directory -ErrorAction SilentlyContinue)) {
+            $candidate = Join-Path $dir.FullName "SYSTEM.CNF"
+            if (Test-Path -LiteralPath $candidate) {
+                $systemCnf = $candidate
+                break
+            }
+        }
+    }
+
+    $iso = Get-ChildItem -LiteralPath $Root -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Extension -ieq ".iso" } |
+        Select-Object -First 1
+
+    $mode = "elf-only"
+    if ($systemCnf) { $mode = "extracted-disc" }
+    elseif ($iso) { $mode = "iso" }
+
+    return [pscustomobject][ordered]@{
+        mode = $mode
+        system_cnf = $systemCnf
+        cd_root = if ($systemCnf) { Split-Path $systemCnf -Parent } else { $Root }
+        iso = if ($iso) { $iso.FullName } else { "" }
+    }
+}
+
 function Validate-Elf {
     param([string]$ElfPath)
 
@@ -368,6 +402,14 @@ try {
     $GameRoot = Resolve-GameRoot $GameRoot
     $Elf = Join-Path $GameRoot "SCUS_971.77"
     $DistDir = Join-Path $GameRoot "DownhillRecompiled"
+    $GameData = Detect-GameData $GameRoot
+
+    if ($GameData.mode -eq "elf-only") {
+        Write-Warning "No SYSTEM.CNF or ISO was found beside the ELF. Native compilation can continue, but game file access may block during first boot."
+    }
+    else {
+        Write-Host ("      Game data mode: " + $GameData.mode) -ForegroundColor DarkGray
+    }
 
     $ElfIdentity = Validate-Elf $Elf
 
@@ -599,6 +641,7 @@ try {
         elf = $Elf
         config = $AutoConfig
         ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
+        game_data = $GameData
         runner = $StagedRunner
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
         first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
