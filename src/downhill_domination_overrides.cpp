@@ -69,7 +69,9 @@ namespace
         const fs::path root = paths.elfDirectory;
 
         const fs::path configuredCdRoot = readPathSidecar(root / "downhill_cd_root.txt");
-        if (!configuredCdRoot.empty() && fs::is_directory(configuredCdRoot, ec))
+        const bool hasConfiguredCdRoot =
+            !configuredCdRoot.empty() && fs::is_directory(configuredCdRoot, ec);
+        if (hasConfiguredCdRoot)
         {
             paths.cdRoot = configuredCdRoot;
             std::cerr << "[downhill] configured CD root: " << configuredCdRoot.string() << "\n";
@@ -88,7 +90,7 @@ namespace
         {
             paths.cdRoot = root;
         }
-        else if (configuredCdRoot.empty())
+        else if (!hasConfiguredCdRoot)
         {
             // Also support a one-level extracted-disc directory under the game root.
             for (fs::directory_iterator it(root, ec), end; !ec && it != end; it.increment(ec))
