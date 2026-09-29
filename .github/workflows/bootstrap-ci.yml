@@ -38,6 +38,25 @@ jobs:
           }
           if ($failed) { throw 'PowerShell parser reported one or more errors.' }
 
+      - name: Parse scripts with Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $failed = $false
+          Get-ChildItem .\scripts -Filter *.ps1 -File -Recurse | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName,
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+            if ($errors.Count -ne 0) {
+              Write-Host "Parser errors in $($_.FullName):"
+              $errors | Format-List | Out-String | Write-Host
+              $failed = $true
+            }
+          }
+          if ($failed) { throw 'Windows PowerShell parser reported one or more errors.' }
       - name: Clone pinned PS2Recomp
         shell: pwsh
         run: |
