@@ -20,7 +20,7 @@ New-Item -ItemType Directory -Force -Path (Split-Path $Out -Parent)|Out-Null
 [byte[]]$b=[IO.File]::ReadAllBytes($Elf)
 function U16([int]$o){[BitConverter]::ToUInt16($b,$o)}
 function U32([int]$o){[BitConverter]::ToUInt32($b,$o)}
-function H([uint32]$v){'0x{0:X8}' -f $v}
+function Hex32Text([uint32]$v){'0x{0:X8}' -f $v}
 
 if($b.Length -lt 84){throw 'ELF too small'}
 if($b[0]-ne 0x7F-or$b[1]-ne 0x45-or$b[2]-ne 0x4C-or$b[3]-ne 0x46){throw 'Invalid ELF magic'}
@@ -165,7 +165,7 @@ foreach($range in $scanRanges){
     if($op-eq 16){$cop0++};if($op-eq 17){$cop1++};if($op-eq 18){$cop2++};if($op-eq 28){$mmi++}
     if($op-eq 3-or$op-eq 2){
       [uint32]$target=[uint32]((($pc+4)-band 0xF0000000)-bor(($w-band 0x03FFFFFF)-shl 2))
-      $key=H $target
+      $key=Hex32Text $target
       $dict=if($op-eq 3){$jal}else{$jump}
       if(!$dict.ContainsKey($key)){$dict[$key]=0};$dict[$key]++
     }
@@ -211,15 +211,15 @@ foreach($addr in @([uint32]0x0010A008,[uint32]0x001FB6C0,[uint32]0x00254050,[uin
     if($s.type-ne 1){continue}
     if($addr-ge$s.vaddr-and([uint64]$addr+4)-le([uint64]$s.vaddr+$s.filesz)){
       $fo=[int]([uint64]$s.offset+([uint64]$addr-$s.vaddr))
-      $known[(H $addr)]=('0x{0:X8}'-f[BitConverter]::ToUInt32($b,$fo));$found=$true;break
+      $known[(Hex32Text $addr)]=('0x{0:X8}'-f[BitConverter]::ToUInt32($b,$fo));$found=$true;break
     }
   }
-  if(!$found){$known[(H $addr)]=$null}
+  if(!$found){$known[(Hex32Text $addr)]=$null}
 }
 
 $report=[ordered]@{
-  generated=(Get-Date -Format o); file=[IO.Path]::GetFileName($Elf); size_bytes=$b.Length; entry=H $entry;
-  executable_segments=@($exec|ForEach-Object{[pscustomobject]@{vaddr=H $_.vaddr;offset=H $_.offset;filesz=H $_.filesz;memsz=H $_.memsz;flags=H $_.flags}});
+  generated=(Get-Date -Format o); file=[IO.Path]::GetFileName($Elf); size_bytes=$b.Length; entry=Hex32Text $entry;
+  executable_segments=@($exec|ForEach-Object{[pscustomobject]@{vaddr=Hex32Text $_.vaddr;offset=Hex32Text $_.offset;filesz=Hex32Text $_.filesz;memsz=Hex32Text $_.memsz;flags=Hex32Text $_.flags}});
   scan_mode=$scanMode;
   function_csv=$functionCsvPath;
   function_csv_records=$functionCsvRecords;
