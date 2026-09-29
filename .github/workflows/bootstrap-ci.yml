@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - bootstrap/compiler
+      - bootstrap/integration
   pull_request:
     branches:
       - main
