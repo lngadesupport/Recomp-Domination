@@ -195,8 +195,21 @@ jobs:
         run: |
           $tests = Get-ChildItem _ci/build -Recurse -Filter ps2x_tests.exe -File | Select-Object -First 1
           if (!$tests) { throw 'ps2x_tests.exe not produced' }
-          & $tests.FullName
-          if ($LASTEXITCODE -ne 0) { throw "ps2x_tests failed with exit code $LASTEXITCODE" }
+
+          # One upstream CodeGenerator test intentionally reads
+          # ps2xRecomp/include/ps2recomp/instructions.h through a relative path.
+          # Run from the pinned source root, matching the test's documented
+          # candidate paths instead of treating a CI cwd mismatch as a failure.
+          Push-Location _ci/PS2Recomp
+          try {
+            & $tests.FullName
+            $rc = $LASTEXITCODE
+          }
+          finally {
+            Pop-Location
+          }
+
+          if ($rc -ne 0) { throw "ps2x_tests failed with exit code $rc" }
 
       - name: Verify expected executables
         shell: pwsh
