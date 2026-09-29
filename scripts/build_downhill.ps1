@@ -20,6 +20,7 @@ $AnalysisDir = Join-Path $RepoRoot "analysis"
 $LocalAnalysisDir = Join-Path $AnalysisDir "local"
 $LogsDir = Join-Path $RepoRoot "logs"
 $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
+$ExtraEntryPointsFile = Join-Path $ConfigDir "downhill.extra_entry_points.local.txt"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
@@ -545,6 +546,233 @@ try {
         "0x00254050",
         "0x0025C440"
     )
+
+    $LocalExtraEntries = @()
+    if (Test-Path -LiteralPath $ExtraEntryPointsFile) {
+        foreach ($line in Get-Content -LiteralPath $ExtraEntryPointsFile) {
+            $value = $line.Trim()
+            if (!$value -or $value.StartsWith("#")) { continue }
+            if ($value -notmatch '^0x([0-9A-Fa-f]{8})    [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
+
+    Write-Host "[5/7] Generating recompiled C++..." -ForegroundColor Cyan
+    Invoke-Native $RecompExe $AutoConfig
+
+    $GeneratedFunctionsHeader = Join-Path $RunnerDir "ps2_recompiled_functions.h"
+    $GeneratedStubsHeader = Join-Path $RunnerDir "ps2_recompiled_stubs.h"
+    $GeneratedRegistration = Join-Path $RunnerDir "register_functions.cpp"
+    $GeneratedFunctionsCpp = Join-Path $RunnerDir "ps2_recompiled_functions.cpp"
+
+    foreach ($required in @(
+        $GeneratedFunctionsHeader,
+        $GeneratedStubsHeader,
+        $GeneratedRegistration,
+        $GeneratedFunctionsCpp
+    )) {
+        if (!(Test-Path -LiteralPath $required)) {
+            throw "Recompiler did not generate required file: $required"
+        }
+    }
+
+    $registrationCheck = Get-Content -Raw -LiteralPath $GeneratedRegistration
+    foreach ($requiredAddress in @(
+        "0x0010A008",
+        "0x001FB6C0",
+        "0x00254050",
+        "0x0025C440"
+    )) {
+        $hexBody = $requiredAddress.Substring(2).TrimStart([char]'0')
+        if (!$hexBody) { $hexBody = "0" }
+        if ($registrationCheck -notmatch ("(?i)//\s*0x0*" + [regex]::Escape($hexBody) + "\b")) {
+            throw "Generated function table does not contain required guest entry $requiredAddress."
+        }
+    }
+
+    Write-Host "      Required Downhill entry/binding addresses are present in the generated function table." -ForegroundColor Green
+
+    $StaticAnalysisOut = Join-Path $LocalAnalysisDir "SCUS_971.77.recompiled.json"
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $StaticAnalysisSource `
+        -Config $AutoConfig `
+        -GeneratedDir $RunnerDir `
+        -Out $StaticAnalysisOut
+    if ($LASTEXITCODE -ne 0) {
+        throw "Static recompilation report failed."
+    }
+    Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
+    Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
+    $OverrideTarget = Join-Path $RunnerDir "downhill_domination_overrides.cpp"
+    $overrideText = Get-Content -Raw -LiteralPath $OverrideSource
+    $crcLiteral = ("0x{0:X8}u" -f [uint32]$ElfIdentity.crc32_ieee_u32)
+    $crcPattern = 'constexpr uint32_t kExpectedFileCrc32 = 0x[0-9A-Fa-f]{8}u;'
+    if ($overrideText -notmatch $crcPattern) {
+        throw "Downhill override CRC placeholder was not found."
+    }
+    $overrideText = [regex]::Replace(
+        $overrideText,
+        $crcPattern,
+        ("constexpr uint32_t kExpectedFileCrc32 = " + $crcLiteral + ";"),
+        1
+    )
+    [IO.File]::WriteAllText(
+        $OverrideTarget,
+        $overrideText,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    Write-Host ("      Runtime override locked to CRC32/IEEE " + (Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32))) -ForegroundColor Green
+
+    Write-Host "[6/7] Building native Windows x64 runner..." -ForegroundColor Cyan
+
+    $configureRuntimeArgs = @(
+        "-S", $Ps2RecompRoot,
+        "-B", $BuildRoot,
+        "-A", "x64",
+        "-DPS2X_BUILD_RUNTIME=ON",
+        "-DPS2X_BUILD_RECOMP=ON",
+        "-DPS2X_BUILD_ANALYZER=ON",
+        "-DPS2X_BUILD_TEST=OFF",
+        "-DPS2X_BUILD_STUDIO=OFF",
+        "-DPS2X_ENABLE_FFMPEG=OFF",
+        "-DPS2X_ENABLE_DEBUG_UI=OFF",
+        "-DPS2X_ENABLE_RUNTIME_LOGS=ON",
+        "-DPS2X_ENABLE_AGRESSIVE_LOGS=ON",
+        "-DPS2X_ENABLE_IOP_RPC_TRACE=ON",
+        "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
+        "-DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF",
+        "-DPS2X_SHOW_WINDOWS_CONSOLE=ON",
+        "-DCMAKE_CXX_FLAGS=/bigobj",
+        ("-DPS2X_DEFAULT_BOOT_ELF=" + $Elf)
+    )
+    Invoke-Native $CMake @configureRuntimeArgs
+
+    $buildRuntimeArgs = @(
+        "--build", $BuildRoot,
+        "--config", "Release",
+        "--target", "ps2EntryRunner",
+        "--parallel"
+    )
+    Invoke-Native $CMake @buildRuntimeArgs
+
+    $Runner = Get-ChildItem -LiteralPath $BuildRoot -Filter "ps2EntryRunner.exe" -File -Recurse |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1
+
+    if (!$Runner) {
+        throw "ps2EntryRunner.exe was not found after a successful build."
+    }
+
+    Write-Host "[7/7] Staging DownhillRecompiled..." -ForegroundColor Cyan
+
+    New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
+    $StagedRunner = Join-Path $DistDir "ps2EntryRunner.exe"
+    Copy-Item -Force $Runner.FullName $StagedRunner
+
+    Get-ChildItem -LiteralPath $Runner.Directory.FullName -Filter "*.dll" -File -ErrorAction SilentlyContinue |
+        ForEach-Object {
+            Copy-Item -Force $_.FullName $DistDir
+        }
+
+    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
+    Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
+
+    $runCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""$Elf""",
+        "echo.",
+        "pause"
+    )
+    $runCmd = $runCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
+    $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
+    $generatedCppText = Get-Content -Raw -LiteralPath $GeneratedFunctionsCpp
+    $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
+
+    $metrics = [ordered]@{
+        generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        todo_named_occurrences = ([regex]::Matches($generatedCppText, "TODO_NAMED")).Count
+        registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
+        generated_cpp_bytes = (Get-Item -LiteralPath $GeneratedFunctionsCpp).Length
+        generated_cpp_sha256 = (Get-FileHash -LiteralPath $GeneratedFunctionsCpp -Algorithm SHA256).Hash
+        config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
+        runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
+        runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+        runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
+    }
+
+    $summary = [ordered]@{
+        result = "build-complete"
+        ps2recomp_commit = $PinnedPs2Recomp
+        game_root = $GameRoot
+        elf = $Elf
+        config = $AutoConfig
+        ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
+        local_extra_entry_points = $LocalExtraEntries
+        game_data = $GameData
+        runner = $StagedRunner
+        run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
+        first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
+        recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        staged_config = (Join-Path $DistDir "downhill.auto.toml")
+        bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
+        transcript = $Transcript
+        metrics = $metrics
+    }
+
+    $summaryJson = $summary | ConvertTo-Json -Depth 6
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "last_build.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    [IO.File]::WriteAllText(
+        (Join-Path $DistDir "build_report.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+
+    Write-Host ""
+    Write-Host "============================================================" -ForegroundColor Green
+    Write-Host " Native compiler/bootstrap completed." -ForegroundColor Green
+    Write-Host " Runner: $($summary.runner)" -ForegroundColor Green
+    Write-Host " Run:    $($summary.run_script)" -ForegroundColor Green
+    Write-Host " Build report: $(Join-Path $DistDir "build_report.json")" -ForegroundColor Green
+    Write-Host " Log:    $Transcript" -ForegroundColor Green
+    Write-Host "============================================================" -ForegroundColor Green
+}
+catch {
+    Write-Host ""
+    Write-Host "BUILD FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Transcript: $Transcript" -ForegroundColor Yellow
+    exit 1
+}
+finally {
+    try {
+        Stop-Transcript | Out-Null
+    }
+    catch {
+    }
+}
+) {
+                throw "Invalid local entry-point literal in $ExtraEntryPointsFile : $value"
+            }
+            [uint32]$pc = [Convert]::ToUInt32($Matches[1], 16)
+            if ($pc -lt [uint32]0x0010A000 -or $pc -ge [uint32]0x0029DCF0 -or (($pc -band 3u) -ne 0u)) {
+                throw "Local entry point is outside the validated file-backed executable range or unaligned: $value"
+            }
+            $LocalExtraEntries += ("0x{0:X8}" -f $pc)
+        }
+        $LocalExtraEntries = @($LocalExtraEntries | Sort-Object -Unique)
+        if ($LocalExtraEntries.Count -gt 0) {
+            $toml = Ensure-TomlArrayEntries $toml "entry_points" $LocalExtraEntries
+            Write-Host ("      Added local entry-point overrides: " + ($LocalExtraEntries -join ", ")) -ForegroundColor Yellow
+        }
+    }
 
     [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
 
