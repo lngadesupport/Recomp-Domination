@@ -1,5 +1,6 @@
 param(
-    [string]$GameRoot = ""
+    [string]$GameRoot = "",
+    [switch]$MultiFileOutput
 )
 
 $ErrorActionPreference = "Stop"
@@ -568,7 +569,10 @@ try {
     $toml = Set-TomlScalar $toml "input" ('"' + $elfToml + '"')
     $toml = Set-TomlScalar $toml "output" ('"' + $runnerToml + '"')
     $toml = Set-TomlScalar $toml "ghidra_output" ('"' + $ghidraToml + '"')
-    $toml = Set-TomlScalar $toml "single_file_output" "true"
+    $OutputMode = if ($MultiFileOutput) { "multi-file" } else { "single-file" }
+    $SingleFileToml = if ($MultiFileOutput) { "false" } else { "true" }
+    $toml = Set-TomlScalar $toml "single_file_output" $SingleFileToml
+    Write-Host ("      Recompiler output mode: " + $OutputMode) -ForegroundColor DarkGray
     $toml = Set-TomlScalar $toml "low_memory_mode" "true"
     $toml = Set-TomlScalar $toml "output_worker_threads" "1"
 
@@ -626,12 +630,28 @@ try {
     foreach ($required in @(
         $GeneratedFunctionsHeader,
         $GeneratedStubsHeader,
-        $GeneratedRegistration,
-        $GeneratedFunctionsCpp
+        $GeneratedRegistration
     )) {
         if (!(Test-Path -LiteralPath $required)) {
             throw "Recompiler did not generate required file: $required"
         }
+    }
+
+    if ($MultiFileOutput) {
+        $GeneratedCppFiles = @(
+            Get-ChildItem -LiteralPath $RunnerDir -Filter "*.cpp" -File |
+                Where-Object { $_.Name -ne "register_functions.cpp" } |
+                Sort-Object Name
+        )
+        if ($GeneratedCppFiles.Count -eq 0) {
+            throw "Multi-file recompilation produced no function C++ files."
+        }
+    }
+    else {
+        if (!(Test-Path -LiteralPath $GeneratedFunctionsCpp)) {
+            throw "Recompiler did not generate combined output: $GeneratedFunctionsCpp"
+        }
+        $GeneratedCppFiles = @((Get-Item -LiteralPath $GeneratedFunctionsCpp))
     }
 
     $registrationCheck = Get-Content -Raw -LiteralPath $GeneratedRegistration
@@ -775,16 +795,37 @@ try {
 
     $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
     $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
-    $generatedCppText = Get-Content -Raw -LiteralPath $GeneratedFunctionsCpp
     $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
 
+    [int64]$GeneratedCppBytes = 0
+    [int]$TodoNamedOccurrences = 0
+    $GeneratedCppMetrics = New-Object System.Collections.Generic.List[object]
+    foreach ($cppFile in $GeneratedCppFiles) {
+        $cppText = Get-Content -Raw -LiteralPath $cppFile.FullName
+        $TodoNamedOccurrences += ([regex]::Matches($cppText, "TODO_NAMED")).Count
+        $GeneratedCppBytes += [int64]$cppFile.Length
+        $GeneratedCppMetrics.Add([ordered]@{
+            file = $cppFile.Name
+            bytes = [int64]$cppFile.Length
+            sha256 = (Get-FileHash -LiteralPath $cppFile.FullName -Algorithm SHA256).Hash
+        })
+    }
+
+    $PrimaryGeneratedCppSha256 = $null
+    if ($GeneratedCppFiles.Count -eq 1) {
+        $PrimaryGeneratedCppSha256 = (Get-FileHash -LiteralPath $GeneratedCppFiles[0].FullName -Algorithm SHA256).Hash
+    }
+
     $metrics = [ordered]@{
+        output_mode = $OutputMode
+        generated_cpp_file_count = $GeneratedCppFiles.Count
         generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
         generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
-        todo_named_occurrences = ([regex]::Matches($generatedCppText, "TODO_NAMED")).Count
+        todo_named_occurrences = $TodoNamedOccurrences
         registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
-        generated_cpp_bytes = (Get-Item -LiteralPath $GeneratedFunctionsCpp).Length
-        generated_cpp_sha256 = (Get-FileHash -LiteralPath $GeneratedFunctionsCpp -Algorithm SHA256).Hash
+        generated_cpp_bytes = $GeneratedCppBytes
+        generated_cpp_sha256 = $PrimaryGeneratedCppSha256
+        generated_cpp_files = $GeneratedCppMetrics
         config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
         runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
         runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
