@@ -225,8 +225,8 @@ Write-Host 'No proprietary game data was added to Git.'
         $vm = [regex]::Match($file.Name, $volumePattern, 'IgnoreCase')
         if(!$vm.Success){ continue }
         $part = [int]$vm.Groups['part'].Value
-        if(!$groups.ContainsKey($part)){ $groups[$part] = New-Object System.Collections.Generic.List[object] }
-        $groups[$part].Add($file)
+        if(!$groups.ContainsKey($part)){ $groups[$part] = @() }
+        $groups[$part] += $file
     }
 
     if(!$groups.ContainsKey(1)){ throw "Multipart staging could not find part 1." }
