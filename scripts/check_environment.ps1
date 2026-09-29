@@ -39,7 +39,8 @@ if($cmake){
 Add-Check 'CMake' ([bool]$cmake) $cmakeDetail
 
 $psVersion = $PSVersionTable.PSVersion.ToString()
-Add-Check 'Windows PowerShell' ($PSVersionTable.PSEdition -eq 'Desktop' -or $PSVersionTable.Platform -eq 'Win32NT' -or $env:OS -eq 'Windows_NT') ('version ' + $psVersion)
+$isWindows = ($env:OS -eq 'Windows_NT')
+Add-Check 'Windows PowerShell' $isWindows ('version ' + $psVersion)
 
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 $vsOk = Test-Path -LiteralPath $vswhere
@@ -63,7 +64,7 @@ if($elfOk){
 
 $driveRoot = [IO.Path]::GetPathRoot($GameRoot)
 try {
-    $drive = New-Object IO.DriveInfo($driveRoot)
+    $drive = New-Object System.IO.DriveInfo -ArgumentList $driveRoot
     [double]$freeGiB = $drive.AvailableFreeSpace / 1GB
     Add-Check 'Free disk space' ($freeGiB -ge 15) (('{0:N1} GiB free on {1}' -f $freeGiB,$driveRoot))
 } catch {
