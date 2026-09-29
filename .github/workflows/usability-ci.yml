@@ -47,12 +47,16 @@ jobs:
             'sceSifSendCmd IOP RPC',
             'scePadRead gamepad',
             'VIF1 MSCAL VU1',
-            'GIF GS processGIFPacket'
+            'GIF GS processGIFPacket',
+            '[run:tick] tick=120 pc=0x001FB6C0 activeThreads=1 dma=2 gif=3 gsw=4 vif=5'
           ) | Set-Content _ci\triage\boot.log -Encoding ascii
           .\scripts\triage_first_boot.ps1 -Log _ci\triage\boot.log -Out _ci\triage\report.json
           $r=Get-Content _ci\triage\report.json -Raw | ConvertFrom-Json
-          if($r.furthest_milestone -ne 'gif-gs'){throw "Unexpected milestone: $($r.furthest_milestone)"}
+          if($r.furthest_milestone -ne 'guest-graphics'){throw "Unexpected milestone: $($r.furthest_milestone)"}
           if(!$r.milestones.main_reached){throw 'main milestone was not detected'}
+          if(!$r.milestones.guest_graphics_activity){throw 'guest graphics activity was not detected'}
+          if([int]$r.runtime_counters.max_gif -ne 3){throw "Unexpected max_gif: $($r.runtime_counters.max_gif)"}
+          if([int]$r.runtime_counters.max_gs_writes -ne 4){throw "Unexpected max_gs_writes: $($r.runtime_counters.max_gs_writes)"}
       - name: Verify full pipeline rejects missing game root cleanly
         shell: cmd
         run: >-
