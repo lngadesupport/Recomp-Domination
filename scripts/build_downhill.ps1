@@ -271,6 +271,7 @@ function Validate-Elf {
         machine = $machine
         pcsx2_elf_crc = Hex32 $pcsx2crc
         crc32_ieee = Hex32 $crc32
+        crc32_ieee_u32 = [uint32]$crc32
         pt_load = [ordered]@{
             offset = Hex32 $ptOffset
             vaddr = Hex32 $ptVaddr
@@ -287,6 +288,7 @@ function Validate-Elf {
     $identity | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $identityPath -Encoding UTF8
 
     Write-Host "      Build identity OK; CRC32/IEEE = $(Hex32 $crc32)" -ForegroundColor Green
+    return [pscustomobject]$identity
 }
 
 function Set-TomlScalar {
@@ -367,7 +369,7 @@ try {
     $Elf = Join-Path $GameRoot "SCUS_971.77"
     $DistDir = Join-Path $GameRoot "DownhillRecompiled"
 
-    Validate-Elf $Elf
+    $ElfIdentity = Validate-Elf $Elf
 
     Write-Host "[2/7] Preparing pinned PS2Recomp checkout..." -ForegroundColor Cyan
 
@@ -488,7 +490,25 @@ try {
 
     Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
     Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
-    Copy-Item -Force $OverrideSource (Join-Path $RunnerDir "downhill_domination_overrides.cpp")
+    $OverrideTarget = Join-Path $RunnerDir "downhill_domination_overrides.cpp"
+    $overrideText = Get-Content -Raw -LiteralPath $OverrideSource
+    $crcLiteral = ("0x{0:X8}u" -f [uint32]$ElfIdentity.crc32_ieee_u32)
+    $crcPattern = 'constexpr uint32_t kExpectedFileCrc32 = 0x[0-9A-Fa-f]{8}u;'
+    if ($overrideText -notmatch $crcPattern) {
+        throw "Downhill override CRC placeholder was not found."
+    }
+    $overrideText = [regex]::Replace(
+        $overrideText,
+        $crcPattern,
+        ("constexpr uint32_t kExpectedFileCrc32 = " + $crcLiteral + ";"),
+        1
+    )
+    [IO.File]::WriteAllText(
+        $OverrideTarget,
+        $overrideText,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    Write-Host ("      Runtime override locked to CRC32/IEEE " + (Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32))) -ForegroundColor Green
 
     Write-Host "[6/7] Building native Windows x64 runner..." -ForegroundColor Cyan
 
@@ -506,7 +526,10 @@ try {
         "-DPS2X_ENABLE_RUNTIME_LOGS=ON",
         "-DPS2X_ENABLE_AGRESSIVE_LOGS=ON",
         "-DPS2X_ENABLE_IOP_RPC_TRACE=ON",
+        "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
+        "-DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF",
         "-DPS2X_SHOW_WINDOWS_CONSOLE=ON",
+        "-DCMAKE_CXX_FLAGS=/bigobj",
         ("-DPS2X_DEFAULT_BOOT_ELF=" + $Elf)
     )
     Invoke-Native $CMake @configureRuntimeArgs
@@ -566,6 +589,7 @@ try {
         config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
         runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
         runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+        runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
     }
 
     $summary = [ordered]@{
