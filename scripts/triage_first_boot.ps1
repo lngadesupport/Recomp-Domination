@@ -81,6 +81,20 @@ elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 $tailCount = [Math]::Min(120, $lines.Count)
 $tail = if ($tailCount -gt 0) { @($lines | Select-Object -Last $tailCount) } else { @() }
 
+function Convert-TopLevelReportToJson {
+    param([System.Collections.IDictionary]$Object)
+
+    $parts = New-Object System.Collections.Generic.List[string]
+    foreach($key in $Object.Keys){
+        $keyText = [string]$key
+        $escapedKey = $keyText.Replace('\\','\\\\').Replace('"','\\"')
+        $valueJson = ConvertTo-Json -InputObject $Object[$key] -Depth 7 -Compress
+        $parts.Add(('"' + $escapedKey + '":' + $valueJson))
+    }
+
+    return "{`r`n  " + ($parts -join ",`r`n  ") + "`r`n}"
+}
+
 $report = [ordered]@{
     source_log = $Log
     line_count = $lines.Count
@@ -99,7 +113,7 @@ $report = [ordered]@{
     tail = $tail
 }
 
-$json = ConvertTo-Json -InputObject $report -Depth 8
+$json = Convert-TopLevelReportToJson $report
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out), $json, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
