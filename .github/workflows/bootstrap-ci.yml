@@ -120,6 +120,25 @@ jobs:
           $s = Get-Content _ci\smoke\suggestions.json -Raw | ConvertFrom-Json
           if ($s.new_entry_point_candidates -notcontains '0x00123450') { throw 'Missing expected entry-point suggestion' }
           if (($s.unimplemented_stubs | Where-Object name -eq 'sceCdRead').Count -ne 1) { throw 'Missing expected stub suggestion' }
+      - name: Audit runtime stub implementation status
+        shell: pwsh
+        run: |
+          @'
+          [general]
+          stubs = [
+            "scePadRead@0x00254050",
+            "sceSifSendCmd@0x0025C440",
+            "sceCdRI@0x00111110",
+          ]
+          '@ | Set-Content _ci\smoke\stub_audit.toml -Encoding utf8
+          .\scripts\audit_runtime_stubs.ps1 -Config _ci\smoke\stub_audit.toml -Ps2RecompRoot _ci\PS2Recomp -Out _ci\smoke\stub_audit.json
+          $audit = Get-Content _ci\smoke\stub_audit.json -Raw | ConvertFrom-Json
+          $pad = $audit.stubs | Where-Object requested_name -eq 'scePadRead'
+          $sif = $audit.stubs | Where-Object requested_name -eq 'sceSifSendCmd'
+          $cdri = $audit.stubs | Where-Object requested_name -eq 'sceCdRI'
+          if ($pad.status -ne 'implemented') { throw "scePadRead audit mismatch: $($pad.status)" }
+          if ($sif.status -ne 'implemented') { throw "sceSifSendCmd audit mismatch: $($sif.status)" }
+          if ($cdri.status -ne 'todo') { throw "sceCdRI audit mismatch: $($cdri.status)" }
       - name: Stage Downhill override in runtime runner
         shell: pwsh
         run: Copy-Item src/downhill_domination_overrides.cpp _ci/PS2Recomp/ps2xRuntime/src/runner/downhill_domination_overrides.cpp -Force
