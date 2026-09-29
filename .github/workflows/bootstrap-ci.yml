@@ -137,8 +137,9 @@ jobs:
           '@ | Set-Content _ci\probe_fake.cs -Encoding ascii
           csc /nologo /target:exe /out:_ci\probe_smoke\ps2EntryRunner.exe _ci\probe_fake.cs
           if ($LASTEXITCODE -ne 0) { throw 'Failed to build probe fake runner' }
-          & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File (Join-Path $probe 'run_downhill_probe.ps1') -Elf (Join-Path $probe 'SCUS_971.77') -TimeoutSeconds 1
-          $probeRc = $LASTEXITCODE
+          $probeArgs = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $probe 'run_downhill_probe.ps1'),'-Elf',(Join-Path $probe 'SCUS_971.77'),'-TimeoutSeconds','1')
+          $probeProc = Start-Process -FilePath powershell.exe -ArgumentList $probeArgs -Wait -PassThru -NoNewWindow
+          $probeRc = $probeProc.ExitCode
           if ($probeRc -ne 124) { throw "Expected probe timeout exit 124, got $probeRc" }
           $meta = Get-Content (Join-Path $probe 'first_boot_probe.json') -Raw | ConvertFrom-Json
           if (!$meta.timed_out) { throw 'Probe metadata did not record timeout' }
