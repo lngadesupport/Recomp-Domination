@@ -96,3 +96,24 @@ To collect the safe non-game diagnostics into one ZIP, run:
     COLLECT_DIAGNOSTICS.cmd
 
 The diagnostic ZIP intentionally excludes SCUS_971.77, ISO/BIN/CHD archives and game assets.
+
+## Recommended first boot workflow
+
+After a successful build, start with the bounded diagnostic probe:
+
+    D:\Recomp Domination\DownhillRecompiled\RUN_PROBE_90S.cmd
+
+This runs the native runner for at most 90 seconds, captures stdout/stderr, then automatically writes:
+
+- first_boot_probe_latest.log
+- first_boot_probe.json
+- first_boot_probe_triage.json
+- first_boot_probe_suggestions.json
+
+If the probe shows useful progress or reaches the menu, use RUN_DOWNHILL.cmd for an unrestricted interactive run.
+
+To package only non-proprietary diagnostics for review, run:
+
+    COLLECT_DIAGNOSTICS.cmd
+
+The diagnostics ZIP deliberately excludes SCUS_971.77, ISO/BIN/CHD/RAR files and extracted proprietary game data.
