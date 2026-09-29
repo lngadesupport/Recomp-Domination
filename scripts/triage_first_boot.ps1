@@ -112,7 +112,13 @@ $report = [ordered]@{
     tail = $tail
 }
 
-Write-Host "[triage] report object ready; serializing JSON"
+Write-Host "[triage] report object ready; probing JSON fields"
+foreach($entry in $report.GetEnumerator()){
+    Write-Host ("[triage] serialize field: " + $entry.Key)
+    $null = $entry.Value | ConvertTo-Json -Depth 5 -Compress
+    Write-Host ("[triage] field ok: " + $entry.Key)
+}
+Write-Host "[triage] serializing full JSON"
 $json = $report | ConvertTo-Json -Depth 8
 Write-Host "[triage] JSON ready"
 [IO.File]::WriteAllText([IO.Path]::GetFullPath($Out), $json, (New-Object Text.UTF8Encoding($false)))
