@@ -93,43 +93,56 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Use a unique temporary executable plus an independent timer shell.
-# No process handle is killed or waited after timeout by PowerShell itself.
-$probeExeName = "DownhillProbeRunner_" + $stamp + ".exe"
-$probeExe = Join-Path $Here $probeExeName
-$timeoutMarker = Join-Path $Here ("probe_timeout_" + $stamp + ".marker")
-$launchPath = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
-$killerPath = Join-Path $Here ("probe_killer_" + $stamp + ".cmd")
+# Launch the runner directly with file-backed stdout/stderr. This avoids
+# inherited-pipe EOF deadlocks on Windows and lets us bound only the direct
+# process wait. On timeout, kill the exact runner PID and its descendants.
+$runnerArgs = @('"' + $Elf + '"')
+$startArgs = @{
+    FilePath = $Runner
+    ArgumentList = $runnerArgs
+    WorkingDirectory = $Here
+    RedirectStandardOutput = $stdoutPath
+    RedirectStandardError = $stderrPath
+    PassThru = $true
+    NoNewWindow = $true
+}
+$proc = Start-Process @startArgs
 
-Copy-Item -Force -LiteralPath $Runner -Destination $probeExe
+$waitMs = [int][Math]::Min([int64][int]::MaxValue, [int64]$TimeoutSeconds * 1000L)
+$timedOut = -not $proc.WaitForExit($waitMs)
 
-$launchLines = @(
-    "@echo off",
-    "cd /d ""$Here""",
-    """$probeExe"" ""$Elf"" 1>""$stdoutPath"" 2>""$stderrPath""",
-    "exit /b %ERRORLEVEL%"
-)
-[IO.File]::WriteAllLines($launchPath, $launchLines, [Text.Encoding]::ASCII)
+if ($timedOut) {
+    Write-Host ("Probe timeout reached; terminating PID {0} and descendants..." -f $proc.Id) -ForegroundColor Yellow
 
-# The timer writes a marker first, then kills only our uniquely named copy.
-$killerLines = @(
-    "@echo off",
-    "timeout /t $TimeoutSeconds /nobreak >nul",
-    "echo timeout>""$timeoutMarker""",
-    "taskkill /IM ""$probeExeName"" /T /F >nul 2>&1",
-    "exit /b 0"
-)
-[IO.File]::WriteAllLines($killerPath, $killerLines, [Text.Encoding]::ASCII)
+    & taskkill.exe /PID $proc.Id /T /F 2>$null | Out-Null
+    $taskkillExit = $LASTEXITCODE
 
-# Start the independent timer and immediately execute the runner wrapper.
-# When the timer kills the unique runner, cmd.exe naturally returns.
-Start-Process -FilePath $env:ComSpec -ArgumentList @('/d','/s','/c',('"' + $killerPath + '"')) -WindowStyle Hidden | Out-Null
-& $env:ComSpec /d /s /c ('"' + $launchPath + '"')
-$normalExitCode = $LASTEXITCODE
-$timedOut = Test-Path -LiteralPath $timeoutMarker
-$exitCode = if ($timedOut) { 124 } else { $normalExitCode }
+    if (!$proc.HasExited) {
+        try {
+            Stop-Process -Id $proc.Id -Force -ErrorAction Stop
+        }
+        catch {
+            Write-Warning ("Fallback Stop-Process failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
+        }
+    }
 
-Remove-Item -Force -ErrorAction SilentlyContinue $launchPath,$killerPath,$timeoutMarker,$probeExe
+    if (!$proc.HasExited) {
+        [void]$proc.WaitForExit(5000)
+    }
+
+    if (!$proc.HasExited) {
+        Write-Warning ("Runner PID {0} did not report exit after bounded termination. taskkill exit={1}" -f $proc.Id, $taskkillExit)
+    }
+
+    $exitCode = 124
+}
+else {
+    # Refresh Process state and collect the real process exit code.
+    $proc.WaitForExit()
+    $exitCode = $proc.ExitCode
+}
+
+$proc.Dispose()
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
