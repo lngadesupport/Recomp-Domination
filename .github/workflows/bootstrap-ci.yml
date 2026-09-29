@@ -18,20 +18,25 @@ jobs:
       - name: Checkout Recomp Domination
         uses: actions/checkout@v4
 
-      - name: Parse PowerShell bootstrap
+      - name: Parse all PowerShell scripts
         shell: pwsh
         run: |
-          $tokens = $null
-          $errors = $null
-          [System.Management.Automation.Language.Parser]::ParseFile(
-            (Resolve-Path '.\scripts\build_downhill.ps1'),
-            [ref]$tokens,
-            [ref]$errors
-          ) | Out-Null
-          if ($errors.Count -ne 0) {
-            $errors | Format-List | Out-String | Write-Host
-            throw "PowerShell parser reported $($errors.Count) error(s)."
+          $failed = $false
+          Get-ChildItem .\scripts -Filter *.ps1 -File -Recurse | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName,
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+            if ($errors.Count -ne 0) {
+              Write-Host "Parser errors in $($_.FullName):"
+              $errors | Format-List | Out-String | Write-Host
+              $failed = $true
+            }
           }
+          if ($failed) { throw 'PowerShell parser reported one or more errors.' }
 
       - name: Clone pinned PS2Recomp
         shell: pwsh
