@@ -112,26 +112,28 @@ $waitMs = [int][Math]::Min([int64][int]::MaxValue, [int64]$TimeoutSeconds * 1000
 $timedOut = -not $proc.WaitForExit($waitMs)
 
 if ($timedOut) {
-    Write-Host ("Probe timeout reached; terminating PID {0} and descendants..." -f $proc.Id) -ForegroundColor Yellow
+    Write-Host ("Probe timeout reached; terminating PID {0}..." -f $proc.Id) -ForegroundColor Yellow
 
-    & taskkill.exe /PID $proc.Id /T /F 2>$null | Out-Null
-    $taskkillExit = $LASTEXITCODE
-
-    if (!$proc.HasExited) {
+    # Do not shell out to taskkill here. On hosted/headless Windows runners,
+    # taskkill /T can block while walking a process tree whose redirected
+    # handles are owned by the probing shell. The runtime is a single host
+    # process, so terminating the exact Process object is sufficient.
+    try {
+        Stop-Process -Id $proc.Id -Force -ErrorAction Stop
+    }
+    catch {
+        Write-Warning ("Stop-Process failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
         try {
-            Stop-Process -Id $proc.Id -Force -ErrorAction Stop
+            $proc.Kill()
         }
         catch {
-            Write-Warning ("Fallback Stop-Process failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
+            Write-Warning ("Process.Kill fallback failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
         }
     }
 
-    if (!$proc.HasExited) {
-        [void]$proc.WaitForExit(5000)
-    }
-
-    if (!$proc.HasExited) {
-        Write-Warning ("Runner PID {0} did not report exit after bounded termination. taskkill exit={1}" -f $proc.Id, $taskkillExit)
+    $reportedExit = $proc.WaitForExit(5000)
+    if (!$reportedExit) {
+        Write-Warning ("Runner PID {0} did not report exit within the bounded post-kill wait." -f $proc.Id)
     }
 
     $exitCode = 124
