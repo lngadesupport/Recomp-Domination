@@ -34,6 +34,7 @@ try {
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\last_build.json") "analysis\last_build.json"
     Copy-Diagnostic (Join-Path $DistDir "build_report.json") "runtime\build_report.json"
     Copy-Diagnostic (Join-Path $DistDir "recompiled_report.json") "runtime\recompiled_report.json"
+    Copy-Diagnostic (Join-Path $DistDir "runtime_stubs_report.json") "runtime\runtime_stubs_report.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_latest.log") "runtime\first_boot_latest.log"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_triage.json") "runtime\first_boot_triage.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_suggestions.json") "runtime\first_boot_suggestions.json"
