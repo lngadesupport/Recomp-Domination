@@ -152,19 +152,29 @@ jobs:
           /Fo:_ci\downhill_domination_overrides.obj
           /I _ci\PS2Recomp\ps2xRuntime\include
           /I _ci\PS2Recomp\ps2xIOP\include
-      - name: Configure compiler tools
+      - name: Configure compiler tools and tests
         shell: pwsh
         run: >-
           cmake -S _ci/PS2Recomp -B _ci/build -A x64
-          -DPS2X_BUILD_RUNTIME=OFF
+          -DPS2X_BUILD_RUNTIME=ON
           -DPS2X_BUILD_RECOMP=ON
           -DPS2X_BUILD_ANALYZER=ON
-          -DPS2X_BUILD_TEST=OFF
+          -DPS2X_BUILD_TEST=ON
           -DPS2X_BUILD_STUDIO=OFF
+          -DPS2X_ENABLE_FFMPEG=OFF
+          -DPS2X_ENABLE_DEBUG_UI=OFF
 
-      - name: Build ps2_recomp and ps2_analyzer
+      - name: Build ps2_recomp, ps2_analyzer and runtime tests
         shell: pwsh
-        run: cmake --build _ci/build --config Release --target ps2_recomp ps2_analyzer --parallel
+        run: cmake --build _ci/build --config Release --target ps2_recomp ps2_analyzer ps2x_tests --parallel
+
+      - name: Run pinned PS2Recomp regression tests
+        shell: pwsh
+        run: |
+          $tests = Get-ChildItem _ci/build -Recurse -Filter ps2x_tests.exe -File | Select-Object -First 1
+          if (!$tests) { throw 'ps2x_tests.exe not produced' }
+          & $tests.FullName
+          if ($LASTEXITCODE -ne 0) { throw "ps2x_tests failed with exit code $LASTEXITCODE" }
 
       - name: Verify expected executables
         shell: pwsh
