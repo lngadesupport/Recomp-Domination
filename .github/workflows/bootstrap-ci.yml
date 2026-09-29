@@ -59,6 +59,30 @@ jobs:
             }
           }
           if ($failed) { throw 'Windows PowerShell parser reported one or more errors.' }
+      - name: Smoke-test optional Ghidra wrapper with existing map
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force analysis\local | Out-Null
+          "Name,Start,End,Size`r`nsmoke,0x00100000,0x00100004,4" | Set-Content analysis\SCUS_971.77.functions.csv -Encoding ascii
+          "[general]`r`nstubs = []`r`nuntracked_stubs = []" | Set-Content analysis\SCUS_971.77.ghidra.toml -Encoding ascii
+          .\scripts\try_generate_ghidra_map.ps1
+          if ($LASTEXITCODE -ne 0) { throw "Optional Ghidra wrapper failed: $LASTEXITCODE" }
+          $status = Get-Content analysis\local\ghidra_optional_status.json -Raw | ConvertFrom-Json
+          if (!$status.success) { throw "Optional Ghidra wrapper did not report success" }
+          if ($status.reason -ne "existing-map") { throw "Unexpected Ghidra wrapper reason: $($status.reason)" }
+          Remove-Item analysis\SCUS_971.77.functions.csv,analysis\SCUS_971.77.ghidra.toml -Force
+
+      - name: Verify cached pinned-commit path is present
+        shell: powershell
+        run: |
+          $build = Get-Content .\scripts\build_downhill.ps1 -Raw
+          $ghidra = Get-Content .\scripts\generate_ghidra_map.ps1 -Raw
+          foreach ($src in @($build,$ghidra)) {
+            if ($src -notmatch 'cat-file' -or $src -notmatch '\^\{commit\}') {
+              throw 'Pinned-commit cache path is missing from a bootstrap script.'
+            }
+          }
+
       - name: Smoke-test local game-data preparation
         shell: powershell
         run: |
