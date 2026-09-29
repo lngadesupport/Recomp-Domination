@@ -22,6 +22,7 @@ $LogsDir = Join-Path $RepoRoot "logs"
 $AutoConfig = Join-Path $ConfigDir "downhill.auto.toml"
 $GhidraCsv = Join-Path $AnalysisDir "SCUS_971.77.functions.csv"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
+$LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -512,23 +513,42 @@ try {
     Write-Host "[7/7] Staging DownhillRecompiled..." -ForegroundColor Cyan
 
     New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
-    Copy-Item -Force $Runner.FullName (Join-Path $DistDir "ps2EntryRunner.exe")
+    $StagedRunner = Join-Path $DistDir "ps2EntryRunner.exe"
+    Copy-Item -Force $Runner.FullName $StagedRunner
 
     Get-ChildItem -LiteralPath $Runner.Directory.FullName -Filter "*.dll" -File -ErrorAction SilentlyContinue |
         ForEach-Object {
             Copy-Item -Force $_.FullName $DistDir
         }
 
+    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+
     $runCmdLines = @(
         "@echo off",
         "cd /d ""%~dp0""",
-        """%~dp0ps2EntryRunner.exe"" ""$Elf""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""$Elf""",
         "echo.",
-        "echo Exit code: %ERRORLEVEL%",
         "pause"
     )
     $runCmd = $runCmdLines -join [Environment]::NewLine
     Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
+    $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
+    $generatedCppText = Get-Content -Raw -LiteralPath $GeneratedFunctionsCpp
+    $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
+
+    $metrics = [ordered]@{
+        generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        todo_named_occurrences = ([regex]::Matches($generatedCppText, "TODO_NAMED")).Count
+        registered_function_slots = ([regex]::Matches($registrationText, "g_ps2RecompiledFunctionTable\s*\[")).Count
+        generated_cpp_bytes = (Get-Item -LiteralPath $GeneratedFunctionsCpp).Length
+        generated_cpp_sha256 = (Get-FileHash -LiteralPath $GeneratedFunctionsCpp -Algorithm SHA256).Hash
+        config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
+        runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
+        runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+    }
 
     $summary = [ordered]@{
         result = "build-complete"
@@ -537,20 +557,31 @@ try {
         elf = $Elf
         config = $AutoConfig
         ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
-        runner = (Join-Path $DistDir "ps2EntryRunner.exe")
+        runner = $StagedRunner
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
         transcript = $Transcript
+        metrics = $metrics
     }
 
-    $summary |
-        ConvertTo-Json -Depth 4 |
-        Set-Content -LiteralPath (Join-Path $LocalAnalysisDir "last_build.json") -Encoding UTF8
+    $summaryJson = $summary | ConvertTo-Json -Depth 6
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "last_build.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    [IO.File]::WriteAllText(
+        (Join-Path $DistDir "build_report.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
 
     Write-Host ""
     Write-Host "============================================================" -ForegroundColor Green
     Write-Host " Native compiler/bootstrap completed." -ForegroundColor Green
     Write-Host " Runner: $($summary.runner)" -ForegroundColor Green
     Write-Host " Run:    $($summary.run_script)" -ForegroundColor Green
+    Write-Host " Build report: $(Join-Path $DistDir "build_report.json")" -ForegroundColor Green
     Write-Host " Log:    $Transcript" -ForegroundColor Green
     Write-Host "============================================================" -ForegroundColor Green
 }
