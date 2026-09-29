@@ -77,8 +77,9 @@ jobs:
           $disc = (New-Item -ItemType Directory -Force (Join-Path $root 'disc')).FullName
           [IO.File]::WriteAllBytes((Join-Path $root 'SCUS_971.77'), [byte[]](1..16))
           'BOOT2 = cdrom0:\SLUS_999.99;1' | Set-Content (Join-Path $disc 'SYSTEM.CNF') -Encoding ascii
-          & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\prepare_game_data.ps1 -GameRoot $root
-          $rc = $LASTEXITCODE
+          $args = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Resolve-Path '.\scripts\prepare_game_data.ps1').Path,'-GameRoot',$root)
+          $proc = Start-Process -FilePath powershell.exe -ArgumentList $args -Wait -PassThru -NoNewWindow
+          $rc = $proc.ExitCode
           if ($rc -eq 0) { throw 'Mismatched SYSTEM.CNF was incorrectly accepted' }
           if (Test-Path (Join-Path $root 'downhill_cd_root.txt')) { throw 'Mismatched SYSTEM.CNF created a CD-root sidecar' }
       - name: Smoke-test explicit entry suggestion acceptance
