@@ -552,8 +552,32 @@ try {
     if (Test-Path -LiteralPath $ExtraEntryPointsFile) {
         foreach ($line in Get-Content -LiteralPath $ExtraEntryPointsFile) {
             $value = $line.Trim()
-            if (!$value -or $value.StartsWith("#")) { continue }
-            if ($value -notmatch '^0x([0-9A-Fa-f]{8})    [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
+            if (!$value -or $value.StartsWith("#")) {
+                continue
+            }
+
+            if ($value -notmatch '^0x([0-9A-Fa-f]{8})$') {
+                throw ("Invalid local entry-point literal in {0}: {1}" -f $ExtraEntryPointsFile, $value)
+            }
+
+            [uint32]$pc = [Convert]::ToUInt32($Matches[1], 16)
+            if ($pc -lt [uint32]0x0010A000 -or
+                $pc -ge [uint32]0x0029DCF0 -or
+                (($pc -band 3) -ne 0)) {
+                throw ("Local entry point is outside the validated file-backed executable range or is unaligned: {0}" -f $value)
+            }
+
+            $LocalExtraEntries += ("0x{0:X8}" -f $pc)
+        }
+
+        $LocalExtraEntries = @($LocalExtraEntries | Sort-Object -Unique)
+        if ($LocalExtraEntries.Count -gt 0) {
+            $toml = Ensure-TomlArrayEntries $toml "entry_points" $LocalExtraEntries
+            Write-Host ("      Added local entry-point overrides: " + ($LocalExtraEntries -join ", ")) -ForegroundColor Yellow
+        }
+    }
+
+    [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
 
     Write-Host "[5/7] Generating recompiled C++..." -ForegroundColor Cyan
     Invoke-Native $RecompExe $AutoConfig
