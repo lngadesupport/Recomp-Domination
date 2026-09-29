@@ -223,7 +223,7 @@ $report=[ordered]@{
   scan_mode=$scanMode;
   function_csv=$functionCsvPath;
   function_csv_records=$functionCsvRecords;
-  scan_ranges=@($scanRanges|ForEach-Object{[pscustomobject]@{start=H ([uint32]$_.start);end_exclusive=H ([uint32]$_.end)}});
+  scan_ranges=@($scanRanges|ForEach-Object{[pscustomobject]@{start=Hex32Text ([uint32]$_.start);end_exclusive=Hex32Text ([uint32]$_.end)}});
   instruction_words=$words;
   opcode_counts=SortedCounts $opCounts;
   special_counts=SortedCounts $specialCounts;
