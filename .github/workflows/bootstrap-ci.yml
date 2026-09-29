@@ -74,11 +74,14 @@ jobs:
           if (!$analyzer) { throw 'ps2_analyzer.exe not produced' }
           Write-Host "ps2_recomp: $($recomp.FullName)"
           Write-Host "ps2_analyzer: $($analyzer.FullName)"
+      - name: Recompile synthetic MIPS ELF end to end
+        shell: pwsh
+        run: .\scripts\ci_recompile_smoke.ps1 -Ps2RecompRoot _ci/PS2Recomp -BuildRoot _ci/build
       - name: Stage Downhill override in runtime runner
         shell: pwsh
         run: Copy-Item src/downhill_domination_overrides.cpp _ci/PS2Recomp/ps2xRuntime/src/runner/downhill_domination_overrides.cpp -Force
 
-      - name: Configure native runtime skeleton
+      - name: Configure runtime with generated C++
         shell: pwsh
         run: >-
           cmake -S _ci/PS2Recomp -B _ci/build
@@ -94,7 +97,7 @@ jobs:
           -DPS2X_ENABLE_AGRESSIVE_LOGS=ON
           -DPS2X_ENABLE_IOP_RPC_TRACE=ON
 
-      - name: Build native runtime skeleton
+      - name: Build runtime with generated C++
         shell: pwsh
         run: cmake --build _ci/build --config Release --target ps2EntryRunner --parallel
 
