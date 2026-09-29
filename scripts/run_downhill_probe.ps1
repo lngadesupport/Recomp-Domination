@@ -169,10 +169,15 @@ else {
     $exitCode = $wrapper.ExitCode
 }
 
+Write-Host "[watchdog] disposing wrapper"
 $wrapper.Dispose()
+Write-Host "[watchdog] wrapper disposed"
+Write-Host "[watchdog] removing temporary launcher/image"
 Remove-Item -Force -ErrorAction SilentlyContinue $launchCmd,$probeExe
+Write-Host "[watchdog] temporary cleanup returned"
 $endedAt = Get-Date
 
+Write-Host "[watchdog] opening combined log"
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
 try {
     Write-Utf8Text $combined "=== Recomp Domination diagnostic probe ===`r`n"
@@ -183,16 +188,22 @@ try {
     Write-Utf8Text $combined ("exit_code={0}`r`n`r`n" -f $exitCode)
 
     Write-Utf8Text $combined "=== STDOUT (tail) ===`r`n"
+    Write-Host "[watchdog] appending stdout"
     $stdoutInfo = Append-LogTail $combined $stdoutPath $MaxStreamCaptureBytes
+    Write-Host "[watchdog] stdout appended"
 
     Write-Utf8Text $combined "`r`n=== STDERR (tail) ===`r`n"
+    Write-Host "[watchdog] appending stderr"
     $stderrInfo = Append-LogTail $combined $stderrPath $MaxStreamCaptureBytes
+    Write-Host "[watchdog] stderr appended"
 }
 finally {
     $combined.Dispose()
 }
 
+Write-Host "[watchdog] copying combined log to latest"
 Copy-Item -Force $combinedPath $latestPath
+Write-Host "[watchdog] latest log ready"
 
 $meta = [ordered]@{
     runner = $Runner
@@ -215,28 +226,34 @@ $meta = [ordered]@{
     max_stream_capture_bytes = $MaxStreamCaptureBytes
 }
 
+Write-Host "[watchdog] writing metadata"
 [IO.File]::WriteAllText(
     $metaPath,
     ($meta | ConvertTo-Json -Depth 5),
     (New-Object Text.UTF8Encoding($false))
 )
+Write-Host "[watchdog] metadata ready"
 
 $triageScript = Join-Path $Here "triage_first_boot.ps1"
 $triageOut = Join-Path $Here "first_boot_probe_triage.json"
 if (Test-Path -LiteralPath $triageScript) {
+    Write-Host "[watchdog] running triage"
     & $triageScript -Log $latestPath -Out $triageOut
+    Write-Host "[watchdog] triage returned"
 }
 
 $suggestScript = Join-Path $Here "suggest_bringup_fixes.ps1"
 $suggestOut = Join-Path $Here "first_boot_probe_suggestions.json"
 $stagedConfig = Join-Path $Here "downhill.auto.toml"
 if (Test-Path -LiteralPath $suggestScript) {
+    Write-Host "[watchdog] running suggestion parser"
     if (Test-Path -LiteralPath $stagedConfig) {
         & $suggestScript -Log $latestPath -Config $stagedConfig -Out $suggestOut
     }
     else {
         & $suggestScript -Log $latestPath -Out $suggestOut
     }
+    Write-Host "[watchdog] suggestion parser returned"
 }
 
 Write-Host ""
