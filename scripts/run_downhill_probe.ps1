@@ -85,6 +85,21 @@ function Append-LogTail {
 
 $startedAt = Get-Date
 
+Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+
+public static class RecompProbeNative
+{
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    public static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
+}
+'@
+
 Write-Host "============================================================"
 Write-Host " Recomp Domination - bounded first-boot probe"
 Write-Host "============================================================"
@@ -107,28 +122,27 @@ $startArgs = @{
     NoNewWindow = $true
 }
 $proc = Start-Process @startArgs
+$processHandle = $proc.Handle
 
 $waitMs = [int][Math]::Min([int64][int]::MaxValue, [int64]$TimeoutSeconds * 1000L)
 $timedOut = -not $proc.WaitForExit($waitMs)
 
 if ($timedOut) {
-    Write-Host ("Probe timeout reached; terminating PID {0}..." -f $proc.Id) -ForegroundColor Yellow
+    Write-Host ("Probe timeout reached; terminating PID {0} through kernel32..." -f $proc.Id) -ForegroundColor Yellow
 
-    # The runner is a single native host process. Kill the exact Process object
-    # directly; external taskkill and Stop-Process have both shown blocking
-    # behavior under hosted/headless Windows CI.
-    try {
-        if (!$proc.HasExited) {
-            $proc.Kill()
-        }
-    }
-    catch {
-        Write-Warning ("Process.Kill failed for PID {0}: {1}" -f $proc.Id, $_.Exception.Message)
+    $terminated = [RecompProbeNative]::TerminateProcess($processHandle, [uint32]124)
+    if (!$terminated) {
+        $nativeError = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
+        Write-Warning ("TerminateProcess failed for PID {0}; Win32 error={1}" -f $proc.Id, $nativeError)
     }
 
-    $reportedExit = $proc.WaitForExit(3000)
-    if (!$reportedExit) {
-        Write-Warning ("Runner PID {0} did not report exit within the bounded post-kill wait." -f $proc.Id)
+    $waitResult = [RecompProbeNative]::WaitForSingleObject($processHandle, [uint32]3000)
+    if ($waitResult -eq [uint32]258) {
+        Write-Warning ("Runner PID {0} did not signal exit within the bounded native wait." -f $proc.Id)
+    }
+    elseif ($waitResult -ne [uint32]0) {
+        $nativeError = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
+        Write-Warning ("WaitForSingleObject returned 0x{0:X8}; Win32 error={1}" -f $waitResult, $nativeError)
     }
 
     $exitCode = 124
@@ -139,7 +153,7 @@ else {
     $exitCode = $proc.ExitCode
 }
 
-$proc.Dispose()
+if (!$timedOut) { $proc.Dispose() }
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
