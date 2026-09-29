@@ -85,20 +85,6 @@ function Append-LogTail {
 
 $startedAt = Get-Date
 
-Add-Type -TypeDefinition @'
-using System;
-using System.Runtime.InteropServices;
-
-public static class RecompProbeNative
-{
-    [DllImport("kernel32.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    public static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
-}
-'@
 
 Write-Host "============================================================"
 Write-Host " Recomp Domination - bounded first-boot probe"
@@ -108,52 +94,70 @@ Write-Host "ELF:     $Elf"
 Write-Host "Timeout: $TimeoutSeconds seconds"
 Write-Host ""
 
-# Launch the runner directly with file-backed stdout/stderr. This avoids
-# inherited-pipe EOF deadlocks on Windows and lets us bound only the direct
-# process wait. On timeout, kill the exact runner PID and its descendants.
-$runnerArgs = @('"' + $Elf + '"')
-$startArgs = @{
-    FilePath = $Runner
-    ArgumentList = $runnerArgs
-    WorkingDirectory = $Here
-    RedirectStandardOutput = $stdoutPath
-    RedirectStandardError = $stderrPath
-    PassThru = $true
-    NoNewWindow = $true
-}
-$proc = Start-Process @startArgs
-$processHandle = $proc.Handle
+# Run a uniquely named copy behind cmd.exe. The shell owns file redirection;
+# PowerShell owns no stdout/stderr pipes. This avoids the Windows PowerShell
+# Start-Process redirection deadlock seen after forced termination.
+$probeBase = "DownhillProbeRunner_" + $stamp
+$probeExe = Join-Path $Here ($probeBase + ".exe")
+$launchCmd = Join-Path $Here ("probe_launch_" + $stamp + ".cmd")
+Copy-Item -Force -LiteralPath $Runner -Destination $probeExe
+
+$launchLines = @(
+    "@echo off",
+    "cd /d ""$Here""",
+    """$probeExe"" ""$Elf"" 1>""$stdoutPath"" 2>""$stderrPath""",
+    "exit /b %ERRORLEVEL%"
+)
+[IO.File]::WriteAllLines($launchCmd, $launchLines, [Text.Encoding]::ASCII)
+
+$psi = New-Object System.Diagnostics.ProcessStartInfo
+$psi.FileName = $env:ComSpec
+$psi.WorkingDirectory = $Here
+$psi.UseShellExecute = $false
+$psi.CreateNoWindow = $true
+$psi.Arguments = '/d /s /c ""' + $launchCmd + '""'
+
+$wrapper = New-Object System.Diagnostics.Process
+$wrapper.StartInfo = $psi
+if (!$wrapper.Start()) { throw 'Failed to start diagnostic wrapper.' }
 
 $waitMs = [int][Math]::Min([int64][int]::MaxValue, [int64]$TimeoutSeconds * 1000L)
-$timedOut = -not $proc.WaitForExit($waitMs)
+$timedOut = -not $wrapper.WaitForExit($waitMs)
 
 if ($timedOut) {
-    Write-Host ("Probe timeout reached; terminating PID {0} through kernel32..." -f $proc.Id) -ForegroundColor Yellow
+    Write-Host ("Probe timeout reached; terminating unique runner {0}..." -f $probeBase) -ForegroundColor Yellow
 
-    $terminated = [RecompProbeNative]::TerminateProcess($processHandle, [uint32]124)
-    if (!$terminated) {
-        $nativeError = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
-        Write-Warning ("TerminateProcess failed for PID {0}; Win32 error={1}" -f $proc.Id, $nativeError)
+    # Kill only the uniquely named probe copy. No redirected Process object is
+    # touched here, so there are no .NET stream pumps to drain.
+    $targets = @(Get-Process -Name $probeBase -ErrorAction SilentlyContinue)
+    foreach ($target in $targets) {
+        try {
+            $target.Kill()
+        }
+        catch {
+            Write-Warning ("Failed to kill probe PID {0}: {1}" -f $target.Id, $_.Exception.Message)
+        }
+        finally {
+            $target.Dispose()
+        }
     }
 
-    $waitResult = [RecompProbeNative]::WaitForSingleObject($processHandle, [uint32]3000)
-    if ($waitResult -eq [uint32]258) {
-        Write-Warning ("Runner PID {0} did not signal exit within the bounded native wait." -f $proc.Id)
-    }
-    elseif ($waitResult -ne [uint32]0) {
-        $nativeError = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
-        Write-Warning ("WaitForSingleObject returned 0x{0:X8}; Win32 error={1}" -f $waitResult, $nativeError)
+    # The cmd wrapper normally exits as soon as its child dies. Keep this wait
+    # bounded and kill only the wrapper if Windows does not signal it promptly.
+    if (!$wrapper.WaitForExit(5000)) {
+        Write-Warning ("Probe wrapper PID {0} did not exit after child termination; forcing wrapper exit." -f $wrapper.Id)
+        try { $wrapper.Kill() } catch {}
+        [void]$wrapper.WaitForExit(1000)
     }
 
     $exitCode = 124
 }
 else {
-    # Refresh Process state and collect the real process exit code.
-    $proc.WaitForExit()
-    $exitCode = $proc.ExitCode
+    $exitCode = $wrapper.ExitCode
 }
 
-if (!$timedOut) { $proc.Dispose() }
+$wrapper.Dispose()
+Remove-Item -Force -ErrorAction SilentlyContinue $launchCmd,$probeExe
 $endedAt = Get-Date
 
 $combined = [IO.File]::Open($combinedPath, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::Read)
