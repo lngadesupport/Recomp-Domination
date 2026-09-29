@@ -76,6 +76,10 @@ if (Test-Path -LiteralPath $deepReport) {
         $deep = Get-Content -Raw -LiteralPath $deepReport | ConvertFrom-Json
         Write-Host ""
         Write-Host "Deep ELF census:" -ForegroundColor Cyan
+        Write-Host ("  Scan mode:   " + $deep.scan_mode)
+        if ($deep.function_csv_records -ne $null) {
+            Write-Host ("  CSV records: " + $deep.function_csv_records)
+        }
         Write-Host ("  Words:       " + $deep.instruction_words)
         if ($deep.families) {
             Write-Host ("  COP0:        " + $deep.families.cop0)
@@ -93,7 +97,22 @@ if (Test-Path -LiteralPath $buildReport) {
         $build = Get-Content -Raw -LiteralPath $buildReport | ConvertFrom-Json
         Write-Host ""
         Write-Host "Last build:" -ForegroundColor Cyan
-        Write-Host ("  PS2Recomp: " + $build.ps2recomp_commit)
+        Write-Host ("  PS2Recomp:   " + $build.ps2recomp_commit)
+        Write-Host ("  Ghidra CSV:  " + $build.ghidra_map_used)
+        if ($build.ghidra_toml_used -ne $null) {
+            Write-Host ("  Ghidra TOML: " + $build.ghidra_toml_used)
+        }
+        if ($build.ghidra_imported_stubs) {
+            Write-Host ("  Ghidra stubs: " + @($build.ghidra_imported_stubs).Count)
+        }
+        if ($build.ghidra_imported_untracked_stubs) {
+            Write-Host ("  Ghidra untracked: " + @($build.ghidra_imported_untracked_stubs).Count)
+        }
+        if ($build.patch_policy) {
+            Write-Host ("  Patch policy: syscall=" + $build.patch_policy.patch_syscalls +
+                        " cop0=" + $build.patch_policy.patch_cop0 +
+                        " cache=" + $build.patch_policy.patch_cache)
+        }
         if ($build.metrics) {
             Write-Host ("  Output mode: " + $build.metrics.output_mode)
             Write-Host ("  Functions:   " + $build.metrics.generated_function_declarations)
