@@ -44,6 +44,7 @@ try {
     Copy-Diagnostic (Join-Path $DistDir "runtime_stubs_report.json") "runtime\runtime_stubs_report.json"
     Copy-Diagnostic (Join-Path $DistDir "SCUS_971.77.deep.json") "runtime\SCUS_971.77.deep.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_latest.log") "runtime\first_boot_latest.log"
+    Copy-Diagnostic (Join-Path $DistDir "first_boot_function_trace_latest.log") "runtime\first_boot_function_trace_latest.log"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_triage.json") "runtime\first_boot_triage.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_suggestions.json") "runtime\first_boot_suggestions.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_exit_code.txt") "runtime\first_boot_exit_code.txt"
