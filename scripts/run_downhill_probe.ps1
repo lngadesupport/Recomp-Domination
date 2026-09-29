@@ -129,26 +129,39 @@ if ($timedOut) {
 
     # Kill only the uniquely named probe copy. No redirected Process object is
     # touched here, so there are no .NET stream pumps to drain.
+    Write-Host "[watchdog] locating unique runner process..."
     $targets = @(Get-Process -Name $probeBase -ErrorAction SilentlyContinue)
+    Write-Host ("[watchdog] runner matches: " + $targets.Count)
     foreach ($target in $targets) {
+        Write-Host ("[watchdog] killing runner PID " + $target.Id)
         try {
             $target.Kill()
+            Write-Host ("[watchdog] Kill() returned for PID " + $target.Id)
         }
         catch {
             Write-Warning ("Failed to kill probe PID {0}: {1}" -f $target.Id, $_.Exception.Message)
         }
         finally {
+            Write-Host ("[watchdog] disposing runner PID " + $target.Id)
             $target.Dispose()
+            Write-Host "[watchdog] runner Process disposed"
         }
     }
 
     # The cmd wrapper normally exits as soon as its child dies. Keep this wait
     # bounded and kill only the wrapper if Windows does not signal it promptly.
+    Write-Host ("[watchdog] waiting up to 5s for wrapper PID " + $wrapper.Id)
     if (!$wrapper.WaitForExit(5000)) {
         Write-Warning ("Probe wrapper PID {0} did not exit after child termination; forcing wrapper exit." -f $wrapper.Id)
-        try { $wrapper.Kill() } catch {}
+        try {
+            Write-Host "[watchdog] forcing wrapper Kill()"
+            $wrapper.Kill()
+            Write-Host "[watchdog] wrapper Kill() returned"
+        } catch {}
+        Write-Host "[watchdog] waiting final 1s for wrapper"
         [void]$wrapper.WaitForExit(1000)
     }
+    Write-Host "[watchdog] timeout cleanup complete"
 
     $exitCode = 124
 }
