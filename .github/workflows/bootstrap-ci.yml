@@ -36,6 +36,10 @@ jobs:
           git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
           git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
 
+      - name: Set up MSVC developer environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
       - name: Compile Downhill override against pinned runtime headers
         shell: cmd
         run: >-
