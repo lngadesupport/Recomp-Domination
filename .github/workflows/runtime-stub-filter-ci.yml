@@ -8,6 +8,9 @@ on:
     paths:
       - scripts/filter_runtime_stubs.ps1
       - scripts/build_downhill.ps1
+      - scripts/status_downhill.ps1
+      - scripts/collect_diagnostics.ps1
+      - UPDATE_AND_RUN.cmd
       - .github/workflows/runtime-stub-filter-ci.yml
 
 jobs:
@@ -24,8 +27,15 @@ jobs:
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\filter_runtime_stubs.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\build_downhill.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\status_downhill.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\collect_diagnostics.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
           if($errors.Count -gt 0){$errors|Format-List|Out-String|Write-Host;throw "PowerShell parser errors"}
 
+      - name: Validate update launcher wiring
+        shell: powershell
+        run: |
+          $cmd=Get-Content ".\UPDATE_AND_RUN.cmd" -Raw
+          if($cmd -notmatch '(?i)git\s+checkout\s+bootstrap/compiler'){throw "Launcher does not select bootstrap/compiler"}
+          if($cmd -notmatch 'FULL_PIPELINE_DOWNHILL\.cmd'){throw "Launcher does not call full pipeline"}
       - name: Create runtime fixture
         shell: powershell
         run: |
