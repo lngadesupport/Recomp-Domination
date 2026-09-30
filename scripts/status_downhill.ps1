@@ -29,6 +29,7 @@ $ghidraCsv = Join-Path $RepoRoot "analysis\SCUS_971.77.functions.csv"
 $config = Join-Path $RepoRoot "config\downhill.auto.toml"
 $identity = Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json"
 $environmentReport = Join-Path $RepoRoot "analysis\local\environment.json"
+$inventoryReport = Join-Path $RepoRoot "analysis\local\game_data_inventory.json"
 $deepReport = Join-Path $RepoRoot "analysis\local\SCUS_971.77.deep.json"
 $ghidraToml = Join-Path $RepoRoot "analysis\SCUS_971.77.ghidra.toml"
 $buildReport = Join-Path $DistDir "build_report.json"
@@ -60,6 +61,7 @@ $ghidraOk = Test-PathBool $ghidraCsv
 $ghidraDetail = if ($ghidraOk) { ((@(Get-Content -LiteralPath $ghidraCsv).Count - 1).ToString() + " functions") } else { "analyzer fallback" }
 Status-Line "Ghidra function map" $ghidraOk $ghidraDetail
 
+Status-Line "Game-data inventory" (Test-PathBool $inventoryReport) $inventoryReport
 Status-Line "Environment preflight" (Test-PathBool $environmentReport) $environmentReport
 Status-Line "Validated identity report" (Test-PathBool $identity) $identity
 Status-Line "Deep ELF census" (Test-PathBool $deepReport) $deepReport
@@ -70,6 +72,26 @@ Status-Line "Build report" (Test-PathBool $buildReport) $buildReport
 Status-Line "90s probe metadata" (Test-PathBool $probe) $probe
 Status-Line "Probe triage" (Test-PathBool $triage) $triage
 Status-Line "Bring-up suggestions" (Test-PathBool $suggestions) $suggestions
+
+if (Test-Path -LiteralPath $inventoryReport) {
+    try {
+        $inventory = Get-Content -Raw -LiteralPath $inventoryReport | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "Game-data inventory:" -ForegroundColor Cyan
+        Write-Host ("  Mode:          " + $inventory.inventory_mode)
+        Write-Host ("  Files:         " + $inventory.file_count)
+        Write-Host ("  Total bytes:   " + $inventory.total_bytes)
+        Write-Host ("  IRX files:     " + $inventory.irx_count)
+        Write-Host ("  Module images: " + $inventory.module_image_count)
+        if ($inventory.boot2) { Write-Host ("  BOOT2:         " + $inventory.boot2) }
+        if ($inventory.irx_directories -and $inventory.irx_directories.Count -gt 0) {
+            $dirs = @($inventory.irx_directories | Select-Object -First 5 | ForEach-Object { $_.directory + "=" + $_.irx_count })
+            Write-Host ("  IRX dirs:      " + ($dirs -join ", "))
+        }
+    } catch {
+        Write-Warning ("Could not parse game-data inventory: " + $_.Exception.Message)
+    }
+}
 
 if (Test-Path -LiteralPath $deepReport) {
     try {
