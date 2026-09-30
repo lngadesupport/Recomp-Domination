@@ -169,6 +169,11 @@ if (Test-Path -LiteralPath $triage) {
             Write-Host ("  IRX load failed:   " + @($t.iop_modules.load_failures).Count)
             Write-Host ("  IRX open failed:   " + @($t.iop_modules.failed_open).Count)
             Write-Host ("  IRX reloc warnings:" + $t.iop_modules.relocation_warnings)
+            Write-Host ("  IOP imports:       " + @($t.iop_modules.unhandled_imports).Count)
+            if ($t.iop_modules.unhandled_imports -and @($t.iop_modules.unhandled_imports).Count -gt 0) {
+                $firstImport = @($t.iop_modules.unhandled_imports)[0]
+                Write-Host ("  First import:      {0}:{1} {2} @ {3}" -f $firstImport.library,$firstImport.ordinal,$firstImport.version,$firstImport.pc) -ForegroundColor Yellow
+            }
         }
         if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
             Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
@@ -194,6 +199,10 @@ if (Test-Path -LiteralPath $suggestions) {
             }
             if ($sg.iop.failed_open_modules -and $sg.iop.failed_open_modules.Count -gt 0) {
                 Write-Host ("  IOP open fail:  " + (($sg.iop.failed_open_modules | Select-Object -First 6) -join ", ")) -ForegroundColor Yellow
+            }
+            if ($sg.iop.unhandled_imports -and @($sg.iop.unhandled_imports).Count -gt 0) {
+                $imports=@($sg.iop.unhandled_imports | Select-Object -First 4 | ForEach-Object { $_.library + ":" + $_.ordinal })
+                Write-Host ("  IOP imports:    " + ($imports -join ", ")) -ForegroundColor Yellow
             }
         }
         if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
