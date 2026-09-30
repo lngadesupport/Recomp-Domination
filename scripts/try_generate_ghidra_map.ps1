@@ -10,6 +10,9 @@ $AnalysisDir = Join-Path $RepoRoot 'analysis'
 $LocalDir = Join-Path $AnalysisDir 'local'
 $Csv = Join-Path $AnalysisDir 'SCUS_971.77.functions.csv'
 $Toml = Join-Path $AnalysisDir 'SCUS_971.77.ghidra.toml'
+$Report = Join-Path $LocalDir 'ghidra_map_report.json'
+$ExpectedElfSha256 = 'ADFDA7B73A8F05FB20A3F0F318772E9D3797FD4D6C0A6C0078AE392DF0F0CF0C'
+$PinnedPs2Recomp = '75d729ce40d7eed9649fd4bb05628dee520f3d0c'
 $Generator = Join-Path $RepoRoot 'scripts\generate_ghidra_map.ps1'
 $StatusPath = Join-Path $LocalDir 'ghidra_optional_status.json'
 New-Item -ItemType Directory -Force -Path $LocalDir | Out-Null
@@ -27,10 +30,34 @@ function Write-Status([bool]$Attempted,[bool]$Success,[string]$Reason,[string]$G
     [IO.File]::WriteAllText($StatusPath,($status|ConvertTo-Json -Depth 4),(New-Object Text.UTF8Encoding($false)))
 }
 
-if ((Test-Path -LiteralPath $Csv) -and (Test-Path -LiteralPath $Toml)) {
-    Write-Host '      Existing Ghidra CSV/TOML found; generation skipped.' -ForegroundColor Green
-    Write-Status $false $true 'existing-map'
+$existingMapVerified=$false
+if ((Test-Path -LiteralPath $Csv) -and
+    (Test-Path -LiteralPath $Toml) -and
+    (Test-Path -LiteralPath $Report)) {
+    try {
+        $map=Get-Content -Raw -LiteralPath $Report | ConvertFrom-Json
+        $csvSha=(Get-FileHash -LiteralPath $Csv -Algorithm SHA256).Hash.ToUpperInvariant()
+        $tomlSha=(Get-FileHash -LiteralPath $Toml -Algorithm SHA256).Hash.ToUpperInvariant()
+        $existingMapVerified=(
+            ([string]$map.elf_sha256).ToUpperInvariant() -eq $ExpectedElfSha256 -and
+            ([string]$map.function_csv_sha256).ToUpperInvariant() -eq $csvSha -and
+            ([string]$map.export_toml_sha256).ToUpperInvariant() -eq $tomlSha -and
+            ([string]$map.ps2recomp_commit) -eq $PinnedPs2Recomp
+        )
+    }
+    catch {
+        $existingMapVerified=$false
+    }
+}
+
+if ($existingMapVerified) {
+    Write-Host '      Existing verified Ghidra CSV/TOML found; generation skipped.' -ForegroundColor Green
+    Write-Status $false $true 'existing-verified-map'
     exit 0
+}
+
+if ((Test-Path -LiteralPath $Csv) -or (Test-Path -LiteralPath $Toml) -or (Test-Path -LiteralPath $Report)) {
+    Write-Host '      Existing Ghidra outputs are stale or unverified; regeneration will be attempted.' -ForegroundColor Yellow
 }
 
 function Find-GhidraHome {
