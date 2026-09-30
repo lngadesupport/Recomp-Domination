@@ -48,12 +48,17 @@ if not "%PREP_RC%"=="0" (
 )
 
 echo.
-echo [3/6] Tentando gerar mapa Ghidra, se disponivel...
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
-set "GHIDRA_RC=%ERRORLEVEL%"
-if not "%GHIDRA_RC%"=="0" (
-    echo [AVISO] Ghidra opcional falhou com codigo %GHIDRA_RC%.
-    echo Prosseguindo com ps2_analyzer como fallback.
+echo [3/6] Preparando mapa Ghidra opcional...
+if exist "%~dp0analysis\SCUS_971.77.functions.csv" if exist "%~dp0analysis\SCUS_971.77.ghidra.toml" (
+    echo Reutilizando mapa Ghidra existente.
+    set "GHIDRA_RC=0"
+) else (
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
+    set "GHIDRA_RC=%ERRORLEVEL%"
+    if not "%GHIDRA_RC%"=="0" (
+        echo [AVISO] Ghidra opcional falhou com codigo %GHIDRA_RC%.
+        echo Prosseguindo com ps2_analyzer como fallback.
+    )
 )
 
 echo.
