@@ -97,6 +97,33 @@ foreach($line in $lines){
     }
 }
 
+$mpegDiagnostics = [ordered]@{
+    no_ffmpeg = $false
+    feed_events = 0
+    picture_waits = 0
+    is_end_checks = 0
+    errors = @()
+}
+
+foreach($line in $lines){
+    if($line -match '(?i)\[MPEG\]\s+runtime built without FFmpeg'){
+        $mpegDiagnostics.no_ffmpeg = $true
+    }
+    if($line -match '(?i)\[MPEG:feedES\]'){
+        $mpegDiagnostics.feed_events++
+    }
+    if($line -match '(?i)\[MPEG:GetPicture\]\s+waiting'){
+        $mpegDiagnostics.picture_waits++
+    }
+    if($line -match '(?i)\[MPEG:IsEnd\]'){
+        $mpegDiagnostics.is_end_checks++
+    }
+    if($line -match '(?i)\[MPEG\].*(failed|error)'){
+        $mpegDiagnostics.errors += $line.Trim()
+    }
+}
+$mpegDiagnostics.errors=@($mpegDiagnostics.errors|Select-Object -Unique|Select-Object -First 32)
+
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -112,6 +139,9 @@ $categories = [ordered]@{
     iop_failed_open = @($iopModules.failed_open).Count
     iop_unhandled_import = @($iopModules.unhandled_imports).Count
     iop_rpc_unhandled = @($rpcDiagnostics.unhandled_calls).Count
+    mpeg_no_ffmpeg = if($mpegDiagnostics.no_ffmpeg){1}else{0}
+    mpeg_picture_wait = $mpegDiagnostics.picture_waits
+    mpeg_error = @($mpegDiagnostics.errors).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -226,6 +256,8 @@ elseif ($categories.todo_or_stub -gt 0) { $primary = "todo-or-stub" }
 elseif ($categories.iop_load_failed -gt 0 -or $categories.iop_failed_open -gt 0) { $primary = "iop-module-load" }
 elseif ($categories.iop_unhandled_import -gt 0) { $primary = "iop-unhandled-import" }
 elseif ($categories.iop_rpc_unhandled -gt 0) { $primary = "iop-rpc-unhandled" }
+elseif ($categories.mpeg_error -gt 0) { $primary = "mpeg-error" }
+elseif ($categories.mpeg_no_ffmpeg -gt 0 -and $categories.mpeg_picture_wait -gt 0) { $primary = "mpeg-no-ffmpeg" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
@@ -241,6 +273,7 @@ $report = [pscustomobject][ordered]@{
     runtime_counters = [pscustomobject]$runtimeCounters
     iop_modules = [pscustomobject]$iopModules
     rpc = [pscustomobject]$rpcDiagnostics
+    mpeg = [pscustomobject]$mpegDiagnostics
     graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
@@ -261,3 +294,4 @@ Write-Host "Primary classification: $primary"
 Write-Host "Furthest boot milestone: $furthestMilestone"
 Write-Host "Graphics stage: $graphicsStage"
 Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}, imports={4}, RPC={5}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count,@($iopModules.unhandled_imports).Count,@($rpcDiagnostics.unhandled_calls).Count)
+Write-Host ("MPEG: no-ffmpeg={0}, feeds={1}, waits={2}, isEnd={3}, errors={4}" -f $mpegDiagnostics.no_ffmpeg,$mpegDiagnostics.feed_events,$mpegDiagnostics.picture_waits,$mpegDiagnostics.is_end_checks,@($mpegDiagnostics.errors).Count)
