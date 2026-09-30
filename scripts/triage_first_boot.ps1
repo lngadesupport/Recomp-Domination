@@ -163,7 +163,10 @@ $categories = [ordered]@{
     todo_or_stub = @($lines | Where-Object { $_ -match '(?i)TODO_NAMED|\bTODO\b|unimplemented.+stub|stub.+unimplemented' }).Count
     unsupported_instruction = @($lines | Where-Object { $_ -match '(?i)unhandled.+instruction|unsupported.+instruction|reserved instruction|unknown opcode' }).Count
     sif_iop_rpc = @($lines | Where-Object { $_ -match '(?i)\bSIF\b|\bIOP\b|\bRPC\b|sceSif|SifCallRpc' }).Count
-    vif_vu_gs = @($lines | Where-Object { $_ -match '(?i)\bVIF[01]?\b|\bVU[01]?\b|\bGIF\b|\bGS\b|DMAC' }).Count
+    vif_vu_gs = @($lines | Where-Object {
+        ($_ -notmatch '\[run:tick\]' -and $_ -match '(?i)\bVIF[01]?\b|\bVU[01]?\b|\bGIF\b|\bGS\b|DMAC') -or
+        ($_ -match '\[run:tick\]' -and $_ -match '(?i)\b(?:dma|gif|gsw|vif)=[1-9]\d*')
+    }).Count
     file_io = @($lines | Where-Object { $_ -match '(?i)fio(Open|Read|Lseek|Close)|cdrom|host:|file.+not found' }).Count
     pad = @($lines | Where-Object { $_ -match '(?i)scePad|padread|gamepad' }).Count
     iop_loaded_irx = @($iopModules.loaded_irx).Count
@@ -217,22 +220,24 @@ foreach($line in $lines){
     if($gsw -gt $runtimeCounters.max_gs_writes){$runtimeCounters.max_gs_writes=$gsw}
     if($vif -gt $runtimeCounters.max_vif){$runtimeCounters.max_vif=$vif}
 
-    if($runtimeCounters.last_dispfb1 -ne '0X0' -and
-       $runtimeCounters.last_dispfb1 -ne '0X00000000' -and
-       $runtimeCounters.last_display1 -ne '0X0' -and
-       $runtimeCounters.last_display1 -ne '0X00000000'){
+    $dispfbValue = [Convert]::ToUInt64($tickMatch.Groups[3].Value.Substring(2), 16)
+    $displayValue = [Convert]::ToUInt64($tickMatch.Groups[4].Value.Substring(2), 16)
+    # These nonzero values are seeded by PS2Memory before guest execution.
+    $isResetDisplay = ($dispfbValue -eq 0x1400 -and $displayValue -eq 0x1bf27f00000000)
+    if($dispfbValue -ne 0 -and $displayValue -ne 0 -and !$isResetDisplay){
         $runtimeCounters.display_registers_programmed=$true
     }
 }
 
+$activityText = [regex]::Replace($text, '(?im)^.*\[run:tick\].*$', '')
 $milestones = [ordered]@{
     elf_loaded = [regex]::IsMatch($text,'(?i)ELF file loaded successfully|Entry point:\s*0x0010A008|0010A008.*enter')
     main_reached = [regex]::IsMatch($text,'(?i)\bmain\b.*enter|001FB6C0')
     sif_iop_activity = ($categories.sif_iop_rpc -gt 0)
     iop_module_activity = (@($iopModules.loaded_irx).Count -gt 0 -or @($iopModules.hle_fallbacks).Count -gt 0)
     pad_activity = ($categories.pad -gt 0)
-    vif_vu_activity = [regex]::IsMatch($text,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT')
-    gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
+    vif_vu_activity = ([regex]::IsMatch($activityText,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT') -or [uint64]$runtimeCounters.max_vif -gt 0)
+    gif_gs_activity = ([regex]::IsMatch($activityText,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket') -or [uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0)
     vif_writes_seen = ([uint64]$runtimeCounters.max_vif -gt 0)
     gif_packets_seen = ([uint64]$runtimeCounters.max_gif -gt 0)
     gs_writes_seen = ([uint64]$runtimeCounters.max_gs_writes -gt 0)
