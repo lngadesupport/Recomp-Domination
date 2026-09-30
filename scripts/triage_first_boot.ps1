@@ -14,6 +14,53 @@ if (!$Out) {
 $lines = @(Get-Content -LiteralPath $Log -ErrorAction Stop)
 $text = $lines -join [Environment]::NewLine
 
+$iopModules = [ordered]@{
+    loaded_irx = @()
+    hle_fallbacks = @()
+    load_failures = @()
+    failed_open = @()
+    relocation_warnings = 0
+}
+
+foreach($line in $lines){
+    $loaded=[regex]::Match($line,'(?i)\[IOP\]\s+loaded IRX\s+id=(\d+)\s+entry=(0x[0-9a-f]+)\s+base=(0x[0-9a-f]+)\s+start=(-?\d+)')
+    if($loaded.Success){
+        $iopModules.loaded_irx += [pscustomobject][ordered]@{
+            id=[int]$loaded.Groups[1].Value
+            entry=$loaded.Groups[2].Value.ToUpperInvariant()
+            base=$loaded.Groups[3].Value.ToUpperInvariant()
+            start_result=[int]$loaded.Groups[4].Value
+        }
+        continue
+    }
+
+    $hle=[regex]::Match($line,"(?i)\[IOP:HLE\]\s+fallback module='([^']+)'")
+    if($hle.Success){
+        $iopModules.hle_fallbacks += $hle.Groups[1].Value
+        continue
+    }
+
+    $failed=[regex]::Match($line,"(?i)\[IOP:load-failed\]\s+module='([^']+)'")
+    if($failed.Success){
+        $iopModules.load_failures += $failed.Groups[1].Value
+        continue
+    }
+
+    $openFailed=[regex]::Match($line,"(?i)\[IOP\]\s+failed to open IRX\s+'([^']+)'")
+    if($openFailed.Success){
+        $iopModules.failed_open += $openFailed.Groups[1].Value
+        continue
+    }
+
+    if($line -match '(?i)one or more IRX relocations were unsupported'){
+        $iopModules.relocation_warnings++
+    }
+}
+
+$iopModules.hle_fallbacks=@($iopModules.hle_fallbacks|Sort-Object -Unique)
+$iopModules.load_failures=@($iopModules.load_failures|Sort-Object -Unique)
+$iopModules.failed_open=@($iopModules.failed_open|Sort-Object -Unique)
+
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -23,6 +70,10 @@ $categories = [ordered]@{
     vif_vu_gs = @($lines | Where-Object { $_ -match '(?i)\bVIF[01]?\b|\bVU[01]?\b|\bGIF\b|\bGS\b|DMAC' }).Count
     file_io = @($lines | Where-Object { $_ -match '(?i)fio(Open|Read|Lseek|Close)|cdrom|host:|file.+not found' }).Count
     pad = @($lines | Where-Object { $_ -match '(?i)scePad|padread|gamepad' }).Count
+    iop_loaded_irx = @($iopModules.loaded_irx).Count
+    iop_hle_fallback = @($iopModules.hle_fallbacks).Count
+    iop_load_failed = @($iopModules.load_failures).Count
+    iop_failed_open = @($iopModules.failed_open).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -75,6 +126,7 @@ $milestones = [ordered]@{
     elf_loaded = [regex]::IsMatch($text,'(?i)ELF file loaded successfully|Entry point:\s*0x0010A008|0010A008.*enter')
     main_reached = [regex]::IsMatch($text,'(?i)\bmain\b.*enter|001FB6C0')
     sif_iop_activity = ($categories.sif_iop_rpc -gt 0)
+    iop_module_activity = (@($iopModules.loaded_irx).Count -gt 0 -or @($iopModules.hle_fallbacks).Count -gt 0)
     pad_activity = ($categories.pad -gt 0)
     vif_vu_activity = [regex]::IsMatch($text,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT')
     gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
@@ -133,6 +185,7 @@ if ($categories.fatal_or_exception -gt 0) { $primary = "fatal-or-exception" }
 elseif ($categories.missing_function -gt 0) { $primary = "missing-function" }
 elseif ($categories.unsupported_instruction -gt 0) { $primary = "unsupported-instruction" }
 elseif ($categories.todo_or_stub -gt 0) { $primary = "todo-or-stub" }
+elseif ($categories.iop_load_failed -gt 0 -or $categories.iop_failed_open -gt 0) { $primary = "iop-module-load" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
@@ -146,6 +199,7 @@ $report = [pscustomobject][ordered]@{
     categories = [pscustomobject]$categories
     milestones = [pscustomobject]$milestones
     runtime_counters = [pscustomobject]$runtimeCounters
+    iop_modules = [pscustomobject]$iopModules
     graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
@@ -165,3 +219,4 @@ Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
 Write-Host "Furthest boot milestone: $furthestMilestone"
 Write-Host "Graphics stage: $graphicsStage"
+Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count)
