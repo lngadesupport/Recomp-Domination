@@ -38,7 +38,7 @@ jobs:
       - name: Build fake long-running runner
         shell: cmd
         run: >-
-          echo #include ^<cstdio^> > probe_fake.cpp && echo #include ^<windows.h^> >> probe_fake.cpp && echo int main(){puts("probe fake runner stdout"); fputs("probe fake runner stderr\n", stderr); fflush(stdout); fflush(stderr); Sleep(10000); return 0;} >> probe_fake.cpp
+          echo #include ^<cstdio^> > probe_fake.cpp && echo #include ^<windows.h^> >> probe_fake.cpp && echo int main(){puts("probe fake runner stdout"); fputs("[MPEG] runtime built without FFmpeg; MPEG video decode is disabled.\n", stderr); fputs("sceCdRead failed cdrom0:\\MOVIE\\INTRO.PSS;1 not found\n", stderr); fflush(stdout); fflush(stderr); Sleep(10000); return 0;} >> probe_fake.cpp
           && mkdir probe_smoke
           && cl /nologo /EHsc probe_fake.cpp /Fe:probe_smoke\ps2EntryRunner.exe
 
@@ -64,7 +64,21 @@ jobs:
           if(!$meta.timed_out){throw 'Probe did not record timeout'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))){throw 'Combined probe log missing'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_triage.json'))){throw 'Triage JSON missing'}
+          if(!(Test-Path (Join-Path $probe 'first_boot_probe_suggestions.json'))){throw 'Suggestions JSON missing'}
+
+          $triage=Get-Content (Join-Path $probe 'first_boot_probe_triage.json') -Raw | ConvertFrom-Json
+          if([int]$triage.categories.mpeg_decoder_unavailable -lt 1){throw 'MPEG decoder-unavailable signal was not classified'}
+          if([int]$triage.categories.cd_dvd -lt 1){throw 'CD/DVD failure signal was not classified'}
+          if(!$triage.milestones.mpeg_activity){throw 'MPEG activity milestone was not set'}
+          if(!$triage.milestones.cd_dvd_activity){throw 'CD/DVD activity milestone was not set'}
+
+          $suggest=Get-Content (Join-Path $probe 'first_boot_probe_suggestions.json') -Raw | ConvertFrom-Json
+          $signalKinds=@($suggest.runtime_signals | ForEach-Object kind)
+          if($signalKinds -notcontains 'mpeg-decoder-disabled'){throw 'Missing MPEG rebuild suggestion'}
+          if($signalKinds -notcontains 'cd-dvd-io'){throw 'Missing CD/DVD I/O suggestion'}
+
           Write-Host ('Probe duration: ' + $meta.duration_seconds + ' s')
+          Write-Host ('Runtime signals: ' + ($signalKinds -join ', '))
           # The probe intentionally returns 124 on timeout. Verification above
           # consumed that expected code; do not let GitHub's PowerShell wrapper
           # propagate the stale native LASTEXITCODE as a failed step.
