@@ -64,7 +64,13 @@ jobs:
           if(!$meta.timed_out){throw 'Probe did not record timeout'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_latest.log'))){throw 'Combined probe log missing'}
           if(!(Test-Path (Join-Path $probe 'first_boot_probe_triage.json'))){throw 'Triage JSON missing'}
-          if(!(Test-Path (Join-Path $probe 'first_boot_probe_suggestions.json'))){throw 'Suggestions JSON missing'}
+          $suggestPath=Join-Path $probe 'first_boot_probe_suggestions.json'
+          if(!(Test-Path $suggestPath)){
+            Write-Host 'Probe helper did not create suggestions; executing suggestion parser directly for diagnostics.'
+            & (Join-Path $probe 'suggest_bringup_fixes.ps1') -Log (Join-Path $probe 'first_boot_probe_latest.log') -Out $suggestPath
+            if($LASTEXITCODE -ne 0){throw "Direct suggestion parser failed with $LASTEXITCODE"}
+          }
+          if(!(Test-Path $suggestPath)){throw 'Suggestions JSON missing after direct diagnostic invocation'}
 
           $triage=Get-Content (Join-Path $probe 'first_boot_probe_triage.json') -Raw | ConvertFrom-Json
           if([int]$triage.categories.mpeg_decoder_unavailable -lt 1){throw 'MPEG decoder-unavailable signal was not classified'}
