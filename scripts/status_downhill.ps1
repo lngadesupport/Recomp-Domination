@@ -33,6 +33,7 @@ $inventoryReport = Join-Path $RepoRoot "analysis\local\game_data_inventory.json"
 $deepReport = Join-Path $RepoRoot "analysis\local\SCUS_971.77.deep.json"
 $ghidraToml = Join-Path $RepoRoot "analysis\SCUS_971.77.ghidra.toml"
 $buildReport = Join-Path $DistDir "build_report.json"
+$readiness = Join-Path $DistDir "probe_readiness.json"
 $runner = Join-Path $DistDir "ps2EntryRunner.exe"
 $probe = Join-Path $DistDir "first_boot_probe.json"
 $triage = Join-Path $DistDir "first_boot_probe_triage.json"
@@ -69,6 +70,7 @@ Status-Line "Ghidra TOML" (Test-PathBool $ghidraToml) $ghidraToml
 Status-Line "Generated TOML" (Test-PathBool $config) $config
 Status-Line "Native runner" (Test-PathBool $runner) $runner
 Status-Line "Build report" (Test-PathBool $buildReport) $buildReport
+Status-Line "Probe readiness" (Test-PathBool $readiness) $readiness
 Status-Line "90s probe metadata" (Test-PathBool $probe) $probe
 Status-Line "Probe triage" (Test-PathBool $triage) $triage
 Status-Line "Bring-up suggestions" (Test-PathBool $suggestions) $suggestions
@@ -129,6 +131,29 @@ if (Test-Path -LiteralPath $buildReport) {
         }
     } catch {
         Write-Warning ("Could not parse build_report.json: " + $_.Exception.Message)
+    }
+}
+
+if (Test-Path -LiteralPath $readiness) {
+    try {
+        $ready = Get-Content -Raw -LiteralPath $readiness | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "Probe readiness:" -ForegroundColor Cyan
+        Write-Host ("  Ready:      " + $ready.ready)
+        Write-Host ("  ELF SHA:    " + $ready.elf_sha256)
+        Write-Host ("  ELF CRC32:  " + $ready.elf_crc32_ieee)
+        $failed=@($ready.critical|Where-Object{-not $_.ok})
+        $warn=@($ready.warnings|Where-Object{-not $_.ok})
+        Write-Host ("  Failed:     " + $failed.Count)
+        Write-Host ("  Warnings:   " + $warn.Count)
+        foreach($row in ($failed|Select-Object -First 5)){
+            Write-Host ("  FAIL:       " + $row.name + " - " + $row.detail) -ForegroundColor Red
+        }
+        foreach($row in ($warn|Select-Object -First 5)){
+            Write-Host ("  WARN:       " + $row.name + " - " + $row.detail) -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Warning ("Could not parse probe_readiness.json: " + $_.Exception.Message)
     }
 }
 
