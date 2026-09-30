@@ -59,18 +59,29 @@ jobs:
             }
           }
           if ($failed) { throw 'Windows PowerShell parser reported one or more errors.' }
-      - name: Smoke-test optional Ghidra wrapper with existing map
+      - name: Smoke-test optional Ghidra wrapper with verified existing map
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force analysis\local | Out-Null
           "Name,Start,End,Size`r`nsmoke,0x00100000,0x00100004,4" | Set-Content analysis\SCUS_971.77.functions.csv -Encoding ascii
           "[general]`r`nstubs = []`r`nuntracked_stubs = []" | Set-Content analysis\SCUS_971.77.ghidra.toml -Encoding ascii
+
+          $csvSha = (Get-FileHash analysis\SCUS_971.77.functions.csv -Algorithm SHA256).Hash.ToUpperInvariant()
+          $tomlSha = (Get-FileHash analysis\SCUS_971.77.ghidra.toml -Algorithm SHA256).Hash.ToUpperInvariant()
+          [ordered]@{
+            elf_sha256 = "ADFDA7B73A8F05FB20A3F0F318772E9D3797FD4D6C0A6C0078AE392DF0F0CF0C"
+            function_csv_sha256 = $csvSha
+            export_toml_sha256 = $tomlSha
+            ps2recomp_commit = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
+          } | ConvertTo-Json | Set-Content analysis\local\ghidra_map_report.json -Encoding ascii
+
           .\scripts\try_generate_ghidra_map.ps1
           if ($LASTEXITCODE -ne 0) { throw "Optional Ghidra wrapper failed: $LASTEXITCODE" }
           $status = Get-Content analysis\local\ghidra_optional_status.json -Raw | ConvertFrom-Json
           if (!$status.success) { throw "Optional Ghidra wrapper did not report success" }
-          if ($status.reason -ne "existing-map") { throw "Unexpected Ghidra wrapper reason: $($status.reason)" }
-          Remove-Item analysis\SCUS_971.77.functions.csv,analysis\SCUS_971.77.ghidra.toml -Force
+          if ($status.reason -ne "existing-verified-map") { throw "Unexpected Ghidra wrapper reason: $($status.reason)" }
+
+          Remove-Item analysis\SCUS_971.77.functions.csv,analysis\SCUS_971.77.ghidra.toml,analysis\local\ghidra_map_report.json -Force
 
       - name: Verify cached pinned-commit path is present
         shell: powershell
