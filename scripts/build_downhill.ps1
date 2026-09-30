@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
-    [switch]$MultiFileOutput
+    [switch]$MultiFileOutput,
+    [switch]$EnableFfmpeg
 )
 
 $ErrorActionPreference = "Stop"
@@ -812,6 +813,9 @@ try {
 
     Write-Host "[6/7] Building native Windows x64 runner..." -ForegroundColor Cyan
 
+    $FfmpegCmakeValue = if ($EnableFfmpeg) { "ON" } else { "OFF" }
+    Write-Host ("      FFmpeg MPEG decode: " + $FfmpegCmakeValue) -ForegroundColor DarkGray
+
     $configureRuntimeArgs = @(
         "-S", $Ps2RecompRoot,
         "-B", $BuildRoot,
@@ -821,7 +825,7 @@ try {
         "-DPS2X_BUILD_ANALYZER=ON",
         "-DPS2X_BUILD_TEST=OFF",
         "-DPS2X_BUILD_STUDIO=OFF",
-        "-DPS2X_ENABLE_FFMPEG=OFF",
+        ("-DPS2X_ENABLE_FFMPEG=" + $FfmpegCmakeValue),
         "-DPS2X_ENABLE_DEBUG_UI=OFF",
         "-DPS2X_ENABLE_RUNTIME_LOGS=ON",
         "-DPS2X_ENABLE_AGRESSIVE_LOGS=ON",
@@ -931,6 +935,7 @@ try {
         runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
         runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
         runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
+        ffmpeg_enabled = [bool]$EnableFfmpeg
     }
 
     $summary = [ordered]@{
@@ -949,6 +954,13 @@ try {
             patch_syscalls = $false
             patch_cop0 = $false
             patch_cache = $false
+        }
+        runtime_features = [ordered]@{
+            ffmpeg = [bool]$EnableFfmpeg
+            debug_ui = $false
+            aggressive_logs = $true
+            iop_rpc_trace = $true
+            strict_return_diagnostics = $true
         }
         local_extra_entry_points = $LocalExtraEntries
         game_data = $GameData
