@@ -8,8 +8,9 @@ Set-StrictMode -Version Latest
 $root = (Resolve-Path -LiteralPath $Ps2RecompRoot).Path
 $memoryPath = Join-Path $root 'ps2xRuntime\src\lib\ps2_memory.cpp'
 $testPath = Join-Path $root 'ps2xTest\src\ps2_memory_tests.cpp'
+$fileIoPath = Join-Path $root 'ps2xRuntime\src\lib\Kernel\Syscalls\FileIO.cpp'
 
-foreach($path in @($memoryPath,$testPath)){
+foreach($path in @($memoryPath,$testPath,$fileIoPath)){
     if(!(Test-Path -LiteralPath $path)){throw "Required pinned PS2Recomp source not found: $path"}
 }
 
@@ -97,13 +98,40 @@ if(!$testText.Contains('RST should preserve ROW[0]')){
     [IO.File]::WriteAllText($testPath,$testText,(New-Object Text.UTF8Encoding($false)))
 }
 
+$fileIoText = Get-Content -Raw -LiteralPath $fileIoPath
+$fileIoOld = @'
+        const int32_t descriptor = runtime->vfs().open(ps2Path, static_cast<uint32_t>(flags), currentVfsMounts(), runtime->romDevice());
+        setReturnS32(ctx, descriptor);
+'@
+$fileIoNew = @'
+        const int32_t descriptor = runtime->vfs().open(ps2Path, static_cast<uint32_t>(flags), currentVfsMounts(), runtime->romDevice());
+        if (descriptor < 0)
+        {
+            std::cerr << "[FileIO:open-failed] guest='" << ps2Path
+                      << "' flags=0x" << std::hex << static_cast<uint32_t>(flags)
+                      << " pc=0x" << getPcU32(ctx)
+                      << std::dec << std::endl;
+        }
+        setReturnS32(ctx, descriptor);
+'@
+
+if(!$fileIoText.Contains($fileIoNew)){
+    if(!$fileIoText.Contains($fileIoOld)){
+        throw 'Pinned PS2Recomp fioOpen block no longer matches expected source. Refusing to patch blindly.'
+    }
+    $fileIoText = $fileIoText.Replace($fileIoOld,$fileIoNew)
+    [IO.File]::WriteAllText($fileIoPath,$fileIoText,(New-Object Text.UTF8Encoding($false)))
+}
+
 $verifyMemory = Get-Content -Raw -LiteralPath $memoryPath
 $verifyTest = Get-Content -Raw -LiteralPath $testPath
+$verifyFileIo = Get-Content -Raw -LiteralPath $fileIoPath
 if($verifyMemory -notmatch 'savedRow\[4\]' -or
    $verifyMemory -notmatch 'savedCol\[4\]' -or
    $verifyTest -notmatch 'RST should preserve ROW\[0\]' -or
-   $verifyTest -notmatch 'RST should preserve COL\[3\]'){
+   $verifyTest -notmatch 'RST should preserve COL\[3\]' -or
+   $verifyFileIo -notmatch '\[FileIO:open-failed\]'){
     throw 'Downhill VIF1 compatibility patch verification failed.'
 }
 
-Write-Host 'Applied and verified Downhill VIF1 ROW/COL preservation patch + regression test.' -ForegroundColor Green
+Write-Host 'Applied and verified Downhill VIF1 ROW/COL patch, regression test, and FileIO failure trace.' -ForegroundColor Green
