@@ -68,3 +68,30 @@ jobs:
           # consumed that expected code; do not let GitHub's PowerShell wrapper
           # propagate the stale native LASTEXITCODE as a failed step.
           $global:LASTEXITCODE = 0
+
+
+      - name: Classify IOP module outcomes
+        shell: powershell
+        run: |
+          @(
+            "[IOP] loaded IRX id=1 entry=0x00012000 base=0x00010000 start=0",
+            "[IOP:HLE] fallback module='CDROM0:\IOP\LIBSD.IRX;1' physical IRX unavailable; using registered HLE provider",
+            "[IOP:load-failed] module='CDROM0:\IOP\CUSTOM.IRX;1' no HLE provider accepted the module; physical IRX was not loaded",
+            "[IOP] failed to open IRX 'CDROM0:\IOP\MISSING.IRX;1'",
+            "[IOP] one or more IRX relocations were unsupported"
+          ) | Set-Content .\probe_smoke\iop_fixture.log -Encoding ascii
+
+          .\scripts\triage_first_boot.ps1 -Log .\probe_smoke\iop_fixture.log -Out .\probe_smoke\iop_triage.json
+          $t=Get-Content .\probe_smoke\iop_triage.json -Raw|ConvertFrom-Json
+          if($t.primary_classification -ne 'iop-module-load'){throw "Unexpected classification: $($t.primary_classification)"}
+          if(@($t.iop_modules.loaded_irx).Count -ne 1){throw 'Expected one loaded IRX'}
+          if(@($t.iop_modules.hle_fallbacks).Count -ne 1){throw 'Expected one HLE fallback'}
+          if(@($t.iop_modules.load_failures).Count -ne 1){throw 'Expected one load failure'}
+          if(@($t.iop_modules.failed_open).Count -ne 1){throw 'Expected one open failure'}
+          if([int]$t.iop_modules.relocation_warnings -ne 1){throw 'Expected one relocation warning'}
+
+          .\scripts\suggest_bringup_fixes.ps1 -Log .\probe_smoke\iop_fixture.log -Out .\probe_smoke\iop_suggestions.json
+          $s=Get-Content .\probe_smoke\iop_suggestions.json -Raw|ConvertFrom-Json
+          if(@($s.iop.load_failed_modules).Count -ne 1){throw 'Suggestion report lost load-failed module'}
+          if(@($s.iop.failed_open_modules).Count -ne 1){throw 'Suggestion report lost failed-open module'}
+          if(!$s.iop.focus){throw 'IOP focus was not produced'}
