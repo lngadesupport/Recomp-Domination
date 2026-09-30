@@ -192,6 +192,7 @@ jobs:
           /Fo:_ci\downhill_domination_overrides.obj
           /I _ci\PS2Recomp\ps2xRuntime\include
           /I _ci\PS2Recomp\ps2xIOP\include
+          /I _ci\PS2Recomp\ps2xRuntime\src\lib\Kernel
       - name: Configure compiler tools and tests
         shell: pwsh
         run: >-
@@ -292,7 +293,7 @@ jobs:
           @'
           [general]
           stubs = [
-            "scePadRead@0x00254050",
+            "scePadRead@0x002451B0",
             "sceSifSendCmd@0x0025C440",
             "sceCdRI@0x00111110",
           ]
