@@ -48,6 +48,14 @@ if not "%PREP_RC%"=="0" (
 )
 
 echo.
+echo [2b/6] Inventariando dados/IRX locais...
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\analyze_game_data.ps1" -GameRoot "%GAME_ROOT%"
+set "INVENTORY_RC=%ERRORLEVEL%"
+if not "%INVENTORY_RC%"=="0" (
+    echo [AVISO] Inventario local falhou com codigo %INVENTORY_RC%.
+    echo O build continuara; o inventario e diagnostico, nao requisito de recompilacao.
+)
+echo.
 echo [3/6] Preparando mapa Ghidra opcional...
 if exist "%~dp0analysis\SCUS_971.77.functions.csv" if exist "%~dp0analysis\SCUS_971.77.ghidra.toml" (
     echo Reutilizando mapa Ghidra existente.
@@ -115,6 +123,7 @@ echo PIPELINE LOCAL FINALIZADO
 echo ============================================================
 echo Preflight:   %ENV_RC%
 echo Game data:   %PREP_RC%
+echo Inventory:   %INVENTORY_RC%
 echo Ghidra:      %GHIDRA_RC%
 echo Build:       %BUILD_RC% (%BUILD_MODE%)
 echo Probe:       %PROBE_RC%
