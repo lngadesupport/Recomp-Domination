@@ -19,6 +19,11 @@ $Ps2RecompRoot = Join-Path $ThirdPartyRoot "PS2Recomp"
 $BuildRoot = Join-Path $Ps2RecompRoot "out\build-downhill"
 $PortableToolRoot = $env:RECOMP_PORTABLE_TOOL_ROOT
 $GeneratorArgs = @('-A', 'x64')
+$OfflineSourceRoot = $env:RECOMP_OFFLINE_SOURCE_ROOT
+if ($OfflineSourceRoot) {
+    if ($EnableFfmpeg) { throw 'FFmpeg não está incluído no pacote offline.' }
+    . (Join-Path $RepoRoot 'launcher/offline_sources.ps1')
+}
 if ($PortableToolRoot) {
     $BuildRoot = Join-Path $Ps2RecompRoot 'out\build-downhill-portable'
     $cc = (Join-Path $PortableToolRoot 'llvm\bin\clang.exe').Replace('\','/')
@@ -31,6 +36,7 @@ if ($PortableToolRoot) {
     $dependencyRoot = (Join-Path $env:LOCALAPPDATA ('RD\deps\' + $workspaceLeaf.Substring(0, [Math]::Min(12, $workspaceLeaf.Length)))).Replace('\','/')
     $GeneratorArgs += "-DFETCHCONTENT_BASE_DIR=$dependencyRoot"
 }
+if ($OfflineSourceRoot) { $GeneratorArgs += @(Get-OfflineCmakeArgs -SourceRoot $OfflineSourceRoot) }
 $ConfigDir = Join-Path $RepoRoot "config"
 $AnalysisDir = Join-Path $RepoRoot "analysis"
 $LocalAnalysisDir = Join-Path $AnalysisDir "local"
@@ -554,6 +560,7 @@ try {
     Write-Host "[2/7] Preparing pinned PS2Recomp checkout..." -ForegroundColor Cyan
 
     if (!(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot ".git"))) {
+        if ($OfflineSourceRoot) { throw 'Checkout offline ausente; downloads estão desativados.' }
         Invoke-Native $Git "clone" "https://github.com/ran-j/PS2Recomp.git" $Ps2RecompRoot
     }
 
@@ -565,6 +572,7 @@ try {
     }
 
     if (!$HavePinnedCommit) {
+        if ($OfflineSourceRoot) { throw 'Commit fixado ausente no pacote offline; downloads estão desativados.' }
         Invoke-Native $Git "-C" $Ps2RecompRoot "fetch" "origin" $PinnedPs2Recomp "--depth=1"
     }
 
