@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - bootstrap/status-enhance
+      - bootstrap/diagnostics-polish
       - bootstrap/compiler
     paths:
       - scripts/filter_runtime_stubs.ps1
