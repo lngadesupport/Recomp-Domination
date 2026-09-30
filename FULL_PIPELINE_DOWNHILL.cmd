@@ -57,7 +57,7 @@ if not "%GHIDRA_RC%"=="0" (
 
 echo.
 echo [4/6] Compilando recompilacao nativa Windows x64...
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%"
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%" -EnableFfmpeg
 set "BUILD_RC=%ERRORLEVEL%"
 if not "%BUILD_RC%"=="0" (
     echo.
