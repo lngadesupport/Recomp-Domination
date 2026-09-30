@@ -97,7 +97,28 @@ if not "%BUILD_RC%"=="0" (
 set "DIST=%GAME_ROOT%\DownhillRecompiled"
 
 echo.
-echo [5/6] Executando probe nativo de 90 segundos...
+echo [5/6] Validando identidade ELF/runner antes do primeiro boot...
+if exist "%DIST%\check_probe_readiness.ps1" (
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%DIST%\check_probe_readiness.ps1" -Elf "%GAME_ROOT%\SCUS_971.77"
+    set "READY_RC=%ERRORLEVEL%"
+) else (
+    echo [ERRO] check_probe_readiness.ps1 nao encontrado.
+    set "READY_RC=9009"
+)
+
+if not "%READY_RC%"=="0" (
+    echo.
+    echo [ERRO] O runner nao esta pronto para executar este ELF. Codigo: %READY_RC%
+    echo O probe foi bloqueado para evitar artefatos stale/mismatched.
+    echo Coletando diagnosticos...
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\collect_diagnostics.ps1" -GameRoot "%GAME_ROOT%"
+    echo.
+    pause
+    exit /b %READY_RC%
+)
+
+echo.
+echo [5b/6] Executando probe nativo de 90 segundos...
 if exist "%DIST%\run_downhill_probe.ps1" (
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%DIST%\run_downhill_probe.ps1" -Elf "%GAME_ROOT%\SCUS_971.77" -TimeoutSeconds 90
     set "PROBE_RC=%ERRORLEVEL%"
@@ -126,6 +147,7 @@ echo Game data:   %PREP_RC%
 echo Inventory:   %INVENTORY_RC%
 echo Ghidra:      %GHIDRA_RC%
 echo Build:       %BUILD_RC% (%BUILD_MODE%)
+echo Readiness:   %READY_RC%
 echo Probe:       %PROBE_RC%
 echo Diagnostics: %DIAG_RC%
 echo.
