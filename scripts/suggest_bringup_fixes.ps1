@@ -104,6 +104,7 @@ $iop = [ordered]@{
     load_failed_modules = @()
     failed_open_modules = @()
     relocation_warnings = 0
+    unhandled_imports = @()
     focus = $null
 }
 
@@ -122,7 +123,17 @@ foreach($line in $lines){
     $m=[regex]::Match($line,"(?i)\[IOP\]\s+failed to open IRX\s+'([^']+)'")
     if($m.Success){$iop.failed_open_modules += $m.Groups[1].Value;continue}
 
-    if($line -match '(?i)one or more IRX relocations were unsupported'){$iop.relocation_warnings++}
+    if($line -match '(?i)one or more IRX relocations were unsupported'){$iop.relocation_warnings++;continue}
+
+    $m=[regex]::Match($line,'(?i)\[IOP\]\s+unhandled import\s+([^:\s]+):(\d+)\s+version=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)')
+    if($m.Success){
+        $iop.unhandled_imports += [pscustomobject][ordered]@{
+            library=$m.Groups[1].Value
+            ordinal=[int]$m.Groups[2].Value
+            version=$m.Groups[3].Value.ToUpperInvariant()
+            pc=$m.Groups[4].Value.ToUpperInvariant()
+        }
+    }
 }
 $iop.hle_fallback_modules=@($iop.hle_fallback_modules|Sort-Object -Unique)
 $iop.load_failed_modules=@($iop.load_failed_modules|Sort-Object -Unique)
@@ -136,6 +147,9 @@ elseif(@($iop.load_failed_modules).Count -gt 0){
 }
 elseif($iop.relocation_warnings -gt 0){
     $iop.focus='Physical IRX code loaded with unsupported relocations. Inspect IOP relocation support before treating later RPC failures as EE issues.'
+}
+elseif(@($iop.unhandled_imports).Count -gt 0){
+    $iop.focus='Physical IRX execution reached an unsupported IOP import. Implement the reported library/ordinal before changing EE entry points or graphics code.'
 }
 elseif($iop.loaded_irx_count -gt 0){
     $iop.focus='Physical IRX execution is active. Use later RPC/SIF or graphics milestones to identify the next blocker.'
