@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
     [ValidateRange(1,5)][int]$MaxIterations = 3,
+    [ValidateRange(1,16)][int]$MaxEntriesPerIteration = 4,
     [ValidateRange(10,300)][int]$ProbeSeconds = 60
 )
 
@@ -33,6 +34,7 @@ if(Test-Path -LiteralPath $Extra){
 
 $iterations=@()
 $stopReason='max-iterations'
+$finalExitCode=0
 $useMulti=$false
 
 for($i=1;$i-le$MaxIterations;$i++){
@@ -52,6 +54,7 @@ for($i=1;$i-le$MaxIterations;$i++){
     }
     if($buildRc -ne 0){
         $stopReason='build-failed'
+        $finalExitCode=10
         $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason}
         break
     }
@@ -59,6 +62,7 @@ for($i=1;$i-le$MaxIterations;$i++){
     $probeScript=Join-Path $Dist 'run_downhill_probe.ps1'
     if(!(Test-Path -LiteralPath $probeScript)){
         $stopReason='probe-script-missing'
+        $finalExitCode=11
         $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason}
         break
     }
@@ -70,12 +74,13 @@ for($i=1;$i-le$MaxIterations;$i++){
     $triage=Join-Path $Dist 'first_boot_probe_triage.json'
     if(!(Test-Path -LiteralPath $suggestions)){
         $stopReason='suggestions-missing'
+        $finalExitCode=12
         $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason}
         break
     }
 
     $selection=Join-Path $RepoRoot ('analysis\local\auto_entry_selection_'+$stamp+'_'+$i+'.json')
-    $selectorArgs=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$Selector,'-Suggestions',$suggestions,'-Out',$selection)
+    $selectorArgs=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$Selector,'-Suggestions',$suggestions,'-MaxSelected',$MaxEntriesPerIteration,'-Out',$selection)
     if(Test-Path -LiteralPath $triage){$selectorArgs+=@('-Triage',$triage)}
     if(Test-Path -LiteralPath $Extra){$selectorArgs+=@('-Existing',$Extra)}
     & powershell.exe @selectorArgs
@@ -89,6 +94,7 @@ for($i=1;$i-le$MaxIterations;$i++){
     }
     if($selectRc -ne 0){
         $stopReason='selection-failed'
+        $finalExitCode=13
         $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason}
         break
     }
@@ -118,10 +124,12 @@ $report=[ordered]@{
     game_root=$GameRoot
     max_iterations=$MaxIterations
     probe_seconds=$ProbeSeconds
+    max_entries_per_iteration=$MaxEntriesPerIteration
     used_multi_file=$useMulti
     local_entry_file=$Extra
     backup=$backup
     stop_reason=$stopReason
+    exit_code=$finalExitCode
     iterations=$iterations
 }
 [IO.File]::WriteAllText($Out,($report|ConvertTo-Json -Depth 7),(New-Object Text.UTF8Encoding($false)))
@@ -129,4 +137,4 @@ Write-Host ''
 Write-Host ('Auto bring-up finished: '+$stopReason) -ForegroundColor Cyan
 Write-Host ('Report: '+$Out)
 if($backup){Write-Host ('Original local entries backup: '+$backup)}
-exit 0
+exit $finalExitCode
