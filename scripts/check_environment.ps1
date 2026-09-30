@@ -79,7 +79,24 @@ try{
     if($internetOk){$tcp.EndConnect($ar)}
     $tcp.Close()
 }catch{}
-Add-Check 'GitHub connectivity' $internetOk $(if($internetOk){'github.com:443 reachable'}else{'not reachable; first build needs internet'})
+
+$localPinned=$false
+$ps2Root=Join-Path $RepoRoot 'third_party\PS2Recomp'
+$pinned='75d729ce40d7eed9649fd4bb05628dee520f3d0c'
+if($git -and (Test-Path -LiteralPath (Join-Path $ps2Root '.git'))){
+    & $git.Source -C $ps2Root cat-file -e ($pinned + '^{commit}') 2>$null
+    $localPinned=($LASTEXITCODE -eq 0)
+}
+
+$sourceAvailable=($internetOk -or $localPinned)
+$sourceDetail = if($localPinned){
+    'pinned PS2Recomp commit available locally; offline rebuild supported'
+}elseif($internetOk){
+    'github.com:443 reachable; pinned PS2Recomp can be fetched'
+}else{
+    'pinned PS2Recomp commit missing locally and github.com:443 is not reachable'
+}
+Add-Check 'PS2Recomp source availability' $sourceAvailable $sourceDetail
 
 $failed=@($checks | Where-Object { -not $_.ok })
 $report=[ordered]@{
