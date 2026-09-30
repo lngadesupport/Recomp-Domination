@@ -66,45 +66,45 @@ $snippet = if($newEntries.Count -gt 0){
     "# Suggested only; review before adding.`r`n" + ($newEntries | ForEach-Object {'  "'+$_+'",'} | Out-String)
 } else { "# No new file-backed EE entry point candidates were found." }
 
-$runtimeSignals = New-Object System.Collections.Generic.List[object]
+$runtimeSignals = @()
 
 if ([regex]::IsMatch($text,'(?i)runtime built without FFmpeg|MPEG video decode is disabled')) {
-    $runtimeSignals.Add([ordered]@{
+    $runtimeSignals += [pscustomobject][ordered]@{
         kind = 'mpeg-decoder-disabled'
         priority = 'high'
         action = 'Rebuild with BUILD_DOWNHILL_FFMPEG.cmd or FULL_PIPELINE_DOWNHILL.cmd so PS2X_ENABLE_FFMPEG=ON.'
-    })
+    }
 }
 elseif ([regex]::IsMatch($text,'(?i)FFmpeg MPEG-2 decoder not found|\[MPEG\].+failed')) {
-    $runtimeSignals.Add([ordered]@{
+    $runtimeSignals += [pscustomobject][ordered]@{
         kind = 'mpeg-decoder-failure'
         priority = 'high'
         action = 'Inspect FFmpeg DLL staging and the first MPEG failure before changing guest code.'
-    })
+    }
 }
 
 if ([regex]::IsMatch($text,'(?i)cdrom0:.+(not found|fail)|sceCd.+(fail|error)|CDVD.+(fail|error)')) {
-    $runtimeSignals.Add([ordered]@{
+    $runtimeSignals += [pscustomobject][ordered]@{
         kind = 'cd-dvd-io'
         priority = 'high'
         action = 'Verify downhill_cd_root.txt/downhill_cd_image.txt, SYSTEM.CNF and extracted disc/ISO accessibility.'
-    })
+    }
 }
 
 if ([regex]::IsMatch($text,'(?i)No exact recompiled function for guest PC')) {
-    $runtimeSignals.Add([ordered]@{
+    $runtimeSignals += [pscustomobject][ordered]@{
         kind = 'missing-recompiled-function'
         priority = 'high'
         action = 'Review new_entry_point_candidates and accept only exact file-backed function starts.'
-    })
+    }
 }
 
 if ([regex]::IsMatch($text,'(?i)Unimplemented PS2 stub called')) {
-    $runtimeSignals.Add([ordered]@{
+    $runtimeSignals += [pscustomobject][ordered]@{
         kind = 'unimplemented-runtime-stub'
         priority = 'medium'
         action = 'Implement or bind the observed runtime stub; do not use ret0/ret1 unless the call semantics are proven.'
-    })
+    }
 }
 
 $report=[ordered]@{
