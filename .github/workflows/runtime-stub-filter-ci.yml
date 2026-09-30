@@ -23,6 +23,7 @@ jobs:
           $errors=$null
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\filter_runtime_stubs.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
           [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\build_downhill.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path ".\scripts\status_downhill.ps1"),[ref]$tokens,[ref]$errors)|Out-Null
           if($errors.Count -gt 0){$errors|Format-List|Out-String|Write-Host;throw "PowerShell parser errors"}
 
       - name: Create runtime fixture
