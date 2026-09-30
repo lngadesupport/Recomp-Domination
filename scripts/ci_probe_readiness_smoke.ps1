@@ -98,8 +98,8 @@ $rc=$LASTEXITCODE
 if($rc-ne 0){throw "Matching readiness fixture failed with exit code $rc"}
 
 if(!(Test-Path -LiteralPath $ReadyOut)){throw "Readiness JSON was not created: $ReadyOut"}
-$ready=Get-Content -Raw -LiteralPath $ReadyOut|ConvertFrom-Json
-if(!$ready.ready){throw 'Matching readiness fixture was not marked ready'}
+$readyJson=Get-Content -Raw -LiteralPath $ReadyOut
+if($readyJson -notmatch '"ready"\s*:\s*true'){throw 'Matching readiness fixture was not marked ready'}
 
 Write-Host '[readiness-smoke] rejecting stale modified runner...' -ForegroundColor Cyan
 [IO.File]::AppendAllText($Runner,'stale',[Text.Encoding]::ASCII)
@@ -108,8 +108,8 @@ Write-Host '[readiness-smoke] rejecting stale modified runner...' -ForegroundCol
     -ExpectedSha256 $sha -ExpectedSize 128
 $rc=$LASTEXITCODE
 if($rc-ne 1){throw "Expected stale runner rejection exit 1, got $rc"}
-$ready=Get-Content -Raw -LiteralPath $ReadyOut|ConvertFrom-Json
-if($ready.ready){throw 'Stale runner was incorrectly accepted'}
+$readyJson=Get-Content -Raw -LiteralPath $ReadyOut
+if($readyJson -notmatch '"ready"\s*:\s*false'){throw 'Stale runner rejection report did not record ready=false'}
 
 Write-Host '[readiness-smoke] PASS' -ForegroundColor Green
 $global:LASTEXITCODE=0
