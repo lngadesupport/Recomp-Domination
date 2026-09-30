@@ -20,6 +20,7 @@ $iopModules = [ordered]@{
     load_failures = @()
     failed_open = @()
     relocation_warnings = 0
+    unhandled_imports = @()
 }
 
 foreach($line in $lines){
@@ -54,6 +55,17 @@ foreach($line in $lines){
 
     if($line -match '(?i)one or more IRX relocations were unsupported'){
         $iopModules.relocation_warnings++
+        continue
+    }
+
+    $unhandled=[regex]::Match($line,'(?i)\[IOP\]\s+unhandled import\s+([^:\s]+):(\d+)\s+version=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)')
+    if($unhandled.Success){
+        $iopModules.unhandled_imports += [pscustomobject][ordered]@{
+            library=$unhandled.Groups[1].Value
+            ordinal=[int]$unhandled.Groups[2].Value
+            version=$unhandled.Groups[3].Value.ToUpperInvariant()
+            pc=$unhandled.Groups[4].Value.ToUpperInvariant()
+        }
     }
 }
 
@@ -74,6 +86,7 @@ $categories = [ordered]@{
     iop_hle_fallback = @($iopModules.hle_fallbacks).Count
     iop_load_failed = @($iopModules.load_failures).Count
     iop_failed_open = @($iopModules.failed_open).Count
+    iop_unhandled_import = @($iopModules.unhandled_imports).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -186,6 +199,7 @@ elseif ($categories.missing_function -gt 0) { $primary = "missing-function" }
 elseif ($categories.unsupported_instruction -gt 0) { $primary = "unsupported-instruction" }
 elseif ($categories.todo_or_stub -gt 0) { $primary = "todo-or-stub" }
 elseif ($categories.iop_load_failed -gt 0 -or $categories.iop_failed_open -gt 0) { $primary = "iop-module-load" }
+elseif ($categories.iop_unhandled_import -gt 0) { $primary = "iop-unhandled-import" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
@@ -219,4 +233,4 @@ Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
 Write-Host "Furthest boot milestone: $furthestMilestone"
 Write-Host "Graphics stage: $graphicsStage"
-Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count)
+Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}, imports={4}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count,@($iopModules.unhandled_imports).Count)
