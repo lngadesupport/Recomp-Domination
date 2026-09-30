@@ -293,6 +293,7 @@ elseif ($categories.iop_unhandled_import -gt 0) { $primary = "iop-unhandled-impo
 elseif ($categories.iop_rpc_unhandled -gt 0) { $primary = "iop-rpc-unhandled" }
 elseif ($categories.mpeg_error -gt 0) { $primary = "mpeg-error" }
 elseif ($categories.mpeg_no_ffmpeg -gt 0 -and $categories.mpeg_picture_wait -gt 0) { $primary = "mpeg-no-ffmpeg" }
+elseif ($fileIoDiagnostics.total_failures -ge 3 -and @($fileIoDiagnostics.repeated_paths).Count -gt 0) { $primary = "file-io" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
