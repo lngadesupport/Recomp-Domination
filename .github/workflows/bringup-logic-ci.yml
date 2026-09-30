@@ -7,6 +7,8 @@ on:
     paths:
       - scripts/select_bringup_entry_points.ps1
       - scripts/auto_bringup.ps1
+      - scripts/check_probe_readiness.ps1
+      - scripts/ci_probe_readiness_smoke.ps1
       - AUTO_BRINGUP.cmd
       - .github/workflows/bringup-logic-ci.yml
   pull_request:
@@ -27,12 +29,17 @@ jobs:
       - name: Parse bring-up scripts in Windows PowerShell 5.1
         shell: powershell
         run: |
-          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1')){
+          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1','.\scripts\check_probe_readiness.ps1','.\scripts\ci_probe_readiness_smoke.ps1')){
             $tokens=$null;$errors=$null
             [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $p),[ref]$tokens,[ref]$errors)|Out-Null
             if($errors.Count){$errors|Format-List|Out-String|Write-Host;throw "Parser errors in $p"}
           }
 
+      - name: Validate ELF-runner readiness identity lock
+        shell: powershell
+        run: |
+          .\scripts\ci_probe_readiness_smoke.ps1 -Root _ci\ready
+          if($LASTEXITCODE -ne 0){throw "readiness smoke failed with $LASTEXITCODE"}
       - name: Select only valid new entries for missing-function triage
         shell: powershell
         run: |
