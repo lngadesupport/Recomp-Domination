@@ -141,6 +141,13 @@ if (Test-Path -LiteralPath $triage) {
             Write-Host ("  DISPFB1:           " + $t.runtime_counters.last_dispfb1)
             Write-Host ("  DISPLAY1:          " + $t.runtime_counters.last_display1)
         }
+        if ($t.iop_modules) {
+            Write-Host ("  IRX loaded:        " + @($t.iop_modules.loaded_irx).Count)
+            Write-Host ("  IRX HLE fallback:  " + @($t.iop_modules.hle_fallbacks).Count)
+            Write-Host ("  IRX load failed:   " + @($t.iop_modules.load_failures).Count)
+            Write-Host ("  IRX open failed:   " + @($t.iop_modules.failed_open).Count)
+            Write-Host ("  IRX reloc warnings:" + $t.iop_modules.relocation_warnings)
+        }
         if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
             Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
         }
@@ -157,6 +164,15 @@ if (Test-Path -LiteralPath $suggestions) {
         if ($sg.graphics) {
             Write-Host ("  Graphics stage: " + $sg.graphics.stage)
             Write-Host ("  Focus:          " + $sg.graphics.focus)
+        }
+        if ($sg.iop) {
+            Write-Host ("  IOP focus:      " + $sg.iop.focus)
+            if ($sg.iop.load_failed_modules -and $sg.iop.load_failed_modules.Count -gt 0) {
+                Write-Host ("  IOP load fail:  " + (($sg.iop.load_failed_modules | Select-Object -First 6) -join ", ")) -ForegroundColor Yellow
+            }
+            if ($sg.iop.failed_open_modules -and $sg.iop.failed_open_modules.Count -gt 0) {
+                Write-Host ("  IOP open fail:  " + (($sg.iop.failed_open_modules | Select-Object -First 6) -join ", ")) -ForegroundColor Yellow
+            }
         }
         if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
             Write-Host ("  New entries:    " + (($sg.new_entry_point_candidates | Select-Object -First 8) -join ", ")) -ForegroundColor Yellow
