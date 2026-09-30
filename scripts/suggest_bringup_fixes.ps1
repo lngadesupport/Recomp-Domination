@@ -161,6 +161,36 @@ else{
     $iop.focus='No explicit IRX load outcome was observed in the captured log.'
 }
 
+$rpc = [ordered]@{
+    unhandled_calls = @()
+    focus = $null
+}
+
+foreach($line in $lines){
+    $m=[regex]::Match(
+        $line,
+        '(?i)\[IOP/RPC trace:unhandled\]\s+sid=(0x[0-9a-f]+)\s+rpc=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)\s+ra=(0x[0-9a-f]+)\s+send=(0x[0-9a-f]+)/([0-9]+)\s+recv=(0x[0-9a-f]+)/([0-9]+).*?loadedModules=\[(.*?)\]'
+    )
+    if($m.Success){
+        $rpc.unhandled_calls += [pscustomobject][ordered]@{
+            sid=$m.Groups[1].Value.ToUpperInvariant()
+            rpc=$m.Groups[2].Value.ToUpperInvariant()
+            pc=$m.Groups[3].Value.ToUpperInvariant()
+            ra=$m.Groups[4].Value.ToUpperInvariant()
+            send_size=[int]$m.Groups[6].Value
+            recv_size=[int]$m.Groups[8].Value
+            loaded_modules=$m.Groups[9].Value
+        }
+    }
+}
+
+if(@($rpc.unhandled_calls).Count -gt 0){
+    $first=@($rpc.unhandled_calls)[0]
+    $rpc.focus=('Unhandled IOP RPC SID {0} / RPC {1} at PC {2}. Verify the physical IRX/HLE server for that SID before changing EE recompilation.' -f $first.sid,$first.rpc,$first.pc)
+}else{
+    $rpc.focus='No unhandled IOP RPC trace was observed in the captured log.'
+}
+
 # Infer how far guest graphics progressed from aggressive runtime tick counters.
 $graphics = [ordered]@{
     max_dma = [uint64]0
@@ -250,6 +280,7 @@ $report = [ordered]@{
     new_entry_point_candidates = $newEntries
     unimplemented_stubs = $stubs
     iop = [pscustomobject]$iop
+    rpc = [pscustomobject]$rpc
     graphics = [pscustomobject]$graphics
     toml_snippet = $snippet
 }
@@ -270,3 +301,4 @@ if ($stubs.Count -gt 0) {
 Write-Host ("Graphics stage: " + $graphics.stage)
 Write-Host ("Graphics focus: " + $graphics.focus)
 Write-Host ("IOP focus: " + $iop.focus)
+Write-Host ("RPC focus: " + $rpc.focus)
