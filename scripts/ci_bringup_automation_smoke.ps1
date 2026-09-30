@@ -25,7 +25,7 @@ function Run-Plan([string]$Name,[string]$Primary,[bool]$Ffmpeg,[string]$Expected
     $out=Join-Path $Root ($Name+'_action.json')
     $args=@('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$Planner,'-Triage',$triage,'-Out',$out)
     if($Ffmpeg){$args+='-FfmpegEnabled'}
-    & powershell.exe @args
+    & powershell.exe @args | ForEach-Object { Write-Host $_ }
     $rc=$LASTEXITCODE
     if($rc-ne$ExpectedRc){throw "$Name expected rc=$ExpectedRc got $rc"}
     $plan=Get-Content -Raw -LiteralPath $out|ConvertFrom-Json
