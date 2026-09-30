@@ -651,9 +651,9 @@ try {
     $GhidraImportedStubs = @()
     $GhidraImportedUntrackedStubs = @()
 
-    if (Test-Path -LiteralPath $GhidraCsv) {
-        $ghidraTomlPath = $GhidraCsv.Replace("\", "/")
-        Write-Host "      Ghidra function map found and enabled." -ForegroundColor Green
+    if ($VerifiedGhidraCsv) {
+        $ghidraTomlPath = $VerifiedGhidraCsv.Replace("\", "/")
+        Write-Host "      Verified Ghidra function map enabled." -ForegroundColor Green
 
         if ($VerifiedGhidraToml) {
             $ghidraExport = Get-Content -Raw -LiteralPath $VerifiedGhidraToml
@@ -663,7 +663,7 @@ try {
                         ", untracked stubs=" + $GhidraImportedUntrackedStubs.Count) -ForegroundColor DarkGray
         }
         else {
-            Write-Warning "Ghidra CSV exists but SCUS_971.77.ghidra.toml is missing; using Ghidra boundaries without Ghidra stub classifications."
+            Write-Warning "Verified Ghidra CSV exists but its TOML classifications are unavailable; using verified function boundaries only."
         }
     }
     else {
