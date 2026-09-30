@@ -14,6 +14,7 @@ $Runner=Join-Path $Dist 'ps2EntryRunner.exe'
 $BuildReport=Join-Path $Dist 'build_report.json'
 $Config=Join-Path $Dist 'downhill.auto.toml'
 $ReadinessScript=Join-Path $RepoRoot 'scripts\check_probe_readiness.ps1'
+$ReadyOut=Join-Path $Dist 'probe_readiness.json'
 
 if(!(Test-Path -LiteralPath $ReadinessScript)){throw "Missing readiness script: $ReadinessScript"}
 Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $Root
@@ -91,24 +92,23 @@ stubs = [
 
 Write-Host '[readiness-smoke] accepting matched ELF/runner/report...' -ForegroundColor Cyan
 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $ReadinessScript `
-    -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config `
+    -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config -Out $ReadyOut `
     -ExpectedSha256 $sha -ExpectedSize 128
 $rc=$LASTEXITCODE
 if($rc-ne 0){throw "Matching readiness fixture failed with exit code $rc"}
 
-$readyPath=Join-Path (Split-Path $ReadinessScript -Parent) 'probe_readiness.json'
-if(!(Test-Path -LiteralPath $readyPath)){throw "Readiness JSON was not created: $readyPath"}
-$ready=Get-Content -Raw -LiteralPath $readyPath|ConvertFrom-Json
+if(!(Test-Path -LiteralPath $ReadyOut)){throw "Readiness JSON was not created: $ReadyOut"}
+$ready=Get-Content -Raw -LiteralPath $ReadyOut|ConvertFrom-Json
 if(!$ready.ready){throw 'Matching readiness fixture was not marked ready'}
 
 Write-Host '[readiness-smoke] rejecting stale modified runner...' -ForegroundColor Cyan
 [IO.File]::AppendAllText($Runner,'stale',[Text.Encoding]::ASCII)
 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $ReadinessScript `
-    -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config `
+    -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config -Out $ReadyOut `
     -ExpectedSha256 $sha -ExpectedSize 128
 $rc=$LASTEXITCODE
 if($rc-ne 1){throw "Expected stale runner rejection exit 1, got $rc"}
-$ready=Get-Content -Raw -LiteralPath $readyPath|ConvertFrom-Json
+$ready=Get-Content -Raw -LiteralPath $ReadyOut|ConvertFrom-Json
 if($ready.ready){throw 'Stale runner was incorrectly accepted'}
 
 Write-Host '[readiness-smoke] PASS' -ForegroundColor Green
