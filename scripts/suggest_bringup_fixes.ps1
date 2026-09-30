@@ -97,6 +97,56 @@ $stubs = @(
         }
 )
 
+# Classify IOP/IRX module outcomes so first-boot failures are actionable.
+$iop = [ordered]@{
+    loaded_irx_count = 0
+    hle_fallback_modules = @()
+    load_failed_modules = @()
+    failed_open_modules = @()
+    relocation_warnings = 0
+    focus = $null
+}
+
+foreach($line in $lines){
+    if($line -match '(?i)\[IOP\]\s+loaded IRX\s+id='){
+        $iop.loaded_irx_count++
+        continue
+    }
+
+    $m=[regex]::Match($line,"(?i)\[IOP:HLE\]\s+fallback module='([^']+)'")
+    if($m.Success){$iop.hle_fallback_modules += $m.Groups[1].Value;continue}
+
+    $m=[regex]::Match($line,"(?i)\[IOP:load-failed\]\s+module='([^']+)'")
+    if($m.Success){$iop.load_failed_modules += $m.Groups[1].Value;continue}
+
+    $m=[regex]::Match($line,"(?i)\[IOP\]\s+failed to open IRX\s+'([^']+)'")
+    if($m.Success){$iop.failed_open_modules += $m.Groups[1].Value;continue}
+
+    if($line -match '(?i)one or more IRX relocations were unsupported'){$iop.relocation_warnings++}
+}
+$iop.hle_fallback_modules=@($iop.hle_fallback_modules|Sort-Object -Unique)
+$iop.load_failed_modules=@($iop.load_failed_modules|Sort-Object -Unique)
+$iop.failed_open_modules=@($iop.failed_open_modules|Sort-Object -Unique)
+
+if(@($iop.failed_open_modules).Count -gt 0){
+    $iop.focus='Physical IRX files could not be opened. Verify CD root / ISO mapping and exact module paths before changing EE recompilation.'
+}
+elseif(@($iop.load_failed_modules).Count -gt 0){
+    $iop.focus='One or more IOP modules could not load and had no HLE fallback. Prioritize IRX loader/import/hardware support for these modules.'
+}
+elseif($iop.relocation_warnings -gt 0){
+    $iop.focus='Physical IRX code loaded with unsupported relocations. Inspect IOP relocation support before treating later RPC failures as EE issues.'
+}
+elseif($iop.loaded_irx_count -gt 0){
+    $iop.focus='Physical IRX execution is active. Use later RPC/SIF or graphics milestones to identify the next blocker.'
+}
+elseif(@($iop.hle_fallback_modules).Count -gt 0){
+    $iop.focus='IOP services are currently using HLE fallback modules. Confirm the fallback covers the game-visible RPC ABI.'
+}
+else{
+    $iop.focus='No explicit IRX load outcome was observed in the captured log.'
+}
+
 # Infer how far guest graphics progressed from aggressive runtime tick counters.
 $graphics = [ordered]@{
     max_dma = [uint64]0
@@ -185,6 +235,7 @@ $report = [ordered]@{
     missing_function_candidates = $candidates
     new_entry_point_candidates = $newEntries
     unimplemented_stubs = $stubs
+    iop = [pscustomobject]$iop
     graphics = [pscustomobject]$graphics
     toml_snippet = $snippet
 }
@@ -204,3 +255,4 @@ if ($stubs.Count -gt 0) {
 }
 Write-Host ("Graphics stage: " + $graphics.stage)
 Write-Host ("Graphics focus: " + $graphics.focus)
+Write-Host ("IOP focus: " + $iop.focus)
