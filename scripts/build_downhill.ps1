@@ -27,6 +27,8 @@ $GhidraToml = Join-Path $AnalysisDir "SCUS_971.77.ghidra.toml"
 $OverrideSource = Join-Path $RepoRoot "src\downhill_domination_overrides.cpp"
 $DeepElfAnalyzer = Join-Path $RepoRoot "scripts\analyze_downhill_elf_deep.ps1"
 $DeepElfReport = Join-Path $LocalAnalysisDir "SCUS_971.77.deep.json"
+$GameDataInventorySource = Join-Path $RepoRoot "scripts\analyze_game_data.ps1"
+$GameDataInventoryReport = Join-Path $LocalAnalysisDir "game_data_inventory.json"
 $LoggedRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_logged.ps1"
 $ProbeRunnerSource = Join-Path $RepoRoot "scripts\run_downhill_probe.ps1"
 $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
@@ -457,11 +459,11 @@ function Get-TomlArrayEntries {
         return @()
     }
 
-    $entries = New-Object System.Collections.Generic.List[string]
+    $entries = @()
     foreach ($quoted in [regex]::Matches($match.Groups[1].Value, '"([^"]+)"')) {
         $value = $quoted.Groups[1].Value.Trim()
         if ($value) {
-            $entries.Add($value)
+            $entries += $value
         }
     }
 
@@ -505,6 +507,13 @@ try {
     }
     else {
         Write-Host ("      Game data mode: " + $GameData.mode + " (" + $GameData.source + ")") -ForegroundColor DarkGray
+    }
+
+    if (Test-Path -LiteralPath $GameDataInventorySource) {
+        & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $GameDataInventorySource -GameRoot $GameRoot -Out $GameDataInventoryReport
+        if ($LASTEXITCODE -ne 0) {
+            Write-Warning "Game-data inventory failed; compilation will continue."
+        }
     }
 
     $ElfIdentity = Validate-Elf $Elf
@@ -856,6 +865,9 @@ try {
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
     Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
+    if (Test-Path -LiteralPath $GameDataInventoryReport) {
+        Copy-Item -Force $GameDataInventoryReport (Join-Path $DistDir "game_data_inventory.json")
+    }
     Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
     Copy-Item -Force $StubFilterOut (Join-Path $DistDir "runtime_stub_filter_report.json")
     Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
@@ -940,6 +952,7 @@ try {
         }
         local_extra_entry_points = $LocalExtraEntries
         game_data = $GameData
+        game_data_inventory = if (Test-Path -LiteralPath $GameDataInventoryReport) { $GameDataInventoryReport } else { $null }
         runner = $StagedRunner
         run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
         probe_script = (Join-Path $DistDir "RUN_PROBE_90S.cmd")
