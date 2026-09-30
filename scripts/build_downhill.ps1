@@ -38,6 +38,7 @@ $SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
 $StubAuditSource = Join-Path $RepoRoot "scripts\audit_runtime_stubs.ps1"
 $StubFilterSource = Join-Path $RepoRoot "scripts\filter_runtime_stubs.ps1"
 $RuntimePatchSource = Join-Path $RepoRoot "scripts\patch_downhill_ps2recomp.ps1"
+$ReadinessSource = Join-Path $RepoRoot "scripts\check_probe_readiness.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $ConfigDir | Out-Null
@@ -875,11 +876,22 @@ try {
     Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
     Copy-Item -Force $StubFilterOut (Join-Path $DistDir "runtime_stub_filter_report.json")
     Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    if (!(Test-Path -LiteralPath $ReadinessSource)) {
+        throw "Probe readiness helper is missing: $ReadinessSource"
+    }
+    Copy-Item -Force $ReadinessSource (Join-Path $DistDir "check_probe_readiness.ps1")
     Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
 
     $runCmdLines = @(
         "@echo off",
         "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0check_probe_readiness.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
+        "if errorlevel 1 (",
+        "  echo.",
+        "  echo [ERRO] Readiness gate failed. Runner will not be started.",
+        "  pause",
+        "  exit /b 1",
+        ")",
         "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
         "echo.",
         "pause"
@@ -890,10 +902,19 @@ try {
     $probeCmdLines = @(
         "@echo off",
         "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0check_probe_readiness.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
+        "if errorlevel 1 (",
+        "  echo.",
+        "  echo [ERRO] Readiness gate failed. Probe will not be started.",
+        "  pause",
+        "  exit /b 1",
+        ")",
         "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_probe.ps1"" -Elf ""%~dp0..\SCUS_971.77"" -TimeoutSeconds 90",
+        "set ""PROBE_RC=%ERRORLEVEL%""",
         "echo.",
-        "echo Diagnostic probe exit code: %ERRORLEVEL%",
-        "pause"
+        "echo Diagnostic probe exit code: %PROBE_RC%",
+        "pause",
+        "exit /b %PROBE_RC%"
     )
     $probeCmd = $probeCmdLines -join [Environment]::NewLine
     Set-Content -LiteralPath (Join-Path $DistDir "RUN_PROBE_90S.cmd") -Value $probeCmd -Encoding ASCII
@@ -945,6 +966,14 @@ try {
         runtime_patch_diff_sha256 = $RuntimePatchDiffSha256
         game_root = $GameRoot
         elf = $Elf
+        elf_identity = [ordered]@{
+            size_bytes = [int64]$ElfIdentity.size_bytes
+            sha256 = [string]$ElfIdentity.sha256
+            entry = [string]$ElfIdentity.entry
+            pcsx2_elf_crc = [string]$ElfIdentity.pcsx2_elf_crc
+            crc32_ieee = [string]$ElfIdentity.crc32_ieee
+            anchors_valid = [bool]$ElfIdentity.anchors_valid
+        }
         config = $AutoConfig
         ghidra_map_used = (Test-Path -LiteralPath $GhidraCsv)
         ghidra_toml_used = (Test-Path -LiteralPath $GhidraToml)
