@@ -182,6 +182,11 @@ if (Test-Path -LiteralPath $triage) {
                 Write-Host ("  First RPC:         SID {0} / {1} @ PC {2}" -f $firstRpc.sid,$firstRpc.rpc,$firstRpc.pc) -ForegroundColor Yellow
             }
         }
+        if ($t.mpeg) {
+            Write-Host ("  MPEG no-FFmpeg:    " + $t.mpeg.no_ffmpeg)
+            Write-Host ("  MPEG feeds/waits:  {0}/{1}" -f $t.mpeg.feed_events,$t.mpeg.picture_waits)
+            Write-Host ("  MPEG IsEnd/errors: {0}/{1}" -f $t.mpeg.is_end_checks,@($t.mpeg.errors).Count)
+        }
         if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
             Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
         }
@@ -218,6 +223,9 @@ if (Test-Path -LiteralPath $suggestions) {
                 $rpcRows=@($sg.rpc.unhandled_calls | Select-Object -First 4 | ForEach-Object { $_.sid + "/" + $_.rpc })
                 Write-Host ("  RPC calls:      " + ($rpcRows -join ", ")) -ForegroundColor Yellow
             }
+        }
+        if ($sg.mpeg) {
+            Write-Host ("  MPEG focus:     " + $sg.mpeg.focus)
         }
         if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
             Write-Host ("  New entries:    " + (($sg.new_entry_point_candidates | Select-Object -First 8) -join ", ")) -ForegroundColor Yellow
