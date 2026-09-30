@@ -68,5 +68,16 @@ $r3=Read-Json $out3
 if([string]$r3.primary_classification-ne 'mpeg-no-ffmpeg'){throw "case3 primary=$($r3.primary_classification)"}
 if(-not [bool]$r3.mpeg.no_ffmpeg -or [int]$r3.mpeg.picture_waits-ne 2){throw 'case3 MPEG counters mismatch'}
 
+# Case 4: preseeded display state and zero graphics counters are not frames.
+$log4=Join-Path $Root 'reset-display.log'
+$out4=Join-Path $Root 'reset-display.json'
+@('[run:tick] tick=240 pc=0x247058 ra=0x24708c dispfb1=0x1400 display1=0x1bf27f00000000 activeThreads=1 dma=0 gif=0 gsw=0 vif=0') | Set-Content -LiteralPath $log4
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $Triage -Log $log4 -Out $out4
+if($LASTEXITCODE-ne 0){throw 'triage case4 failed'}
+$r4=Read-Json $out4
+if($r4.milestones.display_registers_programmed -or $r4.milestones.guest_graphics_activity -or $r4.milestones.vif_vu_activity -or $r4.milestones.gif_gs_activity){throw 'Reset state falsely reported guest graphics'}
+if($r4.graphics_stage -ne 'none'){throw 'Reset display advanced graphics stage'}
+if($r4.primary_classification -eq 'vif-vu-gs'){throw 'Zero counters falsely classified as graphics blocker'}
+
 Write-Host '[triage-smoke] PASS' -ForegroundColor Green
 exit 0
