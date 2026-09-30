@@ -67,6 +67,22 @@ for($i=1;$i-le$MaxIterations;$i++){
         break
     }
 
+    $readinessScript=Join-Path $Dist 'check_probe_readiness.ps1'
+    if(!(Test-Path -LiteralPath $readinessScript)){
+        $stopReason='readiness-script-missing'
+        $finalExitCode=14
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason}
+        break
+    }
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $readinessScript -Elf $Elf
+    $readyRc=$LASTEXITCODE
+    if($readyRc -ne 0){
+        $stopReason='readiness-failed'
+        $finalExitCode=14
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason;readiness_rc=$readyRc}
+        break
+    }
+
     & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $probeScript -Elf $Elf -TimeoutSeconds $ProbeSeconds
     $probeRc=$LASTEXITCODE
 
