@@ -33,6 +33,7 @@ try {
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json") "analysis\SCUS_971.77.identity.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\environment.json") "analysis\environment.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\game_data_prepared.json") "analysis\game_data_prepared.json"
+    Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\game_data_inventory.json") "analysis\game_data_inventory.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.deep.json") "analysis\SCUS_971.77.deep.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\SCUS_971.77.functions.csv") "analysis\SCUS_971.77.functions.csv"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\SCUS_971.77.ghidra.toml") "analysis\SCUS_971.77.ghidra.toml"
