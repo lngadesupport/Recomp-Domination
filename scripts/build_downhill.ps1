@@ -904,16 +904,16 @@ try {
 
     [int64]$GeneratedCppBytes = 0
     [int]$TodoNamedOccurrences = 0
-    $GeneratedCppMetrics = New-Object System.Collections.Generic.List[object]
+    $GeneratedCppMetrics = @()
     foreach ($cppFile in $GeneratedCppFiles) {
         $cppText = Get-Content -Raw -LiteralPath $cppFile.FullName
         $TodoNamedOccurrences += ([regex]::Matches($cppText, "TODO_NAMED")).Count
         $GeneratedCppBytes += [int64]$cppFile.Length
-        $GeneratedCppMetrics.Add([ordered]@{
+        $GeneratedCppMetrics += [pscustomobject][ordered]@{
             file = $cppFile.Name
             bytes = [int64]$cppFile.Length
             sha256 = (Get-FileHash -LiteralPath $cppFile.FullName -Algorithm SHA256).Hash
-        })
+        }
     }
 
     $PrimaryGeneratedCppSha256 = $null
