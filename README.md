@@ -92,9 +92,16 @@ O primeiro bring-up desativa FFmpeg e Debug UI para reduzir dependências, mas m
 O ELF real foi analisado e recompilado nesta sessão em Linux x64: 5.527 funções
 processadas, 5.415 recompiladas e 112 stubs, sem erros de geração ou instruções
 não tratadas. Todos os 5.528 arquivos C++ gerados passaram na verificação de
-sintaxe GCC. O link Windows e o primeiro boot real ainda não foram executados.
+sintaxe GCC. O link e o primeiro boot Windows retail ainda não foram executados.
 Veja [o checkpoint retail](analysis/retail_generation_2026-09-30.md) para evidências,
 limitações e o comando de geração headless reproduzível.
+
+O runner retail também linkou em Linux e executou `entry -> main -> SIF/IOP`
+em um probe limitado de 15 segundos. O bloqueio observado foi a ausência dos
+dados do disco e de quatro módulos IRX sem fallback disponível. Ainda não houve
+frame do jogo, menu ou corrida, e o build Windows retail permanece pendente.
+Veja [o checkpoint do primeiro boot](analysis/retail_first_boot_2026-09-30.md)
+e os comandos POSIX de build/probe para repetir o diagnóstico.
 
 O objetivo imediato é chegar a um executável nativo que percorra:
 

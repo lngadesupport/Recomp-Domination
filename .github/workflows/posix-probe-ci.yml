@@ -1,0 +1,16 @@
+name: POSIX probe watchdog CI
+
+on:
+  push:
+    branches: [bootstrap/compiler]
+  pull_request:
+    branches: [main]
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify POSIX timeout, log limit, signal and exit diagnostics
+        run: python3 -m unittest discover -s tests -p 'test_posix_probe.py' -v
