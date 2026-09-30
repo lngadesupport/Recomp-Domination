@@ -89,6 +89,13 @@ O primeiro bring-up desativa FFmpeg e Debug UI para reduzir dependências, mas m
 
 ## Estado
 
+O ELF real foi analisado e recompilado nesta sessão em Linux x64: 5.527 funções
+processadas, 5.415 recompiladas e 112 stubs, sem erros de geração ou instruções
+não tratadas. Todos os 5.528 arquivos C++ gerados passaram na verificação de
+sintaxe GCC. O link Windows e o primeiro boot real ainda não foram executados.
+Veja [o checkpoint retail](analysis/retail_generation_2026-09-30.md) para evidências,
+limitações e o comando de geração headless reproduzível.
+
 O objetivo imediato é chegar a um executável nativo que percorra:
 
 ```text
