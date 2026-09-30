@@ -6,6 +6,7 @@ on:
       - bootstrap/compiler
       - bootstrap/bringup-automation
       - bootstrap/full-auto
+      - bootstrap/iteration-compare
     paths:
       - scripts/select_bringup_entry_points.ps1
       - scripts/auto_bringup.ps1
@@ -15,6 +16,9 @@ on:
       - scripts/full_auto_bringup.ps1
       - scripts/ci_full_auto_bringup_smoke.ps1
       - FULL_AUTO_BRINGUP.cmd
+      - scripts/compare_bringup_iterations.ps1
+      - scripts/ci_compare_bringup_iterations_smoke.ps1
+      - COMPARE_BRINGUP.cmd
       - scripts/check_probe_readiness.ps1
       - scripts/ci_probe_readiness_smoke.ps1
       - scripts/triage_first_boot.ps1
@@ -39,7 +43,7 @@ jobs:
       - name: Parse bring-up scripts in Windows PowerShell 5.1
         shell: powershell
         run: |
-          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1','.\scripts\check_probe_readiness.ps1','.\scripts\ci_probe_readiness_smoke.ps1','.\scripts\triage_first_boot.ps1','.\scripts\ci_first_boot_triage_smoke.ps1','.\scripts\plan_bringup_action.ps1','.\scripts\snapshot_bringup_iteration.ps1','.\scripts\ci_bringup_automation_smoke.ps1','.\scripts\full_auto_bringup.ps1','.\scripts\ci_full_auto_bringup_smoke.ps1')){
+          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1','.\scripts\check_probe_readiness.ps1','.\scripts\ci_probe_readiness_smoke.ps1','.\scripts\triage_first_boot.ps1','.\scripts\ci_first_boot_triage_smoke.ps1','.\scripts\plan_bringup_action.ps1','.\scripts\snapshot_bringup_iteration.ps1','.\scripts\ci_bringup_automation_smoke.ps1','.\scripts\full_auto_bringup.ps1','.\scripts\ci_full_auto_bringup_smoke.ps1','.\scripts\compare_bringup_iterations.ps1','.\scripts\ci_compare_bringup_iterations_smoke.ps1')){
             $tokens=$null;$errors=$null
             [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $p),[ref]$tokens,[ref]$errors)|Out-Null
             if($errors.Count){$errors|Format-List|Out-String|Write-Host;throw "Parser errors in $p"}
@@ -65,6 +69,11 @@ jobs:
         run: |
           .\scripts\ci_full_auto_bringup_smoke.ps1 -Root _ci\full_auto
           if($LASTEXITCODE -ne 0){throw "full-auto smoke failed with $LASTEXITCODE"}
+      - name: Validate bring-up iteration comparison
+        shell: powershell
+        run: |
+          .\scripts\ci_compare_bringup_iterations_smoke.ps1 -Root _ci\iteration_compare
+          if($LASTEXITCODE -ne 0){throw "iteration comparison smoke failed with $LASTEXITCODE"}
       - name: Select only valid new entries for missing-function triage
         shell: powershell
         run: |
