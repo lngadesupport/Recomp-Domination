@@ -141,8 +141,20 @@ if (Test-Path -LiteralPath $triage) {
             Write-Host ("  DISPFB1:           " + $t.runtime_counters.last_dispfb1)
             Write-Host ("  DISPLAY1:          " + $t.runtime_counters.last_display1)
         }
-        if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
-            Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
+        if ($t.primary_classification) {
+            Write-Host ("  Classification:    " + $t.primary_classification)
+        }
+        if ($t.categories) {
+            $activeCategories = @(
+                $t.categories.PSObject.Properties |
+                    Where-Object { [int]$_.Value -gt 0 } |
+                    Sort-Object Value -Descending |
+                    Select-Object -First 5 |
+                    ForEach-Object { $_.Name + "=" + $_.Value }
+            )
+            if ($activeCategories.Count -gt 0) {
+                Write-Host ("  Categories:        " + ($activeCategories -join ", "))
+            }
         }
     } catch {
         Write-Warning ("Could not parse first_boot_probe_triage.json: " + $_.Exception.Message)
