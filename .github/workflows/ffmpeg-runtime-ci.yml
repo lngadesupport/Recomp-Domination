@@ -1,0 +1,68 @@
+name: Optional FFmpeg runtime CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - bootstrap/compiler
+    paths:
+      - scripts/build_downhill.ps1
+      - BUILD_DOWNHILL_FFMPEG.cmd
+      - .github/workflows/ffmpeg-runtime-ci.yml
+
+concurrency:
+  group: ffmpeg-runtime-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ffmpeg-runtime:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up MSVC developer environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Clone pinned PS2Recomp
+        shell: powershell
+        run: |
+          git clone --filter=blob:none https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
+          git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+
+      - name: Configure runtime with FFmpeg
+        shell: powershell
+        run: >-
+          cmake -S _ci/PS2Recomp -B _ci/build-ffmpeg -A x64
+          -DPS2X_BUILD_RUNTIME=ON
+          -DPS2X_BUILD_RECOMP=OFF
+          -DPS2X_BUILD_ANALYZER=OFF
+          -DPS2X_BUILD_TEST=OFF
+          -DPS2X_BUILD_STUDIO=OFF
+          -DPS2X_ENABLE_FFMPEG=ON
+          -DPS2X_ENABLE_DEBUG_UI=OFF
+          -DPS2X_ENABLE_RUNTIME_LOGS=ON
+          -DPS2X_SHOW_WINDOWS_CONSOLE=ON
+
+      - name: Build FFmpeg-enabled runner
+        shell: powershell
+        run: cmake --build _ci/build-ffmpeg --config Release --target ps2EntryRunner --parallel
+
+      - name: Verify runner and FFmpeg DLL staging
+        shell: powershell
+        run: |
+          $runner=Get-ChildItem _ci/build-ffmpeg -Recurse -Filter ps2EntryRunner.exe -File | Select-Object -First 1
+          if(!$runner){throw 'FFmpeg-enabled ps2EntryRunner.exe was not produced'}
+          $dlls=@(Get-ChildItem $runner.Directory.FullName -Filter '*.dll' -File)
+          if($dlls.Count -lt 3){
+            Write-Host ('DLLs found beside runner: '+(($dlls.Name) -join ', '))
+            throw 'Expected FFmpeg runtime DLLs beside ps2EntryRunner.exe'
+          }
+          $names=@($dlls.Name)
+          if(-not ($names | Where-Object {$_ -match '^avcodec.*\.dll$'})){throw 'avcodec DLL was not staged'}
+          if(-not ($names | Where-Object {$_ -match '^avutil.*\.dll$'})){throw 'avutil DLL was not staged'}
+          if(-not ($names | Where-Object {$_ -match '^swscale.*\.dll$'})){throw 'swscale DLL was not staged'}
+          Write-Host ('Runner: '+$runner.FullName)
+          Write-Host ('FFmpeg DLLs: '+($names -join ', '))
