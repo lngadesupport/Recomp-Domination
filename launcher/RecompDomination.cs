@@ -18,7 +18,7 @@ class Recompiler : Form {
         Font = new Font("Segoe UI", 10);
         var title = new Label { Text = "Downhill Domination • Windows x64", Left = 20, Top = 16, Width = 780, Height = 30 };
         bool portable = Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tools"));
-        var info = new Label { Text = portable ? "Versão portátil: ferramentas incluídas, sem instalação.\nSelecione a pasta com SCUS_971.77 e os dados do disco. Requer internet no primeiro build." : "Selecione a pasta com SCUS_971.77 e os dados do disco.\nO programa instala as ferramentas que faltarem. Requer internet e vários GB livres.", Left = 20, Top = 54, Width = 780, Height = 52 };
+        var info = new Label { Text = portable ? "Versão portátil offline: ferramentas, fontes e dependências incluídos.\nSelecione a pasta com SCUS_971.77 e os dados do disco." : "Selecione a pasta com SCUS_971.77 e os dados do disco.\nO programa instala as ferramentas que faltarem. Requer internet e vários GB livres.", Left = 20, Top = 54, Width = 780, Height = 52 };
         folder.SetBounds(20, 114, 660, 30); folder.Text = @"D:\Recomp Domination";
         browse.SetBounds(690, 112, 130, 32); browse.Text = "Selecionar...";
         browse.Click += delegate { using (var d = new FolderBrowserDialog()) { if (d.ShowDialog() == DialogResult.OK) folder.Text = d.SelectedPath; } };
