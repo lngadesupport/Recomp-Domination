@@ -67,7 +67,7 @@ function Save-IterationSnapshot {
     if($Selection){$snapshotArgs+=@('-Selection',$Selection)}
     if(Test-Path -LiteralPath $Extra){$snapshotArgs+=@('-ExtraEntryPoints',$Extra)}
 
-    & powershell.exe @snapshotArgs
+    & powershell.exe @snapshotArgs | ForEach-Object { Write-Host $_ }
     if($LASTEXITCODE -ne 0){
         Write-Warning ("Iteration snapshot failed with exit code {0}" -f $LASTEXITCODE)
     }
