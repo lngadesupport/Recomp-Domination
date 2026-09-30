@@ -883,6 +883,440 @@ try {
             Copy-Item -Force $_.FullName $DistDir
         }
 
+    $StagedDlls = @(
+        Get-ChildItem -LiteralPath $DistDir -Filter "*.dll" -File -ErrorAction SilentlyContinue |
+            Sort-Object Name
+    )
+    if ($EnableFfmpeg) {
+        $StagedDllNames = @($StagedDlls | ForEach-Object Name)
+        foreach ($requiredPattern in @('^avcodec.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
+    Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
+    Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
+    Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
+    Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
+
+    $runCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
+        "echo.",
+        "pause"
+    )
+    $runCmd = $runCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $probeCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_probe.ps1"" -Elf ""%~dp0..\SCUS_971.77"" -TimeoutSeconds 90",
+        "echo.",
+        "echo Diagnostic probe exit code: %ERRORLEVEL%",
+        "pause"
+    )
+    $probeCmd = $probeCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_PROBE_90S.cmd") -Value $probeCmd -Encoding ASCII
+
+    $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
+    $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
+    $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
+
+    [int64]$GeneratedCppBytes = 0
+    [int]$TodoNamedOccurrences = 0
+    $GeneratedCppMetrics = New-Object System.Collections.Generic.List[object]
+    foreach ($cppFile in $GeneratedCppFiles) {
+        $cppText = Get-Content -Raw -LiteralPath $cppFile.FullName
+        $TodoNamedOccurrences += ([regex]::Matches($cppText, "TODO_NAMED")).Count
+        $GeneratedCppBytes += [int64]$cppFile.Length
+        $GeneratedCppMetrics.Add([ordered]@{
+            file = $cppFile.Name
+            bytes = [int64]$cppFile.Length
+            sha256 = (Get-FileHash -LiteralPath $cppFile.FullName -Algorithm SHA256).Hash
+        })
+    }
+
+    $PrimaryGeneratedCppSha256 = $null
+    if ($GeneratedCppFiles.Count -eq 1) {
+        $PrimaryGeneratedCppSha256 = (Get-FileHash -LiteralPath $GeneratedCppFiles[0].FullName -Algorithm SHA256).Hash
+    }
+
+    $metrics = [ordered]@{
+        output_mode = $OutputMode
+        generated_cpp_file_count = $GeneratedCppFiles.Count
+        generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        todo_named_occurrences = $TodoNamedOccurrences
+        registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
+        generated_cpp_bytes = $GeneratedCppBytes
+        generated_cpp_sha256 = $PrimaryGeneratedCppSha256
+        generated_cpp_files = $GeneratedCppMetrics
+        config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
+        runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
+        runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+        runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
+        staged_dlls = @(
+            $StagedDlls | ForEach-Object {
+                [ordered]@{
+                    file = $_.Name
+                    bytes = [int64]$_.Length
+                    sha256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
+                }
+            }
+        )
+    }
+
+    $summary = [ordered]@{
+        result = "build-complete"
+        ps2recomp_commit = $PinnedPs2Recomp
+        runtime_patch_script_sha256 = $RuntimePatchSha256
+        runtime_patch_diff_sha256 = $RuntimePatchDiffSha256
+        game_root = $GameRoot
+        elf = $Elf
+        config = $AutoConfig
+        ghidra_map_used = [bool]$VerifiedGhidraCsv
+        ghidra_toml_used = [bool]$VerifiedGhidraToml
+        ghidra_imported_stubs = $GhidraImportedStubs
+        ghidra_imported_untracked_stubs = $GhidraImportedUntrackedStubs
+        patch_policy = [ordered]@{
+            patch_syscalls = $false
+            patch_cop0 = $false
+            patch_cache = $false
+        }
+        ffmpeg_enabled = [bool]$EnableFfmpeg
+        local_extra_entry_points = $LocalExtraEntries
+        game_data = $GameData
+        runner = $StagedRunner
+        run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        probe_script = (Join-Path $DistDir "RUN_PROBE_90S.cmd")
+        first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
+        first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
+        recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        deep_elf_report = (Join-Path $DistDir "SCUS_971.77.deep.json")
+        runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
+        staged_config = (Join-Path $DistDir "downhill.auto.toml")
+        bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
+        transcript = $Transcript
+        metrics = $metrics
+    }
+
+    $summaryJson = $summary | ConvertTo-Json -Depth 6
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "last_build.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    [IO.File]::WriteAllText(
+        (Join-Path $DistDir "build_report.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+
+    Write-Host ""
+    Write-Host "============================================================" -ForegroundColor Green
+    Write-Host " Native compiler/bootstrap completed." -ForegroundColor Green
+    Write-Host " Runner: $($summary.runner)" -ForegroundColor Green
+    Write-Host " Run:    $($summary.run_script)" -ForegroundColor Green
+    Write-Host " Build report: $(Join-Path $DistDir "build_report.json")" -ForegroundColor Green
+    Write-Host " Log:    $Transcript" -ForegroundColor Green
+    Write-Host "============================================================" -ForegroundColor Green
+}
+catch {
+    Write-Host ""
+    Write-Host "BUILD FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Transcript: $Transcript" -ForegroundColor Yellow
+    exit 1
+}
+finally {
+    try {
+        Stop-Transcript | Out-Null
+    }
+    catch {
+    }
+}
+,'^avutil.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
+    Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
+    Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
+    Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
+    Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
+
+    $runCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
+        "echo.",
+        "pause"
+    )
+    $runCmd = $runCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $probeCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_probe.ps1"" -Elf ""%~dp0..\SCUS_971.77"" -TimeoutSeconds 90",
+        "echo.",
+        "echo Diagnostic probe exit code: %ERRORLEVEL%",
+        "pause"
+    )
+    $probeCmd = $probeCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_PROBE_90S.cmd") -Value $probeCmd -Encoding ASCII
+
+    $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
+    $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
+    $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
+
+    [int64]$GeneratedCppBytes = 0
+    [int]$TodoNamedOccurrences = 0
+    $GeneratedCppMetrics = New-Object System.Collections.Generic.List[object]
+    foreach ($cppFile in $GeneratedCppFiles) {
+        $cppText = Get-Content -Raw -LiteralPath $cppFile.FullName
+        $TodoNamedOccurrences += ([regex]::Matches($cppText, "TODO_NAMED")).Count
+        $GeneratedCppBytes += [int64]$cppFile.Length
+        $GeneratedCppMetrics.Add([ordered]@{
+            file = $cppFile.Name
+            bytes = [int64]$cppFile.Length
+            sha256 = (Get-FileHash -LiteralPath $cppFile.FullName -Algorithm SHA256).Hash
+        })
+    }
+
+    $PrimaryGeneratedCppSha256 = $null
+    if ($GeneratedCppFiles.Count -eq 1) {
+        $PrimaryGeneratedCppSha256 = (Get-FileHash -LiteralPath $GeneratedCppFiles[0].FullName -Algorithm SHA256).Hash
+    }
+
+    $metrics = [ordered]@{
+        output_mode = $OutputMode
+        generated_cpp_file_count = $GeneratedCppFiles.Count
+        generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        todo_named_occurrences = $TodoNamedOccurrences
+        registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
+        generated_cpp_bytes = $GeneratedCppBytes
+        generated_cpp_sha256 = $PrimaryGeneratedCppSha256
+        generated_cpp_files = $GeneratedCppMetrics
+        config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
+        runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
+        runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+        runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
+    }
+
+    $summary = [ordered]@{
+        result = "build-complete"
+        ps2recomp_commit = $PinnedPs2Recomp
+        runtime_patch_script_sha256 = $RuntimePatchSha256
+        runtime_patch_diff_sha256 = $RuntimePatchDiffSha256
+        game_root = $GameRoot
+        elf = $Elf
+        config = $AutoConfig
+        ghidra_map_used = [bool]$VerifiedGhidraCsv
+        ghidra_toml_used = [bool]$VerifiedGhidraToml
+        ghidra_imported_stubs = $GhidraImportedStubs
+        ghidra_imported_untracked_stubs = $GhidraImportedUntrackedStubs
+        patch_policy = [ordered]@{
+            patch_syscalls = $false
+            patch_cop0 = $false
+            patch_cache = $false
+        }
+        ffmpeg_enabled = [bool]$EnableFfmpeg
+        local_extra_entry_points = $LocalExtraEntries
+        game_data = $GameData
+        runner = $StagedRunner
+        run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        probe_script = (Join-Path $DistDir "RUN_PROBE_90S.cmd")
+        first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
+        first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
+        recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        deep_elf_report = (Join-Path $DistDir "SCUS_971.77.deep.json")
+        runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
+        staged_config = (Join-Path $DistDir "downhill.auto.toml")
+        bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
+        transcript = $Transcript
+        metrics = $metrics
+    }
+
+    $summaryJson = $summary | ConvertTo-Json -Depth 6
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "last_build.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    [IO.File]::WriteAllText(
+        (Join-Path $DistDir "build_report.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+
+    Write-Host ""
+    Write-Host "============================================================" -ForegroundColor Green
+    Write-Host " Native compiler/bootstrap completed." -ForegroundColor Green
+    Write-Host " Runner: $($summary.runner)" -ForegroundColor Green
+    Write-Host " Run:    $($summary.run_script)" -ForegroundColor Green
+    Write-Host " Build report: $(Join-Path $DistDir "build_report.json")" -ForegroundColor Green
+    Write-Host " Log:    $Transcript" -ForegroundColor Green
+    Write-Host "============================================================" -ForegroundColor Green
+}
+catch {
+    Write-Host ""
+    Write-Host "BUILD FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Transcript: $Transcript" -ForegroundColor Yellow
+    exit 1
+}
+finally {
+    try {
+        Stop-Transcript | Out-Null
+    }
+    catch {
+    }
+}
+,'^swscale.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+    Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
+    Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
+    Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
+    Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
+    Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
+    Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
+    Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
+
+    $runCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_logged.ps1"" -Elf ""%~dp0..\SCUS_971.77""",
+        "echo.",
+        "pause"
+    )
+    $runCmd = $runCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_DOWNHILL.cmd") -Value $runCmd -Encoding ASCII
+
+    $probeCmdLines = @(
+        "@echo off",
+        "cd /d ""%~dp0""",
+        "powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File ""%~dp0run_downhill_probe.ps1"" -Elf ""%~dp0..\SCUS_971.77"" -TimeoutSeconds 90",
+        "echo.",
+        "echo Diagnostic probe exit code: %ERRORLEVEL%",
+        "pause"
+    )
+    $probeCmd = $probeCmdLines -join [Environment]::NewLine
+    Set-Content -LiteralPath (Join-Path $DistDir "RUN_PROBE_90S.cmd") -Value $probeCmd -Encoding ASCII
+
+    $functionHeaderText = Get-Content -Raw -LiteralPath $GeneratedFunctionsHeader
+    $stubHeaderText = Get-Content -Raw -LiteralPath $GeneratedStubsHeader
+    $registrationText = Get-Content -Raw -LiteralPath $GeneratedRegistration
+
+    [int64]$GeneratedCppBytes = 0
+    [int]$TodoNamedOccurrences = 0
+    $GeneratedCppMetrics = New-Object System.Collections.Generic.List[object]
+    foreach ($cppFile in $GeneratedCppFiles) {
+        $cppText = Get-Content -Raw -LiteralPath $cppFile.FullName
+        $TodoNamedOccurrences += ([regex]::Matches($cppText, "TODO_NAMED")).Count
+        $GeneratedCppBytes += [int64]$cppFile.Length
+        $GeneratedCppMetrics.Add([ordered]@{
+            file = $cppFile.Name
+            bytes = [int64]$cppFile.Length
+            sha256 = (Get-FileHash -LiteralPath $cppFile.FullName -Algorithm SHA256).Hash
+        })
+    }
+
+    $PrimaryGeneratedCppSha256 = $null
+    if ($GeneratedCppFiles.Count -eq 1) {
+        $PrimaryGeneratedCppSha256 = (Get-FileHash -LiteralPath $GeneratedCppFiles[0].FullName -Algorithm SHA256).Hash
+    }
+
+    $metrics = [ordered]@{
+        output_mode = $OutputMode
+        generated_cpp_file_count = $GeneratedCppFiles.Count
+        generated_function_declarations = ([regex]::Matches($functionHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        generated_stub_declarations = ([regex]::Matches($stubHeaderText, "(?m)^void\s+[A-Za-z_][A-Za-z0-9_]*\s*\(")).Count
+        todo_named_occurrences = $TodoNamedOccurrences
+        registered_function_slots = ([regex]::Matches($registrationText, "(?m)^\s*g_ps2RecompiledFunctionTable\s*\[")).Count
+        generated_cpp_bytes = $GeneratedCppBytes
+        generated_cpp_sha256 = $PrimaryGeneratedCppSha256
+        generated_cpp_files = $GeneratedCppMetrics
+        config_sha256 = (Get-FileHash -LiteralPath $AutoConfig -Algorithm SHA256).Hash
+        runner_bytes = (Get-Item -LiteralPath $StagedRunner).Length
+        runner_sha256 = (Get-FileHash -LiteralPath $StagedRunner -Algorithm SHA256).Hash
+        runtime_override_crc32_ieee = Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32)
+    }
+
+    $summary = [ordered]@{
+        result = "build-complete"
+        ps2recomp_commit = $PinnedPs2Recomp
+        runtime_patch_script_sha256 = $RuntimePatchSha256
+        runtime_patch_diff_sha256 = $RuntimePatchDiffSha256
+        game_root = $GameRoot
+        elf = $Elf
+        config = $AutoConfig
+        ghidra_map_used = [bool]$VerifiedGhidraCsv
+        ghidra_toml_used = [bool]$VerifiedGhidraToml
+        ghidra_imported_stubs = $GhidraImportedStubs
+        ghidra_imported_untracked_stubs = $GhidraImportedUntrackedStubs
+        patch_policy = [ordered]@{
+            patch_syscalls = $false
+            patch_cop0 = $false
+            patch_cache = $false
+        }
+        ffmpeg_enabled = [bool]$EnableFfmpeg
+        local_extra_entry_points = $LocalExtraEntries
+        game_data = $GameData
+        runner = $StagedRunner
+        run_script = (Join-Path $DistDir "RUN_DOWNHILL.cmd")
+        probe_script = (Join-Path $DistDir "RUN_PROBE_90S.cmd")
+        first_boot_latest_log = (Join-Path $DistDir "first_boot_latest.log")
+        first_boot_triage = (Join-Path $DistDir "first_boot_triage.json")
+        recompiled_report = (Join-Path $DistDir "recompiled_report.json")
+        deep_elf_report = (Join-Path $DistDir "SCUS_971.77.deep.json")
+        runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
+        staged_config = (Join-Path $DistDir "downhill.auto.toml")
+        bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
+        transcript = $Transcript
+        metrics = $metrics
+    }
+
+    $summaryJson = $summary | ConvertTo-Json -Depth 6
+    [IO.File]::WriteAllText(
+        (Join-Path $LocalAnalysisDir "last_build.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+    [IO.File]::WriteAllText(
+        (Join-Path $DistDir "build_report.json"),
+        $summaryJson,
+        (New-Object Text.UTF8Encoding($false))
+    )
+
+    Write-Host ""
+    Write-Host "============================================================" -ForegroundColor Green
+    Write-Host " Native compiler/bootstrap completed." -ForegroundColor Green
+    Write-Host " Runner: $($summary.runner)" -ForegroundColor Green
+    Write-Host " Run:    $($summary.run_script)" -ForegroundColor Green
+    Write-Host " Build report: $(Join-Path $DistDir "build_report.json")" -ForegroundColor Green
+    Write-Host " Log:    $Transcript" -ForegroundColor Green
+    Write-Host "============================================================" -ForegroundColor Green
+}
+catch {
+    Write-Host ""
+    Write-Host "BUILD FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Transcript: $Transcript" -ForegroundColor Yellow
+    exit 1
+}
+finally {
+    try {
+        Stop-Transcript | Out-Null
+    }
+    catch {
+    }
+}
+)) {
+            if (-not ($StagedDllNames | Where-Object { $_ -match $requiredPattern })) {
+                throw ("FFmpeg was enabled but a required runtime DLL pattern was not staged: " + $requiredPattern)
+            }
+        }
+        Write-Host ("      FFmpeg runtime DLLs staged: " + ($StagedDllNames -join ", ")) -ForegroundColor Green
+    }
+
     Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")

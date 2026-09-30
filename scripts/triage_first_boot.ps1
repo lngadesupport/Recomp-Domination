@@ -23,6 +23,9 @@ $categories = [ordered]@{
     vif_vu_gs = @($lines | Where-Object { $_ -match '(?i)\bVIF[01]?\b|\bVU[01]?\b|\bGIF\b|\bGS\b|DMAC' }).Count
     file_io = @($lines | Where-Object { $_ -match '(?i)fio(Open|Read|Lseek|Close)|cdrom|host:|file.+not found' }).Count
     pad = @($lines | Where-Object { $_ -match '(?i)scePad|padread|gamepad' }).Count
+    cd_dvd = @($lines | Where-Object { $_ -match '(?i)sceCd|cdrom0:|CDVD|\[CD:' }).Count
+    mpeg = @($lines | Where-Object { $_ -match '(?i)\[MPEG|sceMpeg|MPEG-?2|PSS' }).Count
+    mpeg_decoder_unavailable = @($lines | Where-Object { $_ -match '(?i)runtime built without FFmpeg|MPEG video decode is disabled|FFmpeg MPEG-2 decoder not found' }).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -54,6 +57,9 @@ $milestones = [ordered]@{
     vif_vu_activity = [regex]::IsMatch($text,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT')
     gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
     guest_graphics_activity = ([uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0)
+    cd_dvd_activity = ($categories.cd_dvd -gt 0)
+    mpeg_activity = ($categories.mpeg -gt 0)
+    mpeg_decoder_available = ($categories.mpeg_decoder_unavailable -eq 0)
 }
 
 $furthestMilestone = "none"
@@ -64,7 +70,9 @@ foreach($candidate in @(
     [pscustomobject]@{name="pad";hit=[bool]$milestones.pad_activity},
     [pscustomobject]@{name="vif-vu";hit=[bool]$milestones.vif_vu_activity},
     [pscustomobject]@{name="gif-gs";hit=[bool]$milestones.gif_gs_activity},
-    [pscustomobject]@{name="guest-graphics";hit=[bool]$milestones.guest_graphics_activity}
+    [pscustomobject]@{name="guest-graphics";hit=[bool]$milestones.guest_graphics_activity},
+    [pscustomobject]@{name="cd-dvd";hit=[bool]$milestones.cd_dvd_activity},
+    [pscustomobject]@{name="mpeg";hit=[bool]$milestones.mpeg_activity}
 )){
     if($candidate.hit){$furthestMilestone=$candidate.name}
 }
@@ -92,6 +100,8 @@ $firstFatal = $lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|a
 $firstMissing = $lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' } | Select-Object -First 1
 $firstTodo = $lines | Where-Object { $_ -match '(?i)TODO_NAMED|\bTODO\b|unimplemented.+stub|stub.+unimplemented' } | Select-Object -First 1
 $firstInstruction = $lines | Where-Object { $_ -match '(?i)unhandled.+instruction|unsupported.+instruction|reserved instruction|unknown opcode' } | Select-Object -First 1
+$firstMpegProblem = $lines | Where-Object { $_ -match '(?i)runtime built without FFmpeg|MPEG video decode is disabled|FFmpeg MPEG-2 decoder not found|\[MPEG\].+failed' } | Select-Object -First 1
+$firstCdProblem = $lines | Where-Object { $_ -match '(?i)sceCd.+(fail|error)|cdrom0:.+(not found|fail)|CDVD.+(fail|error)' } | Select-Object -First 1
 
 $primary = "no-obvious-fatal-marker"
 if ($categories.fatal_or_exception -gt 0) { $primary = "fatal-or-exception" }
@@ -118,6 +128,8 @@ $report = [pscustomobject][ordered]@{
         missing_function = if($null -ne $firstMissing){[string]$firstMissing}else{$null}
         todo_or_stub = if($null -ne $firstTodo){[string]$firstTodo}else{$null}
         unsupported_instruction = if($null -ne $firstInstruction){[string]$firstInstruction}else{$null}
+        mpeg_problem = if($null -ne $firstMpegProblem){[string]$firstMpegProblem}else{$null}
+        cd_dvd_problem = if($null -ne $firstCdProblem){[string]$firstCdProblem}else{$null}
     }
     frequent_pc_or_ra = $topPcs
     tail = @($tail | ForEach-Object { [string]$_ })

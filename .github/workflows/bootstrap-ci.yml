@@ -8,6 +8,7 @@ on:
     branches:
       - bootstrap/compiler
       - bootstrap/pipeline-enhancements
+      - bootstrap/release-candidate
   pull_request:
     branches:
       - main
