@@ -33,3 +33,9 @@ Both uploaded copies of the first multipart RAR volume were retried. Neither cou
 ## Current limit
 
 Menus and races are not validated. Further retail progression requires accessible full original disc data, beginning with DHSKAT.SKX. See docs/GAME_VALIDATION.md for the coverage requirements after the menu is reachable.
+
+## Windows checks
+
+The portable Clang/LLVM build at commit a9dd947d4d913b9f4633637dad9c5d4c6de21fd5 passed, including the new game override and a clean offline compiler/analyzer/synthetic-runtime build: https://github.com/lngadesupport/Recomp-Domination/actions/runs/36753367647.
+
+The MSVC isolated override compile initially lacked the runtime Kernel include directory. That CI command was corrected; the isolated compile passed in run 36753988370. The full MSVC upstream regression build was still running when this checkpoint was recorded. Retail guest execution evidence above comes from Linux, not a Windows retail playtest.
