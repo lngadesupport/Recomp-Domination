@@ -183,6 +183,25 @@ FULL_PIPELINE_DOWNHILL.cmd
 The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
 
 
+## Bring-up iterativo opcional
+
+Depois de obter um primeiro probe real, existe um modo opcional para iterar apenas sobre funções guest faltantes:
+
+```cmd
+AUTO_BRINGUP.cmd
+```
+
+Ele executa ciclos limitados de `build -> probe -> triage -> rebuild`. O modo não ativa patches, não transforma stubs TODO em HLE e não aceita endereços arbitrários. Novos entry points só são aceitos quando:
+
+- o PC está alinhado a 4 bytes;
+- o PC está dentro do intervalo file-backed validado `0x0010A000..0x0029DCF0`;
+- o endereço ainda não está configurado;
+- o triage não contém `fatal-or-exception` nem `unsupported-instruction`.
+
+O padrão é no máximo 3 iterações. Antes de alterar `config\downhill.extra_entry_points.local.txt`, o script cria backup local. O relatório de cada sessão é salvo em `analysis\local\auto_bringup_*.json`.
+
+Esse modo é para acelerar missing-function bring-up. Se o bloqueio real for IOP/SIF, VIF/VU/GS, instrução não suportada ou crash, ele interrompe a expansão de entry points em vez de mascarar o problema.
+
 ## Rebuild offline
 
 Depois que `third_party\PS2Recomp` já contém o commit fixado
