@@ -29,6 +29,7 @@ function Copy-Diagnostic {
 }
 
 try {
+    Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\windows_test.json") "analysis\windows_test.json"
     Copy-Diagnostic (Join-Path $RepoRoot "config\downhill.auto.toml") "config\downhill.auto.toml"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json") "analysis\SCUS_971.77.identity.json"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\environment.json") "analysis\environment.json"
