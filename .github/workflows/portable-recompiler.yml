@@ -121,5 +121,6 @@ jobs:
           name: RecompDomination-Portable-Windows-x64
           path: portable/
           retention-days: 30
+          include-hidden-files: true
 
 
