@@ -49,6 +49,23 @@ jobs:
           if($r.selected -contains '0x90000000'){throw 'Out-of-range PC was selected'}
           if($r.selected -contains '0x00123460'){throw 'Already configured PC was selected'}
 
+      - name: Bound automatic entry growth and block non-missing-function triage
+        shell: powershell
+        run: |
+          @{new_entry_point_candidates=@('0x00123450','0x00123454','0x00123458','0x0012345C','0x00123460')} | ConvertTo-Json | Set-Content _ci\bringup\many_suggestions.json -Encoding utf8
+          @{primary_classification='missing-function'} | ConvertTo-Json | Set-Content _ci\bringup\missing_triage.json -Encoding utf8
+          .\scripts\select_bringup_entry_points.ps1 -Suggestions _ci\bringup\many_suggestions.json -Triage _ci\bringup\missing_triage.json -MaxSelected 2 -Out _ci\bringup\bounded_selection.json
+          if($LASTEXITCODE -ne 0){throw "bounded selector failed with $LASTEXITCODE"}
+          $r=Get-Content _ci\bringup\bounded_selection.json -Raw|ConvertFrom-Json
+          if([int]$r.selected_count -ne 2){throw "Expected selection cap=2, got $($r.selected_count)"}
+
+          @{primary_classification='iop-module-load'} | ConvertTo-Json | Set-Content _ci\bringup\iop_triage.json -Encoding utf8
+          & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\select_bringup_entry_points.ps1 -Suggestions _ci\bringup\many_suggestions.json -Triage _ci\bringup\iop_triage.json -Out _ci\bringup\iop_selection.json
+          $rc=$LASTEXITCODE
+          if($rc -ne 3){throw "Expected IOP triage to block with exit 3, got $rc"}
+          $r=Get-Content _ci\bringup\iop_selection.json -Raw|ConvertFrom-Json
+          if(!$r.blocked -or [int]$r.selected_count -ne 0){throw 'IOP triage must not add EE entry points'}
+          $global:LASTEXITCODE=0
       - name: Block automatic changes on fatal triage
         shell: powershell
         run: |
