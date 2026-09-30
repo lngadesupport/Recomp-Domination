@@ -16,6 +16,7 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
           [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
           New-Item -ItemType Directory -Force portable/tools, downloads | Out-Null
           $assets = @(
@@ -26,15 +27,23 @@ jobs:
           )
           foreach ($asset in $assets) {
             $archive = Join-Path (Resolve-Path downloads) ($asset.dir + '.zip')
-            Invoke-WebRequest $asset.url -OutFile $archive -UseBasicParsing
+            Write-Host ("Downloading " + $asset.dir)
+            curl.exe --fail --location --retry 3 --output $archive $asset.url
+            if ($LASTEXITCODE) { throw 'Tool download failed' }
             if ((Get-FileHash $archive -Algorithm SHA256).Hash -ne $asset.hash) { throw 'Checksum mismatch' }
             $dest = Join-Path (Resolve-Path portable/tools) $asset.dir
             if ($asset.dir -in @('llvm','cmake')) {
               $temp = Join-Path (Resolve-Path downloads) $asset.dir
-              Expand-Archive $archive $temp
+              New-Item -ItemType Directory -Force $temp | Out-Null
+              tar.exe -xf $archive -C $temp
+              if ($LASTEXITCODE) { throw 'Tool extraction failed' }
               $root = Get-ChildItem $temp -Directory | Select-Object -First 1
               Move-Item $root.FullName $dest
-            } else { Expand-Archive $archive $dest }
+            } else {
+              New-Item -ItemType Directory -Force $dest | Out-Null
+              tar.exe -xf $archive -C $dest
+              if ($LASTEXITCODE) { throw 'Tool extraction failed' }
+            }
           }
       - name: Build compiler and synthetic runtime with portable Clang
         shell: powershell
