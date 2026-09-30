@@ -65,9 +65,17 @@ function Invoke-Native {
 
     Write-Host ""
     Write-Host ("> " + $Exe + " " + ($Arguments -join " ")) -ForegroundColor DarkGray
-    & $Exe @Arguments
-    if ($LASTEXITCODE -ne 0) {
-        throw "Command failed with exit code $LASTEXITCODE : $Exe"
+    $savedPreference = $ErrorActionPreference
+    try {
+        # Windows PowerShell 5.1 can turn native stderr into terminating
+        # errors. Capture both streams explicitly for the GUI transcript.
+        $ErrorActionPreference = 'Continue'
+        & $Exe @Arguments 2>&1 | ForEach-Object { Write-Host ([string]$_) }
+        $nativeExit = $LASTEXITCODE
+    }
+    finally { $ErrorActionPreference = $savedPreference }
+    if ($nativeExit -ne 0) {
+        throw "Command failed with exit code $nativeExit : $Exe"
     }
 }
 
