@@ -62,7 +62,7 @@ if($cdRoot){
         $files | Group-Object {
             $ext=$_.Extension.ToLowerInvariant()
             if($ext){$ext}else{'<none>'}
-        } | Sort-Object Count -Descending,Name | ForEach-Object {
+        } | Sort-Object -Property @{Expression='Count';Descending=$true}, Name | ForEach-Object {
             [pscustomobject][ordered]@{extension=$_.Name;count=$_.Count}
         }
     )
