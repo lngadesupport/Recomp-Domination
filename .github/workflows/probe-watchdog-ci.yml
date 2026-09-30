@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - bootstrap/compiler
+      - bootstrap/runtime-triage
     paths:
       - scripts/run_downhill_probe.ps1
       - scripts/triage_first_boot.ps1
