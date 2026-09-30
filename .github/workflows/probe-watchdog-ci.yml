@@ -79,7 +79,8 @@ jobs:
             "[IOP:load-failed] module='CDROM0:\IOP\CUSTOM.IRX;1' no HLE provider accepted the module; physical IRX was not loaded",
             "[IOP] failed to open IRX 'CDROM0:\IOP\MISSING.IRX;1'",
             "[IOP] one or more IRX relocations were unsupported",
-            "[IOP] unhandled import customlib:42 version=0x0102 pc=0x00012340"
+            "[IOP] unhandled import customlib:42 version=0x0102 pc=0x00012340",
+            "[IOP/RPC trace:unhandled] sid=0x8000ABCD rpc=0x12 pc=0x00123450 ra=0x00120000 send=0x00100000/16 recv=0x00110000/32 sendBytes=[01 02] loadedModules=[LIBSD.IRX,CUSTOM.IRX]"
           ) | Set-Content .\probe_smoke\iop_fixture.log -Encoding ascii
 
           .\scripts\triage_first_boot.ps1 -Log .\probe_smoke\iop_fixture.log -Out .\probe_smoke\iop_triage.json
@@ -93,10 +94,15 @@ jobs:
           if(@($t.iop_modules.unhandled_imports).Count -ne 1){throw 'Expected one unhandled IOP import'}
           $imp=@($t.iop_modules.unhandled_imports)[0]
           if($imp.library -ne 'customlib' -or [int]$imp.ordinal -ne 42){throw 'Unhandled import details were parsed incorrectly'}
+          if(@($t.rpc.unhandled_calls).Count -ne 1){throw 'Expected one unhandled RPC trace'}
+          $rpc=@($t.rpc.unhandled_calls)[0]
+          if($rpc.sid -ne '0X8000ABCD' -or $rpc.rpc -ne '0X12' -or $rpc.pc -ne '0X00123450'){throw 'Unhandled RPC details were parsed incorrectly'}
 
           .\scripts\suggest_bringup_fixes.ps1 -Log .\probe_smoke\iop_fixture.log -Out .\probe_smoke\iop_suggestions.json
           $s=Get-Content .\probe_smoke\iop_suggestions.json -Raw|ConvertFrom-Json
           if(@($s.iop.load_failed_modules).Count -ne 1){throw 'Suggestion report lost load-failed module'}
           if(@($s.iop.failed_open_modules).Count -ne 1){throw 'Suggestion report lost failed-open module'}
           if(@($s.iop.unhandled_imports).Count -ne 1){throw 'Suggestion report lost unhandled import'}
+          if(@($s.rpc.unhandled_calls).Count -ne 1){throw 'Suggestion report lost unhandled RPC trace'}
+          if($s.rpc.focus -notmatch '8000ABCD'){throw 'RPC focus does not identify the SID'}
           if(!$s.iop.focus){throw 'IOP focus was not produced'}
