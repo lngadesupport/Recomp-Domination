@@ -2,6 +2,7 @@ param(
     [Parameter(Mandatory=$true)][string]$Suggestions,
     [string]$Triage = "",
     [string]$Existing = "",
+    [ValidateRange(1,16)][int]$MaxSelected = 4,
     [Parameter(Mandatory=$true)][string]$Out
 )
 
@@ -22,8 +23,8 @@ $primary = if ($triageData -and $triageData.primary_classification) {
     'unknown'
 }
 
-$blocked = $primary -in @('fatal-or-exception','unsupported-instruction')
-$reason = if ($blocked) { 'triage-blocker-' + $primary } else { 'eligible' }
+$blocked = ($primary -ne 'missing-function')
+$reason = if ($blocked) { 'triage-not-missing-function-' + $primary } else { 'eligible' }
 
 $existingSet = @{}
 if ($Existing -and (Test-Path -LiteralPath $Existing)) {
@@ -74,7 +75,7 @@ foreach ($candidate in @($data.new_entry_point_candidates)) {
     }
 }
 
-$selected = @($selected | Sort-Object -Unique)
+$selected = @($selected | Select-Object -Unique | Select-Object -First $MaxSelected)
 $report = [ordered]@{
     suggestions = $Suggestions
     triage = if ($Triage) { [IO.Path]::GetFullPath($Triage) } else { $null }
@@ -83,6 +84,7 @@ $report = [ordered]@{
     reason = $reason
     selected = $selected
     selected_count = $selected.Count
+    max_selected = $MaxSelected
     rejected = $rejected
 }
 
