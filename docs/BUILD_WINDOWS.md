@@ -57,15 +57,14 @@ The build script detects this automatically and sets general.ghidra_output. Unti
 
 ## Initial host features
 
-The first bootstrap intentionally sets:
+Build modes:
 
-- FFmpeg OFF
-- debug UI OFF
-- runtime logs ON
-- aggressive function logs ON
-- IOP/RPC trace ON
+- `BUILD_DOWNHILL.cmd`: FFmpeg OFF for the smallest diagnostic bring-up.
+- `BUILD_DOWNHILL_FFMPEG.cmd`: FFmpeg ON for MPEG/FMV decoding.
+- `FULL_PIPELINE_DOWNHILL.cmd`: FFmpeg ON by default because the goal is end-to-end game bring-up.
+- Debug UI remains OFF; runtime logs, aggressive function logs and IOP/RPC trace remain ON.
 
-This reduces unrelated host dependencies while maximizing boot diagnostics. FMV support and the richer debug UI can be re-enabled after the first stable boot path.
+On Windows, the pinned PS2Recomp downloads a prebuilt LGPL FFmpeg package and stages its runtime DLLs beside `ps2EntryRunner.exe`.
 
 ## Output
 
@@ -131,3 +130,11 @@ BUILD_DOWNHILL_MULTIFILE.cmd "D:\Recomp Domination"
 This invokes the same validated pipeline with `-MultiFileOutput`, which sets `general.single_file_output = false`. PS2Recomp then emits flat per-function C++ files into `ps2xRuntime/src/runner`, where the runtime CMake `*.cpp` glob picks them up automatically.
 
 The analyzer TOML, exact Downhill bindings, Ghidra map, entry points, CRC locking, static reports, runtime override, and diagnostics remain the same. `build_report.json` records `metrics.output_mode` and the hashes/sizes of all generated C++ files.
+
+## Offline rebuilds
+
+After the first successful PS2Recomp checkout/fetch, the bootstrap checks for the pinned commit locally with `git cat-file`. If it is already present, network fetch is skipped. `CHECK_ENVIRONMENT.cmd` also treats this cached state as sufficient for an offline rebuild.
+
+## Ghidra provenance
+
+`GENERATE_GHIDRA_MAP.cmd` records SHA-256 values for the retail ELF, generated CSV and exported TOML plus the pinned PS2Recomp commit. The retail build only enables the Ghidra map when those values still match; stale or manually altered maps fall back to `ps2_analyzer` rather than silently changing function boundaries.
