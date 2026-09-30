@@ -22,7 +22,7 @@ if not exist "%GAME_ROOT%\SCUS_971.77" (
     exit /b 2
 )
 
-echo [1/5] Verificando ambiente de compilacao...
+echo [1/6] Verificando ambiente de compilacao...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\check_environment.ps1" -GameRoot "%GAME_ROOT%"
 set "ENV_RC=%ERRORLEVEL%"
 if not "%ENV_RC%"=="0" (
@@ -35,7 +35,7 @@ if not "%ENV_RC%"=="0" (
 )
 
 echo.
-echo [2/5] Preparando dados locais do jogo...
+echo [2/6] Preparando dados locais do jogo...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\prepare_game_data.ps1" -GameRoot "%GAME_ROOT%"
 set "PREP_RC=%ERRORLEVEL%"
 if not "%PREP_RC%"=="0" (
@@ -48,7 +48,16 @@ if not "%PREP_RC%"=="0" (
 )
 
 echo.
-echo [3/6] Tentando gerar mapa Ghidra (opcional)...
+echo [3/6] Tentando gerar mapa Ghidra, se disponivel...
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\generate_ghidra_map.ps1" -GameRoot "%GAME_ROOT%" -Optional
+set "GHIDRA_RC=%ERRORLEVEL%"
+if not "%GHIDRA_RC%"=="0" (
+    echo [AVISO] Ghidra opcional falhou com codigo %GHIDRA_RC%.
+    echo Prosseguindo com ps2_analyzer como fallback.
+)
+
+echo.
+echo [4/6] Compilando recompilacao nativa Windows x64...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%"
 set "BUILD_RC=%ERRORLEVEL%"
 if not "%BUILD_RC%"=="0" (
@@ -88,6 +97,9 @@ echo.
 echo ============================================================
 echo PIPELINE LOCAL FINALIZADO
 echo ============================================================
+echo Preflight:   %ENV_RC%
+echo Game data:   %PREP_RC%
+echo Ghidra:      %GHIDRA_RC%
 echo Build:       %BUILD_RC%
 echo Probe:       %PROBE_RC%
 echo Diagnostics: %DIAG_RC%
