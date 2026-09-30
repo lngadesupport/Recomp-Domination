@@ -642,7 +642,11 @@ try {
         $toml = Ensure-TomlArrayEntries $toml "stubs" $GhidraImportedStubs
     }
     if ($GhidraImportedUntrackedStubs.Count -gt 0) {
-        $toml = Ensure-TomlArrayEntries $toml "untracked_stubs" $GhidraImportedUntrackedStubs
+        # Ghidra's exporter uses the legacy "untracked_stubs" name. The current
+        # analyzer emits these as canonical entry_points, and PS2Recomp treats
+        # both fields as entry-point hints. Merge into the analyzer's existing
+        # entry_points array so the final TOML never depends on a legacy key.
+        $toml = Ensure-TomlArrayEntries $toml "entry_points" $GhidraImportedUntrackedStubs
     }
 
     $toml = Ensure-TomlArrayEntries $toml "stubs" @(
