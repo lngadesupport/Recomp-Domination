@@ -2,14 +2,14 @@ name: Portable Windows Recompiler
 on:
   push:
     branches: [bootstrap/compiler]
-    paths: ['launcher/**', '.github/workflows/portable-recompiler.yml']
+    paths: ['launcher/**', 'scripts/build_downhill.ps1', '.github/workflows/portable-recompiler.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   portable:
     runs-on: windows-2022
-    timeout-minutes: 35
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
       - name: Download pinned portable tools and verify SHA256
@@ -73,6 +73,29 @@ jobs:
           if ($LASTEXITCODE) { throw 'Configure runtime failed' }
           cmake --build $build --target ps2EntryRunner --parallel 4
           if ($LASTEXITCODE) { throw 'Link runtime failed' }
+          # Capture public source snapshots after the online packaging build.
+          New-Item -ItemType Directory -Force portable/sources/deps | Out-Null
+          robocopy $src portable/sources/PS2Recomp /E /XD out .vs /NFL /NDL /NJH /NJS
+          if ($LASTEXITCODE -ge 8) { throw 'Source copy failed' }
+          foreach ($name in @('elfio','toml11','fmt','libdwarf','rabbitizer','nlohmann_json','raylib')) {
+            robocopy "$deps/$name-src" "portable/sources/deps/$name" /E /XD .git /XF .git /NFL /NDL /NJH /NJS
+            if ($LASTEXITCODE -ge 8) { throw "Dependency copy failed: $name" }
+          }
+          # Fresh configure/build with every source supplied locally. Poison proxies
+          # and disable Git network protocols so accidental downloads fail the job.
+          $env:HTTPS_PROXY = 'http://127.0.0.1:9'
+          $env:HTTP_PROXY = 'http://127.0.0.1:9'
+          $env:ALL_PROXY = 'http://127.0.0.1:9'
+          $env:GIT_ALLOW_PROTOCOL = 'file'
+          . ./launcher/offline_sources.ps1
+          $offline = @(Get-OfflineCmakeArgs -SourceRoot (Resolve-Path portable/sources).Path)
+          $offlineBuild = Join-Path $src 'out/offline-clean'
+          $args[($args.IndexOf($build))] = $offlineBuild
+          cmake @args @offline -DPS2X_BUILD_RUNTIME=ON -DPS2X_ENABLE_FFMPEG=OFF -DPS2X_ENABLE_DEBUG_UI=OFF -DPS2X_ENABLE_SCCACHE=OFF -DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF
+          if ($LASTEXITCODE) { throw 'Offline configure failed' }
+          cmake --build $offlineBuild --target ps2_analyzer ps2_recomp ps2EntryRunner --parallel 4
+          if ($LASTEXITCODE) { throw 'Offline compiler/runtime build failed' }
+          Remove-Item Env:HTTPS_PROXY,Env:HTTP_PROXY,Env:ALL_PROXY,Env:GIT_ALLOW_PROTOCOL
           Move-Item '_portable tools' portable/tools
       - name: Package GUI and validate scripts
         shell: powershell
@@ -98,4 +121,5 @@ jobs:
           name: RecompDomination-Portable-Windows-x64
           path: portable/
           retention-days: 30
+
 
