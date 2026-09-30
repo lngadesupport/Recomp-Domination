@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
-    [string]$GhidraHome = ""
+    [string]$GhidraHome = "",
+    [switch]$Optional
 )
 
 $ErrorActionPreference = "Stop"
@@ -51,13 +52,27 @@ if(!(Test-Path -LiteralPath (Join-Path $Ps2RecompRoot '.git'))){
     & $git.Source clone https://github.com/ran-j/PS2Recomp.git $Ps2RecompRoot
     if($LASTEXITCODE -ne 0){throw 'Failed to clone PS2Recomp.'}
 }
-& $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
-if($LASTEXITCODE -ne 0){throw 'Failed to fetch pinned PS2Recomp commit.'}
+
+$havePinnedCommit = $false
+& $git.Source -C $Ps2RecompRoot cat-file -e ($PinnedPs2Recomp + '^{commit}') 2>$null
+if($LASTEXITCODE -eq 0){$havePinnedCommit=$true}
+
+if(!$havePinnedCommit){
+    & $git.Source -C $Ps2RecompRoot fetch origin $PinnedPs2Recomp --depth=1
+    if($LASTEXITCODE -ne 0){throw 'Pinned PS2Recomp commit is not local and could not be fetched.'}
+}
+
 & $git.Source -C $Ps2RecompRoot reset --hard $PinnedPs2Recomp
 if($LASTEXITCODE -ne 0){throw 'Failed to reset PS2Recomp to pinned commit.'}
 
 $ghidra=Find-GhidraHeadless $GhidraHome
-if(!$ghidra){throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'}
+if(!$ghidra){
+    if($Optional){
+        Write-Host 'Ghidra was not found; continuing with ps2_analyzer fallback.' -ForegroundColor Yellow
+        exit 0
+    }
+    throw 'Ghidra was not found. Install Ghidra, set GHIDRA_HOME, or pass -GhidraHome.'
+}
 
 $scriptDir=Join-Path $Ps2RecompRoot 'ps2xRecomp\tools\ghidra'
 $script=Join-Path $scriptDir 'ExportPS2Functions.java'
