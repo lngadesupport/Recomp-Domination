@@ -121,6 +121,55 @@ if (Test-Path -LiteralPath $probe) {
     }
 }
 
+if (Test-Path -LiteralPath $triage) {
+    try {
+        $t = Get-Content -Raw -LiteralPath $triage | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "First-boot triage:" -ForegroundColor Cyan
+        Write-Host ("  Furthest milestone: " + $t.furthest_milestone)
+        if ($t.graphics_stage) {
+            Write-Host ("  Graphics stage:    " + $t.graphics_stage)
+        }
+        if ($t.runtime_counters) {
+            Write-Host ("  Last PC:           " + $t.runtime_counters.last_pc)
+            Write-Host ("  Last RA:           " + $t.runtime_counters.last_ra)
+            Write-Host ("  Active threads:    " + $t.runtime_counters.max_active_threads)
+            Write-Host ("  DMA:               " + $t.runtime_counters.max_dma)
+            Write-Host ("  VIF:               " + $t.runtime_counters.max_vif)
+            Write-Host ("  GIF:               " + $t.runtime_counters.max_gif)
+            Write-Host ("  GS writes:         " + $t.runtime_counters.max_gs_writes)
+            Write-Host ("  DISPFB1:           " + $t.runtime_counters.last_dispfb1)
+            Write-Host ("  DISPLAY1:          " + $t.runtime_counters.last_display1)
+        }
+        if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
+            Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
+        }
+    } catch {
+        Write-Warning ("Could not parse first_boot_probe_triage.json: " + $_.Exception.Message)
+    }
+}
+
+if (Test-Path -LiteralPath $suggestions) {
+    try {
+        $sg = Get-Content -Raw -LiteralPath $suggestions | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "Bring-up focus:" -ForegroundColor Cyan
+        if ($sg.graphics) {
+            Write-Host ("  Graphics stage: " + $sg.graphics.stage)
+            Write-Host ("  Focus:          " + $sg.graphics.focus)
+        }
+        if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
+            Write-Host ("  New entries:    " + (($sg.new_entry_point_candidates | Select-Object -First 8) -join ", ")) -ForegroundColor Yellow
+        }
+        if ($sg.unimplemented_stubs -and $sg.unimplemented_stubs.Count -gt 0) {
+            $stubNames = @($sg.unimplemented_stubs | Select-Object -First 8 | ForEach-Object { $_.name })
+            Write-Host ("  TODO stubs:     " + ($stubNames -join ", ")) -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Warning ("Could not parse first_boot_probe_suggestions.json: " + $_.Exception.Message)
+    }
+}
+
 Write-Host ""
 if (!$elfOk) {
     Write-Host "Next: place SCUS_971.77 in the game root." -ForegroundColor Yellow
