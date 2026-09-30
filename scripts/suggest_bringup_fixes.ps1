@@ -228,6 +228,48 @@ else{
     $mpeg.focus='No MPEG activity was observed in the captured log.'
 }
 
+$fileIoCounts=@{}
+$fileIoFirstPc=@{}
+$fileIoFlags=@{}
+foreach($line in $lines){
+    $m=[regex]::Match($line,"(?i)\[FileIO:open-failed\]\s+guest='([^']+)'\s+flags=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)")
+    if(!$m.Success){continue}
+    $path=$m.Groups[1].Value
+    if(!$fileIoCounts.ContainsKey($path)){
+        $fileIoCounts[$path]=0
+        $fileIoFirstPc[$path]=$m.Groups[3].Value.ToUpperInvariant()
+        $fileIoFlags[$path]=$m.Groups[2].Value.ToUpperInvariant()
+    }
+    $fileIoCounts[$path]++
+}
+$fileIoFailures=@(
+    $fileIoCounts.GetEnumerator() |
+        Sort-Object Value -Descending |
+        ForEach-Object {
+            [pscustomobject][ordered]@{
+                path=[string]$_.Key
+                occurrences=[int]$_.Value
+                flags=$fileIoFlags[$_.Key]
+                first_pc=$fileIoFirstPc[$_.Key]
+                repeated=([int]$_.Value -ge 3)
+            }
+        }
+)
+$fileIo=[ordered]@{
+    open_failures=$fileIoFailures
+    repeated_paths=@($fileIoFailures|Where-Object{$_.repeated}|ForEach-Object{$_.path})
+    focus=$null
+}
+if(@($fileIo.repeated_paths).Count -gt 0){
+    $fileIo.focus='The same guest file path failed to open repeatedly. Verify extracted CD root / ISO mapping, case, ;1 version suffix handling and the exact guest path before changing EE entry points.'
+}
+elseif(@($fileIo.open_failures).Count -gt 0){
+    $fileIo.focus='One or more guest file opens failed, but none repeated enough to treat as the primary blocker yet. Keep these paths visible while following the later runtime milestone.'
+}
+else{
+    $fileIo.focus='No failed guest FileIO open was observed in the captured log.'
+}
+
 # Infer how far guest graphics progressed from aggressive runtime tick counters.
 $graphics = [ordered]@{
     max_dma = [uint64]0
@@ -319,6 +361,7 @@ $report = [ordered]@{
     iop = [pscustomobject]$iop
     rpc = [pscustomobject]$rpc
     mpeg = [pscustomobject]$mpeg
+    file_io = [pscustomobject]$fileIo
     graphics = [pscustomobject]$graphics
     toml_snippet = $snippet
 }
@@ -341,3 +384,4 @@ Write-Host ("Graphics focus: " + $graphics.focus)
 Write-Host ("IOP focus: " + $iop.focus)
 Write-Host ("RPC focus: " + $rpc.focus)
 Write-Host ("MPEG focus: " + $mpeg.focus)
+Write-Host ("FileIO focus: " + $fileIo.focus)
