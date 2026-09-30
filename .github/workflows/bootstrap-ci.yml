@@ -385,39 +385,8 @@ jobs:
           if (!$runner) { throw 'FFmpeg-enabled ps2EntryRunner.exe not produced' }
           $dlls = @(Get-ChildItem $runner.Directory.FullName -File -Filter '*.dll')
           $names = @($dlls | ForEach-Object Name)
-          if (-not ($names | Where-Object { $_ -match '^avcodec.*\.dll { throw 'FFmpeg avcodec DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avcodec DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avcodec DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avcodec DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
-          Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
-          Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
- })) { throw 'FFmpeg avcodec DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
-          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
+          if (-not ($names | Where-Object { $_ -match '^avcodec.*\.dll$' })) { throw 'FFmpeg avcodec DLL was not staged beside runner' }
+          if (-not ($names | Where-Object { $_ -match '^avutil.*\.dll$' })) { throw 'FFmpeg avutil DLL was not staged beside runner' }
+          if (-not ($names | Where-Object { $_ -match '^swscale.*\.dll$' })) { throw 'FFmpeg swscale DLL was not staged beside runner' }
           Write-Host "FFmpeg-enabled runner: $($runner.FullName)"
           Write-Host ("Staged FFmpeg DLLs: " + ($names -join ', '))
