@@ -103,7 +103,7 @@ if(Test-Path -LiteralPath $imageSidecar){$v=(Get-Content -LiteralPath $imageSide
 Add-Warning 'Game data' ($hasRoot-or$hasImage) $(if($hasRoot){'extracted CD root configured'}elseif($hasImage){'ISO configured'}else{'no valid CD root/ISO sidecar; ELF-only boot may stop on file access'})
 
 $failed=@($critical|Where-Object{-not $_.ok})
-$report=[pscustomobject][ordered]@{
+$readinessResult=[ordered]@{
     generated=(Get-Date -Format o)
     ready=($failed.Count-eq 0)
     elf=$Elf
@@ -114,7 +114,7 @@ $report=[pscustomobject][ordered]@{
     critical=$critical
     warnings=$warnings
 }
-[IO.File]::WriteAllText($Out,($report|ConvertTo-Json -Depth 7),(New-Object Text.UTF8Encoding($false)))
+[IO.File]::WriteAllText($Out,($readinessResult|ConvertTo-Json -Depth 7),(New-Object Text.UTF8Encoding($false)))
 
 Write-Host '============================================================'
 Write-Host ' Recomp Domination - probe readiness'
