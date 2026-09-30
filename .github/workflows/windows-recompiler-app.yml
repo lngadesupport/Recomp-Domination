@@ -20,7 +20,7 @@ jobs:
           git archive --format=zip --output=dist/payload.zip HEAD
           if ($LASTEXITCODE -ne 0) { throw 'Payload failed' }
           $csc = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
-          & $csc /nologo /target:winexe /platform:x64 /out:dist/RecompDomination.exe /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll /resource:dist/payload.zip,payload.zip launcher/RecompDomination.cs
+          & $csc /nologo /target:winexe /platform:x64 '/out:dist\RecompDomination.exe' /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll '/resource:dist\payload.zip,payload.zip' '.\launcher\RecompDomination.cs'
           if ($LASTEXITCODE -ne 0) { throw 'Launcher compilation failed' }
           $scriptFiles = @('launcher/setup_and_compile.ps1', 'scripts/test_downhill_windows.ps1')
           foreach ($file in $scriptFiles) {
