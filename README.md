@@ -85,7 +85,7 @@ O bootstrap:
 10. compila `ps2EntryRunner.exe` em Windows x64;
 11. copia o executável para `D:\Recomp Domination\DownhillRecompiled\`.
 
-O primeiro bring-up desativa FFmpeg e Debug UI para reduzir dependências, mas mantém logs e trace IOP/SIF ligados.
+`BUILD_DOWNHILL.cmd` mantém FFmpeg desligado para o bring-up mínimo. `BUILD_DOWNHILL_FFMPEG.cmd` e `FULL_PIPELINE_DOWNHILL.cmd` habilitam o decoder MPEG via FFmpeg no Windows; o PS2Recomp baixa os binários pré-compilados e stageia as DLLs automaticamente. Debug UI permanece desligada e logs/trace IOP-SIF ficam ligados.
 
 ## Estado
 
@@ -127,7 +127,7 @@ Depois rode:
 BUILD_DOWNHILL.cmd
 ```
 
-Se o CSV do Ghidra existir, o build o usa automaticamente. Caso contrário, usa o `ps2_analyzer` como fallback de bring-up.
+Se o mapa Ghidra existir e a proveniência (SHA-256 do ELF/CSV/TOML + revisão do PS2Recomp) for válida, o build o usa automaticamente. Mapas ausentes, antigos ou modificados são ignorados e o `ps2_analyzer` vira fallback seguro.
 
 Após o build, execute:
 
@@ -169,14 +169,11 @@ FULL_PIPELINE_DOWNHILL.cmd
 
 `FULL_PIPELINE_DOWNHILL.cmd` performs, in order:
 
-1. game-data preparation / multipart RAR normalization and extraction;
-2. `SYSTEM.CNF` validation against `SCUS_971.77`;
-3. exact ELF identity and anchor validation;
-4. pinned PS2Recomp analyzer/recompiler build;
-5. static recompilation to generated C++;
-6. native Windows x64 runner build;
-7. bounded 90-second first-boot probe;
-8. triage/suggestion generation;
-9. non-proprietary diagnostics ZIP collection.
+1. compiler/environment preflight;
+2. game-data preparation / multipart RAR normalization and extraction;
+3. optional automatic Ghidra map generation when Ghidra is installed (otherwise safe analyzer fallback);
+4. exact ELF identity/anchor validation and pinned PS2Recomp analyzer/recompiler build;
+5. static recompilation to generated C++ and native Windows x64 runner build with FFmpeg MPEG decoding;
+6. bounded 90-second first-boot probe, triage/suggestions, and non-proprietary diagnostics ZIP collection.
 
 The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
