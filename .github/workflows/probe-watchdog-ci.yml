@@ -129,3 +129,26 @@ jobs:
           if(!$s.mpeg.no_ffmpeg){throw 'MPEG suggestion report lost no-FFmpeg state'}
           if($s.mpeg.focus -notmatch 'FFmpeg'){throw 'MPEG focus does not explain the disabled decoder'}
           if(@($s.new_entry_point_candidates).Count -ne 0){throw 'MPEG-only fixture must not suggest EE entry points'}
+
+
+      - name: Classify repeated guest FileIO failures
+        shell: powershell
+        run: |
+          @(
+            "[FileIO:open-failed] guest='cdrom0:\DATA\RACE.BIN;1' flags=0x1 pc=0x00123450",
+            "[FileIO:open-failed] guest='cdrom0:\OPTIONAL.CFG;1' flags=0x1 pc=0x00120000",
+            "[FileIO:open-failed] guest='cdrom0:\DATA\RACE.BIN;1' flags=0x1 pc=0x00123450",
+            "[FileIO:open-failed] guest='cdrom0:\DATA\RACE.BIN;1' flags=0x1 pc=0x00123450"
+          ) | Set-Content .\probe_smoke\fileio_fixture.log -Encoding ascii
+
+          .\scripts\triage_first_boot.ps1 -Log .\probe_smoke\fileio_fixture.log -Out .\probe_smoke\fileio_triage.json
+          $t=Get-Content .\probe_smoke\fileio_triage.json -Raw|ConvertFrom-Json
+          if([int]$t.file_io.total_failures -ne 4){throw "Expected 4 FileIO failures, got $($t.file_io.total_failures)"}
+          if(@($t.file_io.repeated_paths).Count -ne 1){throw 'Expected exactly one repeated FileIO path'}
+          if(@($t.file_io.repeated_paths)[0] -notmatch 'RACE\.BIN'){throw 'Repeated path was not RACE.BIN'}
+
+          .\scripts\suggest_bringup_fixes.ps1 -Log .\probe_smoke\fileio_fixture.log -Out .\probe_smoke\fileio_suggestions.json
+          $s=Get-Content .\probe_smoke\fileio_suggestions.json -Raw|ConvertFrom-Json
+          if(@($s.file_io.repeated_paths).Count -ne 1){throw 'Suggestion report lost repeated FileIO path'}
+          if($s.file_io.focus -notmatch 'repeatedly'){throw 'FileIO focus does not explain repeated path failure'}
+          if(@($s.new_entry_point_candidates).Count -ne 0){throw 'FileIO-only fixture must not suggest EE entry points'}
