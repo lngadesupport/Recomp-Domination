@@ -191,6 +191,14 @@ if (Test-Path -LiteralPath $triage) {
             Write-Host ("  MPEG feeds/waits:  {0}/{1}" -f $t.mpeg.feed_events,$t.mpeg.picture_waits)
             Write-Host ("  MPEG IsEnd/errors: {0}/{1}" -f $t.mpeg.is_end_checks,@($t.mpeg.errors).Count)
         }
+        if ($t.file_io) {
+            Write-Host ("  File open fails:   " + $t.file_io.total_failures)
+            Write-Host ("  Repeated paths:    " + @($t.file_io.repeated_paths).Count)
+            if ($t.file_io.open_failures -and @($t.file_io.open_failures).Count -gt 0) {
+                $firstFile=@($t.file_io.open_failures)[0]
+                Write-Host ("  First file fail:   {0} x{1} @ {2}" -f $firstFile.path,$firstFile.occurrences,$firstFile.first_pc) -ForegroundColor Yellow
+            }
+        }
         if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
             Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
         }
@@ -230,6 +238,12 @@ if (Test-Path -LiteralPath $suggestions) {
         }
         if ($sg.mpeg) {
             Write-Host ("  MPEG focus:     " + $sg.mpeg.focus)
+        }
+        if ($sg.file_io) {
+            Write-Host ("  FileIO focus:   " + $sg.file_io.focus)
+            if ($sg.file_io.repeated_paths -and @($sg.file_io.repeated_paths).Count -gt 0) {
+                Write-Host ("  Repeated files: " + ((@($sg.file_io.repeated_paths) | Select-Object -First 6) -join ", ")) -ForegroundColor Yellow
+            }
         }
         if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
             Write-Host ("  New entries:    " + (($sg.new_entry_point_candidates | Select-Object -First 8) -join ", ")) -ForegroundColor Yellow
