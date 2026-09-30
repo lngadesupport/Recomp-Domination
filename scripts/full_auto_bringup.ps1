@@ -5,7 +5,8 @@ param(
     [ValidateRange(10,300)][int]$ProbeSeconds = 60,
     [switch]$DisableAutoFfmpeg,
     [switch]$SkipGhidra,
-    [switch]$DryRun
+    [switch]$DryRun,
+    [string]$Out = ""
 )
 
 $ErrorActionPreference='Stop'
@@ -22,7 +23,8 @@ $GameRoot=[IO.Path]::GetFullPath($GameRoot)
 $stamp=Get-Date -Format 'yyyyMMdd_HHmmss'
 $LocalDir=Join-Path $RepoRoot 'analysis\local'
 New-Item -ItemType Directory -Force $LocalDir|Out-Null
-$ReportPath=Join-Path $LocalDir ('full_auto_bringup_'+$stamp+'.json')
+$ReportPath=if($Out){[IO.Path]::GetFullPath($Out)}else{Join-Path $LocalDir ('full_auto_bringup_'+$stamp+'.json')}
+New-Item -ItemType Directory -Force -Path (Split-Path $ReportPath -Parent)|Out-Null
 
 $scripts=[ordered]@{
     preflight=Join-Path $RepoRoot 'scripts\check_environment.ps1'
