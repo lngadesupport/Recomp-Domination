@@ -124,6 +124,39 @@ foreach($line in $lines){
 }
 $mpegDiagnostics.errors=@($mpegDiagnostics.errors|Select-Object -Unique|Select-Object -First 32)
 
+$fileIoCounts=@{}
+$fileIoFirstPc=@{}
+$fileIoFlags=@{}
+foreach($line in $lines){
+    $m=[regex]::Match($line,"(?i)\[FileIO:open-failed\]\s+guest='([^']+)'\s+flags=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)")
+    if(!$m.Success){continue}
+    $path=$m.Groups[1].Value
+    if(!$fileIoCounts.ContainsKey($path)){
+        $fileIoCounts[$path]=0
+        $fileIoFirstPc[$path]=$m.Groups[3].Value.ToUpperInvariant()
+        $fileIoFlags[$path]=$m.Groups[2].Value.ToUpperInvariant()
+    }
+    $fileIoCounts[$path]++
+}
+$fileIoFailures=@(
+    $fileIoCounts.GetEnumerator() |
+        Sort-Object Value -Descending |
+        ForEach-Object {
+            [pscustomobject][ordered]@{
+                path=[string]$_.Key
+                occurrences=[int]$_.Value
+                flags=$fileIoFlags[$_.Key]
+                first_pc=$fileIoFirstPc[$_.Key]
+                repeated=([int]$_.Value -ge 3)
+            }
+        }
+)
+$fileIoDiagnostics=[ordered]@{
+    open_failures=$fileIoFailures
+    total_failures=[int](@($fileIoFailures|ForEach-Object{$_.occurrences})|Measure-Object -Sum).Sum
+    repeated_paths=@($fileIoFailures|Where-Object{$_.repeated}|ForEach-Object{$_.path})
+}
+
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -142,6 +175,8 @@ $categories = [ordered]@{
     mpeg_no_ffmpeg = if($mpegDiagnostics.no_ffmpeg){1}else{0}
     mpeg_picture_wait = $mpegDiagnostics.picture_waits
     mpeg_error = @($mpegDiagnostics.errors).Count
+    file_open_failed = $fileIoDiagnostics.total_failures
+    file_open_repeated = @($fileIoDiagnostics.repeated_paths).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -274,6 +309,7 @@ $report = [pscustomobject][ordered]@{
     iop_modules = [pscustomobject]$iopModules
     rpc = [pscustomobject]$rpcDiagnostics
     mpeg = [pscustomobject]$mpegDiagnostics
+    file_io = [pscustomobject]$fileIoDiagnostics
     graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
@@ -295,3 +331,4 @@ Write-Host "Furthest boot milestone: $furthestMilestone"
 Write-Host "Graphics stage: $graphicsStage"
 Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}, imports={4}, RPC={5}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count,@($iopModules.unhandled_imports).Count,@($rpcDiagnostics.unhandled_calls).Count)
 Write-Host ("MPEG: no-ffmpeg={0}, feeds={1}, waits={2}, isEnd={3}, errors={4}" -f $mpegDiagnostics.no_ffmpeg,$mpegDiagnostics.feed_events,$mpegDiagnostics.picture_waits,$mpegDiagnostics.is_end_checks,@($mpegDiagnostics.errors).Count)
+Write-Host ("FileIO open failures: total={0}, repeated paths={1}" -f $fileIoDiagnostics.total_failures,@($fileIoDiagnostics.repeated_paths).Count)
