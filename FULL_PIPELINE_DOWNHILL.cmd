@@ -65,16 +65,27 @@ echo.
 echo [4/6] Compilando recompilacao nativa Windows x64...
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%"
 set "BUILD_RC=%ERRORLEVEL%"
+set "BUILD_MODE=single-file"
+
 if not "%BUILD_RC%"=="0" (
     echo.
-    echo [ERRO] Build falhou. Codigo: %BUILD_RC%
+    echo [AVISO] Build single-file falhou com codigo %BUILD_RC%.
+    echo Tentando novamente em modo multi-file para reduzir a pressao por unidade de traducao...
+    echo.
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build_downhill.ps1" -GameRoot "%GAME_ROOT%" -MultiFileOutput
+    set "BUILD_RC=%ERRORLEVEL%"
+    set "BUILD_MODE=multi-file"
+)
+
+if not "%BUILD_RC%"=="0" (
+    echo.
+    echo [ERRO] Build falhou tambem em modo multi-file. Codigo: %BUILD_RC%
     echo Coletando diagnosticos disponiveis...
     powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\collect_diagnostics.ps1" -GameRoot "%GAME_ROOT%"
     echo.
     pause
     exit /b %BUILD_RC%
 )
-
 set "DIST=%GAME_ROOT%\DownhillRecompiled"
 
 echo.
@@ -105,7 +116,7 @@ echo ============================================================
 echo Preflight:   %ENV_RC%
 echo Game data:   %PREP_RC%
 echo Ghidra:      %GHIDRA_RC%
-echo Build:       %BUILD_RC%
+echo Build:       %BUILD_RC% (%BUILD_MODE%)
 echo Probe:       %PROBE_RC%
 echo Diagnostics: %DIAG_RC%
 echo.
