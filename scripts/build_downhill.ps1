@@ -25,6 +25,11 @@ if ($PortableToolRoot) {
     $cxx = (Join-Path $PortableToolRoot 'llvm\bin\clang++.exe').Replace('\','/')
     if (!(Test-Path -LiteralPath $cc) -or !(Test-Path -LiteralPath $cxx)) { throw 'Portable Clang toolchain missing.' }
     $GeneratorArgs = @('-G', 'Ninja', '-DCMAKE_BUILD_TYPE=Release', "-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx", '-DCMAKE_CXX_FLAGS=-march=x86-64-v3')
+    # FetchContent clones recursive documentation/test submodules. Putting
+    # them under the deeply nested build directory exceeds Windows MAX_PATH.
+    $workspaceLeaf = Split-Path $RepoRoot -Leaf
+    $dependencyRoot = (Join-Path $env:LOCALAPPDATA ('RD\deps\' + $workspaceLeaf.Substring(0, [Math]::Min(12, $workspaceLeaf.Length)))).Replace('\','/')
+    $GeneratorArgs += "-DFETCHCONTENT_BASE_DIR=$dependencyRoot"
 }
 $ConfigDir = Join-Path $RepoRoot "config"
 $AnalysisDir = Join-Path $RepoRoot "analysis"
