@@ -1,6 +1,7 @@
 param(
     [string]$GameRoot = "",
-    [switch]$MultiFileOutput
+    [switch]$MultiFileOutput,
+    [switch]$EnableFfmpeg
 )
 
 $ErrorActionPreference = "Stop"
@@ -832,6 +833,7 @@ try {
     Write-Host ("      Runtime override locked to CRC32/IEEE " + (Hex32 ([uint32]$ElfIdentity.crc32_ieee_u32))) -ForegroundColor Green
 
     Write-Host "[6/7] Building native Windows x64 runner..." -ForegroundColor Cyan
+    Write-Host ("      FFmpeg MPEG decode: " + $(if ($EnableFfmpeg) { "enabled" } else { "disabled" })) -ForegroundColor DarkGray
 
     $configureRuntimeArgs = @(
         "-S", $Ps2RecompRoot,
@@ -842,7 +844,7 @@ try {
         "-DPS2X_BUILD_ANALYZER=ON",
         "-DPS2X_BUILD_TEST=OFF",
         "-DPS2X_BUILD_STUDIO=OFF",
-        "-DPS2X_ENABLE_FFMPEG=OFF",
+        ("-DPS2X_ENABLE_FFMPEG=" + $(if ($EnableFfmpeg) { "ON" } else { "OFF" })),
         "-DPS2X_ENABLE_DEBUG_UI=OFF",
         "-DPS2X_ENABLE_RUNTIME_LOGS=ON",
         "-DPS2X_ENABLE_AGRESSIVE_LOGS=ON",
@@ -967,6 +969,7 @@ try {
             patch_cop0 = $false
             patch_cache = $false
         }
+        ffmpeg_enabled = [bool]$EnableFfmpeg
         local_extra_entry_points = $LocalExtraEntries
         game_data = $GameData
         runner = $StagedRunner
