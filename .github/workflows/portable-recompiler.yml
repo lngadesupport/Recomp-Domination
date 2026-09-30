@@ -1,0 +1,87 @@
+name: Portable Windows Recompiler
+on:
+  push:
+    branches: [bootstrap/compiler]
+    paths: ['launcher/**', '.github/workflows/portable-recompiler.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable:
+    runs-on: windows-2022
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download pinned portable tools and verify SHA256
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          New-Item -ItemType Directory -Force portable/tools, downloads | Out-Null
+          $assets = @(
+            @{ dir='llvm'; url='https://github.com/mstorsjo/llvm-mingw/releases/download/20260922/llvm-mingw-20260922-ucrt-x86_64.zip'; hash='e3ad77d117a4bea19a7a3b333341824d79a5a371004a10e25b8504e7b3047666' },
+            @{ dir='cmake'; url='https://github.com/Kitware/CMake/releases/download/v4.4.3/cmake-4.4.3-windows-x86_64.zip'; hash='4d52ebab7193a698651639ed80d8d04fd903358843572cf44c7fd234cb7c26ab' },
+            @{ dir='ninja'; url='https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-win.zip'; hash='07fc8261b42b20e71d1720b39068c2e14ffcee6396b76fb7a795fb460b78dc65' },
+            @{ dir='git'; url='https://github.com/git-for-windows/git/releases/download/v2.56.0.windows.1/MinGit-2.56.0-64-bit.zip'; hash='064b440ff870ed5198527e8f3a92cdf5bd2fd0fedf5e718af95e3fdaddeff718' }
+          )
+          foreach ($asset in $assets) {
+            $archive = Join-Path (Resolve-Path downloads) ($asset.dir + '.zip')
+            Invoke-WebRequest $asset.url -OutFile $archive -UseBasicParsing
+            if ((Get-FileHash $archive -Algorithm SHA256).Hash -ne $asset.hash) { throw 'Checksum mismatch' }
+            $dest = Join-Path (Resolve-Path portable/tools) $asset.dir
+            if ($asset.dir -in @('llvm','cmake')) {
+              $temp = Join-Path (Resolve-Path downloads) $asset.dir
+              Expand-Archive $archive $temp
+              $root = Get-ChildItem $temp -Directory | Select-Object -First 1
+              Move-Item $root.FullName $dest
+            } else { Expand-Archive $archive $dest }
+          }
+      - name: Build compiler and synthetic runtime with portable Clang
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $tools = (Resolve-Path portable/tools).Path
+          $env:PATH = "$tools\llvm\bin;$tools\cmake\bin;$tools\ninja;$tools\git\cmd;" + $env:PATH
+          $env:CMAKE_BUILD_PARALLEL_LEVEL = '4'
+          git clone https://github.com/ran-j/PS2Recomp.git _portable/PS2Recomp
+          if ($LASTEXITCODE) { throw 'Clone failed' }
+          git -C _portable/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          if ($LASTEXITCODE) { throw 'Pinned checkout failed' }
+          $cc = "$tools/llvm/bin/clang.exe".Replace('\','/')
+          $cxx = "$tools/llvm/bin/clang++.exe".Replace('\','/')
+          $args = @('-S','_portable/PS2Recomp','-B','_portable/build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release',"-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx",'-DCMAKE_CXX_FLAGS=-march=x86-64-v3','-DPS2X_BUILD_TEST=OFF','-DPS2X_BUILD_STUDIO=OFF','-DPS2X_BUILD_RECOMP=ON','-DPS2X_BUILD_ANALYZER=ON')
+          cmake @args -DPS2X_BUILD_RUNTIME=OFF
+          if ($LASTEXITCODE) { throw 'Configure tools failed' }
+          cmake --build _portable/build --target ps2_analyzer ps2_recomp --parallel 4
+          if ($LASTEXITCODE) { throw 'Build compiler failed' }
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/ci_recompile_smoke.ps1 -Ps2RecompRoot _portable/PS2Recomp -BuildRoot _portable/build -MultiFileOutput
+          if ($LASTEXITCODE) { throw 'Synthetic generation failed' }
+          cmake @args -DPS2X_BUILD_RUNTIME=ON -DPS2X_ENABLE_FFMPEG=OFF -DPS2X_ENABLE_DEBUG_UI=OFF -DPS2X_ENABLE_SCCACHE=OFF -DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF
+          if ($LASTEXITCODE) { throw 'Configure runtime failed' }
+          cmake --build _portable/build --target ps2EntryRunner --parallel 4
+          if ($LASTEXITCODE) { throw 'Link runtime failed' }
+      - name: Package GUI and validate scripts
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          git archive --format=zip --output=downloads/payload.zip HEAD
+          if ($LASTEXITCODE) { throw 'Payload failed' }
+          $csc = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+          & $csc /nologo /target:winexe /platform:x64 '/out:portable\RecompDomination.exe' /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll '/resource:downloads\payload.zip,payload.zip' '.\launcher\RecompDomination.cs'
+          if ($LASTEXITCODE) { throw 'GUI compile failed' }
+          Copy-Item launcher/PORTATIL.md portable/LEIA-ME.md
+          Get-ChildItem scripts,launcher -Filter *.ps1 | ForEach-Object {
+            $tokens=$null; $errors=$null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if ($errors.Count) { throw ($errors | Out-String) }
+          }
+          $app = Start-Process portable/RecompDomination.exe -PassThru
+          Start-Sleep -Seconds 3
+          if ($app.HasExited) { throw 'GUI smoke failed' }
+          $app.Kill()
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecompDomination-Portable-Windows-x64
+          path: portable/
+          retention-days: 30
+
