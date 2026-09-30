@@ -49,26 +49,30 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = 'Stop'
-          $tools = (Resolve-Path portable/tools).Path
+          Move-Item portable/tools '_portable tools'
+          $tools = (Resolve-Path '_portable tools').Path
+          $src = Join-Path $env:LOCALAPPDATA 'RecompDomination\sessions\b03d8cb4243e400fba05448f28bd8be9\third_party\PS2Recomp'
+          $build = Join-Path $src 'out\build-downhill-portable'
           $env:PATH = "$tools\llvm\bin;$tools\cmake\bin;$tools\ninja;$tools\git\cmd;" + $env:PATH
           $env:CMAKE_BUILD_PARALLEL_LEVEL = '4'
-          git clone https://github.com/ran-j/PS2Recomp.git _portable/PS2Recomp
+          git clone https://github.com/ran-j/PS2Recomp.git $src
           if ($LASTEXITCODE) { throw 'Clone failed' }
-          git -C _portable/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          git -C $src checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
           if ($LASTEXITCODE) { throw 'Pinned checkout failed' }
           $cc = "$tools/llvm/bin/clang.exe".Replace('\','/')
           $cxx = "$tools/llvm/bin/clang++.exe".Replace('\','/')
-          $args = @('-S','_portable/PS2Recomp','-B','_portable/build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release',"-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx",'-DCMAKE_CXX_FLAGS=-march=x86-64-v3','-DPS2X_BUILD_TEST=OFF','-DPS2X_BUILD_STUDIO=OFF','-DPS2X_BUILD_RECOMP=ON','-DPS2X_BUILD_ANALYZER=ON')
+          $args = @('-S',$src,'-B',$build,'-G','Ninja','-DCMAKE_BUILD_TYPE=Release',"-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx",'-DCMAKE_CXX_FLAGS=-march=x86-64-v3','-DPS2X_BUILD_TEST=OFF','-DPS2X_BUILD_STUDIO=OFF','-DPS2X_BUILD_RECOMP=ON','-DPS2X_BUILD_ANALYZER=ON')
           cmake @args -DPS2X_BUILD_RUNTIME=OFF
           if ($LASTEXITCODE) { throw 'Configure tools failed' }
-          cmake --build _portable/build --target ps2_analyzer ps2_recomp --parallel 4
+          cmake --build $build --target ps2_analyzer ps2_recomp --parallel 4
           if ($LASTEXITCODE) { throw 'Build compiler failed' }
-          powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/ci_recompile_smoke.ps1 -Ps2RecompRoot _portable/PS2Recomp -BuildRoot _portable/build -MultiFileOutput
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/ci_recompile_smoke.ps1 -Ps2RecompRoot $src -BuildRoot $build -MultiFileOutput
           if ($LASTEXITCODE) { throw 'Synthetic generation failed' }
           cmake @args -DPS2X_BUILD_RUNTIME=ON -DPS2X_ENABLE_FFMPEG=OFF -DPS2X_ENABLE_DEBUG_UI=OFF -DPS2X_ENABLE_SCCACHE=OFF -DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF
           if ($LASTEXITCODE) { throw 'Configure runtime failed' }
-          cmake --build _portable/build --target ps2EntryRunner --parallel 4
+          cmake --build $build --target ps2EntryRunner --parallel 4
           if ($LASTEXITCODE) { throw 'Link runtime failed' }
+          Move-Item '_portable tools' portable/tools
       - name: Package GUI and validate scripts
         shell: powershell
         run: |
