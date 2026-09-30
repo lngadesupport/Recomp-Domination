@@ -3,6 +3,7 @@ param(
     [string]$Report = "",
     [string]$Runner = "",
     [string]$Config = "",
+    [string]$Out = "",
     [string]$ExpectedSha256 = "ADFDA7B73A8F05FB20A3F0F318772E9D3797FD4D6C0A6C0078AE392DF0F0CF0C",
     [int64]$ExpectedSize = 1691684,
     [uint32]$ExpectedEntry = 0x0010A008
@@ -16,7 +17,8 @@ $Elf=(Resolve-Path -LiteralPath $Elf).Path
 if(!$Report){$Report=Join-Path $Here 'build_report.json'}
 if(!$Runner){$Runner=Join-Path $Here 'ps2EntryRunner.exe'}
 if(!$Config){$Config=Join-Path $Here 'downhill.auto.toml'}
-$Out=Join-Path $Here 'probe_readiness.json'
+if(!$Out){$Out=Join-Path $Here 'probe_readiness.json'}
+$Out=[IO.Path]::GetFullPath($Out)
 
 $critical=@()
 $warnings=@()
