@@ -1,4 +1,4 @@
-# Downhill Domination VIF1 compatibility note
+# Downhill Domination VIF FBRST compatibility note
 
 ## Problem
 
@@ -41,4 +41,13 @@ GitHub Actions builds and executes the pinned `ps2x_tests` suite after applying 
 
 ## Scope
 
-The current Downhill patch changes VIF1 only. The pinned PS2Recomp runtime does not model VIF0 register writes with the same detailed register structure in this path, so the project deliberately avoids adding an unverified VIF0 implementation as part of this compatibility fix.
+The compatibility patch now covers the documented FBRST behavior for both VIF units.
+
+For VIF0, the pinned PS2Recomp previously accepted writes in the VIF0 register range but did not apply FBRST at 0x10003810. The patch now implements only the validated FBRST subset needed here:
+
+- RST clears modeled VIF0 command/status state while preserving ROW/COL.
+- STC clears the modeled stall/interrupt status bits 8..13.
+
+It deliberately does not invent unverified VIF0 force-break, DMA cancellation, FIFO flushing, or additional register behavior. Those remain evidence-driven bring-up work if the retail trace reaches them.
+
+Both VIF0 and VIF1 behaviors are covered by the PS2Recomp regression suite after the patch is applied.

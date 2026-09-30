@@ -9,6 +9,7 @@ on:
       - bootstrap/compiler
       - bootstrap/pipeline-enhancements
       - bootstrap/release-candidate
+      - bootstrap/vif0-fbrst
   pull_request:
     branches:
       - main
