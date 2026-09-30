@@ -37,9 +37,10 @@ $p1=Run-Plan 'missing' 'missing-function' $false 'entry-points' 0
 $p2=Run-Plan 'mpeg_off' 'mpeg-no-ffmpeg' $false 'enable-ffmpeg' 0
 $p3=Run-Plan 'mpeg_on' 'mpeg-no-ffmpeg' $true 'stop' 3
 $p4=Run-Plan 'vif' 'vif-vu-gs' $false 'stop' 3
+$p5=Run-Plan 'fileio' 'file-io' $false 'stop' 3
 
 if(-not [bool]$p1.automatic -or -not [bool]$p2.automatic){throw 'Eligible actions must be automatic'}
-if([bool]$p3.automatic -or [bool]$p4.automatic){throw 'Blocked actions must not be automatic'}
+if([bool]$p3.automatic -or [bool]$p4.automatic -or [bool]$p5.automatic){throw 'Blocked actions must not be automatic'}
 
 # Snapshot smoke: diagnostics/config are copied; proprietary-like payloads are not.
 $GameRoot=Join-Path $Root 'game'
