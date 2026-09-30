@@ -50,6 +50,7 @@ try {
     Copy-Diagnostic (Join-Path $DistDir "first_boot_exit_code.txt") "runtime\first_boot_exit_code.txt"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_latest.log") "runtime\first_boot_probe_latest.log"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_probe.json") "runtime\first_boot_probe.json"
+    Copy-Diagnostic (Join-Path $DistDir "probe_readiness.json") "runtime\probe_readiness.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_triage.json") "runtime\first_boot_probe_triage.json"
     Copy-Diagnostic (Join-Path $DistDir "first_boot_probe_suggestions.json") "runtime\first_boot_probe_suggestions.json"
 
@@ -57,16 +58,16 @@ try {
         Sort-Object LastWriteTime -Descending | Select-Object -First 1
     if ($latestBuildLog) { Copy-Diagnostic $latestBuildLog.FullName "logs\$($latestBuildLog.Name)" }
 
-    $environment = New-Object System.Collections.Generic.List[string]
-    $environment.Add("Collected: " + (Get-Date -Format o))
-    $environment.Add("GameRoot: " + $GameRoot)
-    $environment.Add("RepoRoot: " + $RepoRoot)
-    try { $environment.Add("Git HEAD: " + ((& git -C $RepoRoot rev-parse HEAD) | Select-Object -First 1)) } catch {}
-    try { $environment.Add("Git branch: " + ((& git -C $RepoRoot branch --show-current) | Select-Object -First 1)) } catch {}
-    try { $environment.Add("CMake: " + ((& cmake --version) | Select-Object -First 1)) } catch {}
-    try { $environment.Add("Git: " + ((& git --version) | Select-Object -First 1)) } catch {}
-    $environment.Add("OS: " + [Environment]::OSVersion.VersionString)
-    $environment.Add("PowerShell: " + $PSVersionTable.PSVersion.ToString())
+    $environment = @()
+    $environment += "Collected: " + (Get-Date -Format o)
+    $environment += "GameRoot: " + $GameRoot
+    $environment += "RepoRoot: " + $RepoRoot
+    try { $environment += "Git HEAD: " + ((& git -C $RepoRoot rev-parse HEAD) | Select-Object -First 1) } catch {}
+    try { $environment += "Git branch: " + ((& git -C $RepoRoot branch --show-current) | Select-Object -First 1) } catch {}
+    try { $environment += "CMake: " + ((& cmake --version) | Select-Object -First 1) } catch {}
+    try { $environment += "Git: " + ((& git --version) | Select-Object -First 1) } catch {}
+    $environment += "OS: " + [Environment]::OSVersion.VersionString
+    $environment += "PowerShell: " + $PSVersionTable.PSVersion.ToString()
     [IO.File]::WriteAllLines((Join-Path $temp "environment.txt"), $environment, (New-Object Text.UTF8Encoding($false)))
 
     # Deliberately exclude SCUS_971.77, ISO/BIN/CHD/RAR files and generated game data.
