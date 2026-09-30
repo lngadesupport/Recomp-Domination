@@ -67,9 +67,11 @@ jobs:
           if([int]$report.safe_stub_count -ne 1){throw "Expected one safe stub"}
           if([int]$report.unsafe_stub_count -ne 2){throw "Expected two guest-preserved stubs"}
           $cfg=Get-Content "_filter_fixture\config.toml" -Raw
-          if($cfg -notmatch 'GoodHandler@0x00100000'){throw "Good handler removed unexpectedly"}
-          if($cfg -match '(?ms)^stubs\s*=\s*\[.*TodoHandler@0x00100010'){throw "TODO handler remained stubbed"}
-          if($cfg -match '(?ms)^stubs\s*=\s*\[.*MissingHandler@0x00100020'){throw "Missing handler remained stubbed"}
-          if($cfg -notmatch '(?ms)^entry_points\s*=\s*\[.*TodoHandler@0x00100010'){throw "TODO guest function not preserved as entry"}
-          if($cfg -notmatch '(?ms)^entry_points\s*=\s*\[.*MissingHandler@0x00100020'){throw "Missing guest function not preserved as entry"}
+          $stubBody=[regex]::Match($cfg,'(?ms)^stubs\s*=\s*\[(.*?)^\s*\]').Groups[1].Value
+          $entryBody=[regex]::Match($cfg,'(?ms)^entry_points\s*=\s*\[(.*?)^\s*\]').Groups[1].Value
+          if($stubBody -notmatch 'GoodHandler@0x00100000'){throw "Good handler removed unexpectedly"}
+          if($stubBody -match 'TodoHandler@0x00100010'){throw "TODO handler remained stubbed"}
+          if($stubBody -match 'MissingHandler@0x00100020'){throw "Missing handler remained stubbed"}
+          if($entryBody -notmatch 'TodoHandler@0x00100010'){throw "TODO guest function not preserved as entry"}
+          if($entryBody -notmatch 'MissingHandler@0x00100020'){throw "Missing guest function not preserved as entry"}
           Write-Host $cfg
