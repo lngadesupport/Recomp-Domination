@@ -1,0 +1,63 @@
+name: Bring-up logic CI
+
+on:
+  push:
+    branches:
+      - bootstrap/compiler
+    paths:
+      - scripts/select_bringup_entry_points.ps1
+      - scripts/auto_bringup.ps1
+      - AUTO_BRINGUP.cmd
+      - .github/workflows/bringup-logic-ci.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/select_bringup_entry_points.ps1
+      - scripts/auto_bringup.ps1
+      - AUTO_BRINGUP.cmd
+      - .github/workflows/bringup-logic-ci.yml
+
+jobs:
+  guarded-entry-selection:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse bring-up scripts in Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1')){
+            $tokens=$null;$errors=$null
+            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $p),[ref]$tokens,[ref]$errors)|Out-Null
+            if($errors.Count){$errors|Format-List|Out-String|Write-Host;throw "Parser errors in $p"}
+          }
+
+      - name: Select only valid new entries for missing-function triage
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force _ci\bringup | Out-Null
+          @{new_entry_point_candidates=@('0x00123450','0x00123451','0x90000000','0x00123460')} | ConvertTo-Json | Set-Content _ci\bringup\suggestions.json -Encoding utf8
+          @{primary_classification='missing-function'} | ConvertTo-Json | Set-Content _ci\bringup\triage.json -Encoding utf8
+          '0x00123460' | Set-Content _ci\bringup\existing.txt -Encoding ascii
+          .\scripts\select_bringup_entry_points.ps1 -Suggestions _ci\bringup\suggestions.json -Triage _ci\bringup\triage.json -Existing _ci\bringup\existing.txt -Out _ci\bringup\selection.json
+          if($LASTEXITCODE -ne 0){throw "selector failed with $LASTEXITCODE"}
+          $r=Get-Content _ci\bringup\selection.json -Raw|ConvertFrom-Json
+          if([int]$r.selected_count -ne 1){throw "Expected exactly one selection, got $($r.selected_count)"}
+          if($r.selected -notcontains '0x00123450'){throw 'Expected 0x00123450 to be selected'}
+          if($r.selected -contains '0x00123451'){throw 'Unaligned PC was selected'}
+          if($r.selected -contains '0x90000000'){throw 'Out-of-range PC was selected'}
+          if($r.selected -contains '0x00123460'){throw 'Already configured PC was selected'}
+
+      - name: Block automatic changes on fatal triage
+        shell: powershell
+        run: |
+          @{new_entry_point_candidates=@('0x00123450')} | ConvertTo-Json | Set-Content _ci\bringup\fatal_suggestions.json -Encoding utf8
+          @{primary_classification='fatal-or-exception'} | ConvertTo-Json | Set-Content _ci\bringup\fatal_triage.json -Encoding utf8
+          & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\select_bringup_entry_points.ps1 -Suggestions _ci\bringup\fatal_suggestions.json -Triage _ci\bringup\fatal_triage.json -Out _ci\bringup\fatal_selection.json
+          $rc=$LASTEXITCODE
+          if($rc -ne 3){throw "Expected guarded exit 3, got $rc"}
+          $r=Get-Content _ci\bringup\fatal_selection.json -Raw|ConvertFrom-Json
+          if(!$r.blocked){throw 'Fatal triage was not marked blocked'}
+          if([int]$r.selected_count -ne 0){throw 'Fatal triage selected an entry point'}
+          $global:LASTEXITCODE=0
