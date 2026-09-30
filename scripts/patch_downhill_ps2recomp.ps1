@@ -109,7 +109,7 @@ $fileIoNew = @'
         {
             std::cerr << "[FileIO:open-failed] guest='" << ps2Path
                       << "' flags=0x" << std::hex << static_cast<uint32_t>(flags)
-                      << " pc=0x" << getPcU32(ctx)
+                      << " pc=0x" << static_cast<uint32_t>(ctx->pc)
                       << std::dec << std::endl;
         }
         setReturnS32(ctx, descriptor);
