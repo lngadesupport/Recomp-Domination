@@ -123,6 +123,10 @@ if (Test-Path -LiteralPath $buildReport) {
             Write-Host ("  TODO_NAMED:  " + $build.metrics.todo_named_occurrences)
             Write-Host ("  Runner SHA:  " + $build.metrics.runner_sha256)
         }
+        if ($build.runtime_features) {
+            Write-Host ("  FFmpeg:      " + $build.runtime_features.ffmpeg)
+            Write-Host ("  RPC trace:   " + $build.runtime_features.iop_rpc_trace)
+        }
     } catch {
         Write-Warning ("Could not parse build_report.json: " + $_.Exception.Message)
     }
