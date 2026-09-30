@@ -47,6 +47,7 @@ $lines2=@(
 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $Triage -Log $log2 -Out $out2
 if($LASTEXITCODE-ne 0){throw "triage case2 failed with $LASTEXITCODE"}
 $r2=Read-Json $out2
+if([string]$r2.primary_classification-ne 'file-io'){throw "case2 primary=$($r2.primary_classification)"}
 if([int]$r2.file_io.total_failures-ne 3){throw "case2 failures=$($r2.file_io.total_failures)"}
 if(@($r2.file_io.repeated_paths).Count-ne 1){throw 'case2 repeated-path detection failed'}
 $first=@($r2.file_io.open_failures)[0]
