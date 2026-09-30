@@ -31,6 +31,8 @@ $identity = Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json"
 $environmentReport = Join-Path $RepoRoot "analysis\local\environment.json"
 $deepReport = Join-Path $RepoRoot "analysis\local\SCUS_971.77.deep.json"
 $ghidraToml = Join-Path $RepoRoot "analysis\SCUS_971.77.ghidra.toml"
+$ghidraReport = Join-Path $RepoRoot "analysis\local\ghidra_map_report.json"
+$ghidraOptional = Join-Path $RepoRoot "analysis\local\ghidra_optional_status.json"
 $buildReport = Join-Path $DistDir "build_report.json"
 $runner = Join-Path $DistDir "ps2EntryRunner.exe"
 $probe = Join-Path $DistDir "first_boot_probe.json"
@@ -64,6 +66,8 @@ Status-Line "Environment preflight" (Test-PathBool $environmentReport) $environm
 Status-Line "Validated identity report" (Test-PathBool $identity) $identity
 Status-Line "Deep ELF census" (Test-PathBool $deepReport) $deepReport
 Status-Line "Ghidra TOML" (Test-PathBool $ghidraToml) $ghidraToml
+Status-Line "Ghidra provenance" (Test-PathBool $ghidraReport) $ghidraReport
+Status-Line "Ghidra auto status" (Test-PathBool $ghidraOptional) $ghidraOptional
 Status-Line "Generated TOML" (Test-PathBool $config) $config
 Status-Line "Native runner" (Test-PathBool $runner) $runner
 Status-Line "Build report" (Test-PathBool $buildReport) $buildReport
@@ -94,6 +98,11 @@ if (Test-Path -LiteralPath $buildReport) {
         Write-Host ""
         Write-Host "Last build:" -ForegroundColor Cyan
         Write-Host ("  PS2Recomp: " + $build.ps2recomp_commit)
+        if ($null -ne $build.ffmpeg_enabled) {
+            Write-Host ("  FFmpeg:    " + $(if([bool]$build.ffmpeg_enabled){"enabled"}else{"disabled"}))
+        }
+        Write-Host ("  Ghidra CSV:" + " " + $(if([bool]$build.ghidra_map_used){"verified/used"}else{"not used"}))
+        Write-Host ("  Ghidra TOML:" + " " + $(if([bool]$build.ghidra_toml_used){"verified/used"}else{"not used"}))
         if ($build.metrics) {
             Write-Host ("  Output mode: " + $build.metrics.output_mode)
             Write-Host ("  Functions:   " + $build.metrics.generated_function_declarations)
@@ -121,13 +130,48 @@ if (Test-Path -LiteralPath $probe) {
     }
 }
 
+if (Test-Path -LiteralPath $triage) {
+    try {
+        $t = Get-Content -Raw -LiteralPath $triage | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "First-boot triage:" -ForegroundColor Cyan
+        if ($t.furthest_milestone) { Write-Host ("  Furthest:    " + $t.furthest_milestone) }
+        if ($t.runtime_counters) {
+            Write-Host ("  DMA max:     " + $t.runtime_counters.max_dma)
+            Write-Host ("  GIF max:     " + $t.runtime_counters.max_gif)
+            Write-Host ("  GS writes:   " + $t.runtime_counters.max_gs_writes)
+            Write-Host ("  VIF max:     " + $t.runtime_counters.max_vif)
+        }
+        if ($t.categories) {
+            Write-Host ("  MPEG events: " + $t.categories.mpeg)
+            Write-Host ("  MPEG no dec: " + $t.categories.mpeg_decoder_unavailable)
+            Write-Host ("  CD/DVD:      " + $t.categories.cd_dvd)
+            Write-Host ("  Stub TODOs:  " + $t.categories.todo_stub)
+        }
+    } catch {
+        Write-Warning ("Could not parse first_boot_probe_triage.json: " + $_.Exception.Message)
+    }
+}
+
+if (Test-Path -LiteralPath $suggestions) {
+    try {
+        $s = Get-Content -Raw -LiteralPath $suggestions | ConvertFrom-Json
+        $signalKinds = @($s.runtime_signals | ForEach-Object kind)
+        if ($signalKinds.Count -gt 0) {
+            Write-Host ("  Signals:     " + ($signalKinds -join ", ")) -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Warning ("Could not parse first_boot_probe_suggestions.json: " + $_.Exception.Message)
+    }
+}
+
 Write-Host ""
 if (!$elfOk) {
     Write-Host "Next: place SCUS_971.77 in the game root." -ForegroundColor Yellow
 } elseif (!$cdRootOk -and !$cdImageOk) {
     Write-Host "Next: run PREPARE_GAME_DATA.cmd." -ForegroundColor Yellow
 } elseif (!(Test-Path -LiteralPath $runner)) {
-    Write-Host "Next: run BUILD_DOWNHILL.cmd (or BUILD_DOWNHILL_MULTIFILE.cmd)." -ForegroundColor Yellow
+    Write-Host "Next: run FULL_PIPELINE_DOWNHILL.cmd for the complete FFmpeg-enabled build, or BUILD_DOWNHILL.cmd for minimal bring-up." -ForegroundColor Yellow
 } elseif (!(Test-Path -LiteralPath $probe)) {
     Write-Host "Next: run DownhillRecompiled\RUN_PROBE_90S.cmd." -ForegroundColor Yellow
 } else {
