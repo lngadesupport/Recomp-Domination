@@ -31,7 +31,7 @@ if(Test-Path -LiteralPath $Extra){
     Copy-Item -Force -LiteralPath $Extra -Destination $backup
 }
 
-$iterations=New-Object System.Collections.Generic.List[object]
+$iterations=@()
 $stopReason='max-iterations'
 $useMulti=$false
 
@@ -52,14 +52,14 @@ for($i=1;$i-le$MaxIterations;$i++){
     }
     if($buildRc -ne 0){
         $stopReason='build-failed'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason}
         break
     }
 
     $probeScript=Join-Path $Dist 'run_downhill_probe.ps1'
     if(!(Test-Path -LiteralPath $probeScript)){
         $stopReason='probe-script-missing'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$null;accepted=@();reason=$stopReason}
         break
     }
 
@@ -70,7 +70,7 @@ for($i=1;$i-le$MaxIterations;$i++){
     $triage=Join-Path $Dist 'first_boot_probe_triage.json'
     if(!(Test-Path -LiteralPath $suggestions)){
         $stopReason='suggestions-missing'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason}
         break
     }
 
@@ -84,19 +84,19 @@ for($i=1;$i-le$MaxIterations;$i++){
 
     if($selectRc -eq 3){
         $stopReason='triage-blocker'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason;classification=$sel.primary_classification})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason;classification=$sel.primary_classification}
         break
     }
     if($selectRc -ne 0){
         $stopReason='selection-failed'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason}
         break
     }
 
     $selected=@($sel.selected)
     if($selected.Count -eq 0){
         $stopReason='no-new-entry-points'
-        $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason;classification=$sel.primary_classification})
+        $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=@();reason=$stopReason;classification=$sel.primary_classification}
         break
     }
 
@@ -106,7 +106,7 @@ for($i=1;$i-le$MaxIterations;$i++){
     [IO.File]::WriteAllLines($Extra,$merged,(New-Object Text.UTF8Encoding($false)))
     Write-Host ('Accepted for next iteration: '+($selected -join ', ')) -ForegroundColor Yellow
 
-    $iterations.Add([pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=$selected;reason='rebuild-required';classification=$sel.primary_classification})
+    $iterations+=[pscustomobject]@{iteration=$i;build_rc=$buildRc;probe_rc=$probeRc;accepted=$selected;reason='rebuild-required';classification=$sel.primary_classification}
 }
 
 if(Test-Path -LiteralPath $Diag){
@@ -122,7 +122,7 @@ $report=[ordered]@{
     local_entry_file=$Extra
     backup=$backup
     stop_reason=$stopReason
-    iterations=@($iterations)
+    iterations=$iterations
 }
 [IO.File]::WriteAllText($Out,($report|ConvertTo-Json -Depth 7),(New-Object Text.UTF8Encoding($false)))
 Write-Host ''
