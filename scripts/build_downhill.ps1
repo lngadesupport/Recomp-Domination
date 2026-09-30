@@ -33,6 +33,7 @@ $TriageSource = Join-Path $RepoRoot "scripts\triage_first_boot.ps1"
 $StaticAnalysisSource = Join-Path $RepoRoot "scripts\analyze_recompiled_output.ps1"
 $SuggestionSource = Join-Path $RepoRoot "scripts\suggest_bringup_fixes.ps1"
 $StubAuditSource = Join-Path $RepoRoot "scripts\audit_runtime_stubs.ps1"
+$StubFilterSource = Join-Path $RepoRoot "scripts\filter_runtime_stubs.ps1"
 $RuntimePatchSource = Join-Path $RepoRoot "scripts\patch_downhill_ps2recomp.ps1"
 
 New-Item -ItemType Directory -Force -Path $ThirdPartyRoot | Out-Null
@@ -692,6 +693,19 @@ try {
 
     [IO.File]::WriteAllText($AutoConfig, $toml, (New-Object System.Text.UTF8Encoding($false)))
 
+    if (!(Test-Path -LiteralPath $StubFilterSource)) {
+        throw "Missing runtime stub filter: $StubFilterSource"
+    }
+    $StubFilterOut = Join-Path $LocalAnalysisDir "SCUS_971.77.runtime_stub_filter.json"
+    & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $StubFilterSource         -Config $AutoConfig         -Ps2RecompRoot $Ps2RecompRoot         -Out $StubFilterOut
+    if ($LASTEXITCODE -ne 0 -or !(Test-Path -LiteralPath $StubFilterOut)) {
+        throw "Runtime stub prefilter failed."
+    }
+    $StubFilter = Get-Content -Raw -LiteralPath $StubFilterOut | ConvertFrom-Json
+    if ([int]$StubFilter.unsafe_stub_count -gt 0) {
+        Write-Warning ("Guest implementations preserved for " + $StubFilter.unsafe_stub_count + " incomplete runtime handler(s).")
+    }
+
     Write-Host "[5/7] Generating recompiled C++..." -ForegroundColor Cyan
     Invoke-Native $RecompExe $AutoConfig
 
@@ -843,6 +857,7 @@ try {
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
     Copy-Item -Force $DeepElfReport (Join-Path $DistDir "SCUS_971.77.deep.json")
     Copy-Item -Force $StubAuditOut (Join-Path $DistDir "runtime_stubs_report.json")
+    Copy-Item -Force $StubFilterOut (Join-Path $DistDir "runtime_stub_filter_report.json")
     Copy-Item -Force $SuggestionSource (Join-Path $DistDir "suggest_bringup_fixes.ps1")
     Copy-Item -Force $AutoConfig (Join-Path $DistDir "downhill.auto.toml")
 
@@ -933,6 +948,7 @@ try {
         recompiled_report = (Join-Path $DistDir "recompiled_report.json")
         deep_elf_report = (Join-Path $DistDir "SCUS_971.77.deep.json")
         runtime_stubs_report = (Join-Path $DistDir "runtime_stubs_report.json")
+        runtime_stub_filter_report = (Join-Path $DistDir "runtime_stub_filter_report.json")
         staged_config = (Join-Path $DistDir "downhill.auto.toml")
         bringup_suggestions = (Join-Path $DistDir "first_boot_suggestions.json")
         transcript = $Transcript
