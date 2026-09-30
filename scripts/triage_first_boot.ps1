@@ -73,6 +73,30 @@ $iopModules.hle_fallbacks=@($iopModules.hle_fallbacks|Sort-Object -Unique)
 $iopModules.load_failures=@($iopModules.load_failures|Sort-Object -Unique)
 $iopModules.failed_open=@($iopModules.failed_open|Sort-Object -Unique)
 
+$rpcDiagnostics = [ordered]@{
+    unhandled_calls = @()
+}
+
+foreach($line in $lines){
+    $rpc=[regex]::Match(
+        $line,
+        '(?i)\[IOP/RPC trace:unhandled\]\s+sid=(0x[0-9a-f]+)\s+rpc=(0x[0-9a-f]+)\s+pc=(0x[0-9a-f]+)\s+ra=(0x[0-9a-f]+)\s+send=(0x[0-9a-f]+)/([0-9]+)\s+recv=(0x[0-9a-f]+)/([0-9]+).*?loadedModules=\[(.*?)\]'
+    )
+    if($rpc.Success){
+        $rpcDiagnostics.unhandled_calls += [pscustomobject][ordered]@{
+            sid=$rpc.Groups[1].Value.ToUpperInvariant()
+            rpc=$rpc.Groups[2].Value.ToUpperInvariant()
+            pc=$rpc.Groups[3].Value.ToUpperInvariant()
+            ra=$rpc.Groups[4].Value.ToUpperInvariant()
+            send_buffer=$rpc.Groups[5].Value.ToUpperInvariant()
+            send_size=[int]$rpc.Groups[6].Value
+            recv_buffer=$rpc.Groups[7].Value.ToUpperInvariant()
+            recv_size=[int]$rpc.Groups[8].Value
+            loaded_modules=$rpc.Groups[9].Value
+        }
+    }
+}
+
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -87,6 +111,7 @@ $categories = [ordered]@{
     iop_load_failed = @($iopModules.load_failures).Count
     iop_failed_open = @($iopModules.failed_open).Count
     iop_unhandled_import = @($iopModules.unhandled_imports).Count
+    iop_rpc_unhandled = @($rpcDiagnostics.unhandled_calls).Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -200,6 +225,7 @@ elseif ($categories.unsupported_instruction -gt 0) { $primary = "unsupported-ins
 elseif ($categories.todo_or_stub -gt 0) { $primary = "todo-or-stub" }
 elseif ($categories.iop_load_failed -gt 0 -or $categories.iop_failed_open -gt 0) { $primary = "iop-module-load" }
 elseif ($categories.iop_unhandled_import -gt 0) { $primary = "iop-unhandled-import" }
+elseif ($categories.iop_rpc_unhandled -gt 0) { $primary = "iop-rpc-unhandled" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
@@ -214,6 +240,7 @@ $report = [pscustomobject][ordered]@{
     milestones = [pscustomobject]$milestones
     runtime_counters = [pscustomobject]$runtimeCounters
     iop_modules = [pscustomobject]$iopModules
+    rpc = [pscustomobject]$rpcDiagnostics
     graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
@@ -233,4 +260,4 @@ Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
 Write-Host "Furthest boot milestone: $furthestMilestone"
 Write-Host "Graphics stage: $graphicsStage"
-Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}, imports={4}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count,@($iopModules.unhandled_imports).Count)
+Write-Host ("IOP modules: loaded={0}, HLE={1}, load-failed={2}, open-failed={3}, imports={4}, RPC={5}" -f @($iopModules.loaded_irx).Count,@($iopModules.hle_fallbacks).Count,@($iopModules.load_failures).Count,@($iopModules.failed_open).Count,@($iopModules.unhandled_imports).Count,@($rpcDiagnostics.unhandled_calls).Count)
