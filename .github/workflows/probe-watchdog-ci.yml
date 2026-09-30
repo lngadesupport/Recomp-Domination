@@ -106,3 +106,26 @@ jobs:
           if(@($s.rpc.unhandled_calls).Count -ne 1){throw 'Suggestion report lost unhandled RPC trace'}
           if($s.rpc.focus -notmatch '8000ABCD'){throw 'RPC focus does not identify the SID'}
           if(!$s.iop.focus){throw 'IOP focus was not produced'}
+
+
+      - name: Classify MPEG no-FFmpeg movie path
+        shell: powershell
+        run: |
+          @(
+            "[MPEG] runtime built without FFmpeg; MPEG video decode is disabled.",
+            "[MPEG:feedES] #0 size=4096 first4=000001b3 decoderFailed=0 waitSeq=0",
+            "[MPEG:GetPicture] waiting for frames, mpeg=0x123400 ended=0 failed=0 sawInput=1",
+            "[MPEG:IsEnd] mpeg=0x123400 ended=0 producerEof=0 seqEnd=0 streamEnded=0 presentationComplete=1 frames=0 sawInput=1"
+          ) | Set-Content .\probe_smoke\mpeg_fixture.log -Encoding ascii
+
+          .\scripts\triage_first_boot.ps1 -Log .\probe_smoke\mpeg_fixture.log -Out .\probe_smoke\mpeg_triage.json
+          $t=Get-Content .\probe_smoke\mpeg_triage.json -Raw|ConvertFrom-Json
+          if($t.primary_classification -ne 'mpeg-no-ffmpeg'){throw "Unexpected MPEG classification: $($t.primary_classification)"}
+          if(!$t.mpeg.no_ffmpeg){throw 'MPEG no-FFmpeg state was not detected'}
+          if([int]$t.mpeg.feed_events -ne 1 -or [int]$t.mpeg.picture_waits -ne 1){throw 'MPEG counters were parsed incorrectly'}
+
+          .\scripts\suggest_bringup_fixes.ps1 -Log .\probe_smoke\mpeg_fixture.log -Out .\probe_smoke\mpeg_suggestions.json
+          $s=Get-Content .\probe_smoke\mpeg_suggestions.json -Raw|ConvertFrom-Json
+          if(!$s.mpeg.no_ffmpeg){throw 'MPEG suggestion report lost no-FFmpeg state'}
+          if($s.mpeg.focus -notmatch 'FFmpeg'){throw 'MPEG focus does not explain the disabled decoder'}
+          if(@($s.new_entry_point_candidates).Count -ne 0){throw 'MPEG-only fixture must not suggest EE entry points'}
