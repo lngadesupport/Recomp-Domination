@@ -15,13 +15,14 @@ if (!$Out) {
 $text = Get-Content -Raw -LiteralPath $Log
 $lines = @(Get-Content -LiteralPath $Log)
 
-$existing = New-Object 'System.Collections.Generic.HashSet[uint32]'
+$existing = @{}
 if ($Config -and (Test-Path -LiteralPath $Config)) {
     $cfg = Get-Content -Raw -LiteralPath $Config
     $m = [regex]::Match($cfg, '(?ms)^entry_points\s*=\s*\[(.*?)^\s*\]')
     if ($m.Success) {
         foreach ($a in [regex]::Matches($m.Groups[1].Value, '0x([0-9A-Fa-f]{1,8})')) {
-            [void]$existing.Add([Convert]::ToUInt32($a.Groups[1].Value, 16))
+            [uint32]$existingPc = [Convert]::ToUInt32($a.Groups[1].Value, 16)
+            $existing[$existingPc] = $true
         }
     }
 }
@@ -56,7 +57,7 @@ $candidates = @(
             [pscustomobject][ordered]@{
                 address = ('0x{0:X8}' -f $pc)
                 occurrences = [int]$_.Value
-                already_configured = $existing.Contains($pc)
+                already_configured = $existing.ContainsKey($pc)
                 first_log_line = $candidateLines[$pc]
             }
         }
@@ -191,6 +192,42 @@ if(@($rpc.unhandled_calls).Count -gt 0){
     $rpc.focus='No unhandled IOP RPC trace was observed in the captured log.'
 }
 
+$mpeg = [ordered]@{
+    no_ffmpeg = $false
+    feed_events = 0
+    picture_waits = 0
+    is_end_checks = 0
+    errors = @()
+    focus = $null
+}
+
+foreach($line in $lines){
+    if($line -match '(?i)\[MPEG\]\s+runtime built without FFmpeg'){
+        $mpeg.no_ffmpeg = $true
+    }
+    if($line -match '(?i)\[MPEG:feedES\]'){$mpeg.feed_events++}
+    if($line -match '(?i)\[MPEG:GetPicture\]\s+waiting'){$mpeg.picture_waits++}
+    if($line -match '(?i)\[MPEG:IsEnd\]'){$mpeg.is_end_checks++}
+    if($line -match '(?i)\[MPEG\].*(failed|error)'){$mpeg.errors += $line.Trim()}
+}
+$mpeg.errors=@($mpeg.errors|Select-Object -Unique|Select-Object -First 32)
+
+if(@($mpeg.errors).Count -gt 0){
+    $mpeg.focus='MPEG runtime reported decode/demux errors. Treat video playback as the blocker before changing EE entry points.'
+}
+elseif($mpeg.no_ffmpeg -and $mpeg.picture_waits -gt 0){
+    $mpeg.focus='The game reached MPEG picture waits while this bring-up build has FFmpeg disabled. Keep EE entry points unchanged; either let the stream reach EOF/stub-frame fallback or use an optional FFmpeg-enabled build to validate the movie path.'
+}
+elseif($mpeg.no_ffmpeg -and $mpeg.feed_events -gt 0){
+    $mpeg.focus='MPEG/PSS data is reaching the runtime, but FFmpeg is intentionally disabled in the baseline. Video will use the stub path; this is not evidence of a missing EE function.'
+}
+elseif($mpeg.feed_events -gt 0 -or $mpeg.is_end_checks -gt 0){
+    $mpeg.focus='MPEG playback code is active. Use feed/GetPicture/IsEnd progression to distinguish movie-path stalls from the later menu/gameplay path.'
+}
+else{
+    $mpeg.focus='No MPEG activity was observed in the captured log.'
+}
+
 # Infer how far guest graphics progressed from aggressive runtime tick counters.
 $graphics = [ordered]@{
     max_dma = [uint64]0
@@ -281,6 +318,7 @@ $report = [ordered]@{
     unimplemented_stubs = $stubs
     iop = [pscustomobject]$iop
     rpc = [pscustomobject]$rpc
+    mpeg = [pscustomobject]$mpeg
     graphics = [pscustomobject]$graphics
     toml_snippet = $snippet
 }
@@ -302,3 +340,4 @@ Write-Host ("Graphics stage: " + $graphics.stage)
 Write-Host ("Graphics focus: " + $graphics.focus)
 Write-Host ("IOP focus: " + $iop.focus)
 Write-Host ("RPC focus: " + $rpc.focus)
+Write-Host ("MPEG focus: " + $mpeg.focus)
