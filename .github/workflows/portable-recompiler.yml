@@ -61,7 +61,8 @@ jobs:
           if ($LASTEXITCODE) { throw 'Pinned checkout failed' }
           $cc = "$tools/llvm/bin/clang.exe".Replace('\','/')
           $cxx = "$tools/llvm/bin/clang++.exe".Replace('\','/')
-          $args = @('-S',$src,'-B',$build,'-G','Ninja','-DCMAKE_BUILD_TYPE=Release',"-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx",'-DCMAKE_CXX_FLAGS=-march=x86-64-v3','-DPS2X_BUILD_TEST=OFF','-DPS2X_BUILD_STUDIO=OFF','-DPS2X_BUILD_RECOMP=ON','-DPS2X_BUILD_ANALYZER=ON')
+          $deps = (Join-Path $env:LOCALAPPDATA 'RD\deps\portable-ci').Replace('\','/')
+          $args = @("-DFETCHCONTENT_BASE_DIR=$deps",'-S',$src,'-B',$build,'-G','Ninja','-DCMAKE_BUILD_TYPE=Release',"-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx",'-DCMAKE_CXX_FLAGS=-march=x86-64-v3','-DPS2X_BUILD_TEST=OFF','-DPS2X_BUILD_STUDIO=OFF','-DPS2X_BUILD_RECOMP=ON','-DPS2X_BUILD_ANALYZER=ON')
           cmake @args -DPS2X_BUILD_RUNTIME=OFF
           if ($LASTEXITCODE) { throw 'Configure tools failed' }
           cmake --build $build --target ps2_analyzer ps2_recomp --parallel 4
