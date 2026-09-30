@@ -29,6 +29,12 @@ function Copy-Diagnostic {
 }
 
 try {
+    foreach ($buildName in @('build-downhill-portable', 'build-downhill')) {
+        $cmakeFiles = Join-Path $RepoRoot ('third_party\PS2Recomp\out\' + $buildName + '\CMakeFiles')
+        foreach ($name in @('CMakeConfigureLog.yaml', 'CMakeError.log', 'CMakeOutput.log')) {
+            Copy-Diagnostic (Join-Path $cmakeFiles $name) ('cmake\' + $buildName + '\' + $name)
+        }
+    }
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\windows_test.json") "analysis\windows_test.json"
     Copy-Diagnostic (Join-Path $RepoRoot "config\downhill.auto.toml") "config\downhill.auto.toml"
     Copy-Diagnostic (Join-Path $RepoRoot "analysis\local\SCUS_971.77.identity.json") "analysis\SCUS_971.77.identity.json"
