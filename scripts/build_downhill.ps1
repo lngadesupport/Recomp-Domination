@@ -17,6 +17,15 @@ $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $ThirdPartyRoot = Join-Path $RepoRoot "third_party"
 $Ps2RecompRoot = Join-Path $ThirdPartyRoot "PS2Recomp"
 $BuildRoot = Join-Path $Ps2RecompRoot "out\build-downhill"
+$PortableToolRoot = $env:RECOMP_PORTABLE_TOOL_ROOT
+$GeneratorArgs = @('-A', 'x64')
+if ($PortableToolRoot) {
+    $BuildRoot = Join-Path $Ps2RecompRoot 'out\build-downhill-portable'
+    $cc = (Join-Path $PortableToolRoot 'llvm\bin\clang.exe').Replace('\','/')
+    $cxx = (Join-Path $PortableToolRoot 'llvm\bin\clang++.exe').Replace('\','/')
+    if (!(Test-Path -LiteralPath $cc) -or !(Test-Path -LiteralPath $cxx)) { throw 'Portable Clang toolchain missing.' }
+    $GeneratorArgs = @('-G', 'Ninja', '-DCMAKE_BUILD_TYPE=Release', "-DCMAKE_C_COMPILER=$cc", "-DCMAKE_CXX_COMPILER=$cxx", '-DCMAKE_CXX_FLAGS=-march=x86-64-v3')
+}
 $ConfigDir = Join-Path $RepoRoot "config"
 $AnalysisDir = Join-Path $RepoRoot "analysis"
 $LocalAnalysisDir = Join-Path $AnalysisDir "local"
@@ -489,7 +498,7 @@ function Find-BuiltTool {
 try {
     $Git = Require-Command "git"
     $CMake = Require-Command "cmake"
-    Require-MsvcToolchain
+    if (!$PortableToolRoot) { Require-MsvcToolchain }
 
     Remove-Item Env:CMAKE_GENERATOR -ErrorAction SilentlyContinue
     Remove-Item Env:CMAKE_GENERATOR_PLATFORM -ErrorAction SilentlyContinue
@@ -584,13 +593,13 @@ try {
     $configureToolsArgs = @(
         "-S", $Ps2RecompRoot,
         "-B", $BuildRoot,
-        "-A", "x64",
         "-DPS2X_BUILD_RUNTIME=OFF",
         "-DPS2X_BUILD_RECOMP=ON",
         "-DPS2X_BUILD_ANALYZER=ON",
         "-DPS2X_BUILD_TEST=OFF",
         "-DPS2X_BUILD_STUDIO=OFF"
     )
+    $configureToolsArgs += $GeneratorArgs
     Invoke-Native $CMake @configureToolsArgs
 
     $buildToolsArgs = @(
@@ -820,7 +829,6 @@ try {
     $configureRuntimeArgs = @(
         "-S", $Ps2RecompRoot,
         "-B", $BuildRoot,
-        "-A", "x64",
         "-DPS2X_BUILD_RUNTIME=ON",
         "-DPS2X_BUILD_RECOMP=ON",
         "-DPS2X_BUILD_ANALYZER=ON",
@@ -833,9 +841,10 @@ try {
         "-DPS2X_ENABLE_IOP_RPC_TRACE=ON",
         "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
         "-DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF",
-        "-DPS2X_SHOW_WINDOWS_CONSOLE=ON",
-        "-DCMAKE_CXX_FLAGS=/bigobj"
+        "-DPS2X_SHOW_WINDOWS_CONSOLE=ON"
     )
+    $configureRuntimeArgs += $GeneratorArgs
+    if (!$PortableToolRoot) { $configureRuntimeArgs += '-DCMAKE_CXX_FLAGS=/bigobj' }
     Invoke-Native $CMake @configureRuntimeArgs
 
     $buildRuntimeArgs = @(
@@ -859,6 +868,12 @@ try {
     New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
     $StagedRunner = Join-Path $DistDir "ps2EntryRunner.exe"
     Copy-Item -Force $Runner.FullName $StagedRunner
+    if ($PortableToolRoot) {
+        foreach ($dll in @('libc++.dll', 'libunwind.dll', 'libwinpthread-1.dll')) {
+            $source = Join-Path $PortableToolRoot ('llvm\bin\' + $dll)
+            if (Test-Path -LiteralPath $source) { Copy-Item -LiteralPath $source -Destination $DistDir -Force }
+        }
+    }
 
     Get-ChildItem -LiteralPath $Runner.Directory.FullName -Filter "*.dll" -File -ErrorAction SilentlyContinue |
         ForEach-Object {
