@@ -45,7 +45,7 @@ Anchors conferidos byte a byte no ELF:
 - Git
 - CMake 3.21+
 - Visual Studio 2022 ou Build Tools 2022 com **Desktop development with C++**
-- internet na primeira execução para dependências do PS2Recomp
+- internet na primeira sincronização do PS2Recomp; depois, o commit fixado pode ser reutilizado offline
 
 ## Preflight recomendado
 
@@ -127,7 +127,7 @@ Depois rode:
 BUILD_DOWNHILL.cmd
 ```
 
-Se o CSV do Ghidra existir, o build o usa automaticamente. Caso contrário, usa o `ps2_analyzer` como fallback de bring-up.
+Se o CSV/TOML do Ghidra existirem, o build os reutiliza automaticamente. No `FULL_PIPELINE_DOWNHILL.cmd`, Ghidra é tentado apenas quando o mapa ainda não existe; se Ghidra não estiver instalado, o fluxo continua com `ps2_analyzer` como fallback.
 
 Após o build, execute:
 
@@ -169,14 +169,23 @@ FULL_PIPELINE_DOWNHILL.cmd
 
 `FULL_PIPELINE_DOWNHILL.cmd` performs, in order:
 
-1. game-data preparation / multipart RAR normalization and extraction;
-2. `SYSTEM.CNF` validation against `SCUS_971.77`;
-3. exact ELF identity and anchor validation;
-4. pinned PS2Recomp analyzer/recompiler build;
-5. static recompilation to generated C++;
-6. native Windows x64 runner build;
-7. bounded 90-second first-boot probe;
-8. triage/suggestion generation;
-9. non-proprietary diagnostics ZIP collection.
+1. environment preflight (Git, CMake, MSVC, ELF identity, disk space and PS2Recomp source availability);
+2. game-data preparation / multipart RAR normalization and extraction;
+3. optional Ghidra headless function-map generation or reuse, with analyzer fallback;
+4. exact ELF identity, SHA-256, PT_LOAD and anchor validation;
+5. deep R5900/COP/VU/MMI census;
+6. pinned PS2Recomp analyzer/recompiler build;
+7. static recompilation to generated C++ with conservative patch policy;
+8. native Windows x64 runner build;
+9. bounded 90-second first-boot probe plus milestone triage/suggestions;
+10. non-proprietary diagnostics ZIP collection.
 
 The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
+
+
+## Rebuild offline
+
+Depois que `third_party\PS2Recomp` já contém o commit fixado
+`75d729ce40d7eed9649fd4bb05628dee520f3d0c`, o build e o preflight não exigem
+novo `git fetch`. Isso deixa os ciclos de bring-up `log -> ajuste -> rebuild`
+funcionando sem rede, desde que as dependências CMake já estejam disponíveis no cache local.
