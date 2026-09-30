@@ -61,6 +61,98 @@ foreach($line in $lines){
 }
 $stubs=@($stubCounts.GetEnumerator() | Sort-Object Value -Descending | ForEach-Object { [ordered]@{name=$_.Key;occurrences=[int]$_.Value} })
 
+$graphics = [ordered]@{
+    max_vif = 0
+    max_gif = 0
+    max_gs_writes = 0
+    display_registers_programmed = $false
+    stage = "none"
+    focus = $null
+}
+
+foreach($line in $lines){
+    $m=[regex]::Match(
+        $line,
+        '(?i)\[run:tick\].*?\bdispfb1=(0x[0-9a-f]+).*?\bdisplay1=(0x[0-9a-f]+).*?\bdma=(\d+).*?\bgif=(\d+).*?\bgsw=(\d+).*?\bvif=(\d+)'
+    )
+    if(!$m.Success){continue}
+
+    $gif=[uint64]$m.Groups[4].Value
+    $gsw=[uint64]$m.Groups[5].Value
+    $vif=[uint64]$m.Groups[6].Value
+    if($gif -gt $graphics.max_gif){$graphics.max_gif=$gif}
+    if($gsw -gt $graphics.max_gs_writes){$graphics.max_gs_writes=$gsw}
+    if($vif -gt $graphics.max_vif){$graphics.max_vif=$vif}
+
+    $dispfb=$m.Groups[1].Value
+    $display=$m.Groups[2].Value
+    if($dispfb -notmatch '(?i)^0x0+$snippet = if($newEntries.Count -gt 0){
+    "# Suggested only; review before adding.`r`n" + ($newEntries | ForEach-Object {'  "'+$_+'",'} | Out-String)
+} else { "# No new file-backed EE entry point candidates were found." }
+
+$report=[ordered]@{
+    source_log=$Log
+    config=if($Config){[IO.Path]::GetFullPath($Config)}else{$null}
+    executable_file_backed_range=[ordered]@{start='0x0010A000';end_exclusive='0x0029DCF0'}
+    missing_function_candidates=$candidates
+    new_entry_point_candidates=$newEntries
+    unimplemented_stubs=$stubs
+    graphics=[pscustomobject]$graphics
+    toml_snippet=$snippet.TrimEnd()
+}
+
+[IO.File]::WriteAllText([IO.Path]::GetFullPath($Out),($report|ConvertTo-Json -Depth 8),(New-Object Text.UTF8Encoding($false)))
+Write-Host "Bring-up suggestions: $Out"
+if($newEntries.Count -gt 0){Write-Host ("New entry-point candidates: "+($newEntries -join ', ')) -ForegroundColor Yellow}
+if($stubs.Count -gt 0){Write-Host ("Unimplemented stubs observed: "+(($stubs|ForEach-Object {$_.name}) -join ', ')) -ForegroundColor Yellow}
+Write-Host ("Graphics stage: " + $graphics.stage)
+Write-Host ("Graphics focus: " + $graphics.focus)
+ -and $display -notmatch '(?i)^0x0+$snippet = if($newEntries.Count -gt 0){
+    "# Suggested only; review before adding.`r`n" + ($newEntries | ForEach-Object {'  "'+$_+'",'} | Out-String)
+} else { "# No new file-backed EE entry point candidates were found." }
+
+$report=[ordered]@{
+    source_log=$Log
+    config=if($Config){[IO.Path]::GetFullPath($Config)}else{$null}
+    executable_file_backed_range=[ordered]@{start='0x0010A000';end_exclusive='0x0029DCF0'}
+    missing_function_candidates=$candidates
+    new_entry_point_candidates=$newEntries
+    unimplemented_stubs=$stubs
+    toml_snippet=$snippet.TrimEnd()
+}
+
+[IO.File]::WriteAllText([IO.Path]::GetFullPath($Out),($report|ConvertTo-Json -Depth 8),(New-Object Text.UTF8Encoding($false)))
+Write-Host "Bring-up suggestions: $Out"
+if($newEntries.Count -gt 0){Write-Host ("New entry-point candidates: "+($newEntries -join ', ')) -ForegroundColor Yellow}
+if($stubs.Count -gt 0){Write-Host ("Unimplemented stubs observed: "+(($stubs|ForEach-Object {$_.name}) -join ', ')) -ForegroundColor Yellow}
+){
+        $graphics.display_registers_programmed=$true
+    }
+}
+
+if([uint64]$graphics.max_vif -gt 0){$graphics.stage="vif"}
+if([uint64]$graphics.max_gif -gt 0){$graphics.stage="gif"}
+if([uint64]$graphics.max_gs_writes -gt 0){$graphics.stage="gs-writes"}
+if([bool]$graphics.display_registers_programmed){$graphics.stage="display-configured"}
+
+switch($graphics.stage){
+    "vif" {
+        $graphics.focus = "VIF traffic exists but no GIF packets were observed. Inspect VU1 MSCAL/MSCNT execution, XGKICK production and VIF1 state."
+    }
+    "gif" {
+        $graphics.focus = "GIF traffic exists but no GS register writes were observed. Inspect GIF packet decoding/path arbitration and GS front-end submission."
+    }
+    "gs-writes" {
+        $graphics.focus = "GS writes exist but DISPLAY1/DISPFB1 were not both programmed. Inspect display-register setup and privileged GS writes."
+    }
+    "display-configured" {
+        $graphics.focus = "Guest graphics reached display configuration. If the window is still blank/corrupt, inspect framebuffer format, present path and GS raster output."
+    }
+    default {
+        $graphics.focus = "No guest graphics counters advanced. Prioritize EE control flow, DMA/VIF entry points and missing functions/stubs before GS rendering."
+    }
+}
+
 $newEntries=@($candidates | Where-Object { -not $_.already_configured } | ForEach-Object {$_.address})
 $snippet = if($newEntries.Count -gt 0){
     "# Suggested only; review before adding.`r`n" + ($newEntries | ForEach-Object {'  "'+$_+'",'} | Out-String)
