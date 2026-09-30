@@ -71,6 +71,24 @@ jobs:
             throw "CD root sidecar mismatch: $sidecar"
           }
 
+      - name: Inventory extracted game data and IRX modules
+        shell: powershell
+        run: |
+          $root=(Resolve-Path _ci\game_data_smoke).Path
+          $disc=Join-Path $root 'disc'
+          New-Item -ItemType Directory -Force (Join-Path $disc 'IOP') | Out-Null
+          [IO.File]::WriteAllBytes((Join-Path $disc 'IOP\LIBSD.IRX'), [byte[]](1..64))
+          [IO.File]::WriteAllBytes((Join-Path $disc 'IOP\CUSTOM.IRX'), [byte[]](1..80))
+          [IO.File]::WriteAllBytes((Join-Path $disc 'IOPRP300.IMG'), [byte[]](1..32))
+          [IO.File]::WriteAllBytes((Join-Path $disc 'INTRO.PSS'), [byte[]](1..48))
+          .\scripts\analyze_game_data.ps1 -GameRoot $root -Out _ci\game_data_smoke\inventory.json
+          if($LASTEXITCODE -ne 0){throw "Game-data inventory failed with $LASTEXITCODE"}
+          $r=Get-Content _ci\game_data_smoke\inventory.json -Raw|ConvertFrom-Json
+          if($r.inventory_mode -ne 'extracted-root'){throw "Unexpected inventory mode: $($r.inventory_mode)"}
+          if($r.boot2 -notmatch 'SCUS_971\.77'){throw "BOOT2 missing from inventory: $($r.boot2)"}
+          if([int]$r.irx_count -ne 2){throw "Expected 2 IRX files, got $($r.irx_count)"}
+          if([int]$r.module_image_count -ne 1){throw "Expected 1 module image, got $($r.module_image_count)"}
+          if([int]$r.file_count -lt 5){throw "Expected at least 5 files, got $($r.file_count)"}
       - name: Reject mismatched SYSTEM.CNF boot target
         shell: powershell
         run: |
