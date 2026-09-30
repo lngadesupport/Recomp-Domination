@@ -27,23 +27,48 @@ $categories = [ordered]@{
 
 $runtimeCounters = [ordered]@{
     tick_samples = 0
+    max_active_threads = 0
     max_dma = 0
     max_gif = 0
     max_gs_writes = 0
     max_vif = 0
+    last_pc = $null
+    last_ra = $null
+    last_dispfb1 = $null
+    last_display1 = $null
+    display_registers_programmed = $false
 }
 foreach($line in $lines){
-    $tickMatch=[regex]::Match($line,'(?i)\[run:tick\].*?\bdma=(\d+).*?\bgif=(\d+).*?\bgsw=(\d+).*?\bvif=(\d+)')
+    $tickMatch=[regex]::Match(
+        $line,
+        '(?i)\[run:tick\].*?\bpc=(0x[0-9a-f]+).*?\bra=(0x[0-9a-f]+).*?\bdispfb1=(0x[0-9a-f]+).*?\bdisplay1=(0x[0-9a-f]+).*?\bactiveThreads=(\d+).*?\bdma=(\d+).*?\bgif=(\d+).*?\bgsw=(\d+).*?\bvif=(\d+)'
+    )
     if(!$tickMatch.Success){continue}
+
     $runtimeCounters.tick_samples++
-    $dma=[uint64]$tickMatch.Groups[1].Value
-    $gif=[uint64]$tickMatch.Groups[2].Value
-    $gsw=[uint64]$tickMatch.Groups[3].Value
-    $vif=[uint64]$tickMatch.Groups[4].Value
+    $runtimeCounters.last_pc=$tickMatch.Groups[1].Value.ToUpperInvariant()
+    $runtimeCounters.last_ra=$tickMatch.Groups[2].Value.ToUpperInvariant()
+    $runtimeCounters.last_dispfb1=$tickMatch.Groups[3].Value.ToUpperInvariant()
+    $runtimeCounters.last_display1=$tickMatch.Groups[4].Value.ToUpperInvariant()
+
+    $threads=[uint64]$tickMatch.Groups[5].Value
+    $dma=[uint64]$tickMatch.Groups[6].Value
+    $gif=[uint64]$tickMatch.Groups[7].Value
+    $gsw=[uint64]$tickMatch.Groups[8].Value
+    $vif=[uint64]$tickMatch.Groups[9].Value
+
+    if($threads -gt $runtimeCounters.max_active_threads){$runtimeCounters.max_active_threads=$threads}
     if($dma -gt $runtimeCounters.max_dma){$runtimeCounters.max_dma=$dma}
     if($gif -gt $runtimeCounters.max_gif){$runtimeCounters.max_gif=$gif}
     if($gsw -gt $runtimeCounters.max_gs_writes){$runtimeCounters.max_gs_writes=$gsw}
     if($vif -gt $runtimeCounters.max_vif){$runtimeCounters.max_vif=$vif}
+
+    if($runtimeCounters.last_dispfb1 -ne '0X0' -and
+       $runtimeCounters.last_dispfb1 -ne '0X00000000' -and
+       $runtimeCounters.last_display1 -ne '0X0' -and
+       $runtimeCounters.last_display1 -ne '0X00000000'){
+        $runtimeCounters.display_registers_programmed=$true
+    }
 }
 
 $milestones = [ordered]@{
@@ -53,8 +78,18 @@ $milestones = [ordered]@{
     pad_activity = ($categories.pad -gt 0)
     vif_vu_activity = [regex]::IsMatch($text,'(?i)\bVIF[01]?\b|\bVU[01]?\b|MSCALF?|MSCNT')
     gif_gs_activity = [regex]::IsMatch($text,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket')
+    vif_writes_seen = ([uint64]$runtimeCounters.max_vif -gt 0)
+    gif_packets_seen = ([uint64]$runtimeCounters.max_gif -gt 0)
+    gs_writes_seen = ([uint64]$runtimeCounters.max_gs_writes -gt 0)
+    display_registers_programmed = [bool]$runtimeCounters.display_registers_programmed
     guest_graphics_activity = ([uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0)
 }
+
+$graphicsStage = "none"
+if([uint64]$runtimeCounters.max_vif -gt 0){$graphicsStage="vif"}
+if([uint64]$runtimeCounters.max_gif -gt 0){$graphicsStage="gif"}
+if([uint64]$runtimeCounters.max_gs_writes -gt 0){$graphicsStage="gs-writes"}
+if([bool]$runtimeCounters.display_registers_programmed){$graphicsStage="display-configured"}
 
 $furthestMilestone = "none"
 foreach($candidate in @(
@@ -111,6 +146,7 @@ $report = [pscustomobject][ordered]@{
     categories = [pscustomobject]$categories
     milestones = [pscustomobject]$milestones
     runtime_counters = [pscustomobject]$runtimeCounters
+    graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
     first_markers = [pscustomobject][ordered]@{
@@ -128,3 +164,4 @@ $json = $report | ConvertTo-Json -Depth 8
 Write-Host "Triage written to: $Out"
 Write-Host "Primary classification: $primary"
 Write-Host "Furthest boot milestone: $furthestMilestone"
+Write-Host "Graphics stage: $graphicsStage"
