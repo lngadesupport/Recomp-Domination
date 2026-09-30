@@ -889,7 +889,8 @@ try {
     )
     if ($EnableFfmpeg) {
         $StagedDllNames = @($StagedDlls | ForEach-Object Name)
-        foreach ($requiredPattern in @('^avcodec.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+        foreach ($requiredPattern in @(
+            '^avcodec.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
@@ -1035,7 +1036,8 @@ finally {
     catch {
     }
 }
-,'^avutil.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+,
+            '^avutil.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
@@ -1172,7 +1174,8 @@ finally {
     catch {
     }
 }
-,'^swscale.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
+,
+            '^swscale.*\.dll    Copy-Item -Force $LoggedRunnerSource (Join-Path $DistDir "run_downhill_logged.ps1")
     Copy-Item -Force $ProbeRunnerSource (Join-Path $DistDir "run_downhill_probe.ps1")
     Copy-Item -Force $TriageSource (Join-Path $DistDir "triage_first_boot.ps1")
     Copy-Item -Force $StaticAnalysisOut (Join-Path $DistDir "recompiled_report.json")
@@ -1309,7 +1312,8 @@ finally {
     catch {
     }
 }
-)) {
+
+        )) {
             if (-not ($StagedDllNames | Where-Object { $_ -match $requiredPattern })) {
                 throw ("FFmpeg was enabled but a required runtime DLL pattern was not staged: " + $requiredPattern)
             }
