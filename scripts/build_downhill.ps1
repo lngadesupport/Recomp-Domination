@@ -691,14 +691,20 @@ try {
         $toml = Ensure-TomlArrayEntries $toml "entry_points" $GhidraImportedUntrackedStubs
     }
 
+    # Older hand-authored/Ghidra maps mislabeled memcpy's address as PAD.
+    # The SHA-validated retail scePadRead wrapper is at 0x002451B0.
+    $toml = [regex]::Replace($toml, '(?im)^\s*"scePadRead@0x00254050"\s*,?\s*\r?\n', '')
     $toml = Ensure-TomlArrayEntries $toml "stubs" @(
-        "scePadRead@0x00254050",
+        "scePadRead@0x002451B0",
+        "memcpy@0x00254050",
         "sceSifSendCmd@0x0025C440"
     )
 
     $toml = Ensure-TomlArrayEntries $toml "entry_points" @(
         "0x0010A008",
         "0x001FB6C0",
+        "0x002451B0",
+        "0x00246FA0",
         "0x00254050",
         "0x0025C440"
     )
@@ -786,6 +792,8 @@ try {
     foreach ($requiredAddress in @(
         "0x0010A008",
         "0x001FB6C0",
+        "0x002451B0",
+        "0x00246FA0",
         "0x00254050",
         "0x0025C440"
     )) {

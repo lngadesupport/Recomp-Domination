@@ -260,7 +260,16 @@ $fileIo=[ordered]@{
     repeated_paths=@($fileIoFailures|Where-Object{$_.repeated}|ForEach-Object{$_.path})
     focus=$null
 }
-if(@($fileIo.repeated_paths).Count -gt 0){
+$fileIo.cd_search_failures = @(@(
+    foreach ($line in $lines) {
+        $match = [regex]::Match($line, '(?i)sceCdSearchFile failed:\s*(.*?)\s+\(root:')
+        if ($match.Success) { $match.Groups[1].Value }
+    }
+) | Sort-Object -Unique)
+if(@($fileIo.cd_search_failures).Count -gt 0){
+    $fileIo.focus='CD file search failed. Supply the original disc file at the exact logged path and verify the CD root/ISO mapping before continuing menu or race validation.'
+}
+elseif(@($fileIo.repeated_paths).Count -gt 0){
     $fileIo.focus='The same guest file path failed to open repeatedly. Verify extracted CD root / ISO mapping, case, ;1 version suffix handling and the exact guest path before changing EE entry points.'
 }
 elseif(@($fileIo.open_failures).Count -gt 0){
@@ -272,6 +281,7 @@ else{
 
 # Infer how far guest graphics progressed from aggressive runtime tick counters.
 $graphics = [ordered]@{
+    gs_register_events = @($lines | Where-Object { $_ -match '(?i)\[gs:reg\]' }).Count
     max_dma = [uint64]0
     max_vif = [uint64]0
     max_gif = [uint64]0
@@ -299,17 +309,17 @@ foreach ($line in $lines) {
     if ($gif -gt $graphics.max_gif) { $graphics.max_gif = $gif }
     if ($gsw -gt $graphics.max_gs_writes) { $graphics.max_gs_writes = $gsw }
 
-    $dispfb = $m.Groups[1].Value
-    $display = $m.Groups[2].Value
-    if ($dispfb -notmatch '(?i)^0x0+$' -and
-        $display -notmatch '(?i)^0x0+$') {
+    $dispfb = [Convert]::ToUInt64($m.Groups[1].Value.Substring(2), 16)
+    $display = [Convert]::ToUInt64($m.Groups[2].Value.Substring(2), 16)
+    $isResetDisplay = ($dispfb -eq 0x1400 -and $display -eq 0x1bf27f00000000)
+    if ($dispfb -ne 0 -and $display -ne 0 -and !$isResetDisplay) {
         $graphics.display_registers_programmed = $true
     }
 }
 
 if ([uint64]$graphics.max_vif -gt 0) { $graphics.stage = "vif" }
 if ([uint64]$graphics.max_gif -gt 0) { $graphics.stage = "gif" }
-if ([uint64]$graphics.max_gs_writes -gt 0) { $graphics.stage = "gs-writes" }
+if ([uint64]$graphics.max_gs_writes -gt 0 -or $graphics.gs_register_events -gt 0) { $graphics.stage = "gs-writes" }
 if ([bool]$graphics.display_registers_programmed) { $graphics.stage = "display-configured" }
 
 switch ($graphics.stage) {

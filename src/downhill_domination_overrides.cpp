@@ -1,5 +1,7 @@
 #include "game_overrides.h"
 #include "ps2_runtime.h"
+#include "ps2_runtime_macros.h"
+#include "ps2_stubs.h"
 
 #include <algorithm>
 #include <cctype>
@@ -13,7 +15,9 @@ namespace
 {
     constexpr uint32_t kEntryPoint = 0x0010A008u;
     constexpr uint32_t kExpectedFileCrc32 = 0x00000000u; // Replaced locally after ELF validation.
-    constexpr uint32_t kScePadRead = 0x00254050u;
+    constexpr uint32_t kScePadRead = 0x002451B0u;
+    constexpr uint32_t kMemcpy = 0x00254050u;
+    constexpr uint32_t kSceCdLayerSearchFile = 0x00246FA0u;
     constexpr uint32_t kSceSifSendCmd = 0x0025C440u;
 
     bool hasIsoExtension(const std::filesystem::path &path)
@@ -128,6 +132,20 @@ namespace
         PS2Runtime::setIoPaths(paths);
     }
 
+    void downhillCdLayerSearchFile(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        const uint32_t layer = GPR_U32(ctx, 6);
+        // The existing CD backend searches layer zero in an ISO or extracted
+        // disc tree. Do not claim a successful lookup for unsupported layers.
+        if (layer != 0u)
+        {
+            std::cerr << "[downhill:cd-layer-unsupported] layer=" << layer << "\n";
+            SET_GPR_S32(ctx, 2, 0);
+            return;
+        }
+        ps2_stubs::sceCdSearchFile(rdram, ctx, runtime);
+    }
+
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
@@ -137,15 +155,23 @@ namespace
 
         const bool sifBound =
             ps2_game_overrides::bindAddressHandler(runtime, kSceSifSendCmd, "sceSifSendCmd");
+        const bool memcpyBound =
+            ps2_game_overrides::bindAddressHandler(runtime, kMemcpy, "memcpy");
+        const bool cdSearchBound =
+            runtime.registerFunction(kSceCdLayerSearchFile, downhillCdLayerSearchFile);
 
         if (!padBound)
         {
-            std::cerr << "[downhill] failed to bind scePadRead at 0x00254050\n";
+            std::cerr << "[downhill] failed to bind scePadRead at 0x002451B0\n";
         }
 
         if (!sifBound)
         {
             std::cerr << "[downhill] failed to bind sceSifSendCmd at 0x0025C440\n";
+        }
+        if (!memcpyBound || !cdSearchBound)
+        {
+            std::cerr << "[downhill] failed to bind memcpy or sceCdLayerSearchFile\n";
         }
     }
 }

@@ -87,10 +87,11 @@ if(Test-Path -LiteralPath $Runner){
 
 if(Test-Path -LiteralPath $Config){
     $cfg=Get-Content -Raw -LiteralPath $Config
-    foreach($pc in @('0x0010A008','0x001FB6C0','0x00254050','0x0025C440')){
+    foreach($pc in @('0x0010A008','0x001FB6C0','0x002451B0','0x00246FA0','0x00254050','0x0025C440')){
         Add-Critical ('Config PC '+$pc) ($cfg -match [regex]::Escape($pc)) $(if($cfg -match [regex]::Escape($pc)){'present'}else{'missing'})
     }
-    Add-Critical 'Config scePadRead binding' ($cfg -match 'scePadRead@0x00254050') $(if($cfg -match 'scePadRead@0x00254050'){'present'}else{'missing'})
+    Add-Critical 'Config scePadRead binding' ($cfg -match 'scePadRead@0x002451B0') $(if($cfg -match 'scePadRead@0x002451B0'){'present'}else{'missing'})
+    Add-Critical 'Config rejects PAD/memcpy collision' ($cfg -notmatch 'scePadRead@0x00254050') '0x00254050 belongs to memcpy'
     Add-Critical 'Config sceSifSendCmd binding' ($cfg -match 'sceSifSendCmd@0x0025C440') $(if($cfg -match 'sceSifSendCmd@0x0025C440'){'present'}else{'missing'})
 }else{Add-Critical 'Staged config' $false ('missing: '+$Config)}
 

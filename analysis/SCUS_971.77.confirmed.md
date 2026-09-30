@@ -32,7 +32,7 @@ Because the single PT_LOAD is RWX, section/function metadata is more trustworthy
 | Guest PC | Word | Meaning |
 |---|---:|---|
 | 0x0025C5A0 | 0x0C097110 | JAL to 0x0025C440, sceSifSendCmd candidate |
-| 0x0024520C | 0x0C095014 | JAL to 0x00254050, scePadRead candidate |
+| 0x0024520C | 0x0C095014 | JAL to 0x00254050, memcpy called inside scePadRead |
 | 0x001B6740 | 0x0C07EDB0 | JAL to 0x001FB6C0, main candidate |
 | 0x00243D34 | 0x30420001 | video/interlace anchor |
 

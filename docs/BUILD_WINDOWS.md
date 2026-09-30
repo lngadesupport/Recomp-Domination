@@ -42,7 +42,7 @@ BUILD_DOWNHILL.cmd invokes scripts/build_downhill.ps1, which:
 
 - ELF entry: 0x0010A008
 - main candidate: 0x001FB6C0
-- scePadRead: 0x00254050
+- scePadRead: 0x002451B0
 - sceSifSendCmd: 0x0025C440
 
 The last two are configured as exact stub selectors and explicit entry-point hints. They are also rebound by the game override at runtime. This is deliberate: the analyzer normally discovers both through real JAL callsites, while the explicit entry hints keep their exact PCs represented in the generated function table if heuristic slicing changes.

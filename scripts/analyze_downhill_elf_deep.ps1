@@ -205,7 +205,7 @@ foreach($s in @($segments|Where-Object{$_.type-eq 1-and$_.filesz-gt 0})){
 }
 
 $known=[ordered]@{}
-foreach($addr in @([uint32]0x0010A008,[uint32]0x001FB6C0,[uint32]0x00254050,[uint32]0x0025C440)){
+foreach($addr in @([uint32]0x0010A008,[uint32]0x001FB6C0,[uint32]0x002451B0,[uint32]0x00246FA0,[uint32]0x00254050,[uint32]0x0025C440)){
   $found=$false
   foreach($s in $segments){
     if($s.type-ne 1){continue}

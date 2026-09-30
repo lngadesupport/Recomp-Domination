@@ -11,7 +11,7 @@ import tomllib
 
 PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
 SHA256 = "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c"
-ENTRIES = ("0x0010A008", "0x001FB6C0", "0x00254050", "0x0025C440")
+ENTRIES = ("0x0010A008", "0x001FB6C0", "0x002451B0", "0x00254050", "0x00246FA0", "0x0025C440")
 
 
 def scalar(text, key, value):
@@ -80,7 +80,7 @@ def main():
     run(args.analyzer, [str(elf), str(config)], "analyzer")
     text = config.read_text()
     general = tomllib.loads(text)["general"]
-    stubs = list(general["stubs"]) + ["scePadRead@0x00254050", "sceSifSendCmd@0x0025C440"]
+    stubs = list(general["stubs"]) + ["scePadRead@0x002451B0", "sceSifSendCmd@0x0025C440"]
     entries = list(general["entry_points"]) + list(ENTRIES)
     statuses = [{"selector": stub, "status": handler_status(source, stub.split("@", 1)[0])}
                 for stub in sorted(set(stubs))]
@@ -104,7 +104,7 @@ def main():
     for entry in ENTRIES:
         if not re.search(r"(?i)//\s*0x0*" + format(int(entry, 16), "x") + r"\b", table):
             raise ValueError(f"Required generated entry missing: {entry}")
-    for address, name in ((0x254050, "scePadRead"), (0x25C440, "sceSifSendCmd")):
+    for address, name in ((0x2451B0, "scePadRead"), (0x254050, "memcpy"), (0x25C440, "sceSifSendCmd")):
         candidates = list((work / "output").glob(f"*_0x{address:x}.cpp"))
         if len(candidates) != 1 or not re.search(
                 rf"ps2_(?:stubs|syscalls)::{name}\s*\(", candidates[0].read_text()):
@@ -113,7 +113,7 @@ def main():
         raise ValueError("No generated C++ files")
     report.update({"generated_cpp_files": len(files), "generated_cpp_bytes": sum(p.stat().st_size for p in files),
                    "required_entries_verified": list(ENTRIES),
-                   "confirmed_bindings_verified": ["scePadRead", "sceSifSendCmd"], "generation_verified": True})
+                   "confirmed_bindings_verified": ["scePadRead", "memcpy", "sceSifSendCmd"], "generation_verified": True})
     report_path.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({k: v for k, v in report.items() if k != "stub_filter"}, indent=2))
 

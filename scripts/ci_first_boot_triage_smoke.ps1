@@ -79,5 +79,25 @@ if($r4.milestones.display_registers_programmed -or $r4.milestones.guest_graphics
 if($r4.graphics_stage -ne 'none'){throw 'Reset display advanced graphics stage'}
 if($r4.primary_classification -eq 'vif-vu-gs'){throw 'Zero counters falsely classified as graphics blocker'}
 
+# Case 5: an actual CD lookup failure stays visible after early graphics traffic.
+$log5=Join-Path $Root 'cd-search.log'
+$out5=Join-Path $Root 'cd-search.json'
+@(
+    '[SIF module] load-emulated id=1',
+    '[gs:reg] idx=0 reg=0x41 value=0x8005',
+    'sceCdSearchFile failed: \SKAT\DHSKAT.SKX;1 (root: C:\disc, repeat=1)',
+    '[run:tick] tick=120 pc=0x25a308 ra=0x1df5e0 dispfb1=0x00001400 display1=0x001bf27f00000000 activeThreads=1 dma=4 gif=1 gsw=0 vif=2'
+) | Set-Content -LiteralPath $log5
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $Triage -Log $log5 -Out $out5
+if($LASTEXITCODE-ne 0){throw 'triage case5 failed'}
+$r5=Read-Json $out5
+if($r5.primary_classification -ne 'cd-file-search' -or $r5.graphics_stage -ne 'gs-writes'){throw 'CD search failure or reset-display classification lost'}
+if(@($r5.cd_search.failed_paths)[0] -ne '\SKAT\DHSKAT.SKX;1'){throw 'Exact missing CD path was not preserved'}
+$suggestions=Join-Path $Root 'cd-search-suggestions.json'
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoRoot 'scripts/suggest_bringup_fixes.ps1') -Log $log5 -Out $suggestions
+if($LASTEXITCODE-ne 0){throw 'CD search suggestions failed'}
+$s5=Read-Json $suggestions
+if($s5.graphics.stage -ne 'gs-writes' -or @($s5.file_io.cd_search_failures)[0] -ne '\SKAT\DHSKAT.SKX;1'){throw 'Suggestions disagreed with triage'}
+
 Write-Host '[triage-smoke] PASS' -ForegroundColor Green
 exit 0

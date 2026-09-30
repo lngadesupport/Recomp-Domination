@@ -65,7 +65,7 @@ if($m.Success){$tableEnd=$m.Groups[1].Value.ToUpperInvariant()}
 $m=[regex]::Match($reg,'g_ps2RecompiledFunctionTableSlotCount\s*=\s*([0-9]+)u')
 if($m.Success){$slotCount=[int64]$m.Groups[1].Value}
 
-$critical=@('0x0010A008','0x001FB6C0','0x00254050','0x0025C440')
+$critical=@('0x0010A008','0x001FB6C0','0x002451B0','0x00246FA0','0x00254050','0x0025C440')
 $criticalPresence=[ordered]@{}
 foreach($addr in $critical){
     $body=$addr.Substring(2).TrimStart([char]'0')

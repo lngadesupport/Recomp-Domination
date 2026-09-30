@@ -2,7 +2,7 @@ name: Portable Windows Recompiler
 on:
   push:
     branches: [bootstrap/compiler]
-    paths: ['launcher/**', 'scripts/build_downhill.ps1', '.github/workflows/portable-recompiler.yml']
+    paths: ['launcher/**', 'scripts/build_downhill.ps1', 'src/**', '.github/workflows/portable-recompiler.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -69,6 +69,7 @@ jobs:
           if ($LASTEXITCODE) { throw 'Build compiler failed' }
           powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/ci_recompile_smoke.ps1 -Ps2RecompRoot $src -BuildRoot $build -MultiFileOutput
           if ($LASTEXITCODE) { throw 'Synthetic generation failed' }
+          Copy-Item src/downhill_domination_overrides.cpp (Join-Path $src 'ps2xRuntime/src/runner/downhill_domination_overrides.cpp')
           cmake @args -DPS2X_BUILD_RUNTIME=ON -DPS2X_ENABLE_FFMPEG=OFF -DPS2X_ENABLE_DEBUG_UI=OFF -DPS2X_ENABLE_SCCACHE=OFF -DPS2X_ENABLE_RUNNER_UNITY_BUILD=OFF
           if ($LASTEXITCODE) { throw 'Configure runtime failed' }
           cmake --build $build --target ps2EntryRunner --parallel 4
@@ -122,5 +123,6 @@ jobs:
           path: portable/
           retention-days: 30
           include-hidden-files: true
+
 
 

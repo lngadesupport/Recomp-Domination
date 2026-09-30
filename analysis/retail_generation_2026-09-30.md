@@ -1,5 +1,7 @@
 # Retail generation checkpoint — 2026-09-30
 
+> Correction (2026-09-30, later bring-up): the PAD binding at 0x00254050 in this experiment was wrong. This address is memcpy, called by the actual scePadRead wrapper at 0x002451B0. Current scripts and overrides use the corrected binding. See retail_bindings_fixed_2026-09-30.md.
+
 Actual local run using the user-provided `SCUS_971.77`, not a synthetic fixture.
 Project baseline: `6f93644`; PS2Recomp: `75d729ce40d7eed9649fd4bb05628dee520f3d0c`.
 ELF SHA-256: `adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c`.

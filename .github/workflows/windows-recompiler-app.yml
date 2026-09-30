@@ -2,7 +2,7 @@ name: Windows Recompiler App
 on:
   push:
     branches: [bootstrap/compiler]
-    paths: ['launcher/**', 'scripts/build_downhill.ps1', 'scripts/collect_diagnostics.ps1', '.github/workflows/windows-recompiler-app.yml']
+    paths: ['launcher/**', 'src/**', 'scripts/**', 'scripts/build_downhill.ps1', 'scripts/collect_diagnostics.ps1', '.github/workflows/windows-recompiler-app.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -38,3 +38,4 @@ jobs:
           name: RecompDomination-Windows-x64
           path: dist/RecompDomination.exe
           retention-days: 30
+

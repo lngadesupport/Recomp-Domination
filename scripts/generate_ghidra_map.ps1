@@ -122,7 +122,7 @@ $header=$csvLines[0].Trim()
 if($header -notmatch '(?i)^Name,Start,End,Size$'){throw "Unexpected Ghidra CSV header: $header"}
 
 $records=[Math]::Max(0,$csvLines.Count-1)
-$known=@('0x0010A008','0x001FB6C0','0x00254050','0x0025C440')
+$known=@('0x0010A008','0x001FB6C0','0x002451B0','0x00246FA0','0x00254050','0x0025C440')
 $presence=[ordered]@{}
 $csvText=$csvLines -join [Environment]::NewLine
 foreach($addr in $known){$presence[$addr]=[regex]::IsMatch($csvText,'(?i),'+[regex]::Escape($addr)+',')}

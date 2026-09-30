@@ -13,6 +13,11 @@ PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
 ELF_SHA256 = "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c"
 
 
+def copy_if_changed(source, destination):
+    if not destination.exists() or source.read_bytes() != destination.read_bytes():
+        shutil.copy2(source, destination)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--elf", type=Path, required=True)
@@ -66,15 +71,18 @@ def main():
         raise ValueError("Generated output does not match generation report")
     for pattern in ("sub_*_0x*.cpp", "register_functions.cpp", "ps2_recompiled_functions.cpp"):
         for old in runner.glob(pattern):
-            old.unlink()
+            if old.name not in {p.name for p in staged}:
+                old.unlink()
     for path in staged:
-        shutil.copy2(path, runner / path.name)
+        copy_if_changed(path, runner / path.name)
     for name in ("ps2_recompiled_functions.h", "ps2_recompiled_stubs.h"):
-        shutil.copy2(generated / name, source / "ps2xRuntime/include" / name)
+        copy_if_changed(generated / name, source / "ps2xRuntime/include" / name)
     override = (repo / "src/downhill_domination_overrides.cpp").read_text()
     override = re.sub(r"constexpr uint32_t kExpectedFileCrc32 = 0x[0-9A-Fa-f]{8}u;",
                       f"constexpr uint32_t kExpectedFileCrc32 = 0x{zlib.crc32(elf):08X}u;", override)
-    (runner / "downhill_domination_overrides.cpp").write_text(override)
+    override_path = runner / "downhill_domination_overrides.cpp"
+    if not override_path.exists() or override_path.read_text() != override:
+        override_path.write_text(override)
     options = ["-DCMAKE_BUILD_TYPE=Debug", "-DPS2X_BUILD_RUNTIME=ON", "-DPS2X_BUILD_RECOMP=OFF",
                "-DPS2X_BUILD_ANALYZER=OFF", "-DPS2X_BUILD_TEST=OFF", "-DPS2X_BUILD_STUDIO=OFF",
                "-DPS2X_ENABLE_FFMPEG=OFF", "-DPS2X_ENABLE_DEBUG_UI=OFF", "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",

@@ -80,11 +80,13 @@ $cfg=@'
 entry_points = [
   "0x0010A008",
   "0x001FB6C0",
+  "0x002451B0",
+  "0x00246FA0",
   "0x00254050",
   "0x0025C440",
 ]
 stubs = [
-  "scePadRead@0x00254050",
+  "scePadRead@0x002451B0",
   "sceSifSendCmd@0x0025C440",
 ]
 '@
@@ -105,6 +107,14 @@ if($null-eq$readyProperty){throw ("Readiness JSON has no ready property. JSON=" 
 if(-not [bool]$readyProperty.Value){throw 'Matching readiness fixture was not marked ready'}
 
 Write-Host '[readiness-smoke] rejecting stale modified runner...' -ForegroundColor Cyan
+# Reject the historical PAD/memcpy collision even when the runner hash matches.
+[IO.File]::WriteAllText($Config,($cfg.Replace('scePadRead@0x002451B0','scePadRead@0x00254050')),(New-Object Text.UTF8Encoding($false)))
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $ReadinessScript `
+    -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config -Out $ReadyOut `
+    -ExpectedSha256 $sha -ExpectedSize 128
+if($LASTEXITCODE-ne 1){throw 'Historical PAD/memcpy collision was accepted'}
+[IO.File]::WriteAllText($Config,$cfg,(New-Object Text.UTF8Encoding($false)))
+
 [IO.File]::AppendAllText($Runner,'stale',[Text.Encoding]::ASCII)
 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $ReadinessScript `
     -Elf $ElfPath -Report $BuildReport -Runner $Runner -Config $Config -Out $ReadyOut `

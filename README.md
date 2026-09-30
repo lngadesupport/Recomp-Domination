@@ -35,7 +35,7 @@ Anchors conferidos byte a byte no ELF:
 | endereço | instrução | alvo/uso |
 |---|---:|---|
 | `0x0025C5A0` | `0x0C097110` | JAL → `0x0025C440` (`sceSifSendCmd`) |
-| `0x0024520C` | `0x0C095014` | JAL → `0x00254050` (`scePadRead`) |
+| `0x0024520C` | `0x0C095014` | JAL → `0x00254050` (`memcpy`, chamada interna de `scePadRead`) |
 | `0x001B6740` | `0x0C07EDB0` | JAL → `0x001FB6C0` (`main`) |
 | `0x00243D34` | `0x30420001` | anchor de vídeo/interlace |
 
@@ -97,11 +97,14 @@ Veja [o checkpoint retail](analysis/retail_generation_2026-09-30.md) para evidê
 limitações e o comando de geração headless reproduzível.
 
 O runner retail também linkou em Linux e executou `entry -> main -> SIF/IOP`
-em um probe limitado de 15 segundos. O bloqueio observado foi a ausência dos
-dados do disco e de quatro módulos IRX sem fallback disponível. Ainda não houve
+em um probe limitado. Com a pasta `MOD` real enviada depois, os nove módulos
+IRX solicitados carregaram fisicamente, sem falhas ou fallback HLE. Ainda falta
+a imagem/dados restantes do disco, e a leitura do setor `0x10` não foi atendida. Ainda não houve
 frame do jogo, menu ou corrida, e o build Windows retail permanece pendente.
 Veja [o checkpoint do primeiro boot](analysis/retail_first_boot_2026-09-30.md)
 e os comandos POSIX de build/probe para repetir o diagnóstico.
+Veja também [o checkpoint dos IRX físicos](analysis/retail_physical_irx_2026-09-30.md)
+para a preparação de caminhos POSIX e o estado do probe com os módulos reais.
 
 O objetivo imediato é chegar a um executável nativo que percorra:
 

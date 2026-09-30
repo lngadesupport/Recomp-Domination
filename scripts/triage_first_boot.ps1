@@ -157,6 +157,17 @@ $fileIoDiagnostics=[ordered]@{
     repeated_paths=@($fileIoFailures|Where-Object{$_.repeated}|ForEach-Object{$_.path})
 }
 
+$cdSearchFailures = @(
+    foreach ($line in $lines) {
+        $match = [regex]::Match($line, '(?i)sceCdSearchFile failed:\s*(.*?)\s+\(root:')
+        if ($match.Success) { $match.Groups[1].Value }
+    }
+)
+$cdSearchDiagnostics = [ordered]@{
+    failed_paths = @($cdSearchFailures | Sort-Object -Unique)
+    failure_events = $cdSearchFailures.Count
+}
+
 $categories = [ordered]@{
     fatal_or_exception = @($lines | Where-Object { $_ -match '(?i)fatal|exception|terminate|abort|assert' }).Count
     missing_function = @($lines | Where-Object { $_ -match '(?i)function.+not found|missing.+function|lookupFunction|unresolved.+function' }).Count
@@ -180,6 +191,7 @@ $categories = [ordered]@{
     mpeg_error = @($mpegDiagnostics.errors).Count
     file_open_failed = $fileIoDiagnostics.total_failures
     file_open_repeated = @($fileIoDiagnostics.repeated_paths).Count
+    cd_search_failed = $cdSearchFailures.Count
 }
 
 $runtimeCounters = [ordered]@{
@@ -188,6 +200,7 @@ $runtimeCounters = [ordered]@{
     max_dma = 0
     max_gif = 0
     max_gs_writes = 0
+    gs_register_events = @($lines | Where-Object { $_ -match '(?i)\[gs:reg\]' }).Count
     max_vif = 0
     last_pc = $null
     last_ra = $null
@@ -240,15 +253,15 @@ $milestones = [ordered]@{
     gif_gs_activity = ([regex]::IsMatch($activityText,'(?i)\bGIF\b|\bGS\b|GifArbiter|processGIFPacket') -or [uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0)
     vif_writes_seen = ([uint64]$runtimeCounters.max_vif -gt 0)
     gif_packets_seen = ([uint64]$runtimeCounters.max_gif -gt 0)
-    gs_writes_seen = ([uint64]$runtimeCounters.max_gs_writes -gt 0)
+    gs_writes_seen = ([uint64]$runtimeCounters.max_gs_writes -gt 0 -or $runtimeCounters.gs_register_events -gt 0)
     display_registers_programmed = [bool]$runtimeCounters.display_registers_programmed
-    guest_graphics_activity = ([uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0)
+    guest_graphics_activity = ([uint64]$runtimeCounters.max_gif -gt 0 -or [uint64]$runtimeCounters.max_gs_writes -gt 0 -or $runtimeCounters.gs_register_events -gt 0)
 }
 
 $graphicsStage = "none"
 if([uint64]$runtimeCounters.max_vif -gt 0){$graphicsStage="vif"}
 if([uint64]$runtimeCounters.max_gif -gt 0){$graphicsStage="gif"}
-if([uint64]$runtimeCounters.max_gs_writes -gt 0){$graphicsStage="gs-writes"}
+if([uint64]$runtimeCounters.max_gs_writes -gt 0 -or $runtimeCounters.gs_register_events -gt 0){$graphicsStage="gs-writes"}
 if([bool]$runtimeCounters.display_registers_programmed){$graphicsStage="display-configured"}
 
 $furthestMilestone = "none"
@@ -265,7 +278,7 @@ foreach($candidate in @(
 }
 
 $knownAddressHits = [ordered]@{}
-foreach($knownPc in @("0010A008","001FB6C0","00254050","0025C440")){
+foreach($knownPc in @("0010A008","001FB6C0","002451B0","00246FA0","00254050","0025C440")){
     $knownAddressHits["0x" + $knownPc] = ([regex]::Matches($text,'(?i)(?:0x)?'+$knownPc)).Count
 }
 
@@ -299,6 +312,7 @@ elseif ($categories.iop_rpc_unhandled -gt 0) { $primary = "iop-rpc-unhandled" }
 elseif ($categories.mpeg_error -gt 0) { $primary = "mpeg-error" }
 elseif ($categories.mpeg_no_ffmpeg -gt 0 -and $categories.mpeg_picture_wait -gt 0) { $primary = "mpeg-no-ffmpeg" }
 elseif ($fileIoDiagnostics.total_failures -ge 3 -and @($fileIoDiagnostics.repeated_paths).Count -gt 0) { $primary = "file-io" }
+elseif ($categories.cd_search_failed -gt 0) { $primary = "cd-file-search" }
 elseif ($categories.sif_iop_rpc -gt 0) { $primary = "sif-iop-rpc" }
 elseif ($categories.vif_vu_gs -gt 0) { $primary = "vif-vu-gs" }
 
@@ -316,6 +330,7 @@ $report = [pscustomobject][ordered]@{
     rpc = [pscustomobject]$rpcDiagnostics
     mpeg = [pscustomobject]$mpegDiagnostics
     file_io = [pscustomobject]$fileIoDiagnostics
+    cd_search = [pscustomobject]$cdSearchDiagnostics
     graphics_stage = $graphicsStage
     furthest_milestone = $furthestMilestone
     known_address_hits = [pscustomobject]$knownAddressHits
