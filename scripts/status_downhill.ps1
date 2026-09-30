@@ -175,6 +175,13 @@ if (Test-Path -LiteralPath $triage) {
                 Write-Host ("  First import:      {0}:{1} {2} @ {3}" -f $firstImport.library,$firstImport.ordinal,$firstImport.version,$firstImport.pc) -ForegroundColor Yellow
             }
         }
+        if ($t.rpc) {
+            Write-Host ("  Unhandled RPC:     " + @($t.rpc.unhandled_calls).Count)
+            if ($t.rpc.unhandled_calls -and @($t.rpc.unhandled_calls).Count -gt 0) {
+                $firstRpc=@($t.rpc.unhandled_calls)[0]
+                Write-Host ("  First RPC:         SID {0} / {1} @ PC {2}" -f $firstRpc.sid,$firstRpc.rpc,$firstRpc.pc) -ForegroundColor Yellow
+            }
+        }
         if ($t.priority_categories -and $t.priority_categories.Count -gt 0) {
             Write-Host ("  Priority:          " + (($t.priority_categories | Select-Object -First 4) -join ", "))
         }
@@ -203,6 +210,13 @@ if (Test-Path -LiteralPath $suggestions) {
             if ($sg.iop.unhandled_imports -and @($sg.iop.unhandled_imports).Count -gt 0) {
                 $imports=@($sg.iop.unhandled_imports | Select-Object -First 4 | ForEach-Object { $_.library + ":" + $_.ordinal })
                 Write-Host ("  IOP imports:    " + ($imports -join ", ")) -ForegroundColor Yellow
+            }
+        }
+        if ($sg.rpc) {
+            Write-Host ("  RPC focus:      " + $sg.rpc.focus)
+            if ($sg.rpc.unhandled_calls -and @($sg.rpc.unhandled_calls).Count -gt 0) {
+                $rpcRows=@($sg.rpc.unhandled_calls | Select-Object -First 4 | ForEach-Object { $_.sid + "/" + $_.rpc })
+                Write-Host ("  RPC calls:      " + ($rpcRows -join ", ")) -ForegroundColor Yellow
             }
         }
         if ($sg.new_entry_point_candidates -and $sg.new_entry_point_candidates.Count -gt 0) {
