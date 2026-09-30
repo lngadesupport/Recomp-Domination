@@ -183,6 +183,18 @@ FULL_PIPELINE_DOWNHILL.cmd
 The 90-second probe timeout is diagnostic, not a game timeout. `RUN_DOWNHILL.cmd` remains available for unrestricted interactive runs.
 
 
+## Build MPEG/FFmpeg opcional
+
+O baseline continua com FFmpeg desativado para reduzir dependencias e acelerar o primeiro bring-up. Se o triage classificar o bloqueio como `mpeg-no-ffmpeg`, use:
+
+```cmd
+BUILD_DOWNHILL_FFMPEG.cmd
+```
+
+Esse modo ativa `PS2X_ENABLE_FFMPEG=ON` no runtime fixado do PS2Recomp. No Windows, o proprio CMake baixa o pacote prebuilt suportado e coloca as DLLs de FFmpeg ao lado de `ps2EntryRunner.exe`. O `build_report.json` registra `runtime_features.ffmpeg=true`.
+
+Use esse modo para validar intro/PSS/MPEG real. Ele nao altera entry points, stubs, patches ou a identidade do ELF e nao substitui o build baseline.
+
 ## Bring-up iterativo opcional
 
 Depois de obter um primeiro probe real, existe um modo opcional para iterar apenas sobre funções guest faltantes:
@@ -191,12 +203,7 @@ Depois de obter um primeiro probe real, existe um modo opcional para iterar apen
 AUTO_BRINGUP.cmd
 ```
 
-Ele executa ciclos limitados de `build -> probe -> triage -> rebuild`. O modo não ativa patches, não transforma stubs TODO em HLE e não aceita endereços arbitrários. Novos entry points só são aceitos quando:
-
-- o PC está alinhado a 4 bytes;
-- o PC está dentro do intervalo file-backed validado `0x0010A000..0x0029DCF0`;
-- o endereço ainda não está configurado;
-- o triage não contém `fatal-or-exception` nem `unsupported-instruction`.
+Ele executa ciclos limitados de `build -> probe -> triage -> rebuild`. O modo não ativa patches, não transforma stubs TODO em HLE e não aceita endereços arbitrários. Novos entry points só são aceitos quando o triage primário é exatamente `missing-function`, o PC está alinhado a 4 bytes, está dentro do intervalo file-backed validado `0x0010A000..0x0029DCF0` e ainda não está configurado. Qualquer outra classificação — IOP/RPC, MPEG, VIF/VU/GS, TODO stub, crash ou instrução não suportada — bloqueia a expansão automática.
 
 O padrão é no máximo 3 iterações. Antes de alterar `config\downhill.extra_entry_points.local.txt`, o script cria backup local. O relatório de cada sessão é salvo em `analysis\local\auto_bringup_*.json`.
 
