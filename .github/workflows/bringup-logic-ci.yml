@@ -5,12 +5,16 @@ on:
     branches:
       - bootstrap/compiler
       - bootstrap/bringup-automation
+      - bootstrap/full-auto
     paths:
       - scripts/select_bringup_entry_points.ps1
       - scripts/auto_bringup.ps1
       - scripts/plan_bringup_action.ps1
       - scripts/snapshot_bringup_iteration.ps1
       - scripts/ci_bringup_automation_smoke.ps1
+      - scripts/full_auto_bringup.ps1
+      - scripts/ci_full_auto_bringup_smoke.ps1
+      - FULL_AUTO_BRINGUP.cmd
       - scripts/check_probe_readiness.ps1
       - scripts/ci_probe_readiness_smoke.ps1
       - scripts/triage_first_boot.ps1
@@ -35,7 +39,7 @@ jobs:
       - name: Parse bring-up scripts in Windows PowerShell 5.1
         shell: powershell
         run: |
-          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1','.\scripts\check_probe_readiness.ps1','.\scripts\ci_probe_readiness_smoke.ps1','.\scripts\triage_first_boot.ps1','.\scripts\ci_first_boot_triage_smoke.ps1','.\scripts\plan_bringup_action.ps1','.\scripts\snapshot_bringup_iteration.ps1','.\scripts\ci_bringup_automation_smoke.ps1')){
+          foreach($p in @('.\scripts\select_bringup_entry_points.ps1','.\scripts\auto_bringup.ps1','.\scripts\check_probe_readiness.ps1','.\scripts\ci_probe_readiness_smoke.ps1','.\scripts\triage_first_boot.ps1','.\scripts\ci_first_boot_triage_smoke.ps1','.\scripts\plan_bringup_action.ps1','.\scripts\snapshot_bringup_iteration.ps1','.\scripts\ci_bringup_automation_smoke.ps1','.\scripts\full_auto_bringup.ps1','.\scripts\ci_full_auto_bringup_smoke.ps1')){
             $tokens=$null;$errors=$null
             [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $p),[ref]$tokens,[ref]$errors)|Out-Null
             if($errors.Count){$errors|Format-List|Out-String|Write-Host;throw "Parser errors in $p"}
@@ -56,6 +60,11 @@ jobs:
         run: |
           .\scripts\ci_bringup_automation_smoke.ps1 -Root _ci\bringup_automation
           if($LASTEXITCODE -ne 0){throw "bring-up automation smoke failed with $LASTEXITCODE"}
+      - name: Validate one-command full-auto dry-run plan
+        shell: powershell
+        run: |
+          .\scripts\ci_full_auto_bringup_smoke.ps1 -Root _ci\full_auto
+          if($LASTEXITCODE -ne 0){throw "full-auto smoke failed with $LASTEXITCODE"}
       - name: Select only valid new entries for missing-function triage
         shell: powershell
         run: |
