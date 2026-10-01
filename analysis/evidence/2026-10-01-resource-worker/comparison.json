@@ -1,0 +1,32 @@
+{
+  "native_menu_validated": false,
+  "same_runner_used": true,
+  "runs": [
+    {
+      "label": "resource-no-yield",
+      "runner_sha256": "8450f2017948aac92d44beb8facc0d6547f8ac8f4c668c602e3054a9bfc2ded7",
+      "runner_identity_verified": true,
+      "release_wait": [
+        {
+          "target": 10,
+          "status_before": 1,
+          "result": -416,
+          "return": "23149c"
+        }
+      ]
+    },
+    {
+      "label": "resource-read-yield",
+      "runner_sha256": "8450f2017948aac92d44beb8facc0d6547f8ac8f4c668c602e3054a9bfc2ded7",
+      "runner_identity_verified": true,
+      "release_wait": [
+        {
+          "target": 10,
+          "status_before": 2,
+          "result": 0,
+          "return": "23149c"
+        }
+      ]
+    }
+  ]
+}

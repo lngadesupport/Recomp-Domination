@@ -12,7 +12,8 @@ O teste de boot e a compilação são etapas iniciais. Um timeout sem crash, uma
 | Busca no DVD | DHSKAT.SKX lido; 2.335 arquivos conferidos por CRC e ISO reconstruída validada | Verificada na imagem de teste |
 | Comandos gráficos | DMA/VIF/GIF e dois registros GS | Observados |
 | Vídeos de abertura | Capturas aos 30, 90 e 175 segundos mostram Sony, direitos autorais e Incog | Observados no runtime Linux com FFmpeg |
-| Primeiro menu | O teste de 180 segundos ainda estava na abertura | Não validado |
+| Carregamento após trailer | Espera inicial da thread de recursos diagnosticada; worker avança com espera de DVD experimental | Carregamento ainda não conclui |
+| Primeiro menu | Thread principal aguarda recursos; tela de menu ainda ausente | Não validado |
 | Todos os menus | Depende do primeiro menu e dos dados completos | Não executado |
 | Todas as corridas | Inventário completo de pistas/modos ainda indisponível | Não executado |
 

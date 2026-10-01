@@ -1,0 +1,450 @@
+Using argv boot path
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1280 x 720
+INFO:     > Screen size:  640 x 448
+INFO:     > Render size:  640 x 448
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 229
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Mesa
+INFO:     > Renderer: llvmpipe (LLVM 20.1.2, 256 bits)
+INFO:     > Version:  4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.2
+INFO:     > GLSL:     4.50
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - X11): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: /workspace/scratch/2a92898976e3/recomp-domination/analysis/local/resource-no-yield
+socket(): Operation not permitted
+socket(): Operation not permitted
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0,0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+WARNING: AUDIO: Failed to initialize playback device
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+Loading segment: 0x10a000 - 0x8a0400 (filesz: 0x193cf0, memsz: 0x796400)
+Registered code region: 10a000 - 29dcf0[game_overrides] applying 'downhill-domination-ntscu-final'[downhill] configured CD root: /workspace/scratch/2a92898976e3/input/disc-verified
+[downhill] configured CD image: /workspace/scratch/2a92898976e3/input/downhill-verified-probe.iso
+[downhill] experimental idle VSync waits enabled
+[game_overrides] applied 1 matching override(s).ELF file loaded successfully. Entry point: 0x10a008Starting execution at address 0x10a008INFO: TEXTURE: [ID 3] Texture loaded successfully (640x512 | R8G8B8A8 | 1 mipmaps)
+[guest-branch:missing-target] kind=Return op=JR $ra source=0x25ef70 target=0x0 pc=0x0 ra=0x0 sp=0x1fffff0 gp=0x2a40f0 a0=0x8001218c a1=0x80080000 a2=0x25ef38 a3=0x29e580 s0=0x282218 s1=0x0 v0=0x8001218c v1=0x83 a0Readable=no a0[0]=0x0 a0[4]=0x0 a0[8]=0x0 a0[c]=0x0 s0Readable=yes s0[0]=0x83 s0[4]=0x25ef38 s0[8]=0x5a s0[c]=0x25ef00 recordReadable=yes record[0]=0x8c820000 record[4]=0x1046000b record[8]=0x85102b record[c]=0x5040000a vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=no policy=1 trace=0x10a008 -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x25f0a0 -> 0x25eeb8 -> 0x25a6e0 -> 0x25a6e0 -> 0x25ef90 -> 0x25f090 -> 0x25f090 -> 0x25ef78 -> 0x25ef38
+[SifInitRpc] Initialized[ps2xIOP] [IOP] loaded IRX id=1 entry=0x10634 base=0x10000 start=0
+[SIF module] load-emulated id=1 ref=1 path="cdrom0:\MOD\SIO2MAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=2 entry=0x11918 base=0x11000 start=0
+[SIF module] load-emulated id=2 ref=1 path="cdrom0:\MOD\MTAPMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=3 entry=0x13178 base=0x13000 start=2
+[SIF module] load-emulated id=3 ref=1 path="cdrom0:\MOD\MCMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=4 entry=0x3a358 base=0x3a300 start=2
+[SIF module] load-emulated id=4 ref=1 path="cdrom0:\MOD\MCSERV.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=5 entry=0x40c78 base=0x3db00 start=0
+[SIF module] load-emulated id=5 ref=1 path="cdrom0:\MOD\PADMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=6 entry=0x475b0 base=0x47500 start=0
+[SIF module] load-emulated id=6 ref=1 path="cdrom0:\MOD\LIBSD.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=7 entry=0x4e5b8 base=0x4cf00 start=2
+[SIF module] load-emulated id=7 ref=1 path="cdrom0:\MOD\CDVDSTM.IRX;1"
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]  989snd (c)2000, 2001 Sony Computer Entertainment America
+
+[ps2xIOP] [IOP printf]  by Buzz Burrowes                               v%d.%d.%d
+
+[ps2xIOP] [IOP printf]                         (built %s at %s)
+
+[ps2xIOP] [IOP printf]  (build with sce library rev %d.%d.%d)
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]     Thread Priorities:
+
+[ps2xIOP] [IOP printf]                          Sound Tick = %d
+
+[ps2xIOP] [IOP printf]                            Main RPC = %d
+
+[ps2xIOP] [IOP printf]                         Loading RPC = %d
+
+[ps2xIOP] [IOP printf]                           Streaming = %d, %d, %d, %d
+
+[ps2xIOP] [IOP printf]    Memory Locations...
+
+[ps2xIOP] [IOP printf]        Voice Allocator Owner  : 0x%8.8x
+
+[ps2xIOP] [IOP printf]        Master Tick Owner List : 0x%8.8x
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP] loaded IRX id=8 entry=0x522f0 base=0x50900 start=0
+[SIF module] load-emulated id=8 ref=1 path="cdrom0:\MOD\989SND.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=9 entry=0x78800 base=0x78800 start=0
+[SIF module] load-emulated id=9 ref=1 path="cdrom0:\MOD\989ERR.IRX;1"
+[sceCdSearchFile] pc=0x246fa0 ra=0x2472c8 file=0x93c8f0 pathAddr=0x93c920 path="\SKAT\DHSKAT.SKX;1"
+[sceCdSearchFile:ok] path="\SKAT\DHSKAT.SKX;1" lsn=0xe66d1 size=0x60988d0 sectors=0xc132
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[sceCdStStart] lbn=0xc3db8 endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc3db8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc3dd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc3df8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e98 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3eb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ed8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ef8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f98 end=0xffffffff
+[performance] host_tick=120 host_hz=60.2535 ee_clock_ratio=0.996127 ee_cycle=585068037
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ff8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4018 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4038 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4058 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4078 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4098 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40b8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40d8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40f8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4118 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4138 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4158 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4178 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4198 end=0xffffffff
+[performance] host_tick=240 host_hz=59.8201 ee_clock_ratio=0.997022 ee_cycle=1174903917
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStStart] lbn=0xc2b3e endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc2b3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc2b5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc2b7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2b9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cbe end=0xffffffff
+[performance] host_tick=360 host_hz=59.8581 ee_clock_ratio=1.00597 ee_cycle=1769655096
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ebe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ede end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2efe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2f1e end=0xffffffff
+[performance] host_tick=480 host_hz=59.9424 ee_clock_ratio=0.999059 ee_cycle=2359490976
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=600 host_hz=59.8897 ee_clock_ratio=0.998181 ee_cycle=2949326856
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStStart] lbn=0xc34af endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc34af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc34cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc34ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc350f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc352f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc354f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc356f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc358f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35ef end=0xffffffff
+[performance] host_tick=720 host_hz=59.988 ee_clock_ratio=0.999819 ee_cycle=3539162736
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc360f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc362f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc364f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc366f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc368f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc370f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc372f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc374f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc376f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc378f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc380f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc382f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc384f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc386f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc388f end=0xffffffff
+[performance] host_tick=840 host_hz=59.9428 ee_clock_ratio=0.999066 ee_cycle=4128998616
+[boot-snapshot] host_tick=840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=960 host_hz=59.9556 ee_clock_ratio=0.999281 ee_cycle=4718834496
+[boot-snapshot] host_tick=960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStStart] lbn=0x34bcc endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0x34bcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0x34bec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0x34c0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ccc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d6c end=0xffffffff
+[performance] host_tick=1080 host_hz=59.9457 ee_clock_ratio=0.999115 ee_cycle=5308670376
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e0c end=0xffffffff
+[performance] host_tick=1200 host_hz=59.9808 ee_clock_ratio=0.999701 ee_cycle=5898506256
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ecc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34fac end=0xffffffff
+[performance] host_tick=1320 host_hz=59.9056 ee_clock_ratio=0.998446 ee_cycle=6488342136
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1440 host_hz=59.9682 ee_clock_ratio=1.00757 ee_cycle=7082945859
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1560 host_hz=59.9629 ee_clock_ratio=0.999401 ee_cycle=7672781739
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1680 host_hz=59.9717 ee_clock_ratio=0.999549 ee_cycle=8262617619
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1800 host_hz=59.9776 ee_clock_ratio=0.999653 ee_cycle=8852456915
+[boot-snapshot] host_tick=1800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1920 host_hz=59.9721 ee_clock_ratio=0.999799 ee_cycle=9442436835
+[boot-snapshot] host_tick=1920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2040 host_hz=59.9852 ee_clock_ratio=0.999773 ee_cycle=10032272715
+[boot-snapshot] host_tick=2040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2160 host_hz=59.9141 ee_clock_ratio=0.998588 ee_cycle=10622108595
+[boot-snapshot] host_tick=2160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2280 host_hz=59.6302 ee_clock_ratio=1.00214 ee_cycle=11216859774
+[boot-snapshot] host_tick=2280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2400 host_hz=59.9282 ee_clock_ratio=0.998823 ee_cycle=11806695654
+[boot-snapshot] host_tick=2400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2520 host_hz=59.9753 ee_clock_ratio=0.999609 ee_cycle=12396531534
+[boot-snapshot] host_tick=2520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2640 host_hz=59.325 ee_clock_ratio=0.99701 ee_cycle=12991282713
+[boot-snapshot] host_tick=2640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2760 host_hz=59.9533 ee_clock_ratio=0.999242 ee_cycle=13581118593
+[boot-snapshot] host_tick=2760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2880 host_hz=59.9803 ee_clock_ratio=0.999691 ee_cycle=14170954473
+[boot-snapshot] host_tick=2880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3000 host_hz=59.9656 ee_clock_ratio=0.999448 ee_cycle=14760790353
+[boot-snapshot] host_tick=3000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3120 host_hz=59.9806 ee_clock_ratio=0.999696 ee_cycle=15350626233
+[boot-snapshot] host_tick=3120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3240 host_hz=59.9836 ee_clock_ratio=1.00808 ee_cycle=15945377412
+[boot-snapshot] host_tick=3240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3360 host_hz=59.9813 ee_clock_ratio=0.999459 ee_cycle=16535065836
+[boot-snapshot] host_tick=3360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3480 host_hz=59.9907 ee_clock_ratio=1.00011 ee_cycle=17125049172
+[boot-snapshot] host_tick=3480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3600 host_hz=59.977 ee_clock_ratio=0.999637 ee_cycle=17714885052
+[boot-snapshot] host_tick=3600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3720 host_hz=59.9765 ee_clock_ratio=0.999628 ee_cycle=18304720932
+[boot-snapshot] host_tick=3720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3840 host_hz=59.9111 ee_clock_ratio=0.998538 ee_cycle=18894556812
+[boot-snapshot] host_tick=3840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3960 host_hz=59.9939 ee_clock_ratio=0.999669 ee_cycle=19484245236
+[boot-snapshot] host_tick=3960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4080 host_hz=59.7906 ee_clock_ratio=0.996779 ee_cycle=20074228572
+[boot-snapshot] host_tick=4080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4200 host_hz=59.976 ee_clock_ratio=0.99962 ee_cycle=20664064452
+[boot-snapshot] host_tick=4200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4320 host_hz=59.973 ee_clock_ratio=0.99957 ee_cycle=21253900332
+[boot-snapshot] host_tick=4320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4440 host_hz=59.8607 ee_clock_ratio=1.00576 ee_cycle=21848504055
+[boot-snapshot] host_tick=4440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4560 host_hz=59.9789 ee_clock_ratio=0.999674 ee_cycle=22438343311
+[boot-snapshot] host_tick=4560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4680 host_hz=59.9878 ee_clock_ratio=0.999817 ee_cycle=23028179191
+[boot-snapshot] host_tick=4680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4800 host_hz=59.9604 ee_clock_ratio=0.999604 ee_cycle=23618159151
+[boot-snapshot] host_tick=4800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4920 host_hz=59.778 ee_clock_ratio=0.99632 ee_cycle=24207995031
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5040 host_hz=59.9585 ee_clock_ratio=0.999328 ee_cycle=24797830911
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5160 host_hz=59.9342 ee_clock_ratio=0.998923 ee_cycle=25387666791
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5280 host_hz=59.9949 ee_clock_ratio=0.999935 ee_cycle=25977502671
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5400 host_hz=59.9876 ee_clock_ratio=0.999813 ee_cycle=26567338551
+[boot-snapshot] host_tick=5400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5520 host_hz=59.8407 ee_clock_ratio=1.00568 ee_cycle=27162089730
+[boot-snapshot] host_tick=5520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5640 host_hz=59.9972 ee_clock_ratio=0.999973 ee_cycle=27751925610
+[boot-snapshot] host_tick=5640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5760 host_hz=59.9832 ee_clock_ratio=0.999741 ee_cycle=28341761490
+[boot-snapshot] host_tick=5760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5880 host_hz=59.9361 ee_clock_ratio=0.998705 ee_cycle=28931449914
+[boot-snapshot] host_tick=5880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=6000 host_hz=59.5927 ee_clock_ratio=1.00151 ee_cycle=29526204469
+[boot-snapshot] host_tick=6000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=6120 host_hz=59.9827 ee_clock_ratio=0.999731 ee_cycle=30116040501
+[boot-snapshot] host_tick=6120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=6240 host_hz=59.9916 ee_clock_ratio=1.00012 ee_cycle=30706020309
+[boot-snapshot] host_tick=6240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6360 host_hz=59.9322 ee_clock_ratio=0.99889 ee_cycle=31295856189
+[boot-snapshot] host_tick=6360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6480 host_hz=59.9911 ee_clock_ratio=0.999871 ee_cycle=31885692069
+[boot-snapshot] host_tick=6480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6600 host_hz=59.9909 ee_clock_ratio=0.999869 ee_cycle=32475527949
+[boot-snapshot] host_tick=6600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6720 host_hz=59.9841 ee_clock_ratio=0.999756 ee_cycle=33065363829
+[boot-snapshot] host_tick=6720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6840 host_hz=59.9923 ee_clock_ratio=0.999892 ee_cycle=33655199709
+[boot-snapshot] host_tick=6840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6960 host_hz=59.9864 ee_clock_ratio=0.999793 ee_cycle=34245035589
+[boot-snapshot] host_tick=6960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7080 host_hz=59.9438 ee_clock_ratio=0.999084 ee_cycle=34834871469
+[boot-snapshot] host_tick=7080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7200 host_hz=59.9899 ee_clock_ratio=0.999852 ee_cycle=35424707349
+[boot-snapshot] host_tick=7200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7320 host_hz=59.7953 ee_clock_ratio=1.00491 ee_cycle=36019458528
+[boot-snapshot] host_tick=7320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7440 host_hz=59.5285 ee_clock_ratio=1.00018 ee_cycle=36614062251
+[boot-snapshot] host_tick=7440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=7560 host_hz=59.9481 ee_clock_ratio=0.999155 ee_cycle=37203898131
+[boot-snapshot] host_tick=7560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=7680 host_hz=59.8009 ee_clock_ratio=0.996951 ee_cycle=37793881467
+[boot-snapshot] host_tick=7680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7800 host_hz=59.7427 ee_clock_ratio=1.00403 ee_cycle=38388632646
+[boot-snapshot] host_tick=7800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7920 host_hz=59.7613 ee_clock_ratio=0.996041 ee_cycle=38978468526
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=8040 host_hz=59.9802 ee_clock_ratio=0.99969 ee_cycle=39568304406
+[boot-snapshot] host_tick=8040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=8160 host_hz=59.4431 ee_clock_ratio=0.998995 ee_cycle=40163055585
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=8280 host_hz=59.995 ee_clock_ratio=0.999936 ee_cycle=40752891465
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[downhill:release-wait] target=10 status_before=1 result=-416 return=0x23149c
+[performance] host_tick=8400 host_hz=59.9814 ee_clock_ratio=0.986959 ee_cycle=41335204131
+[boot-snapshot] host_tick=8400 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=200 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=8520 host_hz=59.9636 ee_clock_ratio=0.9676 ee_cycle=41906264841
+[boot-snapshot] host_tick=8520 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=805 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=8640 host_hz=59.9174 ee_clock_ratio=0.965257 ee_cycle=42476381649
+[boot-snapshot] host_tick=8640 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=1409 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=8760 host_hz=59.9934 ee_clock_ratio=0.966482 ee_cycle=43046498457
+[boot-snapshot] host_tick=8760 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=2013 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=8880 host_hz=59.9942 ee_clock_ratio=0.961694 ee_cycle=43613783559
+[boot-snapshot] host_tick=8880 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=2614 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9000 host_hz=59.9639 ee_clock_ratio=0.965785 ee_cycle=44183770167
+[boot-snapshot] host_tick=9000 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=3217 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9120 host_hz=59.9792 ee_clock_ratio=0.961674 ee_cycle=44751185469
+[boot-snapshot] host_tick=9120 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=3819 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9240 host_hz=59.9892 ee_clock_ratio=0.962857 ee_cycle=45319204236
+[boot-snapshot] host_tick=9240 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=4420 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9360 host_hz=59.9938 ee_clock_ratio=0.966844 ee_cycle=45889531281
+[boot-snapshot] host_tick=9360 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=5025 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9480 host_hz=59.9947 ee_clock_ratio=0.968103 ee_cycle=46460591991
+[boot-snapshot] host_tick=9480 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=5630 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9600 host_hz=59.9819 ee_clock_ratio=0.956697 ee_cycle=47025045387
+[boot-snapshot] host_tick=9600 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=6228 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9720 host_hz=59.9528 ee_clock_ratio=0.957832 ee_cycle=47590442685
+[boot-snapshot] host_tick=9720 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=6827 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9840 host_hz=59.9887 ee_clock_ratio=0.966406 ee_cycle=48160559493
+[boot-snapshot] host_tick=9840 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=7431 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=9960 host_hz=59.9866 ee_clock_ratio=0.966373 ee_cycle=48730676301
+[boot-snapshot] host_tick=9960 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=8035 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10080 host_hz=59.9878 ee_clock_ratio=0.966391 ee_cycle=49300793109
+[boot-snapshot] host_tick=10080 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=8639 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10200 host_hz=59.7263 ee_clock_ratio=0.953649 ee_cycle=49865855811
+[boot-snapshot] host_tick=10200 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=9237 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10320 host_hz=59.9236 ee_clock_ratio=0.94881 ee_cycle=50426199897
+[boot-snapshot] host_tick=10320 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=9831 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10440 host_hz=59.7014 ee_clock_ratio=0.950165 ee_cycle=50989433683
+[boot-snapshot] host_tick=10440 running=1 thread=1:pc=0x25a6f8:ra=0x23121c:priority=0:status=0:wait=0:wait_id=0 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10560 host_hz=59.8904 ee_clock_ratio=0.960031 ee_cycle=51556718667
+[boot-snapshot] host_tick=10560 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=11028 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0
+[performance] host_tick=10680 host_hz=59.5398 ee_clock_ratio=0.959023 ee_cycle=52126745927
+[boot-snapshot] host_tick=10680 running=0 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=11632 thread=10:pc=0x25a608:ra=0x231654:priority=2:status=2:wait=1:wait_id=0

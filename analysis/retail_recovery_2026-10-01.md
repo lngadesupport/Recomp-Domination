@@ -21,7 +21,7 @@ A first window attempt stopped during host initialization because the local X se
 
 All staged files were rechecked after copying: 2,335 CRCs matched. The fresh reconstructed ISO is 2,525,089,792 bytes. No menu, race, physics, native input, Windows runtime boot, or sustained 120 FPS claim is made by these tests.
 
-Movie cancellation, IOP idle caching, and the resource-worker scheduling experiment remain absent from this checkpoint. A game-specific idle-wait experiment is being recovered separately below, disabled by default. It must not be described as a production 120 FPS fix.
+Movie cancellation and IOP idle caching remain absent from this checkpoint. The game-specific idle-wait and resource-worker scheduling experiments described below are disabled by default. They must not be described as production 120 FPS fixes.
 
 ## Scheduler and timing diagnostics
 
@@ -33,7 +33,7 @@ The ready-queue patch removes snapshot publication only when rotating a differen
 
 ## Reproduction
 
-Use `scripts/recompile_downhill_headless.py`, then `scripts/build_downhill_posix.py --build-type Release --ffmpeg --quiet-function-trace`. Supply installed dependency paths with the existing `--prefix` and `--raylib-source` options. The build applies tracked version-pinned runtime patches. The Windows patch flow applies the same patches; these new Windows changes still require a compile check.
+Use `scripts/recompile_downhill_headless.py`, then `scripts/build_downhill_posix.py --build-type Release --ffmpeg --quiet-function-trace`. Supply installed dependency paths with the existing `--prefix` and `--raylib-source` options. The build applies tracked version-pinned runtime patches. The Windows patch flow applies the same patches; the isolated Windows compile checks passed as described below; a full Windows runtime link and retail boot remain unverified.
 
 Use native unrar to extract the multipart archive, then `scripts/verify_extracted_disc.py` to verify and stage files. `scripts/build_extracted_probe_iso.py` creates the local fixture and records that original disc layout is unverified. These helpers require `rarfile` and `pycdlib` respectively.
 
@@ -44,4 +44,14 @@ A 60-second default run and 180-second idle-wait run used the same compiled runn
 
 After the trailer finishes naturally, thread 10 remains sleeping at the resource worker's initial `SleepThread` return (`0x231654`) and the main thread repeatedly waits on short alarm/semaphore intervals around `0x231214`. This recovers the post-movie loading blocker without requiring a movie-cancellation override.
 
-`PS2_DOWNHILL_CD_READ_YIELD=1` is an additional diagnostic experiment, disabled by default. At the confirmed loader return `0x23147C`, it executes the existing host CD read and, only on success, defers the guest return to an existing VBlank with return value 1. It is not a DVD latency model. `PS2_TRACE_BOOT_SNAPSHOT` also wraps the original ReleaseWaitThread entry to record target state and original kernel result. Negative and positive probes are pending; no resource-worker race fix or menu validation is claimed yet.
+`PS2_DOWNHILL_CD_READ_YIELD=1` is an additional diagnostic experiment, disabled by default. At the confirmed loader return `0x23147C`, it executes the existing host CD read and, only on success, defers the guest return to an existing VBlank with return value 1. It is not a DVD latency model. `PS2_TRACE_BOOT_SNAPSHOT` also wraps the original ReleaseWaitThread entry to record target state and original kernel result. The negative/positive comparison is complete. Both runs used stable runner SHA256 `8450f2017948aac92d44beb8facc0d6547f8ac8f4c668c602e3054a9bfc2ded7`. Without the yield, target 10 was Ready (status 1) and the original ReleaseWaitThread returned `-416` (`KE_NOT_WAIT`). With the yield, target 10 was Waiting (status 2), the original operation returned 0, and the worker began processing resources. This confirms the initialization race caused by removing the native read wait. The diagnostic is kept opt-in; a production async-CD model and original timing comparison are still required.
+
+After this advance, the main thread waits on semaphore 8 at return `0x23144C`. Worker 10 remains Running; its published snapshot repeatedly shows `memcpy` with return `0x240BB4` in the resource processing function at `0x2407F8`. The menu has not appeared. The next investigation should capture copy lengths, input/output offsets and buffer contents on the guest executor, check decoder progress, and validate those inputs against the verified SKAT container. A snapshot PC alone does not prove the active instruction or an infinite loop.
+
+
+## Cross-platform verification
+
+[Runtime recovery CI](https://github.com/lngadesupport/Recomp-Domination/actions/runs/36822433697) passed for Ubuntu and Windows on source checkpoint `ea26dfc531d203f64d9f9394f865ddb38aa0c2e6`. It applied the five runtime patches twice, ran all six Python watchdog/identity regressions on Ubuntu, parsed the PowerShell scripts and exercised the canonical Windows patch flow, and compiled the override, GS, MPEG fallback configuration, IOP CDVD, and EE scheduler translation units with MSVC. The first attempt lacked raylib headers in the isolated compile environment; the pinned header dependency fixed the test setup. This is an isolated compile check, not a new Windows runtime link or Windows retail boot claim.
+
+
+A final 420-second run used the same stable `8450f201...` runner with both diagnostics enabled. The loader still had not reached a menu at 415 seconds. Thread 10 remained Running and the main thread continued waiting on semaphore 8; the last measured EE-clock ratio was about 0.087 while the host loop stayed near 60 Hz. The window contained a small region of incomplete/corrupt image data, not a menu. This establishes a subsequent processing/decoder blocker after the confirmed initialization-race advance. Raw logs, the timeout report, and the final capture are retained under `analysis/evidence/2026-10-01-resource-worker`.
