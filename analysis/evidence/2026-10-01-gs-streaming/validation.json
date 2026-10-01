@@ -1,0 +1,25 @@
+{
+  "source_commit": "37d6af1764a3ac44c5d2281992aae8b6dfb027d1",
+  "renderer_scenarios": 188,
+  "local_python_tests_passed": 29,
+  "linux_renderer_asan_ubsan_passed": true,
+  "windows_renderer_component_tests_passed": true,
+  "windows_retail_gameplay_verified": false,
+  "workflows": [
+    {
+      "id": 36938269850,
+      "name": "Production GS renderer regression",
+      "conclusion": "success"
+    },
+    {
+      "id": 36938269784,
+      "name": "COP0 DMA condition regression",
+      "conclusion": "success"
+    },
+    {
+      "id": 36938269840,
+      "name": "Runtime recovery checks",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -27,3 +27,11 @@ An additional 90-second palette diagnostic used unchanged runner SHA256 `de5f83e
 `PS2_TRACE_GS_IMAGE_TRANSFERS=1` enables bounded transfer and 24-bit upload records; `PS2_TRACE_GS_CLUT_LOADS=1` enables bounded existing palette load/sample records. Both are off by default. These diagnostics introduce no extra VRAM reads or rendering changes, though tracing can affect timing. Native runs terminate at the requested deadline with SIGKILL; this is not an observed crash.
 
 Evidence is in `analysis/evidence/2026-10-01-gs-streaming/`. No playable menu, race, 60 FPS, 75 FPS, or Windows retail execution is validated. Host presentation frequency remains separate from measured game performance.
+
+## Final source validation
+
+Commit `37d6af1764a3ac44c5d2281992aae8b6dfb027d1` passed the production GS workflow on both Ubuntu and Windows, run `36938269850`. Linux instruments the actual renderer with ASan/UBSan. Each platform builds and executes both fixtures. This validates component behavior and Windows compilation, not retail gameplay.
+
+The final 90-second native probe used runner SHA256 `af0e1c144d126f6fee06d81d4697b545f94ec07929dc94e98684972181889d51`, with unchanged executable identity. It again did not reach textured sprites or nonzero palette texel records; it supplies no further evidence about the post-intro font palette. Evidence is in the `final/` subdirectory.
+
+All three workflows for source commit `37d6af1764a3ac44c5d2281992aae8b6dfb027d1` completed successfully: production renderer (`36938269850`), COP0 DMA condition (`36938269784`), and runtime recovery (`36938269840`). All 29 local Python regressions also passed. The private Linux diagnostic checkpoint contains the final native runner hash listed above; game assets are excluded.
