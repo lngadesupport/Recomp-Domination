@@ -1,0 +1,87 @@
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
+index d345d5e..3ab62e3 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
+@@ -1,3 +1,4 @@
++#include "runtime/ps2_intro_skip.h"
+ #include "Common.h"
+ #include "MPEG.h"
+ #include "runtime/ee_scheduler.h"
+@@ -1746,6 +1747,7 @@ namespace ps2_stubs
+ 
+         void resetMpegStubStateUnlocked()
+         {
++            ps2IntroSkip.reset();
+             g_mpeg_stub_state.initialized = false;
+             g_mpeg_stub_state.nextCallbackHandle = 1u;
+             g_mpeg_stub_state.cdStreamGeneration = 0u;
+@@ -2362,6 +2364,7 @@ namespace ps2_stubs
+ 
+                 frame = std::move(playback.decodedFrames.front());
+                 playback.decodedFrames.pop_front();
++                if (ps2IntroSkipEnabled()) ps2IntroSkip.frame(ps2IntroSkipNow());
+                 playback.width = static_cast<uint32_t>(frame.width);
+                 playback.height = static_cast<uint32_t>(frame.height);
+                 width = playback.width;
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
+index b50a4cf..8e6801a 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
+@@ -1,3 +1,4 @@
++#include "runtime/ps2_intro_skip.h"
+ #include "Common.h"
+ #include "Pad.h"
+ 
+@@ -315,6 +316,14 @@ namespace ps2_stubs
+                 }
+             }
+ 
++            // Active-low guest Start, through normal pad state, only on port 0.
++            if (!useOverride && port == 0 && slot == 0 && ps2IntroSkipEnabled() &&
++                ps2IntroSkip.start(ps2IntroSkipNow()))
++            {
++                state.buttons &= static_cast<uint16_t>(~kPadBtnStart);
++                static uint32_t traces = 0;
++                if (traces++ < 12) std::printf("[intro-skip] guest Start injected during decoded movie\n");
++            }
+             fillPadStatus(outData, state, portState);
+ 
+             {
+diff --git a/ps2xRuntime/include/runtime/ps2_intro_skip.h b/ps2xRuntime/include/runtime/ps2_intro_skip.h
+new file mode 100644
+index 0000000..34865eb
+--- /dev/null
++++ b/ps2xRuntime/include/runtime/ps2_intro_skip.h
+@@ -0,0 +1,32 @@
++#pragma once
++#include <atomic>
++#include <chrono>
++#include <cstdint>
++#include <cstdlib>
++
++// Only the first decoded movie after runtime reset; no synthetic EOF or PC jump.
++struct PS2IntroSkip {
++    std::atomic<int64_t> first{-1}, latest{-1};
++    void reset() { first.store(-1); latest.store(-1); }
++    void frame(int64_t now) {
++        int64_t unset = -1;
++        first.compare_exchange_strong(unset, now);
++        latest.store(now);
++    }
++    bool start(int64_t now) const {
++        const auto begin = first.load(), last = latest.load();
++        return begin >= 0 && now >= begin && now >= last &&
++               now - last <= 300 && now - begin < 12000 &&
++               (now - begin) % 1000 < 200;
++    }
++};
++inline PS2IntroSkip ps2IntroSkip;
++inline int64_t ps2IntroSkipNow() {
++    return std::chrono::duration_cast<std::chrono::milliseconds>(
++        std::chrono::steady_clock::now().time_since_epoch()).count();
++}
++inline bool ps2IntroSkipEnabled() {
++    static const bool enabled = [] { const char* v = std::getenv("PS2_DOWNHILL_AUTO_SKIP_INTRO");
++        return v && v[0] == '1' && v[1] == '\0'; }();
++    return enabled;
++}

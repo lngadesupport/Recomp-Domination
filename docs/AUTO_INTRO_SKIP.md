@@ -1,0 +1,7 @@
+# Automatic introduction skip (diagnostic option)
+
+Set `PS2_DOWNHILL_AUTO_SKIP_INTRO=1` before launching the patched runner. Default is off. On Windows PowerShell: `$env:PS2_DOWNHILL_AUTO_SKIP_INTRO="1"`; launch the runner normally. On Linux: `PS2_DOWNHILL_AUTO_SKIP_INTRO=1 ./ps2EntryRunner /path/SCUS_971.77`.
+
+The option sends active-low Start through normal port 0 / slot 0 pad polling while decoded MPEG frames are being delivered. Pulses last 200 ms once per second, stop 300 ms after the latest frame, and expire after 12 seconds from the first frame. Explicit test pad overrides take precedence. It does not force EOF, jump guest execution, replace a video, or skip resource initialization. The state resets with the MPEG stub state. `[intro-skip]` records prove injection, not that the guest accepted the skip. Disable the option for normal play and baseline probes.
+
+Validation: deterministic pulse, inactivity, expiry and reset checks; patch application checks. Actual native movie skipping remains unverified in this session because the previously built diagnostic executable is unavailable. A corrupted decoder that delivers no frames will not trigger this option. An MP4 could be used as a reference or later host replacement, but is not a drop-in replacement for the original PSS stream and its callbacks/timestamps.
