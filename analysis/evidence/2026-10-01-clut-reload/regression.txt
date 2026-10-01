@@ -1,0 +1,4 @@
+Production GSCpuBackend, public API, same pixel fixture:
+Original palette cache read: pixel=8000ff00, exit=1 (expected failure)
+Direct palette VRAM read: pixel=800000ff, exit=0
+Patch series fresh application and second application: passed
