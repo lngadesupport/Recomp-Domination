@@ -43,6 +43,9 @@ jobs:
         run: |
           g++ -std=c++20 -mavx2 -Isrc -I_ci/PS2Recomp/ps2xRuntime/include -I_ci/PS2Recomp/ps2xIOP/include tests/downhill_leaf_handler_test.cpp -o _ci/leaf-handler-test
           _ci/leaf-handler-test
+      - name: Progress through 100000 sanitized native cases on Ubuntu
+        if: runner.os == 'Linux'
+        run: python3 scripts/run_progressive_tests.py --source _ci/PS2Recomp --out _ci/progressive-linux --cases 100000 --sanitize --components-only
       - name: Verify canonical Windows patch flow and script syntax
         if: runner.os == 'Windows'
         shell: powershell
@@ -83,3 +86,9 @@ jobs:
           if ($LASTEXITCODE) { throw 'Leaf handler regression did not compile' }
           & _ci/leaf-handler-test.exe
           if ($LASTEXITCODE) { throw 'Leaf handler regression failed' }
+      - name: Progress through 100000 native cases with MSVC
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          python scripts/run_progressive_tests.py --source _ci/PS2Recomp --out _ci/progressive-windows --cases 100000 --components-only
+          if ($LASTEXITCODE) { throw 'Progressive native validation failed' }

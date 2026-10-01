@@ -17,7 +17,9 @@ O teste de boot e a compilação são etapas iniciais. Um timeout sem crash, uma
 | Todos os menus | Depende do primeiro menu e dos dados completos | Não executado |
 | Todas as corridas | Inventário completo de pistas/modos ainda indisponível | Não executado |
 
-Registro técnico desta retomada: [recuperação e testes de 01/10](../analysis/retail_recovery_2026-10-01.md). A meta de 120 FPS ainda não foi validada em corrida.
+Registro técnico desta retomada: [recuperação e testes de 01/10](../analysis/retail_recovery_2026-10-01.md). A meta atual é **60 FPS estáveis**, com **75 FPS como objetivo adicional**. Nenhuma das duas metas foi validada em corrida. A política está em `config/validation_policy.json`; ela não altera a velocidade da física nem ativa 75 FPS no runtime.
+
+A [suíte progressiva](PROGRESSIVE_TESTS.md) aumenta automaticamente os lotes de casos nativos, registra entradas reproduzíveis e mantém as etapas de menus/corridas bloqueadas quando não há evidência suficiente. Quantidade de casos de componentes não equivale a cobertura do jogo.
 
 ## Como comprovar a cobertura completa
 

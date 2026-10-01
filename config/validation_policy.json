@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "target_fps": 60,
+  "stretch_fps": 75,
+  "minimum_gameplay_sample_seconds": 60,
+  "frame_time_source": "unique_guest_frames_presented",
+  "require_all_frame_intervals_within_budget": true,
+  "require_complete_scenario_inventory": true
+}
