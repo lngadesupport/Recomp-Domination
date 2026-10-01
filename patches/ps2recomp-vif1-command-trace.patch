@@ -1,0 +1,137 @@
+diff --git a/ps2xRuntime/include/runtime/ps2_vif1_trace.h b/ps2xRuntime/include/runtime/ps2_vif1_trace.h
+new file mode 100644
+--- /dev/null
++++ b/ps2xRuntime/include/runtime/ps2_vif1_trace.h
+@@ -0,0 +1,23 @@
++#pragma once
++#include <array>
++#include <cstdint>
++#include <cstdio>
++struct Vif1CommandTrace {
++    struct Entry { uint64_t sequence; uint32_t code, offset, packetBytes; };
++    std::array<Entry, 64> entries{};
++    uint64_t sequence{};
++    void record(uint32_t code, uint32_t offset, uint32_t packetBytes) {
++        const uint64_t current=++sequence;
++        entries[(current-1)%entries.size()]={current,code,offset,packetBytes};
++    }
++    void dump(const char *reason) const {
++        std::fprintf(stderr,"[vif1:recent] reason=%s sequence=%llu\n",reason,
++            static_cast<unsigned long long>(sequence));
++        const uint64_t first=sequence>entries.size() ? sequence-entries.size()+1 : 1;
++        for(uint64_t i=first;i<=sequence;++i) {
++            const auto &entry=entries[(i-1)%entries.size()];
++            std::fprintf(stderr,"[vif1:command] sequence=%llu code=0x%08x offset=%u packet_bytes=%u\n",
++                static_cast<unsigned long long>(entry.sequence),entry.code,entry.offset,entry.packetBytes);
++        }
++    }
++};
+diff --git a/ps2xRuntime/include/runtime/ps2_memory.h b/ps2xRuntime/include/runtime/ps2_memory.h
+--- a/ps2xRuntime/include/runtime/ps2_memory.h
++++ b/ps2xRuntime/include/runtime/ps2_memory.h
+@@ -3,6 +3,7 @@
+ 
+ #include <cstddef>
+ #include <cstdint>
++#include "runtime/ps2_vif1_trace.h"
+ #include <array>
+ #include <functional>
+ #include <vector>
+@@ -384,6 +385,7 @@
+     uint8_t *m_gsVRAM;
+     VIFRegisters vif0_regs;
+     VIFRegisters vif1_regs;
++    Vif1CommandTrace vif1_command_trace;
+     DMARegisters dma_regs[10]; // 10 DMA channels
+ 
+     // TLB entries
+diff --git a/ps2xRuntime/include/runtime/ps2_vu1.h b/ps2xRuntime/include/runtime/ps2_vu1.h
+--- a/ps2xRuntime/include/runtime/ps2_vu1.h
++++ b/ps2xRuntime/include/runtime/ps2_vu1.h
+@@ -21,6 +21,8 @@
+     uint32_t clip;
+     uint32_t status;
+     uint64_t cycles;
++    bool lastRunEndedByE;
++    uint64_t lastRunCycles;
+     bool ebit;
+     bool haltAfterDelaySlot;
+     bool dBitEnabled;
+diff --git a/ps2xRuntime/include/ps2_runtime.h b/ps2xRuntime/include/ps2_runtime.h
+--- a/ps2xRuntime/include/ps2_runtime.h
++++ b/ps2xRuntime/include/ps2_runtime.h
+@@ -526,6 +526,7 @@
+     bool m_debugUiInitialized = false;
+ 
+ public:
++    uint64_t m_lastVif1TraceSequence = 0;
+     std::atomic<uint32_t> m_debugPc{0};
+     std::atomic<uint32_t> m_debugRa{0};
+     std::atomic<uint32_t> m_debugSp{0};
+diff --git a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+--- a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
++++ b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+@@ -1,6 +1,7 @@
+ // Based on Blackline Interactive implementation
+ #include "runtime/ps2_memory.h"
+ #include <cstring>
++#include <cstdlib>
+ 
+ enum VIFCmd : uint8_t
+ {
+@@ -340,6 +341,10 @@
+         uint8_t num = (cmd >> 16) & 0xFF;
+         const bool irq = (cmd & 0x80000000u) != 0u;
+ 
++        static const bool traceCommands = std::getenv("PS2_TRACE_VIF1_COMMANDS") != nullptr;
++        if (traceCommands)
++            vif1_command_trace.record(cmd, pos - 4u, sizeBytes);
++
+         // Track most-recent command for VIFn_CODE emulation.
+         vif1_regs.code = cmd;
+         vif1_regs.num = num;
+diff --git a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+--- a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
++++ b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+@@ -1631,6 +1631,7 @@
+ 
+     const int previousRoundingMode = std::fegetround();
+     const bool useVuRounding = std::fesetround(FE_TOWARDZERO) == 0;
++    const uint64_t runStartCycle = m_cycle;
+     const uint64_t budgetEnd = m_cycle + maxCycles;
+     bool programEnded = false;
+     while (m_cycle < budgetEnd && !m_stopRequested)
+@@ -1832,6 +1833,8 @@
+         m_pendingHaltD = false;
+         m_pendingHaltT = false;
+     }
++    m_state.lastRunEndedByE = programEnded && !m_state.stoppedByD && !m_state.stoppedByT;
++    m_state.lastRunCycles = m_cycle - runStartCycle;
+     m_state.cycles = m_cycle;
+     if (useVuRounding && previousRoundingMode != -1)
+         std::fesetround(previousRoundingMode);
+diff --git a/ps2xRuntime/src/lib/ps2_runtime.cpp b/ps2xRuntime/src/lib/ps2_runtime.cpp
+--- a/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -2211,6 +2211,21 @@
+ 
+ bool PS2Runtime::eeCheckpointDue(uint32_t cycles) noexcept
+ {
++    // EE-thread diagnostic only: preserve guest state and the scheduler decision.
++    static const bool traceVif = std::getenv("PS2_TRACE_VIF1_COMMANDS") != nullptr;
++    if (traceVif) {
++        const R5900Context *context = m_eeScheduler->currentContext();
++        const auto &recent = m_memory.vif1_command_trace;
++        if (context && context->pc == 0x1B4648u && recent.sequence != m_lastVif1TraceSequence) {
++            m_lastVif1TraceSequence = recent.sequence;
++            const auto &vu = m_vu1.state();
++            std::fprintf(stderr, "[vif1:wait] pc=0x%08x vif_stat=0x%08x gif_stat=0x%08x vu_pc=0x%08x vu_cycles=%llu vu_run_cycles=%llu ended_by_e=%u stopped_d=%u stopped_t=%u\n",
++                context->pc, m_memory.vif1_regs.stat, m_memory.read32(0x10003020u), vu.pc,
++                static_cast<unsigned long long>(vu.cycles), static_cast<unsigned long long>(vu.lastRunCycles),
++                unsigned(vu.lastRunEndedByE), unsigned(vu.stoppedByD), unsigned(vu.stoppedByT));
++            recent.dump("downhill-queue-wait");
++        }
++    }
+     return m_eeScheduler->checkpointDue(cycles);
+ }
+ 

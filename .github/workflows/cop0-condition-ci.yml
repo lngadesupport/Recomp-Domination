@@ -1,0 +1,38 @@
+name: COP0 DMA condition regression
+on:
+  push:
+    branches: ['bringup/**', bootstrap/compiler]
+    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/cop0*', '.github/workflows/cop0-condition-ci.yml']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generated-execution:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout pinned recompilation engine
+        shell: bash
+        run: |
+          git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
+          git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+      - name: Configure production code generator and regression
+        shell: bash
+        run: |
+          cmake -S _ci/PS2Recomp -B _ci/cop0-build -DCMAKE_BUILD_TYPE=Debug \
+            -DPS2X_BUILD_RECOMP=ON -DPS2X_BUILD_RUNTIME=OFF -DPS2X_BUILD_ANALYZER=OFF \
+            -DPS2X_BUILD_TEST=OFF -DPS2X_BUILD_STUDIO=OFF \
+            -DCOP0_TEST_SANITIZE=${{ runner.os == 'Linux' && 'ON' || 'OFF' }} \
+            -DCMAKE_PROJECT_INCLUDE="$PWD/tests/cop0_regression.cmake"
+      - name: Compile generated regression
+        run: cmake --build _ci/cop0-build --config Debug --target cop0_generated_execution vif1_command_trace_test --parallel 2
+      - name: Execute exhaustive DMA condition cases
+        run: ctest --test-dir _ci/cop0-build -C Debug --output-on-failure

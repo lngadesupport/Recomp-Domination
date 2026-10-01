@@ -72,3 +72,7 @@ Os dados sintéticos usados nas regressões do avaliador testam os critérios; n
 ## Verificação contínua
 
 O workflow `Runtime recovery checks` executa automaticamente 100 mil casos em Ubuntu (ASan/UBSan) e Windows (MSVC) em commits das branches `bringup/**`. Os logs mostram cada etapa. Os mesmos IDs/semente em plataformas diferentes são execuções adicionais dos casos; não são somados como novos casos distintos.
+
+## COP0 and VIF1 pipeline regressions
+
+See [COP0 condition evidence](../analysis/cop0_condition_2026-10-01.md) for the exhaustive production-code-generation test (5,242,880 executions, 1,048,576 channel states), likely delay slots and opt-in 64-command VIF1 history. These counts are separate from the earlier ISO/leaf-handler campaign. The dedicated `cop0-condition-ci.yml` repeats the regression on Linux and Windows. Neither campaign proves full-game FPS.

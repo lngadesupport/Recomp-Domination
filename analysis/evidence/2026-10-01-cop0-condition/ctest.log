@@ -1,0 +1,9 @@
+Test project /workspace/scratch/2a92898976e3/recomp-domination/third_party/build-linux
+    Start 1: cop0_exhaustive_generated_execution
+1/2 Test #1: cop0_exhaustive_generated_execution ...   Passed    0.30 sec
+    Start 2: vif1_command_trace_wraparound
+2/2 Test #2: vif1_command_trace_wraparound .........   Passed    0.05 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.36 sec

@@ -1,0 +1,557 @@
+{
+  "elf_sha256": "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c",
+  "ps2recomp_commit": "75d729ce40d7eed9649fd4bb05628dee520f3d0c",
+  "runtime_built": false,
+  "runtime_boot_verified": false,
+  "ghidra_map_used": false,
+  "steps": [
+    {
+      "stage": "analyzer",
+      "exit_code": 0
+    },
+    {
+      "stage": "recompiler",
+      "exit_code": 0
+    }
+  ],
+  "stub_filter": [
+    {
+      "selector": "InitAlarm@0x0025F330",
+      "status": "implemented"
+    },
+    {
+      "selector": "InitTLB@0x0025F6A0",
+      "status": "implemented"
+    },
+    {
+      "selector": "InitThread@0x0025B1A8",
+      "status": "implemented"
+    },
+    {
+      "selector": "__divdi3@0x001FB6E0",
+      "status": "implemented"
+    },
+    {
+      "selector": "__ieee754_rem_pio2f@0x0024ADA0",
+      "status": "implemented"
+    },
+    {
+      "selector": "__kernel_cosf@0x0024B2B8",
+      "status": "implemented"
+    },
+    {
+      "selector": "__kernel_sinf@0x0024BD60",
+      "status": "implemented"
+    },
+    {
+      "selector": "_printf@0x0025BA50",
+      "status": "implemented"
+    },
+    {
+      "selector": "_sceFsSemInit@0x0025D6D0",
+      "status": "todo"
+    },
+    {
+      "selector": "_sceMpegFlush@0x0024D830",
+      "status": "implemented"
+    },
+    {
+      "selector": "_sceRpcGetFPacket2@0x0025CA90",
+      "status": "todo"
+    },
+    {
+      "selector": "_sceRpcGetFPacket@0x0025CA60",
+      "status": "todo"
+    },
+    {
+      "selector": "_sceSDC@0x0025ADE8",
+      "status": "implemented"
+    },
+    {
+      "selector": "_sceSifCmdIntrHdlr@0x0025C5F8",
+      "status": "todo"
+    },
+    {
+      "selector": "_sceSifLoadModule@0x0025E960",
+      "status": "implemented"
+    },
+    {
+      "selector": "_sceSifSendCmd@0x0025C440",
+      "status": "implemented"
+    },
+    {
+      "selector": "iWakeupThread@0x0025B280",
+      "status": "implemented"
+    },
+    {
+      "selector": "mceGetInfoApdx@0x00246780",
+      "status": "implemented"
+    },
+    {
+      "selector": "mceIntrReadFixAlign@0x00246310",
+      "status": "implemented"
+    },
+    {
+      "selector": "memcmp@0x00260790",
+      "status": "implemented"
+    },
+    {
+      "selector": "memcpy@0x00254050",
+      "status": "implemented"
+    },
+    {
+      "selector": "memmove@0x00254100",
+      "status": "implemented"
+    },
+    {
+      "selector": "memset@0x00254204",
+      "status": "implemented"
+    },
+    {
+      "selector": "rand@0x002559D8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdBreak@0x00247FA0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdDelayThread@0x00246BB0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdDiskReady@0x00247A40",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdGetError@0x00247F08",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdGetReadPos@0x00247CF8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdInit@0x00247760",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdMmode@0x00247C28",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdNcmdDiskReady@0x00247448",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdRead@0x00247D28",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdReadClock@0x00248058",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdStInit@0x00248150",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdStRead@0x00248200",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdStStart@0x00248180",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdStStop@0x002481C8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdStream@0x00248390",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdSync@0x002474E0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceCdSyncS@0x00247580",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceClose@0x0025DCE8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceDeci2ExRecv@0x0025F4B0",
+      "status": "todo"
+    },
+    {
+      "selector": "sceDeci2ExSend@0x0025F4E8",
+      "status": "todo"
+    },
+    {
+      "selector": "sceDeci2Open@0x0025F408",
+      "status": "todo"
+    },
+    {
+      "selector": "sceDeci2Poll@0x0025F488",
+      "status": "todo"
+    },
+    {
+      "selector": "sceDeci2ReqSend@0x0025F458",
+      "status": "todo"
+    },
+    {
+      "selector": "sceFsInit@0x0025D790",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceFsReset@0x0025DA28",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsExecLoadImage@0x002440A8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsExecStoreImage@0x00244228",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsResetGraph@0x00243430",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefClear@0x00243BE0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefDispEnv@0x00243680",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefDrawEnv2@0x00244940",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefDrawEnv@0x002439F8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefLoadImage@0x00243D80",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSetDefStoreImage@0x00243F68",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGsSyncV@0x00243CE8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceGszbufaddr@0x00244BA8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceIpuInit@0x00253E08",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceIpuRestartDMA@0x00253BE8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceIpuStopDMA@0x00253B00",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceIpuSync@0x00253D38",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceLseek@0x0025DE68",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcClose@0x00246258",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcFormat@0x00246AB0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcGetDir@0x00246960",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcGetInfo@0x002467D8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcGetSlotMax@0x00246030",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcInit@0x00245E78",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcMkdir@0x00246220",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcOpen@0x002460F8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcRead@0x002463A0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcSync@0x002466A0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMcWrite@0x002464B8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegAddCallback@0x0024D290",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegAddStrCallback@0x0024C630",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegClearRefBuff@0x0024D238",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegCreate@0x0024CF48",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegDemuxPssRing@0x0024C338",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegGetPicture@0x0024D168",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegInit@0x0024CE98",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceMpegReset@0x0024D1E0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceOpen@0x0025DA60",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadEnterPressMode@0x002459E8",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadGetButtonMask@0x00245820",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadGetDmaStr@0x00245150",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadGetModVersion@0x00245A58",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadGetReqState@0x00245318",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadGetState@0x00245230",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadInfoAct@0x00245370",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadInfoMode@0x00245498",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadInfoPressMode@0x00245988",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadInit2@0x00244EC8",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadInit@0x00244D88",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadPortOpen@0x00244F68",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadRead@0x002451B0",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadSetActAlign@0x00245748",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadSetActDirect@0x00245688",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadSetButtonInfo@0x002458D8",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadSetMainMode@0x002455D0",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePadSetReqState@0x002452B0",
+      "status": "implemented"
+    },
+    {
+      "selector": "scePrintf@0x0025C078",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceRead@0x0025E0A0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifAddCmdHandler@0x0025C3E8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifAllocIopHeap@0x0025E6A8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifBindRpc@0x0025CDB8",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifCallRpc@0x0025CF88",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifCheckStatRpc@0x0025D178",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifExitCmd@0x0025C3B0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifInitCmd@0x0025C130",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifInitIopHeap@0x0025E620",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifInitRpc@0x0025C7D0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifRebootIop@0x0025ED48",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifRemoveCmdHandler@0x0025C418",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifResetIop@0x0025EBD0",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifSendCmd@0x0025C440",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifSendCmd@0x0025C578",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifSyncIop@0x0025ED10",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceSifWriteBackDCache@0x0025C720",
+      "status": "implemented"
+    },
+    {
+      "selector": "sceTtyHandler@0x0025B390",
+      "status": "todo"
+    },
+    {
+      "selector": "sceTtyInit@0x0025B678",
+      "status": "todo"
+    },
+    {
+      "selector": "sceTtyWrite@0x0025B528",
+      "status": "todo"
+    },
+    {
+      "selector": "sceWrite@0x0025E300",
+      "status": "implemented"
+    },
+    {
+      "selector": "sqrt@0x00248A80",
+      "status": "implemented"
+    },
+    {
+      "selector": "write@0x0025ACA8",
+      "status": "implemented"
+    }
+  ],
+  "generated_cpp_files": 5528,
+  "generated_cpp_bytes": 82138171,
+  "required_entries_verified": [
+    "0x0010A008",
+    "0x001FB6C0",
+    "0x002451B0",
+    "0x00254050",
+    "0x00246FA0",
+    "0x0025C440",
+    "0x00262B48",
+    "0x00262C20",
+    "0x00262D30",
+    "0x00262FE0",
+    "0x00263270",
+    "0x00263320",
+    "0x002627A0",
+    "0x00206E40",
+    "0x00263438",
+    "0x00263578",
+    "0x002628A0",
+    "0x00263860",
+    "0x002638D8",
+    "0x002639D0"
+  ],
+  "confirmed_bindings_verified": [
+    "scePadRead",
+    "memcpy",
+    "sceSifSendCmd"
+  ],
+  "generation_verified": true
+}

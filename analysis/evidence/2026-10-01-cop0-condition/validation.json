@@ -1,0 +1,40 @@
+{
+  "upstream_pin": "75d729ce40d7eed9649fd4bb05628dee520f3d0c",
+  "branch_variants": 4,
+  "distinct_channel_states": 1048576,
+  "generated_function_executions": 5242880,
+  "retail_predicate_executions": 1048576,
+  "address": "0x217D88",
+  "production_decoder_and_emitter": true,
+  "runtime_mmio_test_double": true,
+  "asan_ubsan": true,
+  "leak_sanitizer": false,
+  "patch_fresh_apply_and_second_apply_passed": true,
+  "real_runtime_headers_syntax_check_passed": true,
+  "mutation_constant_false_detected": true,
+  "mutation_first_failure": {
+    "selected": 0,
+    "status": 0,
+    "rt": 0
+  },
+  "python_tests_passed": 29,
+  "full_game_boot_verified": false,
+  "menu_verified": false,
+  "race_verified": false,
+  "fps_60_verified": false,
+  "fps_75_verified": false,
+  "patch_sha256": "5d50bcfc81d86fdb4e806a5828075f61e9073ede827a3e87d55dd10601759273",
+  "primary_reference": {
+    "repository": "PCSX2/pcsx2",
+    "commit": "81526d4dc7cc70e4ae75abb35a789417456c6d43",
+    "files": [
+      "pcsx2/COP0.cpp",
+      "pcsx2/Dmac.h"
+    ]
+  },
+  "retail_fixture_words_verified_against_elf": true,
+  "vif1_trace_wraparound_records": 100000,
+  "vif1_trace_opt_in": true,
+  "baseline_retail_busy_return": 1,
+  "fixed_retail_busy_return": 0
+}
