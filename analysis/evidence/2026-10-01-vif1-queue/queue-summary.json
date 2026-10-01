@@ -1,0 +1,8 @@
+{
+  "last_wait_sample": "[downhill:dma-wait] call=4096 pc=1787464 ra=2014956 flags=0,3,1 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537",
+  "last_irq_sample": "[dmac:irq] call=128 cause=1 enabled=0 handlers=1 flags=0,0,0",
+  "registration_and_mask_logs_present": false,
+  "menu_verified": false,
+  "race_verified": false,
+  "fps_120_verified": false
+}
