@@ -1,0 +1,12 @@
+{
+  "elf_sha256": "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c",
+  "ps2recomp_commit": "75d729ce40d7eed9649fd4bb05628dee520f3d0c",
+  "runtime_linked": true,
+  "host": "linux-x64",
+  "windows_link_verified": false,
+  "build_type": "Debug",
+  "ffmpeg_enabled": true,
+  "aggressive_function_trace": false,
+  "runner_sha256": "1654c4b60fd99c4dabc67a6a0469dd148d11b864c06e0229e492a8d284238349",
+  "runner_bytes": 214621544
+}

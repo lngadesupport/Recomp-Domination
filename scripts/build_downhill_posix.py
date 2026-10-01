@@ -101,6 +101,13 @@ def main():
         options += [f"-DCMAKE_PREFIX_PATH={prefix}", f"-DCMAKE_INCLUDE_PATH={prefix / 'include'}",
                     f"-DCMAKE_LIBRARY_PATH={prefix / 'lib/x86_64-linux-gnu'}"]
     subprocess.run([args.cmake, "-S", str(source), "-B", str(build), *options], check=True)
+    # An interrupted compiler can leave a zero-byte object that Make treats
+    # as current. Remove only empty compiler outputs inside this build tree.
+    repaired_empty_objects = []
+    for object_file in build.rglob("*.o"):
+        if object_file.is_file() and object_file.stat().st_size == 0:
+            repaired_empty_objects.append(str(object_file.relative_to(build)))
+            object_file.unlink()
     subprocess.run([args.cmake, "--build", str(build), "--target", "ps2EntryRunner", "--parallel", str(args.jobs)], check=True)
     executable = build / "ps2xRuntime/ps2EntryRunner"
     if not executable.is_file() or executable.stat().st_size == 0:
@@ -112,6 +119,7 @@ def main():
         "aggressive_function_trace": not args.quiet_function_trace,
         "runner_sha256": hashlib.sha256(executable.read_bytes()).hexdigest(),
         "runner_bytes": executable.stat().st_size,
+        "repaired_empty_objects": repaired_empty_objects,
     }, indent=2) + "\n")
     print(f"Native diagnostic runner: {executable}")
 

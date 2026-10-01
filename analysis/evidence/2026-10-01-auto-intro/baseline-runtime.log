@@ -1,0 +1,30 @@
+[excerpt] First/last sampled presentation and scheduler records; full log retained with local probe.
+Registered code region: 10a000 - 29dcf0[game_overrides] applying 'downhill-domination-ntscu-final'[downhill] configured CD root: /workspace/scratch/2a92898976e3/verified-disc-root
+[downhill] configured CD image: /workspace/scratch/2a92898976e3/input/downhill-extracted-probe.iso
+[downhill] experimental idle VSync waits enabled
+[downhill] experimental resource CD read yield enabled
+[game_overrides] applied 1 matching override(s).ELF file loaded successfully. Entry point: 0x10a008Starting execution at address 0x10a008INFO: TEXTURE: [ID 3] Texture loaded successfully (640x512 | R8G8B8A8 | 1 mipmaps)
+[gs:pipeline] host_tick=253 dma=790 gif=679 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=494 dma=1488 gif=1377 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=688 dma=2070 gif=1959 vif=6 display_fbp=280 source_fbp=280 width=640 height=448 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=873 dma=2605 gif=2494 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=1051 dma=3112 gif=3001 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=1233 dma=3663 gif=3552 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=6287 dma=18824 gif=18713 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=6461 dma=19348 gif=19237 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=6633 dma=19858 gif=19747 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=6803 dma=20373 gif=20262 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=6971 dma=20876 gif=20765 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[gs:pipeline] host_tick=7137 dma=21376 gif=21265 vif=6 display_fbp=280 source_fbp=280 width=640 height=368 preferred=0 ctx0_fbp=70 ctx1_fbp=70 transfer_total=0 transfer_copied=256
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x25a598:ra=0x224068:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0

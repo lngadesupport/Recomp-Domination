@@ -1,0 +1,15 @@
+{
+  "termination": "timeout",
+  "exit_code": -9,
+  "process_signal": 9,
+  "elapsed_seconds": 120.033,
+  "timeout_seconds": 120,
+  "max_log_bytes": 33554432,
+  "execution_stage": "guest",
+  "auto_intro_skip": true,
+  "runner_sha256": "1654c4b60fd99c4dabc67a6a0469dd148d11b864c06e0229e492a8d284238349",
+  "runner_identity_verified": true,
+  "elf_sha256": "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c",
+  "runner_sha256_after": "1654c4b60fd99c4dabc67a6a0469dd148d11b864c06e0229e492a8d284238349",
+  "runner_changed_during_probe": false
+}
