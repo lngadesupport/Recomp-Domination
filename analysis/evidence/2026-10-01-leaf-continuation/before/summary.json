@@ -1,0 +1,24 @@
+{
+  "samples": 86,
+  "malformed_records": 0,
+  "last_sample": {
+    "call": 268435456,
+    "zero_calls": 0,
+    "thread": 10,
+    "length": 4,
+    "source": 11295383,
+    "destination": 11299809,
+    "input_offset": 23191,
+    "output_after": 27621,
+    "remaining_after": 0,
+    "window": 131072,
+    "input_base": 11272192,
+    "output_base": 11272192,
+    "result": 11299809,
+    "source_bytes": "90ea94a8",
+    "destination_bytes": "90ea94a8"
+  },
+  "zero_length_samples": 0,
+  "observations": [],
+  "limits": "Calls are sampled after 64. Zero sizes and repeated offsets alone do not prove a stall. Host clock and game FPS are not measured."
+}

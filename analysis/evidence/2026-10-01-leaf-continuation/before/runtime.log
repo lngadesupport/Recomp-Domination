@@ -1,0 +1,600 @@
+Using argv boot path
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1280 x 720
+INFO:     > Screen size:  640 x 448
+INFO:     > Render size:  640 x 448
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 229
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Mesa
+INFO:     > Renderer: llvmpipe (LLVM 20.1.2, 256 bits)
+INFO:     > Version:  4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.2
+INFO:     > GLSL:     4.50
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - X11): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: /workspace/scratch/2a92898976e3/recomp-domination/analysis/local/resource-copy-probe
+socket(): Operation not permitted
+socket(): Operation not permitted
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0,0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+WARNING: AUDIO: Failed to initialize playback device
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+Loading segment: 0x10a000 - 0x8a0400 (filesz: 0x193cf0, memsz: 0x796400)
+Registered code region: 10a000 - 29dcf0[game_overrides] applying 'downhill-domination-ntscu-final'[downhill] configured CD root: /workspace/scratch/2a92898976e3/input/disc-verified
+[downhill] configured CD image: /workspace/scratch/2a92898976e3/input/downhill-verified-probe.iso
+[downhill] experimental idle VSync waits enabled
+[downhill] experimental resource CD read yield enabled
+[downhill] bounded resource copy diagnostics enabled
+[game_overrides] applied 1 matching override(s).ELF file loaded successfully. Entry point: 0x10a008Starting execution at address 0x10a008INFO: TEXTURE: [ID 3] Texture loaded successfully (640x512 | R8G8B8A8 | 1 mipmaps)
+[guest-branch:missing-target] kind=Return op=JR $ra source=0x25ef70 target=0x0 pc=0x0 ra=0x0 sp=0x1fffff0 gp=0x2a40f0 a0=0x8001218c a1=0x80080000 a2=0x25ef38 a3=0x29e580 s0=0x282218 s1=0x0 v0=0x8001218c v1=0x83 a0Readable=no a0[0]=0x0 a0[4]=0x0 a0[8]=0x0 a0[c]=0x0 s0Readable=yes s0[0]=0x83 s0[4]=0x25ef38 s0[8]=0x5a s0[c]=0x25ef00 recordReadable=yes record[0]=0x8c820000 record[4]=0x1046000b record[8]=0x85102b record[c]=0x5040000a vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=no policy=1 trace=0x10a008 -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x25f0a0 -> 0x25eeb8 -> 0x25a6e0 -> 0x25a6e0 -> 0x25ef90 -> 0x25f090 -> 0x25f090 -> 0x25ef78 -> 0x25ef38
+[SifInitRpc] Initialized[ps2xIOP] [IOP] loaded IRX id=1 entry=0x10634 base=0x10000 start=0
+[SIF module] load-emulated id=1 ref=1 path="cdrom0:\MOD\SIO2MAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=2 entry=0x11918 base=0x11000 start=0
+[SIF module] load-emulated id=2 ref=1 path="cdrom0:\MOD\MTAPMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=3 entry=0x13178 base=0x13000 start=2
+[SIF module] load-emulated id=3 ref=1 path="cdrom0:\MOD\MCMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=4 entry=0x3a358 base=0x3a300 start=2
+[SIF module] load-emulated id=4 ref=1 path="cdrom0:\MOD\MCSERV.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=5 entry=0x40c78 base=0x3db00 start=0
+[SIF module] load-emulated id=5 ref=1 path="cdrom0:\MOD\PADMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=6 entry=0x475b0 base=0x47500 start=0
+[SIF module] load-emulated id=6 ref=1 path="cdrom0:\MOD\LIBSD.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=7 entry=0x4e5b8 base=0x4cf00 start=2
+[SIF module] load-emulated id=7 ref=1 path="cdrom0:\MOD\CDVDSTM.IRX;1"
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]  989snd (c)2000, 2001 Sony Computer Entertainment America
+
+[ps2xIOP] [IOP printf]  by Buzz Burrowes                               v%d.%d.%d
+
+[ps2xIOP] [IOP printf]                         (built %s at %s)
+
+[ps2xIOP] [IOP printf]  (build with sce library rev %d.%d.%d)
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]     Thread Priorities:
+
+[ps2xIOP] [IOP printf]                          Sound Tick = %d
+
+[ps2xIOP] [IOP printf]                            Main RPC = %d
+
+[ps2xIOP] [IOP printf]                         Loading RPC = %d
+
+[ps2xIOP] [IOP printf]                           Streaming = %d, %d, %d, %d
+
+[ps2xIOP] [IOP printf]    Memory Locations...
+
+[ps2xIOP] [IOP printf]        Voice Allocator Owner  : 0x%8.8x
+
+[ps2xIOP] [IOP printf]        Master Tick Owner List : 0x%8.8x
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP] loaded IRX id=8 entry=0x522f0 base=0x50900 start=0
+[SIF module] load-emulated id=8 ref=1 path="cdrom0:\MOD\989SND.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=9 entry=0x78800 base=0x78800 start=0
+[SIF module] load-emulated id=9 ref=1 path="cdrom0:\MOD\989ERR.IRX;1"
+[sceCdSearchFile] pc=0x246fa0 ra=0x2472c8 file=0x93c8f0 pathAddr=0x93c920 path="\SKAT\DHSKAT.SKX;1"
+[sceCdSearchFile:ok] path="\SKAT\DHSKAT.SKX;1" lsn=0xe66d1 size=0x60988d0 sectors=0xc132
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[sceCdStStart] lbn=0xc3db8 endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc3db8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc3dd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc3df8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e98 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3eb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ed8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ef8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f98 end=0xffffffff
+[performance] host_tick=120 host_hz=57.9089 ee_clock_ratio=0.997582 ee_cycle=609644532
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ff8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4018 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4038 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4058 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4078 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4098 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40b8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40d8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40f8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4118 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4138 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4158 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4178 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4198 end=0xffffffff
+[performance] host_tick=240 host_hz=59.8563 ee_clock_ratio=0.997626 ee_cycle=1199480412
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStStart] lbn=0xc2b3e endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc2b3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc2b5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc2b7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2b9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cfe end=0xffffffff
+[performance] host_tick=360 host_hz=59.8852 ee_clock_ratio=0.998106 ee_cycle=1789316292
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ebe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ede end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2efe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2f1e end=0xffffffff
+[performance] host_tick=480 host_hz=59.8992 ee_clock_ratio=1.00641 ee_cycle=2383920015
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=600 host_hz=59.9469 ee_clock_ratio=0.999136 ee_cycle=2973755895
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[sceCdStStart] lbn=0xc34af endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc34af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc34cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc34ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc350f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc352f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc354f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc356f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc358f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35ef end=0xffffffff
+[performance] host_tick=720 host_hz=59.9169 ee_clock_ratio=0.99864 ee_cycle=3563595151
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc360f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc362f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc364f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc366f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc368f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc370f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc372f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc374f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc376f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc378f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc380f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc382f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc384f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc386f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc388f end=0xffffffff
+[performance] host_tick=840 host_hz=59.8908 ee_clock_ratio=0.998444 ee_cycle=4153575111
+[boot-snapshot] host_tick=840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=960 host_hz=59.9045 ee_clock_ratio=0.998428 ee_cycle=4743410991
+[boot-snapshot] host_tick=960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStStart] lbn=0x34bcc endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0x34bcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0x34bec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0x34c0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ccc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d6c end=0xffffffff
+[performance] host_tick=1080 host_hz=59.9637 ee_clock_ratio=0.999416 ee_cycle=5333246871
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e0c end=0xffffffff
+[performance] host_tick=1200 host_hz=59.8974 ee_clock_ratio=0.998311 ee_cycle=5923082751
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ecc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34fac end=0xffffffff
+[performance] host_tick=1320 host_hz=59.9556 ee_clock_ratio=1.00761 ee_cycle=6517833930
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1440 host_hz=59.9324 ee_clock_ratio=0.998894 ee_cycle=7107669810
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1560 host_hz=59.9105 ee_clock_ratio=0.998279 ee_cycle=7697358234
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1680 host_hz=59.9475 ee_clock_ratio=0.999394 ee_cycle=8287341570
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1800 host_hz=59.9879 ee_clock_ratio=0.999819 ee_cycle=8877177450
+[boot-snapshot] host_tick=1800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1920 host_hz=59.8673 ee_clock_ratio=0.997808 ee_cycle=9467013330
+[boot-snapshot] host_tick=1920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2040 host_hz=59.958 ee_clock_ratio=0.999321 ee_cycle=10056849210
+[boot-snapshot] host_tick=2040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2160 host_hz=59.9682 ee_clock_ratio=0.99949 ee_cycle=10646685090
+[boot-snapshot] host_tick=2160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2280 host_hz=59.8936 ee_clock_ratio=1.00632 ee_cycle=11241288813
+[boot-snapshot] host_tick=2280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=2400 host_hz=59.8941 ee_clock_ratio=0.998505 ee_cycle=11831272149
+[boot-snapshot] host_tick=2400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2520 host_hz=59.97 ee_clock_ratio=0.999519 ee_cycle=12421108029
+[boot-snapshot] host_tick=2520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2640 host_hz=59.9396 ee_clock_ratio=0.999013 ee_cycle=13010943909
+[boot-snapshot] host_tick=2640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2760 host_hz=59.8346 ee_clock_ratio=0.997263 ee_cycle=13600779789
+[boot-snapshot] host_tick=2760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2880 host_hz=59.8671 ee_clock_ratio=1.00612 ee_cycle=14195530968
+[boot-snapshot] host_tick=2880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3000 host_hz=59.8538 ee_clock_ratio=0.997584 ee_cycle=14785366848
+[boot-snapshot] host_tick=3000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3120 host_hz=59.9408 ee_clock_ratio=0.999034 ee_cycle=15375202728
+[boot-snapshot] host_tick=3120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3240 host_hz=59.9438 ee_clock_ratio=0.998859 ee_cycle=15964906296
+[boot-snapshot] host_tick=3240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3360 host_hz=59.8682 ee_clock_ratio=0.998047 ee_cycle=16554874488
+[boot-snapshot] host_tick=3360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3480 host_hz=59.9609 ee_clock_ratio=0.999368 ee_cycle=17144710368
+[boot-snapshot] host_tick=3480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3600 host_hz=58.6026 ee_clock_ratio=1.00115 ee_cycle=17749292145
+[boot-snapshot] host_tick=3600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3720 host_hz=59.8052 ee_clock_ratio=1.00508 ee_cycle=18344043324
+[boot-snapshot] host_tick=3720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3840 host_hz=59.6914 ee_clock_ratio=0.994877 ee_cycle=18933879204
+[boot-snapshot] host_tick=3840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3960 host_hz=59.9779 ee_clock_ratio=0.999652 ee_cycle=19523715084
+[boot-snapshot] host_tick=3960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4080 host_hz=59.9824 ee_clock_ratio=0.999727 ee_cycle=20113550964
+[boot-snapshot] host_tick=4080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4200 host_hz=59.9572 ee_clock_ratio=0.999306 ee_cycle=20703386844
+[boot-snapshot] host_tick=4200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4320 host_hz=59.9488 ee_clock_ratio=1.00724 ee_cycle=21297990567
+[boot-snapshot] host_tick=4320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4440 host_hz=59.9571 ee_clock_ratio=0.999304 ee_cycle=21887826447
+[boot-snapshot] host_tick=4440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4560 host_hz=59.8294 ee_clock_ratio=0.997427 ee_cycle=22477809783
+[boot-snapshot] host_tick=4560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4680 host_hz=59.905 ee_clock_ratio=0.998436 ee_cycle=23067645663
+[boot-snapshot] host_tick=4680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4800 host_hz=59.8752 ee_clock_ratio=0.997941 ee_cycle=23657481543
+[boot-snapshot] host_tick=4800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4920 host_hz=59.849 ee_clock_ratio=1.00582 ee_cycle=24252232722
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5040 host_hz=59.9172 ee_clock_ratio=0.998639 ee_cycle=24842068602
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5160 host_hz=59.6093 ee_clock_ratio=1.00154 ee_cycle=25436672325
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=5280 host_hz=59.8449 ee_clock_ratio=0.997684 ee_cycle=26026655661
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5400 host_hz=59.9954 ee_clock_ratio=0.999944 ee_cycle=26616491541
+[boot-snapshot] host_tick=5400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5520 host_hz=59.9159 ee_clock_ratio=0.998618 ee_cycle=27206327421
+[boot-snapshot] host_tick=5520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5640 host_hz=59.85 ee_clock_ratio=0.997521 ee_cycle=27796163301
+[boot-snapshot] host_tick=5640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5760 host_hz=59.9796 ee_clock_ratio=0.999679 ee_cycle=28385999181
+[boot-snapshot] host_tick=5760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5880 host_hz=59.8687 ee_clock_ratio=1.00615 ee_cycle=28980750360
+[boot-snapshot] host_tick=5880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6000 host_hz=59.958 ee_clock_ratio=0.99932 ee_cycle=29570586240
+[boot-snapshot] host_tick=6000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6120 host_hz=59.991 ee_clock_ratio=0.999869 ee_cycle=30160422120
+[boot-snapshot] host_tick=6120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6240 host_hz=59.9606 ee_clock_ratio=0.999363 ee_cycle=30750258000
+[boot-snapshot] host_tick=6240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6360 host_hz=59.9223 ee_clock_ratio=0.998725 ee_cycle=31340093880
+[boot-snapshot] host_tick=6360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6480 host_hz=59.9563 ee_clock_ratio=0.999292 ee_cycle=31929929760
+[boot-snapshot] host_tick=6480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6600 host_hz=59.9294 ee_clock_ratio=0.998843 ee_cycle=32519765640
+[boot-snapshot] host_tick=6600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6720 host_hz=59.9286 ee_clock_ratio=0.998829 ee_cycle=33109601520
+[boot-snapshot] host_tick=6720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=6840 host_hz=59.9659 ee_clock_ratio=1.00753 ee_cycle=33704205243
+[boot-snapshot] host_tick=6840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=6960 host_hz=59.8812 ee_clock_ratio=0.998047 ee_cycle=34294044635
+[boot-snapshot] host_tick=6960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=7080 host_hz=59.9623 ee_clock_ratio=0.999635 ee_cycle=34884024459
+[boot-snapshot] host_tick=7080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7200 host_hz=59.9627 ee_clock_ratio=0.999398 ee_cycle=35473860339
+[boot-snapshot] host_tick=7200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7320 host_hz=59.974 ee_clock_ratio=0.999587 ee_cycle=36063696219
+[boot-snapshot] host_tick=7320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7440 host_hz=59.9274 ee_clock_ratio=0.99881 ee_cycle=36653532099
+[boot-snapshot] host_tick=7440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7560 host_hz=59.9897 ee_clock_ratio=0.999849 ee_cycle=37243367979
+[boot-snapshot] host_tick=7560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7680 host_hz=59.9977 ee_clock_ratio=0.999982 ee_cycle=37833203859
+[boot-snapshot] host_tick=7680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7800 host_hz=59.7469 ee_clock_ratio=1.0041 ee_cycle=38427955038
+[boot-snapshot] host_tick=7800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=7920 host_hz=59.8493 ee_clock_ratio=0.997508 ee_cycle=39017790918
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=8040 host_hz=59.7844 ee_clock_ratio=0.996426 ee_cycle=39607626798
+[boot-snapshot] host_tick=8040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=8160 host_hz=59.982 ee_clock_ratio=0.99947 ee_cycle=40197315222
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=8280 host_hz=59.9554 ee_clock_ratio=0.999527 ee_cycle=40787298558
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:release-wait] target=10 status_before=2 result=0 return=0x23149c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:resource-copy] call=1 zero_calls=0 thread=10 length=3 source=10485774 destination=10485778 input_offset=14 output_after=21 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=590100 destination_bytes=590100 result=10485778
+[downhill:resource-copy] call=2 zero_calls=0 thread=10 length=24 source=10485780 destination=10485828 input_offset=20 output_after=92 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000001000000 destination_bytes=00000000000000000000000001000000 result=10485828
+[downhill:resource-copy] call=3 zero_calls=0 thread=10 length=25 source=10485827 destination=10485875 input_offset=67 output_after=140 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10485875
+[downhill:resource-copy] call=4 zero_calls=0 thread=10 length=25 source=10485875 destination=10485923 input_offset=115 output_after=188 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10485923
+[downhill:resource-copy] call=5 zero_calls=0 thread=10 length=25 source=10485779 destination=10485971 input_offset=19 output_after=236 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10485971
+[downhill:resource-copy] call=6 zero_calls=0 thread=10 length=25 source=10485923 destination=10486019 input_offset=163 output_after=284 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10486019
+[downhill:resource-copy] call=7 zero_calls=0 thread=10 length=25 source=10486019 destination=10486067 input_offset=259 output_after=332 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10486067
+[downhill:resource-copy] call=8 zero_calls=0 thread=10 length=13 source=10486067 destination=10486096 input_offset=307 output_after=349 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000 destination_bytes=00000000000000000000000000 result=10486096
+[downhill:resource-copy] call=9 zero_calls=0 thread=10 length=25 source=10485971 destination=10486115 input_offset=211 output_after=380 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486115
+[downhill:resource-copy] call=10 zero_calls=0 thread=10 length=14 source=10486096 destination=10486144 input_offset=336 output_after=398 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000000000000000000000000000 destination_bytes=0000000000000000000000000000 result=10486144
+[downhill:resource-copy] call=11 zero_calls=0 thread=10 length=25 source=10486115 destination=10486163 input_offset=355 output_after=428 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486163
+[downhill:resource-copy] call=12 zero_calls=0 thread=10 length=13 source=10486145 destination=10486211 input_offset=385 output_after=464 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000 destination_bytes=00000000000000000000000000 result=10486211
+[downhill:resource-copy] call=13 zero_calls=0 thread=10 length=12 source=10486176 destination=10486224 input_offset=416 output_after=476 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=010000000000000001000100 destination_bytes=010000000000000001000100 result=10486224
+[downhill:resource-copy] call=14 zero_calls=0 thread=10 length=25 source=10486211 destination=10486259 input_offset=451 output_after=524 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10486259
+[downhill:resource-copy] call=15 zero_calls=0 thread=10 length=25 source=10486163 destination=10486307 input_offset=403 output_after=572 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486307
+[downhill:resource-copy] call=16 zero_calls=0 thread=10 length=25 source=10486259 destination=10486355 input_offset=499 output_after=620 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10486355
+[downhill:resource-copy] call=17 zero_calls=0 thread=10 length=3 source=10486092 destination=10486380 input_offset=332 output_after=623 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000c8 destination_bytes=0000c8 result=10486380
+[downhill:resource-copy] call=18 zero_calls=0 thread=10 length=3 source=10485762 destination=10486396 input_offset=2 output_after=639 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000020 destination_bytes=000020 result=10486396
+[downhill:resource-copy] call=19 zero_calls=0 thread=10 length=25 source=10486307 destination=10486403 input_offset=547 output_after=668 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486403
+[downhill:resource-copy] call=20 zero_calls=0 thread=10 length=25 source=10486403 destination=10486451 input_offset=643 output_after=716 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486451
+[downhill:resource-copy] call=21 zero_calls=0 thread=10 length=21 source=10486451 destination=10486499 input_offset=691 output_after=760 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01000000000000000000000000010000 destination_bytes=01000000000000000000000000010000 result=10486499
+[downhill:resource-copy] call=22 zero_calls=0 thread=10 length=23 source=10486473 destination=10486521 input_offset=713 output_after=784 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000100a493564d731ba4c0d6bbccc183 destination_bytes=000100a493564d731ba4c0d6bbccc183 result=10486521
+[downhill:resource-copy] call=23 zero_calls=0 thread=10 length=3 source=10485765 destination=10486545 input_offset=5 output_after=788 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00a000 destination_bytes=00a000 result=10486545
+[downhill:resource-copy] call=24 zero_calls=0 thread=10 length=3 source=10486545 destination=10486549 input_offset=785 output_after=792 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00a000 destination_bytes=00a000 result=10486549
+[downhill:resource-copy] call=25 zero_calls=0 thread=10 length=3 source=10486549 destination=10486553 input_offset=789 output_after=796 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00a000 destination_bytes=00a000 result=10486553
+[downhill:resource-copy] call=26 zero_calls=0 thread=10 length=3 source=10486553 destination=10486557 input_offset=793 output_after=800 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00a000 destination_bytes=00a000 result=10486557
+[downhill:resource-copy] call=27 zero_calls=0 thread=10 length=3 source=10486561 destination=10486565 input_offset=801 output_after=808 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01a000 destination_bytes=01a000 result=10486565
+[downhill:resource-copy] call=28 zero_calls=0 thread=10 length=3 source=10486565 destination=10486569 input_offset=805 output_after=812 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01a000 destination_bytes=01a000 result=10486569
+[downhill:resource-copy] call=29 zero_calls=0 thread=10 length=3 source=10486569 destination=10486573 input_offset=809 output_after=816 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01a000 destination_bytes=01a000 result=10486573
+[downhill:resource-copy] call=30 zero_calls=0 thread=10 length=3 source=10486573 destination=10486577 input_offset=813 output_after=820 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=01a000 destination_bytes=01a000 result=10486577
+[downhill:resource-copy] call=31 zero_calls=0 thread=10 length=3 source=10486581 destination=10486585 input_offset=821 output_after=828 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=02a000 destination_bytes=02a000 result=10486585
+[downhill:resource-copy] call=32 zero_calls=0 thread=10 length=3 source=10486585 destination=10486589 input_offset=825 output_after=832 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=02a000 destination_bytes=02a000 result=10486589
+[downhill:resource-copy] call=33 zero_calls=0 thread=10 length=3 source=10486589 destination=10486593 input_offset=829 output_after=836 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=02a000 destination_bytes=02a000 result=10486593
+[downhill:resource-copy] call=34 zero_calls=0 thread=10 length=3 source=10486593 destination=10486597 input_offset=833 output_after=840 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=02a000 destination_bytes=02a000 result=10486597
+[downhill:resource-copy] call=35 zero_calls=0 thread=10 length=20 source=10486456 destination=10486600 input_offset=696 output_after=860 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000100000000000000 destination_bytes=00000000000000000100000000000000 result=10486600
+[downhill:resource-copy] call=36 zero_calls=0 thread=10 length=4 source=10486612 destination=10486628 input_offset=852 output_after=872 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000 destination_bytes=00000000 result=10486628
+[downhill:resource-copy] call=37 zero_calls=0 thread=10 length=22 source=10486452 destination=10486644 input_offset=692 output_after=906 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000001000000 destination_bytes=00000000000000000000000001000000 result=10486644
+[downhill:resource-copy] call=38 zero_calls=0 thread=10 length=3 source=10486627 destination=10486683 input_offset=867 output_after=926 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=c30000 destination_bytes=c30000 result=10486683
+[downhill:resource-copy] call=39 zero_calls=0 thread=10 length=13 source=10486643 destination=10486691 input_offset=883 output_after=944 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000 destination_bytes=00000000000000000000000000 result=10486691
+[downhill:resource-copy] call=40 zero_calls=0 thread=10 length=7 source=10486697 destination=10486708 input_offset=937 output_after=955 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000 destination_bytes=00000000000000 result=10486708
+[downhill:resource-copy] call=41 zero_calls=0 thread=10 length=3 source=10486546 destination=10486718 input_offset=786 output_after=961 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=a00080 destination_bytes=a00080 result=10486718
+[downhill:resource-copy] call=42 zero_calls=0 thread=10 length=3 source=10486717 destination=10486721 input_offset=957 output_after=964 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=03a000 destination_bytes=03a000 result=10486721
+[downhill:resource-copy] call=43 zero_calls=0 thread=10 length=24 source=10486452 destination=10486724 input_offset=692 output_after=988 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000001000000 destination_bytes=00000000000000000000000001000000 result=10486724
+[downhill:resource-copy] call=44 zero_calls=0 thread=10 length=21 source=10486723 destination=10486771 input_offset=963 output_after=1032 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000000000000000000010000 destination_bytes=00000000000000000000000000010000 result=10486771
+[downhill:resource-copy] call=45 zero_calls=0 thread=10 length=20 source=10486620 destination=10486796 input_offset=860 output_after=1056 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=9fad654de586dec3000000004461dd42 destination_bytes=9fad654de586dec3000000004461dd42 result=10486796
+[downhill:resource-copy] call=46 zero_calls=0 thread=10 length=3 source=10486597 destination=10486817 input_offset=837 output_after=1060 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=02a000 destination_bytes=02a000 result=10486817
+[downhill:resource-copy] call=47 zero_calls=0 thread=10 length=3 source=10486721 destination=10486821 input_offset=961 output_after=1064 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=03a000 destination_bytes=03a000 result=10486821
+[downhill:resource-copy] call=48 zero_calls=0 thread=10 length=9 source=10486721 destination=10486825 input_offset=961 output_after=1074 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=03a000000000000000 destination_bytes=03a000000000000000 result=10486825
+[downhill:resource-copy] call=49 zero_calls=0 thread=10 length=9 source=10486775 destination=10486841 input_offset=1015 output_after=1090 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000000000000000 destination_bytes=000000000000000000 result=10486841
+[downhill:resource-copy] call=50 zero_calls=0 thread=10 length=3 source=10486847 destination=10486856 input_offset=1087 output_after=1099 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000 destination_bytes=000000 result=10486856
+[downhill:resource-copy] call=51 zero_calls=0 thread=10 length=4 source=10486856 destination=10486864 input_offset=1096 output_after=1108 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000003f destination_bytes=0000003f result=10486864
+[downhill:resource-copy] call=52 zero_calls=0 thread=10 length=7 source=10486844 destination=10486872 input_offset=1084 output_after=1119 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000000080 destination_bytes=00000000000080 result=10486872
+[downhill:resource-copy] call=53 zero_calls=0 thread=10 length=4 source=10486867 destination=10486879 input_offset=1107 output_after=1123 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=3f00308d destination_bytes=3f00308d result=10486879
+[downhill:resource-copy] call=54 zero_calls=0 thread=10 length=3 source=10486875 destination=10486884 input_offset=1115 output_after=1127 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000 destination_bytes=000000 result=10486884
+[downhill:resource-copy] call=55 zero_calls=0 thread=10 length=4 source=10486874 destination=10486888 input_offset=1114 output_after=1132 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000 destination_bytes=00000000 result=10486888
+[downhill:resource-copy] call=56 zero_calls=0 thread=10 length=8 source=10486842 destination=10486895 input_offset=1082 output_after=1143 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000000000000000 destination_bytes=0000000000000000 result=10486895
+[downhill:resource-copy] call=57 zero_calls=0 thread=10 length=4 source=10486863 destination=10486903 input_offset=1103 output_after=1147 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=3f000000 destination_bytes=3f000000 result=10486903
+[downhill:resource-copy] call=58 zero_calls=0 thread=10 length=5 source=10486876 destination=10486908 input_offset=1116 output_after=1153 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000803f00 destination_bytes=0000803f00 result=10486908
+[downhill:resource-copy] call=59 zero_calls=0 thread=10 length=3 source=10486904 destination=10486921 input_offset=1144 output_after=1164 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000 destination_bytes=000000 result=10486921
+[downhill:resource-copy] call=60 zero_calls=0 thread=10 length=3 source=10486832 destination=10486929 input_offset=1072 output_after=1172 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000060 destination_bytes=000060 result=10486929
+[downhill:resource-copy] call=61 zero_calls=0 thread=10 length=4 source=10486899 destination=10486932 input_offset=1139 output_after=1176 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000000 destination_bytes=00000000 result=10486932
+[downhill:resource-copy] call=62 zero_calls=0 thread=10 length=4 source=10486894 destination=10486940 input_offset=1134 output_after=1184 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=04000000 destination_bytes=04000000 result=10486940
+[downhill:resource-copy] call=63 zero_calls=0 thread=10 length=3 source=10486941 destination=10486948 input_offset=1181 output_after=1191 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000 destination_bytes=000000 result=10486948
+[downhill:resource-copy] call=64 zero_calls=0 thread=10 length=5 source=10486908 destination=10486956 input_offset=1148 output_after=1201 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000803f00 destination_bytes=0000803f00 result=10486956
+[downhill:resource-copy] call=128 zero_calls=0 thread=10 length=18 source=10487321 destination=10488297 input_offset=1561 output_after=2555 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=000000000000000000803f00308d2600 destination_bytes=000000000000000000803f00308d2600 result=10488297
+[downhill:resource-copy] call=256 zero_calls=0 thread=10 length=4 source=10491022 destination=10491306 input_offset=5262 output_after=5550 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=00000040 destination_bytes=00000040 result=10491306
+[downhill:resource-copy] call=512 zero_calls=0 thread=10 length=4 source=10495556 destination=10495568 input_offset=9796 output_after=9812 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=6e33adc1 destination_bytes=6e33adc1 result=10495568
+[downhill:resource-copy] call=1024 zero_calls=0 thread=10 length=15 source=10498943 destination=10510407 input_offset=13183 output_after=24662 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=0000403e3012040000010000003942 destination_bytes=0000403e3012040000010000003942 result=10510407
+[downhill:resource-copy] call=2048 zero_calls=0 thread=10 length=5 source=10527339 destination=10527927 input_offset=41579 output_after=42172 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=c22c38ccc2 destination_bytes=c22c38ccc2 result=10527927
+[downhill:resource-copy] call=4096 zero_calls=0 thread=10 length=4 source=10571084 destination=10571120 input_offset=85324 output_after=85364 remaining_after=0 window=131072 input_base=10485760 output_base=10485760 source_bytes=e59cbbc2 destination_bytes=e59cbbc2 result=10571120
+[downhill:resource-copy] call=8192 zero_calls=0 thread=10 length=3 source=10721813 destination=10722725 input_offset=104981 output_after=105896 remaining_after=0 window=131072 input_base=10616832 output_base=10616832 source_bytes=c5d3c2 destination_bytes=c5d3c2 result=10722725
+[downhill:resource-copy] call=16384 zero_calls=0 thread=10 length=24 source=10888928 destination=10915408 input_offset=9952 output_after=36456 remaining_after=0 window=131072 input_base=10878976 output_base=10878976 source_bytes=04430272000000001c43027200000000 destination_bytes=04430272000000001c43027200000000 result=10915408
+[downhill:cd-read-yield] return=0x23147c
+[downhill:resource-copy] call=32768 zero_calls=0 thread=10 length=4 source=11143776 destination=11148736 input_offset=2656 output_after=7620 remaining_after=0 window=131072 input_base=11141120 output_base=11141120 source_bytes=cf4a6fc3 destination_bytes=cf4a6fc3 result=11148736
+[downhill:cd-read-yield] return=0x23147c
+[downhill:resource-copy] call=65536 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[downhill:resource-copy] call=131072 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[downhill:resource-copy] call=262144 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[downhill:resource-copy] call=524288 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[downhill:resource-copy] call=1048576 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=8400 host_hz=59.9254 ee_clock_ratio=0.683703 ee_cycle=41191065146
+[boot-snapshot] host_tick=8400 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=2097152 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[downhill:resource-copy] call=4194304 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=8520 host_hz=59.5099 ee_clock_ratio=0.0836997 ee_cycle=41240839818
+[boot-snapshot] host_tick=8520 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=8388608 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=8640 host_hz=59.7969 ee_clock_ratio=0.0870932 ee_cycle=41292383962
+[boot-snapshot] host_tick=8640 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=16777216 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=8760 host_hz=58.8241 ee_clock_ratio=0.0859487 ee_cycle=41344091954
+[boot-snapshot] host_tick=8760 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=8880 host_hz=59.9821 ee_clock_ratio=0.0906952 ee_cycle=41397602186
+[boot-snapshot] host_tick=8880 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=33554432 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=9000 host_hz=59.8191 ee_clock_ratio=0.0870702 ee_cycle=41449113562
+[boot-snapshot] host_tick=9000 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9120 host_hz=59.943 ee_clock_ratio=0.0874171 ee_cycle=41500723250
+[boot-snapshot] host_tick=9120 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9240 host_hz=57.3376 ee_clock_ratio=0.0911032 ee_cycle=41556953226
+[boot-snapshot] host_tick=9240 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9360 host_hz=59.9929 ee_clock_ratio=0.0911005 ee_cycle=41610692834
+[boot-snapshot] host_tick=9360 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9480 host_hz=59.9121 ee_clock_ratio=0.0908113 ee_cycle=41664334138
+[boot-snapshot] host_tick=9480 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=67108864 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=9600 host_hz=59.9993 ee_clock_ratio=0.0894436 ee_cycle=41717090706
+[boot-snapshot] host_tick=9600 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9720 host_hz=59.9976 ee_clock_ratio=0.0889966 ee_cycle=41769585122
+[boot-snapshot] host_tick=9720 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9840 host_hz=59.9463 ee_clock_ratio=0.0896976 ee_cycle=41822538298
+[boot-snapshot] host_tick=9840 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=9960 host_hz=59.9504 ee_clock_ratio=0.088649 ee_cycle=41874868882
+[boot-snapshot] host_tick=9960 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10080 host_hz=59.9938 ee_clock_ratio=0.0893243 ee_cycle=41927559914
+[boot-snapshot] host_tick=10080 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10200 host_hz=59.9844 ee_clock_ratio=0.0888104 ee_cycle=41979956026
+[boot-snapshot] host_tick=10200 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10320 host_hz=59.9788 ee_clock_ratio=0.0905237 ee_cycle=42033367954
+[boot-snapshot] host_tick=10320 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10440 host_hz=59.925 ee_clock_ratio=0.0899431 ee_cycle=42086484970
+[boot-snapshot] host_tick=10440 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10560 host_hz=59.551 ee_clock_ratio=0.0828752 ee_cycle=42135735354
+[boot-snapshot] host_tick=10560 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10680 host_hz=56.4447 ee_clock_ratio=0.0881166 ee_cycle=42190982290
+[boot-snapshot] host_tick=10680 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=10800 host_hz=59.9849 ee_clock_ratio=0.0886445 ee_cycle=42243280106
+[boot-snapshot] host_tick=10800 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=134217728 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=10920 host_hz=59.9291 ee_clock_ratio=0.0900602 ee_cycle=42296462658
+[boot-snapshot] host_tick=10920 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11040 host_hz=59.7564 ee_clock_ratio=0.0860383 ee_cycle=42347416978
+[boot-snapshot] host_tick=11040 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11160 host_hz=59.8195 ee_clock_ratio=0.0830827 ee_cycle=42396569058
+[boot-snapshot] host_tick=11160 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11280 host_hz=59.9401 ee_clock_ratio=0.0789212 ee_cycle=42443165226
+[boot-snapshot] host_tick=11280 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11400 host_hz=59.8878 ee_clock_ratio=0.0749153 ee_cycle=42487434866
+[boot-snapshot] host_tick=11400 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11520 host_hz=59.9203 ee_clock_ratio=0.0826124 ee_cycle=42536226498
+[boot-snapshot] host_tick=11520 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11640 host_hz=59.9658 ee_clock_ratio=0.0810094 ee_cycle=42584035090
+[boot-snapshot] host_tick=11640 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11760 host_hz=59.9637 ee_clock_ratio=0.0710126 ee_cycle=42625945434
+[boot-snapshot] host_tick=11760 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=11880 host_hz=57.7046 ee_clock_ratio=0.07352 ee_cycle=42671034274
+[boot-snapshot] host_tick=11880 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12000 host_hz=59.9898 ee_clock_ratio=0.0804308 ee_cycle=42718482410
+[boot-snapshot] host_tick=12000 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12120 host_hz=59.6953 ee_clock_ratio=0.0826892 ee_cycle=42767503418
+[boot-snapshot] host_tick=12120 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12240 host_hz=59.9327 ee_clock_ratio=0.0791335 ee_cycle=42814230666
+[boot-snapshot] host_tick=12240 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12360 host_hz=59.9784 ee_clock_ratio=0.0819151 ee_cycle=42862563546
+[boot-snapshot] host_tick=12360 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12480 host_hz=59.9743 ee_clock_ratio=0.0880735 ee_cycle=42914533674
+[boot-snapshot] host_tick=12480 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12600 host_hz=59.9781 ee_clock_ratio=0.0881901 ee_cycle=42966569346
+[boot-snapshot] host_tick=12600 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12720 host_hz=59.9786 ee_clock_ratio=0.0815821 ee_cycle=43014705618
+[boot-snapshot] host_tick=12720 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12840 host_hz=59.9955 ee_clock_ratio=0.0752168 ee_cycle=43059073562
+[boot-snapshot] host_tick=12840 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=12960 host_hz=59.9619 ee_clock_ratio=0.0865007 ee_cycle=43110126186
+[boot-snapshot] host_tick=12960 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13080 host_hz=59.9771 ee_clock_ratio=0.0849677 ee_cycle=43160261306
+[boot-snapshot] host_tick=13080 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13200 host_hz=59.9557 ee_clock_ratio=0.0816065 ee_cycle=43208430346
+[boot-snapshot] host_tick=13200 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13320 host_hz=59.9876 ee_clock_ratio=0.081761 ee_cycle=43256664922
+[boot-snapshot] host_tick=13320 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13440 host_hz=59.974 ee_clock_ratio=0.0810761 ee_cycle=43304506282
+[boot-snapshot] host_tick=13440 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[downhill:resource-copy] call=268435456 zero_calls=0 thread=10 length=4 source=11295383 destination=11299809 input_offset=23191 output_after=27621 remaining_after=0 window=131072 input_base=11272192 output_base=11272192 source_bytes=90ea94a8 destination_bytes=90ea94a8 result=11299809
+[performance] host_tick=13560 host_hz=59.622 ee_clock_ratio=0.0805451 ee_cycle=43352314866
+[boot-snapshot] host_tick=13560 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13680 host_hz=55.2313 ee_clock_ratio=0.0622376 ee_cycle=43392193586
+[boot-snapshot] host_tick=13680 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13800 host_hz=55.6147 ee_clock_ratio=0.0613823 ee_cycle=43431253106
+[boot-snapshot] host_tick=13800 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=13920 host_hz=55.8494 ee_clock_ratio=0.0639683 ee_cycle=43471787194
+[boot-snapshot] host_tick=13920 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=14040 host_hz=56.2242 ee_clock_ratio=0.0634606 ee_cycle=43511731450
+[boot-snapshot] host_tick=14040 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0
+[performance] host_tick=14160 host_hz=53.8908 ee_clock_ratio=0.0648686 ee_cycle=43554329914
+[boot-snapshot] host_tick=14160 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x254050:ra=0x240bb4:priority=2:status=0:wait=0:wait_id=0

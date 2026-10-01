@@ -1,0 +1,16 @@
+{
+  "termination": "timeout",
+  "exit_code": -9,
+  "process_signal": 9,
+  "elapsed_seconds": 240.022,
+  "timeout_seconds": 240.0,
+  "max_log_bytes": 33554432,
+  "execution_stage": "guest",
+  "elf_sha256": "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c",
+  "runner_sha256": "101999da1af043414d3f4006e76d714f5602b50808f3d0233bd83501289ec821",
+  "runner_sha256_after": "101999da1af043414d3f4006e76d714f5602b50808f3d0233bd83501289ec821",
+  "runner_changed_during_probe": false,
+  "runner_identity_verified": true,
+  "host": "posix",
+  "windows_boot_verified": false
+}
