@@ -858,6 +858,7 @@ try {
 
     Copy-Item -Force $GeneratedFunctionsHeader (Join-Path $RuntimeInclude "ps2_recompiled_functions.h")
     Copy-Item -Force $GeneratedStubsHeader (Join-Path $RuntimeInclude "ps2_recompiled_stubs.h")
+    Copy-Item -Force (Join-Path $RepoRoot "src\downhill_leaf_handler.h") (Join-Path $RunnerDir "downhill_leaf_handler.h")
     $OverrideTarget = Join-Path $RunnerDir "downhill_domination_overrides.cpp"
     $overrideText = Get-Content -Raw -LiteralPath $OverrideSource
     $crcLiteral = ("0x{0:X8}u" -f [uint32]$ElfIdentity.crc32_ieee_u32)

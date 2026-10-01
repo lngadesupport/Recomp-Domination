@@ -82,6 +82,7 @@ def main():
         copy_if_changed(path, runner / path.name)
     for name in ("ps2_recompiled_functions.h", "ps2_recompiled_stubs.h"):
         copy_if_changed(generated / name, source / "ps2xRuntime/include" / name)
+    copy_if_changed(repo / "src/downhill_leaf_handler.h", runner / "downhill_leaf_handler.h")
     override = (repo / "src/downhill_domination_overrides.cpp").read_text()
     override = re.sub(r"constexpr uint32_t kExpectedFileCrc32 = 0x[0-9A-Fa-f]{8}u;",
                       f"constexpr uint32_t kExpectedFileCrc32 = 0x{zlib.crc32(elf):08X}u;", override)

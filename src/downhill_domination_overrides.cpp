@@ -1,4 +1,6 @@
 #include "game_overrides.h"
+#include "downhill_leaf_handler.h"
+#include "ps2_syscalls.h"
 #include "ps2_runtime.h"
 #include "ps2_runtime_macros.h"
 #include "ps2_stubs.h"
@@ -230,7 +232,7 @@ namespace
     {
         if (GPR_U32(ctx, 31) != 0x00240BB4u)
         {
-            ps2_stubs::memcpy(rdram, ctx, runtime);
+            downhill::leafHandler<ps2_stubs::memcpy>(rdram, ctx, runtime);
             return;
         }
         const uint32_t source = GPR_U32(ctx, 5), destination = GPR_U32(ctx, 4);
@@ -241,7 +243,7 @@ namespace
         const bool emit = call <= 64u || (call & (call - 1u)) == 0u;
         std::string sourceBytes;
         if (emit) sourceBytes = resourceByteSample(rdram, source, length);
-        ps2_stubs::memcpy(rdram, ctx, runtime);
+        downhill::leafHandler<ps2_stubs::memcpy>(rdram, ctx, runtime);
         if (!emit) return;
         std::ostringstream line;
         line << "[downhill:resource-copy] call=" << call
@@ -294,16 +296,16 @@ namespace
         }
 
         const bool padBound =
-            ps2_game_overrides::bindAddressHandler(runtime, kScePadRead, "scePadRead");
+            runtime.replaceFunction(kScePadRead, downhill::leafHandler<ps2_stubs::scePadRead>);
 
         const bool sifBound =
-            ps2_game_overrides::bindAddressHandler(runtime, kSceSifSendCmd, "sceSifSendCmd");
+            runtime.replaceFunction(kSceSifSendCmd, downhill::leafHandler<ps2_syscalls::sceSifSendCmd>);
         const bool mpegEndBound =
-            ps2_game_overrides::bindAddressHandler(runtime, 0x0024D1C0u, "sceMpegIsEnd");
+            runtime.replaceFunction(0x0024D1C0u, downhill::leafHandler<ps2_stubs::sceMpegIsEnd>);
         const bool mpegEmptyBound =
-            ps2_game_overrides::bindAddressHandler(runtime, 0x0024D1D0u, "sceMpegIsRefBuffEmpty");
+            runtime.replaceFunction(0x0024D1D0u, downhill::leafHandler<ps2_stubs::sceMpegIsRefBuffEmpty>);
         const bool memcpyBound =
-            ps2_game_overrides::bindAddressHandler(runtime, kMemcpy, "memcpy");
+            runtime.replaceFunction(kMemcpy, downhill::leafHandler<ps2_stubs::memcpy>);
         const char *resourceTrace = std::getenv("PS2_TRACE_RESOURCE_COPY");
         if (memcpyBound && resourceTrace != nullptr && std::strcmp(resourceTrace, "1") == 0)
         {
@@ -312,7 +314,7 @@ namespace
                 std::cerr << "[downhill] bounded resource copy diagnostics enabled\n";
         }
         const bool cdSearchBound =
-            runtime.registerFunction(kSceCdLayerSearchFile, downhillCdLayerSearchFile);
+            runtime.registerFunction(kSceCdLayerSearchFile, downhill::leafHandler<downhillCdLayerSearchFile>);
 
         if (!padBound)
         {

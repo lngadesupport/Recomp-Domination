@@ -38,6 +38,11 @@ jobs:
       - name: POSIX watchdog and executable identity regressions
         if: runner.os == 'Linux'
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Check leaf handler continuations on Ubuntu
+        if: runner.os == 'Linux'
+        run: |
+          g++ -std=c++20 -mavx2 -Isrc -I_ci/PS2Recomp/ps2xRuntime/include -I_ci/PS2Recomp/ps2xIOP/include tests/downhill_leaf_handler_test.cpp -o _ci/leaf-handler-test
+          _ci/leaf-handler-test
       - name: Verify canonical Windows patch flow and script syntax
         if: runner.os == 'Windows'
         shell: powershell
@@ -58,7 +63,7 @@ jobs:
         run: |
           $flags = @('/nologo', '/c', '/std:c++20', '/EHsc', '/arch:AVX2', '/DPS2X_HAS_FFMPEG=0',
             '/I_ci/PS2Recomp/ps2xRuntime/include', '/I_ci/PS2Recomp/ps2xIOP/include',
-            '/I_ci/raylib/src', '/I_ci/PS2Recomp/ps2xRuntime/src/lib', '/I_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel')
+            '/Isrc', '/I_ci/raylib/src', '/I_ci/PS2Recomp/ps2xRuntime/src/lib', '/I_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel')
           $files = @('src/downhill_domination_overrides.cpp',
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp',
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp',
@@ -70,3 +75,11 @@ jobs:
             if ($LASTEXITCODE) { throw "MSVC compile failed: $file" }
             $index++
           }
+      - name: Check leaf handler continuations with MSVC
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          & cl.exe /nologo /std:c++20 /EHsc /arch:AVX2 /Isrc /I_ci/PS2Recomp/ps2xRuntime/include /I_ci/PS2Recomp/ps2xIOP/include tests/downhill_leaf_handler_test.cpp /Fe_ci/leaf-handler-test.exe
+          if ($LASTEXITCODE) { throw 'Leaf handler regression did not compile' }
+          & _ci/leaf-handler-test.exe
+          if ($LASTEXITCODE) { throw 'Leaf handler regression failed' }
