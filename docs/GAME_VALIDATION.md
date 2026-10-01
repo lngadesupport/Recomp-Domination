@@ -29,3 +29,12 @@ Registro técnico desta retomada: [recuperação e testes de 01/10](../analysis/
 6. Repetir os casos depois de mudanças em SIF/IOP, memória, DMA/VIF/GS, controles, áudio e salvamento. Uma correção de boot pode causar regressões em outros caminhos.
 
 Só declarar cobertura completa quando o inventário estiver fechado e cada caso tiver evidência de conclusão. Atualmente não existe evidência para aprovar menus ou corridas.
+
+Resource processing diagnostics: enable `PS2_TRACE_RESOURCE_COPY=1` for bounded
+executor-side observations at return `0x240BB4`, then run
+`python scripts/analyze_resource_copy_trace.py <runtime.log>`.
+The flag preserves the existing memcpy handler and is off by default. The copy
+source is a dictionary/back-reference buffer, not necessarily compressed disc
+input. Zero lengths, offsets and sampled bytes alone do not establish a stall.
+This instrumentation has compile/parser validation only; a new retail probe is
+still required.

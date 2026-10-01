@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 namespace
@@ -207,6 +208,60 @@ namespace
         }
     }
 
+    // Only accessed by the guest executor. Reset when applying this game's overrides.
+    uint64_t resourceCopyCalls = 0, resourceZeroCopies = 0;
+
+    std::string resourceByteSample(const uint8_t *rdram, uint32_t address, uint32_t length)
+    {
+        // Diagnostic reads use the same translation as the existing memcpy stub.
+        // Resolve each byte separately so samples never cross a host allocation.
+        std::ostringstream sample;
+        constexpr char hex[] = "0123456789abcdef";
+        for (uint32_t i = 0; i < std::min(length, 16u); ++i)
+        {
+            const uint8_t *byte = getConstMemPtr(rdram, address + i);
+            if (byte == nullptr) break;
+            sample << hex[*byte >> 4] << hex[*byte & 15u];
+        }
+        return sample.str();
+    }
+
+    void downhillTraceResourceCopy(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        if (GPR_U32(ctx, 31) != 0x00240BB4u)
+        {
+            ps2_stubs::memcpy(rdram, ctx, runtime);
+            return;
+        }
+        const uint32_t source = GPR_U32(ctx, 5), destination = GPR_U32(ctx, 4);
+        const uint32_t length = GPR_U32(ctx, 6);
+        const uint64_t call = ++resourceCopyCalls;
+        resourceZeroCopies += length == 0u;
+        // Bounded output even if a guest loop repeats billions of zero-size calls.
+        const bool emit = call <= 64u || (call & (call - 1u)) == 0u;
+        std::string sourceBytes;
+        if (emit) sourceBytes = resourceByteSample(rdram, source, length);
+        ps2_stubs::memcpy(rdram, ctx, runtime);
+        if (!emit) return;
+        std::ostringstream line;
+        line << "[downhill:resource-copy] call=" << call
+             << " zero_calls=" << resourceZeroCopies
+             << " thread=" << runtime->eeScheduler().currentThreadId()
+             << " length=" << length
+             << " source=" << source << " destination=" << destination
+             << " input_offset=" << GPR_U32(ctx, 17)
+             // The JAL delay slot has already incremented s5 by s0.
+             << " output_after=" << GPR_U32(ctx, 21)
+             << " remaining_after=" << GPR_U32(ctx, 22)
+             << " window=" << GPR_U32(ctx, 30)
+             << " input_base=" << Ps2FastRead32(rdram, 0x0029E468u)
+             << " output_base=" << Ps2FastRead32(rdram, 0x0029E48Cu)
+             << " source_bytes=" << sourceBytes
+             << " destination_bytes=" << resourceByteSample(rdram, destination, length)
+             << " result=" << GPR_U32(ctx, 2) << '\n';
+        std::cerr << line.str();
+    }
+
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
@@ -249,6 +304,13 @@ namespace
             ps2_game_overrides::bindAddressHandler(runtime, 0x0024D1D0u, "sceMpegIsRefBuffEmpty");
         const bool memcpyBound =
             ps2_game_overrides::bindAddressHandler(runtime, kMemcpy, "memcpy");
+        const char *resourceTrace = std::getenv("PS2_TRACE_RESOURCE_COPY");
+        if (memcpyBound && resourceTrace != nullptr && std::strcmp(resourceTrace, "1") == 0)
+        {
+            resourceCopyCalls = resourceZeroCopies = 0;
+            if (runtime.replaceFunction(kMemcpy, downhillTraceResourceCopy))
+                std::cerr << "[downhill] bounded resource copy diagnostics enabled\n";
+        }
         const bool cdSearchBound =
             runtime.registerFunction(kSceCdLayerSearchFile, downhillCdLayerSearchFile);
 
