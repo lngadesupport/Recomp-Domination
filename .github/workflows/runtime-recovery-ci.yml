@@ -24,6 +24,13 @@ jobs:
           repository: ran-j/PS2Recomp
           ref: 75d729ce40d7eed9649fd4bb05628dee520f3d0c
           path: _ci/PS2Recomp
+      - uses: actions/checkout@v4
+        if: runner.os == 'Windows'
+        with:
+          repository: raysan5/raylib
+          ref: c1ab645ca298a2801097931d1079b10ff7eb9df8
+          path: _ci/raylib
+          sparse-checkout: src
       - name: Apply runtime patches twice
         run: |
           python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
@@ -51,7 +58,7 @@ jobs:
         run: |
           $flags = @('/nologo', '/c', '/std:c++20', '/EHsc', '/arch:AVX2', '/DPS2X_HAS_FFMPEG=0',
             '/I_ci/PS2Recomp/ps2xRuntime/include', '/I_ci/PS2Recomp/ps2xIOP/include',
-            '/I_ci/PS2Recomp/ps2xRuntime/src/lib', '/I_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel')
+            '/I_ci/raylib/src', '/I_ci/PS2Recomp/ps2xRuntime/src/lib', '/I_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel')
           $files = @('src/downhill_domination_overrides.cpp',
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp',
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp',

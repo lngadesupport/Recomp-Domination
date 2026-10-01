@@ -1,0 +1,3 @@
+
+# Preserve portable git-apply patches across Windows checkout.
+patches/*.patch text eol=lf
