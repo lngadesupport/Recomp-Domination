@@ -1,0 +1,8 @@
+{
+  "mutation": "only retail 0x217D88 BC0T condition replaced by false",
+  "mutated_runner_sha256": "c72d67d4996984c6f6ac0252084d882cc46d6f459b50b53fc7b15d0a3daa1a8d",
+  "source_sha256_before": "64237c52455ad5f7ea5a2edcd2fa78855d9f0fbe5310749fc16e80409ff2cc16",
+  "source_sha256_mutated": "ca45eaf5ed84f3e0b9000e3470da3a5b6196014fae00c93225cf796c0dee711b",
+  "source_restored": true,
+  "fixed_runner_sha256_after_restore": "3351a709d4d6ef7e332859010ee6a8150c083aa670376faf366d798e4eec061d"
+}

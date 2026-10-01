@@ -1,0 +1,4450 @@
+Using argv boot path
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1280 x 720
+INFO:     > Screen size:  640 x 448
+INFO:     > Render size:  640 x 448
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 229
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Mesa
+INFO:     > Renderer: llvmpipe (LLVM 20.1.2, 256 bits)
+INFO:     > Version:  4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.2
+INFO:     > GLSL:     4.50
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - X11): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: /workspace/scratch/2a92898976e3/recomp-domination/analysis/local/cop0-native-probe-240s/guest
+socket(): Operation not permitted
+socket(): Operation not permitted
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_id returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM dmix:0,0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+ALSA lib confmisc.c:165:(snd_config_get_card) Cannot get card index for 0
+WARNING: AUDIO: Failed to initialize playback device
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+Loading segment: 0x10a000 - 0x8a0400 (filesz: 0x193cf0, memsz: 0x796400)
+Registered code region: 10a000 - 29dcf0[game_overrides] applying 'downhill-domination-ntscu-final'[downhill] configured CD root: /workspace/scratch/2a92898976e3/verified-disc-root
+[downhill] configured CD image: /workspace/scratch/2a92898976e3/input/downhill-extracted-probe.iso
+[downhill] experimental idle VSync waits enabled
+[downhill] experimental resource CD read yield enabled
+[game_overrides] applied 1 matching override(s).ELF file loaded successfully. Entry point: 0x10a008Starting execution at address 0x10a008INFO: TEXTURE: [ID 3] Texture loaded successfully (640x512 | R8G8B8A8 | 1 mipmaps)
+[guest-branch:missing-target] kind=Return op=JR $ra source=0x25ef70 target=0x0 pc=0x0 ra=0x0 sp=0x1fffff0 gp=0x2a40f0 a0=0x8001218c a1=0x80080000 a2=0x25ef38 a3=0x29e580 s0=0x282218 s1=0x0 v0=0x8001218c v1=0x83 a0Readable=no a0[0]=0x0 a0[4]=0x0 a0[8]=0x0 a0[c]=0x0 s0Readable=yes s0[0]=0x83 s0[4]=0x25ef38 s0[8]=0x5a s0[c]=0x25ef00 recordReadable=yes record[0]=0x8c820000 record[4]=0x1046000b record[8]=0x85102b record[c]=0x5040000a vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=no policy=1 trace=0x10a008 -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x25f0a0 -> 0x25eeb8 -> 0x25a6e0 -> 0x25a6e0 -> 0x25ef90 -> 0x25f090 -> 0x25f090 -> 0x25ef78 -> 0x25ef38
+[SifInitRpc] Initialized[ps2xIOP] [IOP] loaded IRX id=1 entry=0x10634 base=0x10000 start=0
+[SIF module] load-emulated id=1 ref=1 path="cdrom0:\MOD\SIO2MAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=2 entry=0x11918 base=0x11000 start=0
+[SIF module] load-emulated id=2 ref=1 path="cdrom0:\MOD\MTAPMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=3 entry=0x13178 base=0x13000 start=2
+[SIF module] load-emulated id=3 ref=1 path="cdrom0:\MOD\MCMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=4 entry=0x3a358 base=0x3a300 start=2
+[SIF module] load-emulated id=4 ref=1 path="cdrom0:\MOD\MCSERV.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=5 entry=0x40c78 base=0x3db00 start=0
+[SIF module] load-emulated id=5 ref=1 path="cdrom0:\MOD\PADMAN.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=6 entry=0x475b0 base=0x47500 start=0
+[SIF module] load-emulated id=6 ref=1 path="cdrom0:\MOD\LIBSD.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=7 entry=0x4e5b8 base=0x4cf00 start=2
+[SIF module] load-emulated id=7 ref=1 path="cdrom0:\MOD\CDVDSTM.IRX;1"
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]  989snd (c)2000, 2001 Sony Computer Entertainment America
+
+[ps2xIOP] [IOP printf]  by Buzz Burrowes                               v%d.%d.%d
+
+[ps2xIOP] [IOP printf]                         (built %s at %s)
+
+[ps2xIOP] [IOP printf]  (build with sce library rev %d.%d.%d)
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf]     Thread Priorities:
+
+[ps2xIOP] [IOP printf]                          Sound Tick = %d
+
+[ps2xIOP] [IOP printf]                            Main RPC = %d
+
+[ps2xIOP] [IOP printf]                         Loading RPC = %d
+
+[ps2xIOP] [IOP printf]                           Streaming = %d, %d, %d, %d
+
+[ps2xIOP] [IOP printf]    Memory Locations...
+
+[ps2xIOP] [IOP printf]        Voice Allocator Owner  : 0x%8.8x
+
+[ps2xIOP] [IOP printf]        Master Tick Owner List : 0x%8.8x
+
+[ps2xIOP] [IOP printf] ==========================================================
+
+[ps2xIOP] [IOP printf] 
+
+[ps2xIOP] [IOP] loaded IRX id=8 entry=0x522f0 base=0x50900 start=0
+[SIF module] load-emulated id=8 ref=1 path="cdrom0:\MOD\989SND.IRX;1"
+[ps2xIOP] [IOP] loaded IRX id=9 entry=0x78800 base=0x78800 start=0
+[SIF module] load-emulated id=9 ref=1 path="cdrom0:\MOD\989ERR.IRX;1"
+[sceCdSearchFile] pc=0x2472c8 ra=0x2472c8 file=0x93c8f0 pathAddr=0x93c920 path="\SKAT\DHSKAT.SKX;1"
+[sceCdSearchFile:ok] path="\SKAT\DHSKAT.SKX;1" lsn=0xe66d1 size=0x60988d0 sectors=0xc132
+[dmac:register] cause=1 handler=2222752 id=1
+[dmac:irq] call=1 cause=1 enabled=1 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=2 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=1 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=3 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=4 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=2 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=5 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=6 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=3 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=7 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=8 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=4 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=9 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=10 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[downhill:dma-wait] call=5 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=11 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=12 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=6 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=13 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=14 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=7 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=15 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=16 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=8 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=17 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=18 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=9 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=19 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=20 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[downhill:dma-wait] call=10 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=21 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=22 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=11 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=23 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=24 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=12 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=25 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=26 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=13 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=27 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=28 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=14 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=29 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=30 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:dma-wait] call=15 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=31 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=32 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[downhill:dma-wait] call=16 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=33 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=34 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=35 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=36 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=37 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=38 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=39 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=40 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=41 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=42 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=43 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=44 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=45 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=46 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=47 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=48 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=49 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=50 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=51 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=52 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=53 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=54 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=55 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=56 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=57 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=58 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=59 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=60 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=61 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=62 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=63 cause=1 enabled=0 handlers=1 flags=0,0,0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=64 cause=1 enabled=0 handlers=1 flags=0,0,0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[downhill:dma-wait] call=32 pc=1790332 ra=1790332 flags=0,0,0 chcr=1879048261 qwc=0 tadr=6423232 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[sceCdStStart] lbn=0xc3db8 endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc3db8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc3dd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc3df8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3e98 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3eb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ed8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ef8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f18 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f38 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f58 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f78 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3f98 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fb8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3fd8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc3ff8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4018 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4038 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4058 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4078 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4098 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40b8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40d8 end=0xffffffff
+[performance] host_tick=120 host_hz=21.3498 ee_clock_ratio=0.548583 ee_cycle=909330315
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc40f8 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4118 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4138 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4158 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4178 end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc4198 end=0xffffffff
+[sceCdStStart] lbn=0xc2b3e endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc2b3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc2b5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc2b7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2b9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2bfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2c9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2cfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2d9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dbe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dde end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2dfe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e1e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e3e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e5e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e7e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2e9e end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ebe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2ede end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2efe end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc2f1e end=0xffffffff
+[performance] host_tick=240 host_hz=41.617 ee_clock_ratio=1.67627 ee_cycle=2334767025
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=360 host_hz=40.6811 ee_clock_ratio=1.19786 ee_cycle=3376810413
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c468:priority=1:status=1:wait=0:wait_id=0
+[sceCdStStart] lbn=0xc34af endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0xc34af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0xc34cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0xc34ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc350f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc352f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc354f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc356f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc358f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc35ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc360f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc362f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc364f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc366f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc368f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc36ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc370f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc372f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc374f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc376f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc378f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37af end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37cf end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc37ef end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc380f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc382f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc384f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc386f end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0xc388f end=0xffffffff
+[performance] host_tick=480 host_hz=40.9277 ee_clock_ratio=1.00047 ee_cycle=4241903037
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=6:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=7:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[sceCdStStart] lbn=0x34bcc endLbn=0xffffffff rate=2700 sectors/s buffer=80 sectors bank=16 sectors
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=0 lbn=0x34bcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=16 lbn=0x34bec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=32 lbn=0x34c0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34c8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ccc end=0xffffffff
+[performance] host_tick=600 host_hz=44.9649 ee_clock_ratio=0.999241 ee_cycle=5028350877
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34cec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34d8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dcc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34dec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e0c end=0xffffffff
+[performance] host_tick=720 host_hz=45.8893 ee_clock_ratio=0.994479 ee_cycle=5795284977
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34e8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eac end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34ecc end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34eec end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f0c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f2c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f4c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f6c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34f8c end=0xffffffff
+[sceCdStRead] requested=32 accumulated=32 chunk=32 buffered=48 lbn=0x34fac end=0xffffffff
+[performance] host_tick=840 host_hz=40.9291 ee_clock_ratio=1.00051 ee_cycle=6660377601
+[boot-snapshot] host_tick=840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=960 host_hz=43.1296 ee_clock_ratio=1.00039 ee_cycle=7481232534
+[boot-snapshot] host_tick=960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1080 host_hz=40.1533 ee_clock_ratio=0.998108 ee_cycle=8360923599
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1200 host_hz=38.3727 ee_clock_ratio=0.95934 ee_cycle=9245680795
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1320 host_hz=29.6495 ee_clock_ratio=0.96375 ee_cycle=10396004841
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1440 host_hz=35.4777 ee_clock_ratio=1.07406 ee_cycle=11467396271
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1560 host_hz=37.3537 ee_clock_ratio=1.00665 ee_cycle=12421108029
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1680 host_hz=44.4772 ee_clock_ratio=1.00057 ee_cycle=13217239011
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=1800 host_hz=44.3108 ee_clock_ratio=1.00335 ee_cycle=14018580204
+[boot-snapshot] host_tick=1800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=1920 host_hz=36.7333 ee_clock_ratio=0.974318 ee_cycle=14957254857
+[boot-snapshot] host_tick=1920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=2040 host_hz=36.6759 ee_clock_ratio=1.02404 ee_cycle=15945377412
+[boot-snapshot] host_tick=2040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2160 host_hz=32.534 ee_clock_ratio=0.935372 ee_cycle=16962844305
+[boot-snapshot] host_tick=2160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2280 host_hz=42.4181 ee_clock_ratio=1.08404 ee_cycle=17867259321
+[boot-snapshot] host_tick=2280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2400 host_hz=39.5751 ee_clock_ratio=1.00039 ee_cycle=18761843739
+[boot-snapshot] host_tick=2400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2520 host_hz=42.849 ee_clock_ratio=0.99983 ee_cycle=19587613971
+[boot-snapshot] host_tick=2520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2640 host_hz=44.7756 ee_clock_ratio=1.00125 ee_cycle=20378977110
+[boot-snapshot] host_tick=2640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=2760 host_hz=43.817 ee_clock_ratio=1.00398 ee_cycle=21189853989
+[boot-snapshot] host_tick=2760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=2880 host_hz=40.4728 ee_clock_ratio=0.994977 ee_cycle=22059861912
+[boot-snapshot] host_tick=2880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3000 host_hz=36.9954 ee_clock_ratio=1.00198 ee_cycle=23018345217
+[boot-snapshot] host_tick=3000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3120 host_hz=35.8793 ee_clock_ratio=1.0018 ee_cycle=24006467772
+[boot-snapshot] host_tick=3120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3240 host_hz=41.2707 ee_clock_ratio=0.997394 ee_cycle=24861729798
+[boot-snapshot] host_tick=3240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3360 host_hz=41.5486 ee_clock_ratio=0.99834 ee_cycle=25712076525
+[boot-snapshot] host_tick=3360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3480 host_hz=41.6575 ee_clock_ratio=0.994999 ee_cycle=26557360497
+[boot-snapshot] host_tick=3480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3600 host_hz=41.8671 ee_clock_ratio=1.00617 ee_cycle=27407854680
+[boot-snapshot] host_tick=3600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3720 host_hz=34.0809 ee_clock_ratio=1.00337 ee_cycle=28449750612
+[boot-snapshot] host_tick=3720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=3840 host_hz=33.8247 ee_clock_ratio=0.996112 ee_cycle=29491941456
+[boot-snapshot] host_tick=3840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=3960 host_hz=37.6424 ee_clock_ratio=0.998589 ee_cycle=30430763565
+[boot-snapshot] host_tick=3960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4080 host_hz=37.4896 ee_clock_ratio=0.999743 ee_cycle=31374500973
+[boot-snapshot] host_tick=4080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4200 host_hz=41.9414 ee_clock_ratio=1.00195 ee_cycle=32219932401
+[boot-snapshot] host_tick=4200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4320 host_hz=38.6086 ee_clock_ratio=1.00277 ee_cycle=33139093314
+[boot-snapshot] host_tick=4320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4440 host_hz=43.0905 ee_clock_ratio=0.987511 ee_cycle=33950117649
+[boot-snapshot] host_tick=4440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4560 host_hz=42.5464 ee_clock_ratio=1.0105 ee_cycle=34790633778
+[boot-snapshot] host_tick=4560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4680 host_hz=37.5918 ee_clock_ratio=0.965762 ee_cycle=35699816637
+[boot-snapshot] host_tick=4680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=4800 host_hz=36.8648 ee_clock_ratio=0.972994 ee_cycle=36633870903
+[boot-snapshot] host_tick=4800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=4920 host_hz=30.2569 ee_clock_ratio=0.789931 ee_cycle=37557799659
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=5040 host_hz=29.2111 ee_clock_ratio=0.742464 ee_cycle=38457299376
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[performance] host_tick=5160 host_hz=27.4543 ee_clock_ratio=0.804694 ee_cycle=39494574921
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[performance] host_tick=5280 host_hz=26.294 ee_clock_ratio=0.75221 ee_cycle=40506982435
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=8:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=9:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[dmac:irq] call=128 cause=1 enabled=0 handlers=1 flags=0,0,0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:release-wait] target=10 status_before=2 result=0 return=0x23149c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=5400 host_hz=36.883 ee_clock_ratio=0.68709 ee_cycle=41166249418
+[boot-snapshot] host_tick=5400 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=5520 host_hz=59.9154 ee_clock_ratio=0.0289475 ee_cycle=41183347442
+[boot-snapshot] host_tick=5520 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=9 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=5640 host_hz=59.9938 ee_clock_ratio=0.0294189 ee_cycle=41200701226
+[boot-snapshot] host_tick=5640 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=5760 host_hz=59.8211 ee_clock_ratio=0.0364091 ee_cycle=41222240370
+[boot-snapshot] host_tick=5760 running=10 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=5880 host_hz=59.829 ee_clock_ratio=0.05002 ee_cycle=41251827658
+[boot-snapshot] host_tick=5880 running=10 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=10:pc=0x25a728:ra=0x2317f8:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6000 host_hz=59.9826 ee_clock_ratio=0.0466848 ee_cycle=41279371482
+[boot-snapshot] host_tick=6000 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=9 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6120 host_hz=59.6805 ee_clock_ratio=0.0460615 ee_cycle=41306685090
+[boot-snapshot] host_tick=6120 running=10 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=10:pc=0x25a728:ra=0x2317f8:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6240 host_hz=59.6042 ee_clock_ratio=0.0470146 ee_cycle=41334599602
+[boot-snapshot] host_tick=6240 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6360 host_hz=59.9306 ee_clock_ratio=0.0483182 ee_cycle=41363131874
+[boot-snapshot] host_tick=6360 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=9 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6480 host_hz=59.9728 ee_clock_ratio=0.0485687 ee_cycle=41391791874
+[boot-snapshot] host_tick=6480 running=10 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=10:pc=0x25a728:ra=0x2317f8:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6600 host_hz=57.7749 ee_clock_ratio=0.0480505 ee_cycle=41421224706
+[boot-snapshot] host_tick=6600 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x2403d0:ra=0x2403e8:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6720 host_hz=59.8898 ee_clock_ratio=0.0452173 ee_cycle=41447944042
+[boot-snapshot] host_tick=6720 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:release-wait] target=11 status_before=2 result=0 return=0x23149c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6840 host_hz=59.6818 ee_clock_ratio=0.045292 ee_cycle=41474800791
+[boot-snapshot] host_tick=6840 running=11 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=11:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:release-wait] target=12 status_before=2 result=0 return=0x23149c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=6960 host_hz=59.9359 ee_clock_ratio=0.0470339 ee_cycle=41502572173
+[boot-snapshot] host_tick=6960 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=27 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7080 host_hz=59.6729 ee_clock_ratio=0.0474684 ee_cycle=41530723613
+[boot-snapshot] host_tick=7080 running=12 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7200 host_hz=59.9698 ee_clock_ratio=0.0479824 ee_cycle=41559039013
+[boot-snapshot] host_tick=7200 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=28 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7320 host_hz=59.9263 ee_clock_ratio=0.0457139 ee_cycle=41586035317
+[boot-snapshot] host_tick=7320 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=27 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7440 host_hz=59.9237 ee_clock_ratio=0.0499554 ee_cycle=41615537757
+[boot-snapshot] host_tick=7440 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=27 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7560 host_hz=59.9935 ee_clock_ratio=0.0511294 ee_cycle=41645698341
+[boot-snapshot] host_tick=7560 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=28 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7680 host_hz=59.6741 ee_clock_ratio=0.0426974 ee_cycle=41671019821
+[boot-snapshot] host_tick=7680 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=28 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7800 host_hz=59.938 ee_clock_ratio=0.0465836 ee_cycle=41698524389
+[boot-snapshot] host_tick=7800 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=27 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[performance] host_tick=7920 host_hz=59.9126 ee_clock_ratio=0.0464698 ee_cycle=41725973349
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=27 thread=12:pc=0x240bc0:ra=0x240bb4:priority=2:status=1:wait=0:wait_id=0
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:cd-read-yield] return=0x23147c
+[downhill:release-wait] target=13 status_before=2 result=0 return=0x23149c
+[performance] host_tick=8040 host_hz=59.9878 ee_clock_ratio=0.0526672 ee_cycle=41757044045
+[boot-snapshot] host_tick=8040 running=13 thread=1:pc=0x25a728:ra=0x231214:priority=0:status=2:wait=2:wait_id=43 thread=13:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_InitVAGStreaming: Couldn't allocate IOP memory for stream buffers!
+
+[ps2xIOP] [IOP printf]                       buffer_size = %d
+
+[ps2xIOP] [IOP printf]                          channels = %d
+
+[ps2xIOP] [IOP printf] --------------------------------------------------------------------
+
+[ps2xIOP] [IOP printf] IOP MEM: bytes free         -> 0x%8.8x (%d)
+
+[ps2xIOP] [IOP printf]          largest free block -> 0x%8.8x (%d)
+
+[ps2xIOP] [IOP printf] --------------------------------------------------------------------
+
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[downhill:dma-wait] call=64 pc=2014956 ra=2014956 flags=0,0,0 chcr=1879048261 qwc=0 tadr=5409216 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8160 host_hz=57.808 ee_clock_ratio=0.133914 ee_cycle=41839025088
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=256 cause=1 enabled=0 handlers=1 flags=0,3,1
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8280 host_hz=59.2387 ee_clock_ratio=0.106961 ee_cycle=41902923975
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8400 host_hz=59.4642 ee_clock_ratio=0.107368 ee_cycle=41966822862
+[boot-snapshot] host_tick=8400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8520 host_hz=57.1473 ee_clock_ratio=0.150808 ee_cycle=42060213543
+[boot-snapshot] host_tick=8520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[downhill:dma-wait] call=128 pc=2014956 ra=2014956 flags=0,0,0 chcr=1879048261 qwc=0 tadr=5409216 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8640 host_hz=57.2345 ee_clock_ratio=0.143089 ee_cycle=42148688925
+[boot-snapshot] host_tick=8640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=512 cause=1 enabled=0 handlers=1 flags=0,3,1
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=8760 host_hz=56.2555 ee_clock_ratio=0.195335 ee_cycle=42271571400
+[boot-snapshot] host_tick=8760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=8880 host_hz=58.7778 ee_clock_ratio=0.228585 ee_cycle=42409199772
+[boot-snapshot] host_tick=8880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=9000 host_hz=57.4324 ee_clock_ratio=0.335029 ee_cycle=42615642330
+[boot-snapshot] host_tick=9000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[downhill:dma-wait] call=256 pc=2014956 ra=2014956 flags=0,0,0 chcr=1879048261 qwc=0 tadr=5409216 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9120 host_hz=58.3294 ee_clock_ratio=0.348363 ee_cycle=42827000187
+[boot-snapshot] host_tick=9120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=1024 cause=1 enabled=0 handlers=1 flags=0,3,1
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=9240 host_hz=57.8607 ee_clock_ratio=0.345564 ee_cycle=43038358044
+[boot-snapshot] host_tick=9240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=9360 host_hz=58.9935 ee_clock_ratio=0.35233 ee_cycle=43249715901
+[boot-snapshot] host_tick=9360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9480 host_hz=57.9643 ee_clock_ratio=0.354233 ee_cycle=43465989057
+[boot-snapshot] host_tick=9480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9600 host_hz=58.5726 ee_clock_ratio=0.357951 ee_cycle=43682262213
+[boot-snapshot] host_tick=9600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9720 host_hz=58.7012 ee_clock_ratio=0.350584 ee_cycle=43893620070
+[boot-snapshot] host_tick=9720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[downhill:dma-wait] call=512 pc=2014956 ra=2014956 flags=0,0,0 chcr=1879048261 qwc=0 tadr=5409216 dstat=7 cop0=65537
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[dmac:irq] call=2048 cause=1 enabled=0 handlers=1 flags=0,3,1
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9840 host_hz=58.0993 ee_clock_ratio=0.355059 ee_cycle=44109893226
+[boot-snapshot] host_tick=9840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=9960 host_hz=57.8039 ee_clock_ratio=0.313111 ee_cycle=44301589887
+[boot-snapshot] host_tick=9960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=10080 host_hz=58.0075 ee_clock_ratio=0.354498 ee_cycle=44517863043
+[boot-snapshot] host_tick=10080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=10200 host_hz=57.9408 ee_clock_ratio=0.346043 ee_cycle=44729220900
+[boot-snapshot] host_tick=10200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=10320 host_hz=53.5815 ee_clock_ratio=0.282797 ee_cycle=44916002262
+[boot-snapshot] host_tick=10320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=10440 host_hz=51.9216 ee_clock_ratio=0.295671 ee_cycle=45117529521
+[boot-snapshot] host_tick=10440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[performance] host_tick=10560 host_hz=53.0818 ee_clock_ratio=0.258042 ee_cycle=45289564986
+[boot-snapshot] host_tick=10560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=10680 host_hz=52.1194 ee_clock_ratio=0.20993 ee_cycle=45432108657
+[boot-snapshot] host_tick=10680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[performance] host_tick=10800 host_hz=51.5051 ee_clock_ratio=0.164534 ee_cycle=45545160534
+[boot-snapshot] host_tick=10800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0
+[ps2xIOP] [IOP printf] snd_PlayVAGStreamByLoc: VAG Streaming not inited!
+
+[dmac:mask] cause=1 enabled=0
+[dmac:mask] cause=1 enabled=0

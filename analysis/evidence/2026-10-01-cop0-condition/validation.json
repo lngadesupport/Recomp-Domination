@@ -36,5 +36,13 @@
   "vif1_trace_wraparound_records": 100000,
   "vif1_trace_opt_in": true,
   "baseline_retail_busy_return": 1,
-  "fixed_retail_busy_return": 0
+  "fixed_retail_busy_return": 0,
+  "native_runtime_linked": true,
+  "native_guest_execution_verified": true,
+  "native_probe_seconds": 240,
+  "native_ab_each_seconds": 120,
+  "native_ab_reproduced_queue_stall": true,
+  "linux_ci_passed": true,
+  "windows_component_ci_passed": true,
+  "windows_game_boot_verified": false
 }

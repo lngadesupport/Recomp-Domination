@@ -1,0 +1,32 @@
+[
+  {
+    "elapsed_seconds": 8.013,
+    "key": "Return",
+    "keycode": 36
+  },
+  {
+    "elapsed_seconds": 15.076,
+    "key": "space",
+    "keycode": 65
+  },
+  {
+    "elapsed_seconds": 35.159,
+    "key": "Return",
+    "keycode": 36
+  },
+  {
+    "elapsed_seconds": 65.022,
+    "key": "Down",
+    "keycode": 116
+  },
+  {
+    "elapsed_seconds": 70.028,
+    "key": "space",
+    "keycode": 65
+  },
+  {
+    "elapsed_seconds": 95.054,
+    "key": "Return",
+    "keycode": 36
+  }
+]

@@ -1,0 +1,56 @@
+diff --git a/ps2xRuntime/src/lib/ps2_runtime.cpp b/ps2xRuntime/src/lib/ps2_runtime.cpp
+--- a/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -449,6 +449,52 @@
+     s_lastPreferred = usedPreferredDisplaySource;
+     s_lastWidth = width;
+     s_lastHeight = height;
++
++    static const bool traceGs = std::getenv("PS2_TRACE_GS_PIPELINE") != nullptr;
++    static uint64_t gsTraceUploads = 0u;
++    static uint64_t lastGsDrawSequence = 0u;
++    if (traceGs && gsTraceUploads == 0u) rt->gs().setDebugHistoryPaused(false);
++    if (traceGs && (++gsTraceUploads % 120u) == 0u)
++    {
++        // These GS accessors lock their state; do not sample live VU state on this thread.
++        const auto gs = rt->gs().getDebugSnapshot();
++        const auto history = rt->gs().getDebugHistory();
++        std::cerr << "[gs:pipeline] host_tick=" << currentTick
++                  << " dma=" << rt->memory().dmaStartCount()
++                  << " gif=" << rt->memory().gifCopyCount()
++                  << " vif=" << rt->memory().vifWriteCount()
++                  << " display_fbp=" << gs.hostPresentationDisplayFbp
++                  << " source_fbp=" << gs.hostPresentationSourceFbp
++                  << " width=" << gs.hostPresentationWidth
++                  << " height=" << gs.hostPresentationHeight
++                  << " preferred=" << unsigned(gs.hostPresentationUsedPreferred)
++                  << " ctx0_fbp=" << gs.ctx[0].frame.fbp
++                  << " ctx1_fbp=" << gs.ctx[1].frame.fbp
++                  << " transfer_total=" << gs.transferTotalPixels
++                  << " transfer_copied=" << gs.transferCopiedPixels << '\n';
++        unsigned emitted = 0u;
++        uint64_t newest = lastGsDrawSequence;
++        for (auto it = history.rbegin(); it != history.rend() && emitted < 12u; ++it)
++        {
++            if (it->kind != GSDebugEventKind::Draw || it->seq <= lastGsDrawSequence) continue;
++            newest = std::max(newest, it->seq);
++            ++emitted;
++            std::cerr << "[gs:draw] sequence=" << it->seq
++                      << " prim=" << unsigned(it->prim.type)
++                      << " texture=" << unsigned(it->prim.tme)
++                      << " fbp=" << it->frame.fbp
++                      << " fbw=" << it->frame.fbw
++                      << " psm=" << unsigned(it->frame.psm)
++                      << " tbp=" << it->tex0.tbp0
++                      << " vertices=" << it->vertexCount
++                      << " x_min=" << it->xMin << " x_max=" << it->xMax
++                      << " y_min=" << it->yMin << " y_max=" << it->yMax
++                      << " alpha_min=" << unsigned(it->aMin) << " alpha_max=" << unsigned(it->aMax)
++                      << " scissor=" << it->scissor.x0 << ',' << it->scissor.x1 << ','
++                      << it->scissor.y0 << ',' << it->scissor.y1 << '\n';
++        }
++        lastGsDrawSequence = newest;
++    }
+ 
+     std::fill(s_uploadBuffer.begin(), s_uploadBuffer.end(), 0u);
+     if (!s_scratch.empty() && width != 0u && height != 0u)

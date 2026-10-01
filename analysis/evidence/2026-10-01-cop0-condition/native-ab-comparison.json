@@ -1,0 +1,58 @@
+{
+  "only_mutated_function": "0x217D88",
+  "only_mutation": "BC0T condition replaced by constant false",
+  "seconds_per_run": 120,
+  "restored_fixed_binary_matches_original": true,
+  "baseline_queue_wait": true,
+  "fixed_queue_wait": false,
+  "baseline_last_wait": {
+    "call": 256,
+    "pc": 1787464,
+    "ra": 2014956,
+    "chcr": 1879048261,
+    "qwc": 0,
+    "tadr": 6423232,
+    "dstat": 7,
+    "cop0": 65537,
+    "flags": [
+      0,
+      3,
+      1
+    ]
+  },
+  "fixed_last_wait": {
+    "call": 512,
+    "pc": 2014956,
+    "ra": 2014956,
+    "chcr": 1879048261,
+    "qwc": 0,
+    "tadr": 5409216,
+    "dstat": 7,
+    "cop0": 65537,
+    "flags": [
+      0,
+      0,
+      0
+    ]
+  },
+  "baseline_vu_wait_snapshot": {
+    "vif_stat": 0,
+    "gif_stat": 0,
+    "vu_pc": "0x1040",
+    "last_vu_run_cycles": 582,
+    "ended_by_e": true
+  },
+  "menu_playable": false,
+  "race_verified": false,
+  "fps_60_verified": false,
+  "fps_75_verified": false,
+  "same_scheduled_keys": true,
+  "scheduled_key_times_seconds": [
+    8,
+    15,
+    35,
+    65,
+    70,
+    95
+  ]
+}

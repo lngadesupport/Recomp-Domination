@@ -4,7 +4,7 @@ from pathlib import Path
 import subprocess
 
 PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
-PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace")
+PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace", "gs-pipeline-trace")
 
 
 def apply(source):

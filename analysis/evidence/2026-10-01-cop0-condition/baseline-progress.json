@@ -1,0 +1,29 @@
+{
+  "wait_samples": 20,
+  "irq_samples": 65,
+  "malformed_samples": 0,
+  "last_wait": {
+    "call": 256,
+    "pc": 1787464,
+    "ra": 2014956,
+    "chcr": 1879048261,
+    "qwc": 0,
+    "tadr": 6423232,
+    "dstat": 7,
+    "cop0": 65537,
+    "flags": [
+      0,
+      3,
+      1
+    ]
+  },
+  "masked_vif1_completions_observed": true,
+  "vif1_queue_wait_observed": true,
+  "limits": "Sampled observations do not establish cause, elapsed stall duration, a playable menu, or game FPS.",
+  "boot_status": "passed",
+  "boot_reason": "guest execution observed; gameplay remains unverified",
+  "menu_status": "blocked",
+  "menu_reason": "VIF1 queue wait observed",
+  "race_status": "blocked",
+  "performance_status": "blocked"
+}

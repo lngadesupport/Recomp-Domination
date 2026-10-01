@@ -4,7 +4,7 @@ Bring-up de **recompilação estática nativa para Windows x64** de *Downhill Do
 
 > O repositório contém somente tooling, configuração e metadados derivados. Não versione o ELF retail, ISO, BIOS ou assets proprietários.
 
-A meta de desempenho atual é **60 FPS estáveis**, com **75 FPS como objetivo adicional**. Menus e corridas ainda estão bloqueados pela fila VIF1. A [suíte de testes progressivos](docs/PROGRESSIVE_TESTS.md) executa lotes nativos reproduzíveis e distingue testes de componentes de validação de gameplay.
+A meta de desempenho atual é **60 FPS estáveis**, com **75 FPS como objetivo adicional**. A causa do bloqueio da fila VIF1 foi corrigida e confirmada por comparação nativa; a imagem após a introdução ainda falha, e menus/corridas permanecem não validados. A [suíte de testes progressivos](docs/PROGRESSIVE_TESTS.md) executa lotes nativos reproduzíveis e distingue testes de componentes de validação de gameplay.
 
 ## Estrutura local esperada
 
