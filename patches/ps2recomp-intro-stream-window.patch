@@ -1,0 +1,12 @@
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
+index 3ab62e3..ac97ae8 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp
+@@ -1792,6 +1792,7 @@ namespace ps2_stubs
+     {
+         (void)runtime;
+         std::lock_guard<std::mutex> lock(g_mpeg_stub_mutex);
++        ps2IntroSkip.reset(); // New movie stream gets its own bounded Start window.
+         ++g_mpeg_stub_state.cdStreamGeneration;
+         g_mpeg_stub_state.cdStreamBytesProduced = 0u;
+         g_mpeg_stub_state.cdStreamBytesDemuxed = 0u;

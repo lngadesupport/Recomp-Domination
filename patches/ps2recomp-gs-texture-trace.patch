@@ -1,0 +1,42 @@
+diff --git a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+index f0ad507..0fb60f0 100644
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -7,6 +7,7 @@
+ #include "runtime/gs/ps2_gs_memory.h"
+ #include "ps2_log.h"
+ #include <atomic>
++#include <cstdlib>
+ #include <algorithm>
+ #include <cmath>
+ #include <cstdio>
+@@ -1090,6 +1091,12 @@ uint32_t GSCpuBackend::SampleTexture(const GSDrawState &state, float s, float t,
+ 
+         u32 out = ReadTextureVramUnlocked(tex.psm, tex.tbp0, tex.tbw, sampleU, sampleV);
+ 
++        static const bool traceTexture = std::getenv("PS2_TRACE_GS_TEXTURES") != nullptr;
++        static uint64_t textureSamples = 0, textureLogs = 0;
++        if (traceTexture && (++textureSamples <= 8 || textureSamples % 1048576 == 0) && textureLogs++ < 64)
++            std::cerr << "[gs:texel] tbp=" << tex.tbp0 << " tbw=" << unsigned(tex.tbw)
++                      << " psm=" << unsigned(tex.psm) << " uv=" << sampleU << ',' << sampleV
++                      << " raw=" << out << " cbp=" << tex.cbp << " csa=" << unsigned(tex.csa) << '\n';
+         switch (tex.psm)
+         {
+         case GS_PSM_CT32:
+@@ -1180,6 +1187,16 @@ void GSCpuBackend::DrawSprite(const GSPrimitiveBatch &batch)
+     if (y0 > y1)
+         std::swap(y0, y1);
+ 
++    static const bool traceSprite = std::getenv("PS2_TRACE_GS_TEXTURES") != nullptr;
++    static uint64_t spriteCount = 0, spriteLogs = 0;
++    if (traceSprite && state.prim.tme && (++spriteCount <= 8 || spriteCount % 256 == 0) && spriteLogs++ < 128)
++        std::cerr << "[gs:sprite] xyoffset=" << ofx << ',' << ofy
++                  << " rect=" << x0 << ',' << y0 << ',' << x1 << ',' << y1
++                  << " fbp=" << ctx.frame.fbp << " tbp=" << ctx.tex0.tbp0
++                  << " tex_psm=" << unsigned(ctx.tex0.psm) << " cbp=" << ctx.tex0.cbp
++                  << " cpsm=" << unsigned(ctx.tex0.cpsm) << " csm=" << unsigned(ctx.tex0.csm)
++                  << " csa=" << unsigned(ctx.tex0.csa) << " test=" << ctx.test << '\n';
++
+     const int unclippedX0 = x0;
+     const int unclippedY0 = y0;
+     const int spanX = std::max(1, x1 - x0);
