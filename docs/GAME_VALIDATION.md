@@ -9,11 +9,14 @@ O teste de boot e a compilação são etapas iniciais. Um timeout sem crash, uma
 | Recompilação | ELF identificado e código gerado | Verificada |
 | Runtime local | Executável Linux vinculado | Verificado |
 | Inicialização IOP | Nove IRX físicos carregados | Observada |
-| Busca no DVD | A chamada saiu da espera RPC e buscou DHSKAT.SKX | Handler exercitado; arquivo ausente |
+| Busca no DVD | DHSKAT.SKX lido; 2.335 arquivos conferidos por CRC e ISO reconstruída validada | Verificada na imagem de teste |
 | Comandos gráficos | DMA/VIF/GIF e dois registros GS | Observados |
-| Primeiro menu | Framebuffer permanece na textura inicial do runtime | Não validado |
+| Vídeos de abertura | Capturas aos 30, 90 e 175 segundos mostram Sony, direitos autorais e Incog | Observados no runtime Linux com FFmpeg |
+| Primeiro menu | O teste de 180 segundos ainda estava na abertura | Não validado |
 | Todos os menus | Depende do primeiro menu e dos dados completos | Não executado |
 | Todas as corridas | Inventário completo de pistas/modos ainda indisponível | Não executado |
+
+Registro técnico desta retomada: [recuperação e testes de 01/10](../analysis/retail_recovery_2026-10-01.md). A meta de 120 FPS ainda não foi validada em corrida.
 
 ## Como comprovar a cobertura completa
 

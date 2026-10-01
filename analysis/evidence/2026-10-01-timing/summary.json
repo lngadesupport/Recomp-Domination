@@ -1,0 +1,25 @@
+{
+  "game_fps_measured": false,
+  "race_validated": false,
+  "samples_exclude_first_20_seconds_of_host_ticks": true,
+  "runs": [
+    {
+      "label": "timing-default",
+      "duration_seconds": 60.021,
+      "runner_sha256": "40c463a0fbc42d07892a669d44db5e7dbaf2be91672c7fcc9fa2dd0621fb07de",
+      "runner_identity_verified": true,
+      "samples": 20,
+      "host_loop_median_hz": 59.9581,
+      "ee_clock_ratio_median": 0.0640009
+    },
+    {
+      "label": "timing-idle-vsync",
+      "duration_seconds": 180.019,
+      "runner_sha256": "40c463a0fbc42d07892a669d44db5e7dbaf2be91672c7fcc9fa2dd0621fb07de",
+      "runner_identity_verified": true,
+      "samples": 56,
+      "host_loop_median_hz": 59.96835,
+      "ee_clock_ratio_median": 0.99958
+    }
+  ]
+}

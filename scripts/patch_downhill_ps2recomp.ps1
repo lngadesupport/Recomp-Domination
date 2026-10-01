@@ -6,6 +6,10 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 $root = (Resolve-Path -LiteralPath $Ps2RecompRoot).Path
+$runtimePin = (& git -C $root rev-parse HEAD).Trim()
+if ($LASTEXITCODE -ne 0 -or $runtimePin -ne '75d729ce40d7eed9649fd4bb05628dee520f3d0c') {
+    throw 'Pinned PS2Recomp revision required for runtime bring-up patches.'
+}
 $memoryPath = Join-Path $root 'ps2xRuntime\src\lib\ps2_memory.cpp'
 $testPath = Join-Path $root 'ps2xTest\src\ps2_memory_tests.cpp'
 $fileIoPath = Join-Path $root 'ps2xRuntime\src\lib\Kernel\Syscalls\FileIO.cpp'
@@ -137,11 +141,7 @@ if($verifyMemory -notmatch 'savedRow\[4\]' -or
 Write-Host 'Applied and verified Downhill VIF1 ROW/COL patch, regression test, and FileIO failure trace.' -ForegroundColor Green
 
 # Host transfer memory, physical ISO extents, and terminal PSS markers.
-$runtimePin = (& git -C $root rev-parse HEAD).Trim()
-if ($LASTEXITCODE -ne 0 -or $runtimePin -ne '75d729ce40d7eed9649fd4bb05628dee520f3d0c') {
-    throw 'Pinned PS2Recomp revision required for runtime bring-up patches.'
-}
-foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end')) {
+foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
     & git -C $root apply --reverse --check $patchFile 2>$null
     if ($LASTEXITCODE -eq 0) { continue }

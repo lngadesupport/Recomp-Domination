@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -13,6 +14,7 @@ probe = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(probe)
 
 
+@unittest.skipUnless(os.name == "posix", "POSIX runner identity probe")
 class ProbeIdentityTests(unittest.TestCase):
     def exercise(self, replace_runner):
         with tempfile.TemporaryDirectory() as temporary:

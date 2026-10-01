@@ -11,18 +11,37 @@
 - Physical ISO lookup test compared all bytes of SKAT, a real IRX, the opening video, and `R/TSH.NGP` to extracted files. Missing files, parent traversal, and an invalid volume descriptor were rejected.
 - MPEG regression passed: terminal PSS program marker is accepted before padded CD producer EOF, queued pictures delay completion, new stream generation resets completion, and sequence end alone does not end playback.
 - Two probe identity regressions passed, including a child replacing its own runner. Reports retain both pre-run and post-run hashes.
-- All three runtime patches applied cleanly to a separate checkout of the pinned source and passed a second, idempotent application.
+- All runtime patches applied cleanly to a separate checkout of the pinned source and passed a second, idempotent application.
 
 ## Scope and remaining validation
 
 The ISO is reconstructed from extracted files. Its internally consistent sector layout is a diagnostic fixture, not a verified copy of the original disc layout. Mount both this ISO and its matching extracted tree. The no-ISO EE/IOP virtual-sector mapping has not been fixed or validated here.
 
-A first native window probe stopped during host initialization because the local X server lacked `xkbcomp`; no guest execution was reported by that attempt. Window boot and post-intro loading remain to be retested once the virtual display is complete. No menu, race, physics, native input, Windows runtime boot, or sustained 120 FPS claim is made by these tests.
+A first window attempt stopped during host initialization because the local X server lacked `xkbcomp`; its report correctly recorded no guest execution. After repairing the local display dependencies, a new 180-second probe loaded the ELF, all nine IRX modules and SKAT. Captures at 30, 90 and 175 seconds showed Sony, copyright and Incog opening videos respectively. The process reached its deliberate timeout with a stable runner SHA256 `e1c173109893b08e90df564216ee7a6741807fb3b46f3ce7021b5d4968f115e1`; it was not a crash or a completed game run.
 
-Earlier proposed movie cancellation, game-specific idle waits, IOP idle caching, and a resource-worker scheduling experiment were not present in the recovered source. They are not part of this checkpoint. The next retail blocker must be measured again using the rebuilt runner and fresh disc fixture.
+All staged files were rechecked after copying: 2,335 CRCs matched. The fresh reconstructed ISO is 2,525,089,792 bytes. No menu, race, physics, native input, Windows runtime boot, or sustained 120 FPS claim is made by these tests.
+
+Movie cancellation, IOP idle caching, and the resource-worker scheduling experiment remain absent from this checkpoint. A game-specific idle-wait experiment is being recovered separately below, disabled by default. It must not be described as a production 120 FPS fix.
+
+## Scheduler and timing diagnostics
+
+The ready-queue patch removes snapshot publication only when rotating a different priority's private FIFO, whose order is absent from the public snapshot. Current-thread rotation still publishes its changed state and requests rescheduling. All 32 focused kernel tests passed, including absolute priority/FIFO, same-priority rotation, immediate higher-priority preemption, waits, alarm completion, and semaphore transfers.
+
+`PS2_TRACE_PERFORMANCE` reports host loop frequency and the EE-clock advance divided by wall time, using a synchronized kernel snapshot. `PS2_TRACE_BOOT_SNAPSHOT` reports thread PCs, priorities and wait states without enabling per-function logs. Host loop frequency and EE-clock ratio are diagnostics; neither is a measurement of rendered race FPS.
+
+`PS2_DOWNHILL_IDLE_VSYNC=1` enables an experimental override for the dedicated endless rotation worker and three identified movie wait call sites (full output pool, final output drain, shutdown acknowledgement). It parks at existing VBlank events while retaining the scheduler clock. The normal guest helper is used at other call sites. This opt-in changes guest idle cadence and requires comparison with the original; it is not enabled by default.
 
 ## Reproduction
 
 Use `scripts/recompile_downhill_headless.py`, then `scripts/build_downhill_posix.py --build-type Release --ffmpeg --quiet-function-trace`. Supply installed dependency paths with the existing `--prefix` and `--raylib-source` options. The build applies tracked version-pinned runtime patches. The Windows patch flow applies the same patches; these new Windows changes still require a compile check.
 
 Use native unrar to extract the multipart archive, then `scripts/verify_extracted_disc.py` to verify and stage files. `scripts/build_extracted_probe_iso.py` creates the local fixture and records that original disc layout is unverified. These helpers require `rarfile` and `pycdlib` respectively.
+
+
+## Timing experiment observed locally
+
+A 60-second default run and 180-second idle-wait run used the same compiled runner and matching disc data, sequentially with no build running. The evidence directory records both raw logs and hashes. The default sample shows about 0.066 EE seconds per wall second while the host loop stays near 60 Hz. With the experimental movie/idle waits, stable opening/trailer samples approach 1.0 EE seconds per wall second. This is a clock/polling diagnostic on different phases of the opening flow, not a controlled race benchmark or a claim of 120 FPS. The attract clip is pre-encoded video, independently identified by FFmpeg as 640×368, 30000/1001 frames per second and 122.3222 seconds long.
+
+After the trailer finishes naturally, thread 10 remains sleeping at the resource worker's initial `SleepThread` return (`0x231654`) and the main thread repeatedly waits on short alarm/semaphore intervals around `0x231214`. This recovers the post-movie loading blocker without requiring a movie-cancellation override.
+
+`PS2_DOWNHILL_CD_READ_YIELD=1` is an additional diagnostic experiment, disabled by default. At the confirmed loader return `0x23147C`, it executes the existing host CD read and, only on success, defers the guest return to an existing VBlank with return value 1. It is not a DVD latency model. `PS2_TRACE_BOOT_SNAPSHOT` also wraps the original ReleaseWaitThread entry to record target state and original kernel result. Negative and positive probes are pending; no resource-worker race fix or menu validation is claimed yet.

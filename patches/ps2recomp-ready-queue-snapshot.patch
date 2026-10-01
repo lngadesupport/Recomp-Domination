@@ -1,0 +1,22 @@
+diff --git a/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp b/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+index c5e31c4..13cdf99 100644
+--- a/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
++++ b/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+@@ -760,6 +760,7 @@ int EeScheduler::rotateReadyQueue(int priority, bool interruptSafe)
+         enqueueReady(*self);
+         m_currentThreadId = 0;
+         m_rescheduleRequested = true;
++        publishSnapshot();
+     }
+     else
+     {
+@@ -772,7 +773,8 @@ int EeScheduler::rotateReadyQueue(int priority, bool interruptSafe)
+         }
+     }
+     (void)interruptSafe;
+-    publishSnapshot();
++    // Other-priority rotation changes only private queue order. The public
++    // snapshot contains thread states, not FIFO ordering, so it is unchanged.
+     return KE_OK;
+ }
+ 

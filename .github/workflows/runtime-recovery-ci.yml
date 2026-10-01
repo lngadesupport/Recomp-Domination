@@ -1,0 +1,65 @@
+name: Runtime recovery checks
+
+on:
+  push:
+    branches: [bootstrap/compiler, 'bringup/**']
+    paths: ['patches/**', 'scripts/**', 'src/**', 'tests/**', '.github/workflows/runtime-recovery-ci.yml']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-patches:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ran-j/PS2Recomp
+          ref: 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          path: _ci/PS2Recomp
+      - name: Apply runtime patches twice
+        run: |
+          python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+          python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+      - name: POSIX watchdog and executable identity regressions
+        if: runner.os == 'Linux'
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Verify canonical Windows patch flow and script syntax
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem scripts -Filter *.ps1 -File | ForEach-Object {
+            $tokens = $null; $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { throw ($errors | Out-String) }
+          }
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/patch_downhill_ps2recomp.ps1 -Ps2RecompRoot _ci/PS2Recomp
+          if ($LASTEXITCODE) { throw 'Canonical patch flow failed' }
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+      - name: Compile changed native handlers with MSVC
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $flags = @('/nologo', '/c', '/std:c++20', '/EHsc', '/arch:AVX2', '/DPS2X_HAS_FFMPEG=0',
+            '/I_ci/PS2Recomp/ps2xRuntime/include', '/I_ci/PS2Recomp/ps2xIOP/include',
+            '/I_ci/PS2Recomp/ps2xRuntime/src/lib', '/I_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel')
+          $files = @('src/downhill_domination_overrides.cpp',
+            '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp',
+            '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp',
+            '_ci/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp',
+            '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp')
+          $index = 0
+          foreach ($file in $files) {
+            & cl.exe @flags ("/Fo_ci/handler-" + $index + '.obj') $file
+            if ($LASTEXITCODE) { throw "MSVC compile failed: $file" }
+            $index++
+          }

@@ -2,10 +2,13 @@
 #include "ps2_runtime.h"
 #include "ps2_runtime_macros.h"
 #include "ps2_stubs.h"
+#include "runtime/ee_scheduler.h"
 
 #include <algorithm>
 #include <cctype>
 #include <cstdint>
+#include <cstdlib>
+#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -146,9 +149,94 @@ namespace
         ps2_stubs::sceCdSearchFile(rdram, ctx, runtime);
     }
 
+    PS2Runtime::RecompiledFunction originalMovieRotate = nullptr;
+
+    void downhillIdleVSync(uint8_t *, R5900Context *, PS2Runtime *runtime)
+    {
+        // Diagnostic only: park the dedicated endless rotation worker at an
+        // existing VBlank event. The scheduler's EE clock remains unchanged.
+        runtime->eeScheduler().waitVSync(runtime->eeScheduler().currentVSyncTick(), 0,
+            [](R5900Context &resumed) { resumed.pc = 0x002243C0u; });
+    }
+
+    void downhillMovieRotate(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        const uint32_t returnPc = GPR_U32(ctx, 31);
+        uint32_t queued = 0u, capacity = 0u, state = 0u;
+        std::memcpy(&queued, rdram + 0x00663B4Cu, sizeof(queued));
+        std::memcpy(&capacity, rdram + 0x00663B50u, sizeof(capacity));
+        std::memcpy(&state, rdram + 0x00663C00u, sizeof(state));
+        const bool fullPool = returnPc == 0x0023C4E0u && capacity != 0u && queued == capacity;
+        const bool finalDrain = returnPc == 0x0023C468u && queued != 0u;
+        const bool shutdown = returnPc == 0x00223D78u && state == 1u;
+        if (fullPool || finalDrain || shutdown)
+        {
+            runtime->eeScheduler().waitVSync(runtime->eeScheduler().currentVSyncTick(), 0,
+                [returnPc](R5900Context &resumed) { resumed.pc = returnPc; });
+        }
+        originalMovieRotate(rdram, ctx, runtime);
+    }
+
+    PS2Runtime::RecompiledFunction originalResourceCdRead = nullptr;
+    PS2Runtime::RecompiledFunction originalReleaseWait = nullptr;
+
+    void downhillTraceReleaseWait(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        const int targetId = static_cast<int>(GPR_U32(ctx, 4));
+        const uint32_t returnPc = GPR_U32(ctx, 31);
+        const auto *target = runtime->eeScheduler().thread(targetId);
+        const int before = target != nullptr ? static_cast<int>(target->status) : -1;
+        originalReleaseWait(rdram, ctx, runtime);
+        std::cerr << "[downhill:release-wait] target=" << targetId
+                  << " status_before=" << before
+                  << " result=" << static_cast<int32_t>(GPR_U32(ctx, 2))
+                  << " return=0x" << std::hex << returnPc << std::dec << '\n';
+    }
+
+    void downhillResourceCdReadYield(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        const uint32_t returnPc = GPR_U32(ctx, 31);
+        originalResourceCdRead(rdram, ctx, runtime);
+        if (returnPc == 0x0023147Cu && GPR_U32(ctx, 2) == 1u)
+        {
+            // Diagnostic for the resource worker's initial SleepThread race.
+            // The read still executes normally. This is not a DVD latency model.
+            std::cerr << "[downhill:cd-read-yield] return=0x23147c\n";
+            runtime->eeScheduler().waitVSync(runtime->eeScheduler().currentVSyncTick(), 1,
+                [returnPc](R5900Context &resumed) { resumed.pc = returnPc; });
+        }
+    }
+
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
+
+        const char *idleVSync = std::getenv("PS2_DOWNHILL_IDLE_VSYNC");
+        if (idleVSync != nullptr && std::strcmp(idleVSync, "1") == 0)
+        {
+            originalMovieRotate = runtime.lookupFunction(0x00224058u);
+            if (originalMovieRotate != nullptr &&
+                runtime.replaceFunction(0x002243C0u, downhillIdleVSync) &&
+                runtime.replaceFunction(0x00224058u, downhillMovieRotate))
+                std::cerr << "[downhill] experimental idle VSync waits enabled\n";
+            else
+                std::cerr << "[downhill] experimental idle VSync binding failed\n";
+        }
+
+        if (std::getenv("PS2_TRACE_BOOT_SNAPSHOT") != nullptr)
+        {
+            originalReleaseWait = runtime.lookupFunction(0x0025A5B0u);
+            if (originalReleaseWait != nullptr)
+                runtime.replaceFunction(0x0025A5B0u, downhillTraceReleaseWait);
+        }
+        const char *readYield = std::getenv("PS2_DOWNHILL_CD_READ_YIELD");
+        if (readYield != nullptr && std::strcmp(readYield, "1") == 0)
+        {
+            originalResourceCdRead = runtime.lookupFunction(0x00247D28u);
+            if (originalResourceCdRead != nullptr &&
+                runtime.replaceFunction(0x00247D28u, downhillResourceCdReadYield))
+                std::cerr << "[downhill] experimental resource CD read yield enabled\n";
+        }
 
         const bool padBound =
             ps2_game_overrides::bindAddressHandler(runtime, kScePadRead, "scePadRead");

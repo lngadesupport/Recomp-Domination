@@ -18,6 +18,8 @@ def verify_and_stage(archive, extracted, output):
     extracted, output = extracted.resolve(), output.resolve()
     if extracted == output or extracted in output.parents or output in extracted.parents:
         raise ValueError("Extracted source and staging output must be separate directories")
+    if output.exists() and any(output.iterdir()):
+        raise ValueError("Choose a fresh staging directory; existing files may belong to an older partial extraction")
     for entry in rarfile.RarFile(archive).infolist():
         relative = PurePosixPath(entry.filename.replace("\\", "/"))
         if relative.is_absolute() or ".." in relative.parts:
@@ -43,8 +45,15 @@ def verify_and_stage(archive, extracted, output):
             raise ValueError(f"Staging file escapes output directory: {target}")
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
+        staged_crc, staged_size = 0, 0
+        with target.open("rb") as stream:
+            while chunk := stream.read(1048576):
+                staged_crc = zlib.crc32(chunk, staged_crc)
+                staged_size += len(chunk)
+        if staged_size != size or staged_crc != crc:
+            raise ValueError(f"Staged copy failed verification: {guest}")
         rows.append({"path": guest.as_posix(), "bytes": size, "crc32": f"{crc:08X}"})
-    return {"verified_files": len(rows), "verified_bytes": sum(row["bytes"] for row in rows), "files": rows}
+    return {"staged_crc_verified": True, "verified_files": len(rows), "verified_bytes": sum(row["bytes"] for row in rows), "files": rows}
 
 
 def main():
