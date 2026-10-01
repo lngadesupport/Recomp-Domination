@@ -132,6 +132,7 @@ def execute(args):
         if not compiler:
             record("native-build", "blocked", reason="C++ compiler unavailable")
             return finish("blocked")
+        compiler = str(Path(compiler).resolve())
         cpp = REPO / "tests/downhill_generated_cases.cpp"
         if Path(compiler).stem.lower() == "cl":
             if args.sanitize: raise ValueError("The sanitizer option currently supports GCC/Clang builds")
@@ -154,6 +155,7 @@ def execute(args):
             native_env["UBSAN_OPTIONS"] = native_env.get("UBSAN_OPTIONS", "") + ":halt_on_error=1"
         report["sanitizers"] = ["address", "undefined"] if args.sanitize else []
         report["leak_detection"] = False
+        report["replay_environment"] = {"ASAN_OPTIONS": "detect_leaks=0", "UBSAN_OPTIONS": "halt_on_error=1"} if args.sanitize else {}
         hashed = [cpp, REPO / "src/downhill_leaf_handler.h", REPO / "config/validation_policy.json",
                   source / "ps2xIOP/include/ps2x/iop/cdvd_iso_lookup.h", source / "ps2xRuntime/include/ps2_runtime.h"]
         report["source_sha256"] = {str(path.relative_to(REPO)) if path.is_relative_to(REPO) else str(path): digest(path) for path in hashed}
@@ -197,6 +199,8 @@ def execute(args):
             (probe_dir / "downhill_cd_image.txt").write_text(str(args.cd_image.resolve()) + "\n")
             env = os.environ.copy()
             env.update(PS2_TRACE_DMAC_IRQ="1", PS2_TRACE_RESOURCE_COPY="1", PS2_TRACE_BOOT_SNAPSHOT="1")
+            env.pop("PS2_DOWNHILL_IDLE_VSYNC", None)
+            env.pop("PS2_DOWNHILL_CD_READ_YIELD", None)
             if args.experimental_boot:
                 env.update(PS2_DOWNHILL_IDLE_VSYNC="1", PS2_DOWNHILL_CD_READ_YIELD="1")
             log = probe_dir / "runtime.log"
