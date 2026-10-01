@@ -1,0 +1,56 @@
+--- a/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
++++ b/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+@@ -4,6 +4,8 @@
+ #include "ps2_runtime_macros.h"
+ 
+ #include <algorithm>
++#include <cstdlib>
++#include <iostream>
+ #include <cassert>
+ #include <cstring>
+ #include <limits>
+@@ -1209,6 +1211,10 @@
+                                   sp,
+                                   true,
+                                   append ? ++tail : --head});
++    if (dmac && cause == 1u && std::getenv("PS2_TRACE_DMAC_IRQ") &&
++        std::strcmp(std::getenv("PS2_TRACE_DMAC_IRQ"), "1") == 0)
++        std::cerr << "[dmac:register] cause=" << cause << " handler=" << handler
++                  << " id=" << id << '\n';
+     return id;
+ }
+ 
+@@ -1251,12 +1257,33 @@
+             mask &= ~(1u << cause);
+         }
+     }
++    if (dmac && cause == 1u && std::getenv("PS2_TRACE_DMAC_IRQ") &&
++        std::strcmp(std::getenv("PS2_TRACE_DMAC_IRQ"), "1") == 0)
++        std::cerr << "[dmac:mask] cause=" << cause << " enabled=" << enabled << '\n';
+     return KE_OK;
+ }
+ 
+ void EeScheduler::dispatchIrq(bool dmac, uint32_t cause)
+ {
+     assertExecutor();
++    const char *irqTrace = std::getenv("PS2_TRACE_DMAC_IRQ");
++    if (dmac && cause == 1u && irqTrace != nullptr && std::strcmp(irqTrace, "1") == 0)
++    {
++        const auto readGuestU32 = [this](uint32_t address) {
++            uint32_t value = 0;
++            if (m_rdram) std::memcpy(&value, m_rdram + address, sizeof(value));
++            return value;
++        };
++        static std::atomic<uint64_t> calls{0};
++        const uint64_t call = ++calls;
++        if (call <= 64u || (call & (call - 1u)) == 0u)
++            std::cerr << "[dmac:irq] call=" << call << " cause=" << cause
++                      << " enabled=" << ((m_enabledDmacMask >> cause) & 1u)
++                      << " handlers=" << m_dmacHandlers.size()
++                      << " flags=" << readGuestU32(0x0029E1C8u) << ','
++                      << readGuestU32(0x0029E1CCu) << ',' << readGuestU32(0x0029E1E4u)
++                      << '\n';
++    }
+     const uint32_t mask = dmac ? m_enabledDmacMask : m_enabledIntcMask;
+     if (cause < 32u && (mask & (1u << cause)) == 0u)
+     {

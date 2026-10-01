@@ -264,9 +264,39 @@ namespace
         std::cerr << line.str();
     }
 
+    PS2Runtime::RecompiledFunction originalDmaQueueWait = nullptr;
+    uint64_t dmaWaitCalls = 0;
+    void downhillTraceDmaQueueWait(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        originalDmaQueueWait(rdram, ctx, runtime);
+        const uint64_t call = ++dmaWaitCalls;
+        if (call <= 16u || (call & (call - 1u)) == 0u)
+            std::cerr << "[downhill:dma-wait] call=" << call
+                      << " pc=" << ctx->pc << " ra=" << GPR_U32(ctx, 31)
+                      << " flags=" << Ps2FastRead32(rdram, 0x0029E1C8u) << ','
+                      << Ps2FastRead32(rdram, 0x0029E1CCu) << ','
+                      << Ps2FastRead32(rdram, 0x0029E1E4u)
+                      << " chcr=" << runtime->memory().readIORegister(0x10009000u)
+                      << " qwc=" << runtime->memory().readIORegister(0x10009020u)
+                      << " tadr=" << runtime->memory().readIORegister(0x10009030u)
+                      << " dstat=" << runtime->memory().readIORegister(0x1000E010u)
+                      << " cop0=" << ctx->cop0_status << '\n';
+    }
+
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
+        const char *dmaTrace = std::getenv("PS2_TRACE_DMAC_IRQ");
+        if (dmaTrace != nullptr && std::strcmp(dmaTrace, "1") == 0)
+        {
+            originalDmaQueueWait = runtime.lookupFunction(0x001B4618u);
+            dmaWaitCalls = 0;
+            if (originalDmaQueueWait != nullptr)
+            {
+                runtime.replaceFunction(0x001B4618u, downhillTraceDmaQueueWait);
+                runtime.replaceFunction(0x001B4648u, downhillTraceDmaQueueWait);
+            }
+        }
 
         const char *idleVSync = std::getenv("PS2_DOWNHILL_IDLE_VSYNC");
         if (idleVSync != nullptr && std::strcmp(idleVSync, "1") == 0)

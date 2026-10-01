@@ -38,3 +38,9 @@ source is a dictionary/back-reference buffer, not necessarily compressed disc
 input. Zero lengths, offsets and sampled bytes alone do not establish a stall.
 This instrumentation has compile/parser validation only; a new retail probe is
 still required.
+
+VIF1 queue diagnostics: `PS2_TRACE_DMAC_IRQ=1` enables bounded completion logs
+(`[dmac:irq]`), handler registration/mask transitions, and executor-side samples
+of the guest wait at `0x1B4648` (`[downhill:dma-wait]`). Samples include all three
+queue flags, CHCR, QWC, TADR and D_STAT. The flag is off by default and does not
+change interrupt delivery or clear guest flags.
