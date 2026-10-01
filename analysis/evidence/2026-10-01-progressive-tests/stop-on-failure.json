@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "seed": 854545,
+  "requested_generated_cases": 10000,
+  "generated_cases_passed": 0,
+  "regression_tests_passed": 29,
+  "stages": [
+    {
+      "stage": "python-regressions",
+      "status": "passed",
+      "tests": 29,
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 0.854,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "native-build",
+      "status": "passed",
+      "compiler": "/workspace/scratch/2a92898976e3/recomp-domination/analysis/local/progressive-mutations/mutating-compiler",
+      "sanitized": false,
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 1.808,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "generated-smoke",
+      "status": "failed",
+      "first_case": 0,
+      "requested_cases": 1000,
+      "level": 0,
+      "native_result": {
+        "passed": 0,
+        "failed": 1,
+        "failed_case": 0,
+        "seed": 854545,
+        "level": 0
+      },
+      "replay_command": [
+        "/workspace/scratch/2a92898976e3/recomp-domination/analysis/local/progressive-stop-on-failure-fixed/generated-cases",
+        "1000",
+        "854545",
+        "0",
+        "0"
+      ],
+      "termination": "exited",
+      "exit_code": 1,
+      "elapsed_seconds": 0.051,
+      "timeout_seconds": 180
+    }
+  ],
+  "policy": {
+    "schema_version": 1,
+    "target_fps": 60,
+    "stretch_fps": 75,
+    "minimum_gameplay_sample_seconds": 60,
+    "frame_time_source": "unique_guest_frames_presented",
+    "require_all_frame_intervals_within_budget": true,
+    "require_complete_scenario_inventory": true
+  },
+  "scope": "components-only",
+  "menu_verified": false,
+  "race_verified": false,
+  "target_fps_verified": false,
+  "stretch_fps_verified": false,
+  "status": "failed",
+  "native_sha256": "05c30b9bd989d3f110f12a40ae97242b236dba7778aa23ed8ed4fa2f3d734ab2",
+  "sanitizers": [],
+  "leak_detection": false,
+  "replay_environment": {},
+  "source_sha256": {
+    "tests/downhill_generated_cases.cpp": "ec4c14d0ac07af0976a6c30ddfd141ab28494a245a7463f316ea5710f093f49c",
+    "src/downhill_leaf_handler.h": "02e4a76833ce9db933d540a2243c8b99a8e71059337fa841e31eca2cc9a45625",
+    "config/validation_policy.json": "b334d33a49cf2abf79a5ad3cdf7b16815607fb7082110ca87187eb0b15b06faf",
+    "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/cdvd_iso_lookup.h": "3db4b6eed53779b371e1b470296c1d9eef8234b7b763a640de6d99b2ef17e33c",
+    "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h": "30f8614adb393d34a2cbc9dc5a2f701b1d2b468e7c4878c9e494fd8341aa2a67"
+  },
+  "upstream_pin": "75d729ce40d7eed9649fd4bb05628dee520f3d0c",
+  "elapsed_seconds": 2.768
+}

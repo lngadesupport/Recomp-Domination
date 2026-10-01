@@ -1,0 +1,26 @@
+[
+  {
+    "mutation": "lost-continuation",
+    "exit_code": 1,
+    "result": {
+      "passed": 0,
+      "failed": 1,
+      "failed_case": 0,
+      "seed": 854545,
+      "level": 0
+    },
+    "diagnostic": "case=0 seed=854545 level=0 family=leaf: continuation not established before handler"
+  },
+  {
+    "mutation": "accepted-xar",
+    "exit_code": 1,
+    "result": {
+      "passed": 19,
+      "failed": 1,
+      "failed_case": 19,
+      "seed": 854545,
+      "level": 0
+    },
+    "diagnostic": "case=19 seed=854545 level=0 family=iso: ISO accepted/rejected unexpected fixture"
+  }
+]

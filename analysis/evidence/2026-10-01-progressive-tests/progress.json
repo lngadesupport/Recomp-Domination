@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "seed": 854545,
+  "requested_generated_cases": 1000000,
+  "generated_cases_passed": 1000000,
+  "regression_tests_passed": 29,
+  "stages": [
+    {
+      "stage": "python-regressions",
+      "status": "passed",
+      "tests": 29,
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 0.856,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "native-build",
+      "status": "passed",
+      "compiler": "/usr/bin/g++",
+      "sanitized": true,
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 2.564,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "generated-smoke",
+      "status": "passed",
+      "first_case": 0,
+      "requested_cases": 1000,
+      "level": 0,
+      "native_result": {
+        "passed": 1000,
+        "failed": 0,
+        "iso_cases": 500,
+        "leaf_cases": 500,
+        "first_case": 0,
+        "seed": 854545,
+        "level": 0
+      },
+      "replay_command": [
+        "/workspace/scratch/2a92898976e3/recomp-domination/analysis/local/progressive-final/generated-cases",
+        "1000",
+        "854545",
+        "0",
+        "0"
+      ],
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 0.051,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "generated-expanded",
+      "status": "passed",
+      "first_case": 1000,
+      "requested_cases": 9000,
+      "level": 1,
+      "native_result": {
+        "passed": 9000,
+        "failed": 0,
+        "iso_cases": 4500,
+        "leaf_cases": 4500,
+        "first_case": 1000,
+        "seed": 854545,
+        "level": 1
+      },
+      "replay_command": [
+        "/workspace/scratch/2a92898976e3/recomp-domination/analysis/local/progressive-final/generated-cases",
+        "9000",
+        "854545",
+        "1000",
+        "1"
+      ],
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 0.201,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "generated-stress",
+      "status": "passed",
+      "first_case": 10000,
+      "requested_cases": 990000,
+      "level": 2,
+      "native_result": {
+        "passed": 990000,
+        "failed": 0,
+        "iso_cases": 495000,
+        "leaf_cases": 495000,
+        "first_case": 10000,
+        "seed": 854545,
+        "level": 2
+      },
+      "replay_command": [
+        "/workspace/scratch/2a92898976e3/recomp-domination/analysis/local/progressive-final/generated-cases",
+        "990000",
+        "854545",
+        "10000",
+        "2"
+      ],
+      "termination": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 10.956,
+      "timeout_seconds": 180
+    },
+    {
+      "stage": "retail-boot",
+      "status": "passed",
+      "reason": "guest execution observed; gameplay remains unverified",
+      "evidence_mode": "historical-observation-only"
+    },
+    {
+      "stage": "menu",
+      "status": "blocked",
+      "reason": "VIF1 queue wait observed"
+    },
+    {
+      "stage": "race",
+      "status": "blocked",
+      "reason": "Requires validated menu flow and scenario inventory"
+    },
+    {
+      "stage": "performance",
+      "status": "blocked",
+      "reason": "Requires completed gameplay scenarios and unique guest-frame telemetry"
+    }
+  ],
+  "policy": {
+    "schema_version": 1,
+    "target_fps": 60,
+    "stretch_fps": 75,
+    "minimum_gameplay_sample_seconds": 60,
+    "frame_time_source": "unique_guest_frames_presented",
+    "require_all_frame_intervals_within_budget": true,
+    "require_complete_scenario_inventory": true
+  },
+  "scope": "components-and-gated-retail",
+  "menu_verified": false,
+  "race_verified": false,
+  "target_fps_verified": false,
+  "stretch_fps_verified": false,
+  "status": "blocked",
+  "native_sha256": "2a38fdacfb49169abefd63f5ba49e791b6bbd9572f84128a8a7515449bec2815",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "leak_detection": false,
+  "source_sha256": {
+    "tests/downhill_generated_cases.cpp": "ec4c14d0ac07af0976a6c30ddfd141ab28494a245a7463f316ea5710f093f49c",
+    "src/downhill_leaf_handler.h": "02e4a76833ce9db933d540a2243c8b99a8e71059337fa841e31eca2cc9a45625",
+    "config/validation_policy.json": "b334d33a49cf2abf79a5ad3cdf7b16815607fb7082110ca87187eb0b15b06faf",
+    "third_party/PS2Recomp/ps2xIOP/include/ps2x/iop/cdvd_iso_lookup.h": "3db4b6eed53779b371e1b470296c1d9eef8234b7b763a640de6d99b2ef17e33c",
+    "third_party/PS2Recomp/ps2xRuntime/include/ps2_runtime.h": "30f8614adb393d34a2cbc9dc5a2f701b1d2b468e7c4878c9e494fd8341aa2a67"
+  },
+  "upstream_pin": "75d729ce40d7eed9649fd4bb05628dee520f3d0c",
+  "retail_evidence_mode": "historical-observation-only",
+  "retail_evidence_sha256": {
+    "probe.json": "f0a6028d45952cbd7c58343a9f16158b268c9fc677eb92b6cc0842c15b631853",
+    "runtime.log": "e041d8d6606e9973cf2e15f6cd570fcd92860bac8a3e53da17ec6eb4e66ec130"
+  },
+  "guest_observations": {
+    "wait_samples": 24,
+    "irq_samples": 65,
+    "malformed_samples": 0,
+    "last_wait": {
+      "call": 4096,
+      "pc": 1787464,
+      "ra": 2014956,
+      "chcr": 1879048261,
+      "qwc": 0,
+      "tadr": 6423232,
+      "dstat": 7,
+      "cop0": 65537,
+      "flags": [
+        0,
+        3,
+        1
+      ]
+    },
+    "masked_vif1_completions_observed": true,
+    "vif1_queue_wait_observed": true,
+    "limits": "Sampled observations do not establish cause, elapsed stall duration, a playable menu, or game FPS.",
+    "boot_status": "passed",
+    "boot_reason": "guest execution observed; gameplay remains unverified",
+    "menu_status": "blocked",
+    "menu_reason": "VIF1 queue wait observed",
+    "race_status": "blocked",
+    "performance_status": "blocked"
+  },
+  "elapsed_seconds": 14.696
+}

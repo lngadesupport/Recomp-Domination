@@ -1,0 +1,153 @@
+{
+  "run_id": 36886047360,
+  "commit": "06680c4556ecdf216b41299dc2816010522383ee",
+  "url": "https://github.com/lngadesupport/Recomp-Domination/actions/runs/36886047360",
+  "jobs": [
+    {
+      "name": "pinned-patches (windows-2022)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Apply runtime patches twice",
+          "conclusion": "success"
+        },
+        {
+          "name": "POSIX watchdog and executable identity regressions",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Check leaf handler continuations on Ubuntu",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Progress through 100000 sanitized native cases on Ubuntu",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify canonical Windows patch flow and script syntax",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile changed native handlers with MSVC",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check leaf handler continuations with MSVC",
+          "conclusion": "success"
+        },
+        {
+          "name": "Progress through 100000 native cases with MSVC",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "pinned-patches (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Apply runtime patches twice",
+          "conclusion": "success"
+        },
+        {
+          "name": "POSIX watchdog and executable identity regressions",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check leaf handler continuations on Ubuntu",
+          "conclusion": "success"
+        },
+        {
+          "name": "Progress through 100000 sanitized native cases on Ubuntu",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify canonical Windows patch flow and script syntax",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Compile changed native handlers with MSVC",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Check leaf handler continuations with MSVC",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Progress through 100000 native cases with MSVC",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}
