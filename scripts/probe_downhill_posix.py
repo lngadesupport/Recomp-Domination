@@ -86,8 +86,12 @@ def main():
     runner, elf, output = args.runner.resolve(), args.elf.resolve(), args.out.resolve()
     if hashlib.sha256(elf.read_bytes()).hexdigest() != ELF_SHA256:
         parser.error("Retail ELF identity mismatch")
+    runner_before = hashlib.sha256(runner.read_bytes()).hexdigest()
     result = run_bounded([str(runner), str(elf)], output, args.seconds, args.max_log_bytes)
-    result.update({"elf_sha256": ELF_SHA256, "runner_sha256": hashlib.sha256(runner.read_bytes()).hexdigest(),
+    runner_after = hashlib.sha256(runner.read_bytes()).hexdigest()
+    result.update({"elf_sha256": ELF_SHA256, "runner_sha256": runner_before,
+                   "runner_sha256_after": runner_after, "runner_changed_during_probe": runner_before != runner_after,
+                   "runner_identity_verified": runner_before == runner_after,
                    "host": "posix", "windows_boot_verified": False})
     (output / "probe.json").write_text(json.dumps(result, indent=2) + "\n")
     # A native signal can leave no exception text. Preserve it for the shared

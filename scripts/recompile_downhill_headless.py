@@ -13,6 +13,10 @@ PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
 SHA256 = "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c"
 ENTRIES = ("0x0010A008", "0x001FB6C0", "0x002451B0", "0x00254050", "0x00246FA0", "0x0025C440")
 
+# Runtime graphics dispatch table at guest 0x004D0278. Interior entries
+# must receive their own resume labels, even when their enclosing function exists.
+DISPATCH_ENTRIES = ('0x00262B48', '0x00262C20', '0x00262D30', '0x00262FE0', '0x00263270', '0x00263320', '0x002627A0', '0x00206E40', '0x00263438', '0x00263578', '0x002628A0', '0x00263860', '0x002638D8', '0x002639D0')
+ENTRIES += DISPATCH_ENTRIES
 
 def scalar(text, key, value):
     literal = json.dumps(value) if isinstance(value, str) else str(value).lower()

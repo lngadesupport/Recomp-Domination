@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess
 import zlib
+from apply_runtime_bringup_patches import apply as apply_runtime_patches
 
 PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
 ELF_SHA256 = "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c"
@@ -26,6 +27,9 @@ def main():
     parser.add_argument("--build", type=Path, required=True)
     parser.add_argument("--cmake", default="cmake")
     parser.add_argument("--jobs", type=int, default=2)
+    parser.add_argument("--build-type", choices=("Debug", "Release", "RelWithDebInfo"), default="Debug")
+    parser.add_argument("--ffmpeg", action="store_true", help="Enable actual MPEG decoding; requires FFmpeg development libraries")
+    parser.add_argument("--quiet-function-trace", action="store_true", help="Disable aggressive per-function logging for performance probes")
     parser.add_argument("--raylib-source", type=Path)
     parser.add_argument("--prefix", type=Path)
     args = parser.parse_args()
@@ -41,6 +45,7 @@ def main():
     report = json.loads((generated.parent / "generation_report.json").read_text())
     if not report.get("generation_verified") or report.get("elf_sha256") != ELF_SHA256 or report.get("ps2recomp_commit") != PIN:
         raise ValueError("Verified retail generation report required")
+    apply_runtime_patches(source)
     repo = Path(__file__).resolve().parent.parent
     patch = (repo / "scripts/patch_downhill_ps2recomp.ps1").read_text()
     # Reuse exact replacements from the canonical Windows patch script.
@@ -83,10 +88,10 @@ def main():
     override_path = runner / "downhill_domination_overrides.cpp"
     if not override_path.exists() or override_path.read_text() != override:
         override_path.write_text(override)
-    options = ["-DCMAKE_BUILD_TYPE=Debug", "-DPS2X_BUILD_RUNTIME=ON", "-DPS2X_BUILD_RECOMP=OFF",
+    options = [f"-DCMAKE_BUILD_TYPE={args.build_type}", "-DPS2X_BUILD_RUNTIME=ON", "-DPS2X_BUILD_RECOMP=OFF",
                "-DPS2X_BUILD_ANALYZER=OFF", "-DPS2X_BUILD_TEST=OFF", "-DPS2X_BUILD_STUDIO=OFF",
-               "-DPS2X_ENABLE_FFMPEG=OFF", "-DPS2X_ENABLE_DEBUG_UI=OFF", "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
-               "-DPS2X_ENABLE_RUNTIME_LOGS=ON", "-DPS2X_ENABLE_AGRESSIVE_LOGS=ON", "-DPS2X_ENABLE_IOP_RPC_TRACE=ON",
+               f"-DPS2X_ENABLE_FFMPEG={'ON' if args.ffmpeg else 'OFF'}", "-DPS2X_ENABLE_DEBUG_UI=OFF", "-DPS2X_STRICT_RETURN_DIAGNOSTICS=ON",
+               "-DPS2X_ENABLE_RUNTIME_LOGS=ON", f"-DPS2X_ENABLE_AGRESSIVE_LOGS={'OFF' if args.quiet_function_trace else 'ON'}", "-DPS2X_ENABLE_IOP_RPC_TRACE=ON",
                "-DPS2X_ENABLE_RUNNER_UNITY_BUILD=ON", "-DPS2X_RUNNER_UNITY_BUILD_BATCH_SIZE=64", "-DCMAKE_CXX_FLAGS=-mavx2"]
     if args.raylib_source:
         options.append(f"-DFETCHCONTENT_SOURCE_DIR_RAYLIB={args.raylib_source.resolve()}")
@@ -102,6 +107,8 @@ def main():
     (generated.parent / "native_build_report.json").write_text(json.dumps({
         "elf_sha256": ELF_SHA256, "ps2recomp_commit": PIN, "runtime_linked": True,
         "host": "linux-x64", "windows_link_verified": False,
+        "build_type": args.build_type, "ffmpeg_enabled": args.ffmpeg,
+        "aggressive_function_trace": not args.quiet_function_trace,
         "runner_sha256": hashlib.sha256(executable.read_bytes()).hexdigest(),
         "runner_bytes": executable.stat().st_size,
     }, indent=2) + "\n")

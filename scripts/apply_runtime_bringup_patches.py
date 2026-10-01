@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Apply version-pinned runtime fixes, accepting an already applied patch."""
+from pathlib import Path
+import subprocess
+
+PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
+PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end")
+
+
+def apply(source):
+    source = Path(source).resolve()
+    head = subprocess.check_output(["git", "-C", str(source), "rev-parse", "HEAD"], text=True).strip()
+    if head != PIN:
+        raise ValueError("PS2Recomp revision mismatch; refusing to apply runtime patches")
+    directory = Path(__file__).resolve().parents[1] / "patches"
+    for name in PATCHES:
+        patch = directory / f"ps2recomp-{name}.patch"
+        command = ["git", "-C", str(source), "apply"]
+        reverse = subprocess.run([*command, "--reverse", "--check", str(patch)], capture_output=True)
+        if reverse.returncode == 0:
+            continue
+        subprocess.run([*command, "--check", str(patch)], check=True)
+        subprocess.run([*command, str(patch)], check=True)
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("source", type=Path)
+    apply(parser.parse_args().source)

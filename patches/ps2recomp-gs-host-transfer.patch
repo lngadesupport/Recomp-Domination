@@ -1,0 +1,254 @@
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
+index 9c54919..174d0b7 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
+@@ -603,7 +603,8 @@ namespace ps2_stubs
+         }
+ 
+         const uint32_t rowBytes = bytesForPixels(img.psm, static_cast<uint32_t>(img.width));
+-        if (rowBytes == 0)
++        if (rowBytes == 0 || img.height == 0 ||
++            static_cast<uint64_t>(rowBytes) * img.height > PS2_RAM_SIZE)
+         {
+             setReturnS32(ctx, -1);
+             return;
+@@ -611,22 +612,25 @@ namespace ps2_stubs
+ 
+         uint32_t fbw = img.vram_width ? img.vram_width : std::max<uint32_t>(1, (img.width + 63) / 64);
+         const uint32_t totalImageBytes = rowBytes * static_cast<uint32_t>(img.height);
+-        const uint32_t headerQwc = 6u;
++        const uint32_t headerQwc = 5u;
+         const uint32_t imageQwc = (totalImageBytes + 15u) / 16u;
+-        const uint32_t totalQwc = headerQwc + imageQwc;
++        const uint32_t imageTags = (imageQwc + 0x7FFEu) / 0x7FFFu;
++        const uint32_t totalQwc = headerQwc + imageTags + imageQwc;
+ 
+-        uint32_t pktAddr = runtime->guestMalloc(totalQwc * 16u, 16u);
+-        if (pktAddr == 0)
++        // SDK transfer packets are host scratch; guest heap may overlap the
++        // game's live stack. Zero padding also avoids reading past the image.
++        const uint32_t srcPhysical = runtime->memory().translateAddress(srcAddr);
++        if (srcPhysical >= PS2_RAM_SIZE || totalImageBytes > PS2_RAM_SIZE - srcPhysical)
+         {
+             setReturnS32(ctx, -1);
+             return;
+         }
+ 
+-        uint8_t *pkt = getMemPtr(rdram, pktAddr);
++        std::vector<uint64_t> packet(static_cast<size_t>(totalQwc) * 2u, 0u);
++        uint8_t *pkt = reinterpret_cast<uint8_t *>(packet.data());
+         const uint8_t *src = getConstMemPtr(rdram, srcAddr);
+         if (!pkt || !src)
+         {
+-            runtime->guestFree(pktAddr);
+             setReturnS32(ctx, -1);
+             return;
+         }
+@@ -649,20 +653,22 @@ namespace ps2_stubs
+         q[7] = 0x52ULL;
+         q[8] = 0ULL;
+         q[9] = 0x53ULL;
+-        q[10] = (static_cast<uint64_t>(2) << 58) | (static_cast<uint64_t>(imageQwc) & 0x7FFF) |
+-                (1ULL << 15);
+-        q[11] = 0ULL;
+-
+-        std::memcpy(pkt + headerQwc * 16u, src, totalImageBytes);
+-
+-        constexpr uint32_t GIF_CHANNEL = 0x1000A000;
+-        constexpr uint32_t CHCR_STR_MODE0 = 0x101u;
+-        auto &mem = runtime->memory();
+-        mem.writeIORegister(GIF_CHANNEL + 0x10u, pktAddr);
+-        mem.writeIORegister(GIF_CHANNEL + 0x20u, totalQwc & 0xFFFFu);
+-        mem.writeIORegister(GIF_CHANNEL + 0x00u, CHCR_STR_MODE0);
+-        mem.processPendingTransfers();
+-        runtime->guestFree(pktAddr);
++        uint32_t remainingQwc = imageQwc;
++        uint32_t copiedBytes = 0u;
++        uint32_t packetQwc = headerQwc;
++        while (remainingQwc != 0u)
++        {
++            const uint32_t chunkQwc = std::min<uint32_t>(remainingQwc, 0x7FFFu);
++            const bool last = chunkQwc == remainingQwc;
++            q[packetQwc * 2u] = (2ULL << 58) | chunkQwc | (last ? (1ULL << 15) : 0ULL);
++            ++packetQwc;
++            const uint32_t chunkBytes = std::min<uint32_t>(chunkQwc * 16u, totalImageBytes - copiedBytes);
++            std::memcpy(pkt + packetQwc * 16u, src + copiedBytes, chunkBytes);
++            copiedBytes += chunkBytes;
++            packetQwc += chunkQwc;
++            remainingQwc -= chunkQwc;
++        }
++        runtime->memory().submitGifPacket(GifPathId::Path3, pkt, totalQwc * 16u);
+ 
+         setReturnS32(ctx, 0);
+     }
+@@ -680,7 +686,8 @@ namespace ps2_stubs
+         }
+ 
+         const uint32_t rowBytes = bytesForPixels(img.psm, static_cast<uint32_t>(img.width));
+-        if (rowBytes == 0)
++        if (rowBytes == 0 || img.height == 0 ||
++            static_cast<uint64_t>(rowBytes) * img.height > PS2_RAM_SIZE)
+         {
+             setReturnS32(ctx, -1);
+             return;
+@@ -690,7 +697,8 @@ namespace ps2_stubs
+         const uint32_t totalImageBytes = rowBytes * static_cast<uint32_t>(img.height);
+ 
+         uint8_t *dst = getMemPtr(rdram, dstAddr);
+-        if (!dst)
++        const uint32_t dstPhysical = runtime->memory().translateAddress(dstAddr);
++        if (!dst || dstPhysical >= PS2_RAM_SIZE || totalImageBytes > PS2_RAM_SIZE - dstPhysical)
+         {
+             setReturnS32(ctx, -1);
+             return;
+@@ -709,22 +717,8 @@ namespace ps2_stubs
+                           (static_cast<uint64_t>(0u) << 48);
+         uint64_t trxreg = static_cast<uint64_t>(img.height) << 32 | static_cast<uint64_t>(img.width);
+ 
+-        uint32_t pktAddr = runtime->guestMalloc(80u, 16u);
+-        if (pktAddr == 0)
+-        {
+-            setReturnS32(ctx, -1);
+-            return;
+-        }
+-
+-        uint8_t *pkt = getMemPtr(rdram, pktAddr);
+-        if (!pkt)
+-        {
+-            runtime->guestFree(pktAddr);
+-            setReturnS32(ctx, -1);
+-            return;
+-        }
+-
+-        uint64_t *q = reinterpret_cast<uint64_t *>(pkt);
++        std::array<uint64_t, 10u> packet{};
++        uint64_t *q = packet.data();
+         q[0] = makeGiftagAplusD(4u);
+         q[1] = 0xEULL;
+         q[2] = bitbltbuf;
+@@ -736,17 +730,11 @@ namespace ps2_stubs
+         q[8] = 1ULL;
+         q[9] = 0x53ULL;
+ 
+-        constexpr uint32_t GIF_CHANNEL = 0x1000A000;
+-        constexpr uint32_t CHCR_STR_MODE0 = 0x101u;
+-        auto &mem = runtime->memory();
+-        mem.writeIORegister(GIF_CHANNEL + 0x10u, pktAddr);
+-        mem.writeIORegister(GIF_CHANNEL + 0x20u, 5u);
+-        mem.writeIORegister(GIF_CHANNEL + 0x00u, CHCR_STR_MODE0);
+-        mem.processPendingTransfers();
++        runtime->memory().submitGifPacket(GifPathId::Path3,
++            reinterpret_cast<const uint8_t *>(packet.data()), 80u);
+ 
+         ps2TraceGuestRangeWrite(rdram, dstAddr, totalImageBytes, "sceGsExecStoreImage", ctx);
+         runtime->gs().consumeLocalToHostBytes(dst, totalImageBytes);
+-        runtime->guestFree(pktAddr);
+ 
+         setReturnS32(ctx, 0);
+     }
+diff --git a/ps2xTest/src/ps2_gs_tests.cpp b/ps2xTest/src/ps2_gs_tests.cpp
+index 0458a8c..f2ee0e0 100644
+--- a/ps2xTest/src/ps2_gs_tests.cpp
++++ b/ps2xTest/src/ps2_gs_tests.cpp
+@@ -3890,7 +3890,34 @@ void register_ps2_gs_tests()
+                      "triangle fan quad should light at least one framebuffer row");
+         });
+ 
+-        tc.Run("sceGsExecLoadImage and sceGsExecStoreImage roundtrip and free guest packets", [](TestCase &t)
++        tc.Run("SDK image upload splits IMAGE tags above 32767 quadwords", [](TestCase &t)
++        {
++            PS2Runtime runtime;
++            t.IsTrue(runtime.memory().initialize(), "memory initialization");
++            auto *rdram = runtime.memory().getRDRAM();
++            constexpr uint32_t source = 0x100000u, destination = 0x300000u;
++            constexpr uint32_t imageBytes = 512u * 512u * 4u;
++            writeGsImageTest(rdram, 0x4000u, GsImageMem{0u, 0u, 512u, 512u, 0u, 8u, 0u});
++            for (uint32_t i = 0; i < imageBytes; ++i)
++                rdram[source + i] = static_cast<uint8_t>((i * 37u + (i >> 16)) & 255u);
++            const uint32_t heap = runtime.guestHeapBase();
++            std::memset(rdram + heap, 0xA5, 256u);
++            R5900Context ctx{};
++            setRegU32(ctx, 4, 0x4000u);
++            setRegU32(ctx, 5, source);
++            ps2_stubs::sceGsExecLoadImage(rdram, &ctx, &runtime);
++            t.Equals(getRegU32Test(ctx, 2), 0u, "one MiB upload succeeds");
++            setRegU32(ctx, 5, destination);
++            ps2_stubs::sceGsExecStoreImage(rdram, &ctx, &runtime);
++            t.Equals(getRegU32Test(ctx, 2), 0u, "one MiB readback succeeds");
++            t.IsTrue(std::memcmp(rdram + source, rdram + destination, imageBytes) == 0,
++                     "all pixels across IMAGE tag boundaries roundtrip");
++            bool intact = true;
++            for (uint32_t i = 0; i < 256u; ++i) intact &= rdram[heap + i] == 0xA5u;
++            t.IsTrue(intact, "guest scratch remains intact across large transfers");
++        });
++
++        tc.Run("sceGsExecLoadImage and sceGsExecStoreImage roundtrip without touching guest scratch memory", [](TestCase &t)
+         {
+             PS2Runtime runtime;
+             t.IsTrue(runtime.memory().initialize(), "runtime memory initialize should succeed");
+@@ -3910,30 +3937,18 @@ void register_ps2_gs_tests()
+             writeGsImageTest(rdram, kImageAddr, image);
+             std::memcpy(rdram + kSrcAddr, pixels, sizeof(pixels));
+ 
++            const uint32_t heap = runtime.guestHeapBase();
++            std::memset(rdram + heap, 0xA5, 128u);
+             R5900Context loadCtx{};
+             setRegU32(loadCtx, 4, kImageAddr);
+             setRegU32(loadCtx, 5, kSrcAddr);
+             ps2_stubs::sceGsExecLoadImage(rdram, &loadCtx, &runtime);
+             t.Equals(static_cast<int32_t>(getRegU32Test(loadCtx, 2)), 0,
+                      "sceGsExecLoadImage should succeed for a simple CT32 upload");
+-            uint64_t loadTag = 0u;
+-            std::memcpy(&loadTag, rdram + runtime.guestHeapBase(), sizeof(loadTag));
+-            t.Equals(loadTag, 0x1000000000008004ull,
+-                     "sceGsExecLoadImage should populate the packed A+D GIF tag in guest RAM");
+-            uint64_t loadReg1 = 0u;
+-            uint64_t loadReg2 = 0u;
+-            uint64_t loadReg3 = 0u;
+-            uint64_t loadReg4 = 0u;
+-            std::memcpy(&loadReg1, rdram + runtime.guestHeapBase() + 24u, sizeof(loadReg1));
+-            std::memcpy(&loadReg2, rdram + runtime.guestHeapBase() + 40u, sizeof(loadReg2));
+-            std::memcpy(&loadReg3, rdram + runtime.guestHeapBase() + 56u, sizeof(loadReg3));
+-            std::memcpy(&loadReg4, rdram + runtime.guestHeapBase() + 72u, sizeof(loadReg4));
+-            t.Equals(loadReg1, 0x50ull, "sceGsExecLoadImage should encode BITBLTBUF as A+D register 0x50");
+-            t.Equals(loadReg2, 0x51ull, "sceGsExecLoadImage should encode TRXPOS as A+D register 0x51");
+-            t.Equals(loadReg3, 0x52ull, "sceGsExecLoadImage should encode TRXREG as A+D register 0x52");
+-            t.Equals(loadReg4, 0x53ull, "sceGsExecLoadImage should encode TRXDIR as A+D register 0x53");
+-            expectGuestHeapReusable(t, runtime,
+-                                    "sceGsExecLoadImage should free its temporary GIF packet");
++            bool loadScratchIntact = true;
++            for (uint32_t i = 0u; i < 128u; ++i)
++                loadScratchIntact &= rdram[heap + i] == 0xA5u;
++            t.IsTrue(loadScratchIntact, "SDK transfer must preserve guest heap/stack memory");
+ 
+             R5900Context storeCtx{};
+             setRegU32(storeCtx, 4, kImageAddr);
+@@ -3941,24 +3956,10 @@ void register_ps2_gs_tests()
+             ps2_stubs::sceGsExecStoreImage(rdram, &storeCtx, &runtime);
+             t.Equals(static_cast<int32_t>(getRegU32Test(storeCtx, 2)), 0,
+                      "sceGsExecStoreImage should succeed for a matching CT32 readback");
+-            uint64_t storeTag = 0u;
+-            std::memcpy(&storeTag, rdram + runtime.guestHeapBase(), sizeof(storeTag));
+-            t.Equals(storeTag, 0x1000000000008004ull,
+-                     "sceGsExecStoreImage should populate the packed A+D GIF tag in guest RAM");
+-            uint64_t storeReg1 = 0u;
+-            uint64_t storeReg2 = 0u;
+-            uint64_t storeReg3 = 0u;
+-            uint64_t storeReg4 = 0u;
+-            std::memcpy(&storeReg1, rdram + runtime.guestHeapBase() + 24u, sizeof(storeReg1));
+-            std::memcpy(&storeReg2, rdram + runtime.guestHeapBase() + 40u, sizeof(storeReg2));
+-            std::memcpy(&storeReg3, rdram + runtime.guestHeapBase() + 56u, sizeof(storeReg3));
+-            std::memcpy(&storeReg4, rdram + runtime.guestHeapBase() + 72u, sizeof(storeReg4));
+-            t.Equals(storeReg1, 0x50ull, "sceGsExecStoreImage should encode BITBLTBUF as A+D register 0x50");
+-            t.Equals(storeReg2, 0x51ull, "sceGsExecStoreImage should encode TRXPOS as A+D register 0x51");
+-            t.Equals(storeReg3, 0x52ull, "sceGsExecStoreImage should encode TRXREG as A+D register 0x52");
+-            t.Equals(storeReg4, 0x53ull, "sceGsExecStoreImage should encode TRXDIR as A+D register 0x53");
+-            expectGuestHeapReusable(t, runtime,
+-                                    "sceGsExecStoreImage should free its temporary GIF packet");
++            bool storeScratchIntact = true;
++            for (uint32_t i = 0u; i < 128u; ++i)
++                storeScratchIntact &= rdram[heap + i] == 0xA5u;
++            t.IsTrue(storeScratchIntact, "SDK transfer must preserve guest heap/stack memory");
+ 
+             bool roundtripOk = true;
+             size_t mismatchIndex = 0u;

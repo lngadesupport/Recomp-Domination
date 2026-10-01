@@ -135,3 +135,19 @@ if($verifyMemory -notmatch 'savedRow\[4\]' -or
 }
 
 Write-Host 'Applied and verified Downhill VIF1 ROW/COL patch, regression test, and FileIO failure trace.' -ForegroundColor Green
+
+# Host transfer memory, physical ISO extents, and terminal PSS markers.
+$runtimePin = (& git -C $root rev-parse HEAD).Trim()
+if ($LASTEXITCODE -ne 0 -or $runtimePin -ne '75d729ce40d7eed9649fd4bb05628dee520f3d0c') {
+    throw 'Pinned PS2Recomp revision required for runtime bring-up patches.'
+}
+foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end')) {
+    $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
+    & git -C $root apply --reverse --check $patchFile 2>$null
+    if ($LASTEXITCODE -eq 0) { continue }
+    & git -C $root apply --check $patchFile
+    if ($LASTEXITCODE -ne 0) { throw "Runtime patch does not match pinned source: $name" }
+    & git -C $root apply $patchFile
+    if ($LASTEXITCODE -ne 0) { throw "Runtime patch failed: $name" }
+}
+Write-Host 'Applied and verified version-pinned GS, ISO lookup, and MPEG program-end patches.' -ForegroundColor Green

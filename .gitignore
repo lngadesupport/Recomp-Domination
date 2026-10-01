@@ -25,3 +25,7 @@ config/downhill.extra_entry_points.local.txt
 *.suo
 .DS_Store
 Thumbs.db
+
+# Local Python tool caches
+__pycache__/
+*.pyc

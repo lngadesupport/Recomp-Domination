@@ -155,6 +155,10 @@ namespace
 
         const bool sifBound =
             ps2_game_overrides::bindAddressHandler(runtime, kSceSifSendCmd, "sceSifSendCmd");
+        const bool mpegEndBound =
+            ps2_game_overrides::bindAddressHandler(runtime, 0x0024D1C0u, "sceMpegIsEnd");
+        const bool mpegEmptyBound =
+            ps2_game_overrides::bindAddressHandler(runtime, 0x0024D1D0u, "sceMpegIsRefBuffEmpty");
         const bool memcpyBound =
             ps2_game_overrides::bindAddressHandler(runtime, kMemcpy, "memcpy");
         const bool cdSearchBound =
@@ -168,6 +172,10 @@ namespace
         if (!sifBound)
         {
             std::cerr << "[downhill] failed to bind sceSifSendCmd at 0x0025C440\n";
+        }
+        if (!mpegEndBound || !mpegEmptyBound)
+        {
+            std::cerr << "[downhill] failed to bind MPEG state queries\n";
         }
         if (!memcpyBound || !cdSearchBound)
         {
