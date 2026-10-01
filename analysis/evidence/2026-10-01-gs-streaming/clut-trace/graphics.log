@@ -1,0 +1,418 @@
+[gs:image-transfer] number=1 direction=0 dpsm=0 dbp=4872 dbw=1 rect=0,0,8,2
+[gs:image-transfer] number=2 direction=0 dpsm=0 dbp=4880 dbw=1 rect=0,0,16,16
+[gs:image-transfer] number=3 direction=0 dpsm=36 dbp=0 dbw=8 rect=0,0,512,512
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6753 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:image-transfer] number=4 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,0,16,16
+[gs:image-transfer] number=5 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,16,16,16
+[gs:image-transfer] number=6 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,32,16,16
+[gs:image-transfer] number=7 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,48,16,16
+[gs:image-transfer] number=8 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,64,16,16
+[gs:image-transfer] number=9 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,80,16,16
+[gs:image-transfer] number=10 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,96,16,16
+[gs:image-transfer] number=11 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,112,16,16
+[gs:image-transfer] number=12 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,128,16,16
+[gs:image-transfer] number=13 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,144,16,16
+[gs:image-transfer] number=14 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,160,16,16
+[gs:image-transfer] number=15 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,176,16,16
+[gs:image-transfer] number=16 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,192,16,16
+[gs:image-transfer] number=256 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,352,16,16
+[gs:image-transfer] number=512 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,32,16,16
+[gs:image-transfer] number=768 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,80,16,16
+[gs:image-transfer] number=1024 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,128,16,16
+[gs:image-transfer] number=1280 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,176,16,16
+[gs:image-transfer] number=1536 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,224,16,16
+[gs:image-transfer] number=1792 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,272,16,16
+[gs:image-transfer] number=2048 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,320,16,16
+[gs:image-transfer] number=2304 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,0,16,16
+[gs:image-transfer] number=2560 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,48,16,16
+[gs:image-transfer] number=2816 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,96,16,16
+[gs:image-transfer] number=3072 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,144,16,16
+[gs:image-transfer] number=3328 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,192,16,16
+[gs:image-transfer] number=3584 direction=0 dpsm=0 dbp=8960 dbw=10 rect=560,240,16,16
+[gs:image-transfer] number=3840 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,288,16,16
+[gs:image-transfer] number=4096 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,336,16,16
+[gs:image-transfer] number=4352 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,16,16,16
+[gs:image-transfer] number=4608 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,64,16,16
+[gs:image-transfer] number=4864 direction=0 dpsm=0 dbp=8960 dbw=10 rect=176,112,16,16
+[gs:image-transfer] number=5120 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,160,16,16
+[gs:image-transfer] number=5376 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,208,16,16
+[gs:image-transfer] number=5632 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,256,16,16
+[gs:image-transfer] number=5888 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,304,16,16
+[gs:image-transfer] number=6144 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,352,16,16
+[gs:image-transfer] number=6400 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,32,16,16
+[gs:image-transfer] number=6656 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,80,16,16
+[gs:image-transfer] number=6912 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,128,16,16
+[gs:image-transfer] number=7168 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,176,16,16
+[gs:image-transfer] number=7424 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,224,16,16
+[gs:image-transfer] number=7680 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,272,16,16
+[gs:image-transfer] number=7936 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,320,16,16
+[gs:image-transfer] number=8192 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,0,16,16
+[gs:image-transfer] number=8448 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,48,16,16
+[gs:image-transfer] number=8704 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,96,16,16
+[gs:image-transfer] number=8960 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,144,16,16
+[gs:image-transfer] number=9216 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,192,16,16
+[gs:image-transfer] number=9472 direction=0 dpsm=0 dbp=8960 dbw=10 rect=176,240,16,16
+[gs:image-transfer] number=9728 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,288,16,16
+[gs:image-transfer] number=9984 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,336,16,16
+[gs:image-transfer] number=10240 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,16,16,16
+[gs:image-transfer] number=10496 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,64,16,16
+[gs:image-transfer] number=10752 direction=0 dpsm=0 dbp=8960 dbw=10 rect=432,112,16,16
+[gs:image-transfer] number=11008 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,160,16,16
+[gs:image-transfer] number=11264 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,208,16,16
+[gs:image-transfer] number=11520 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,256,16,16
+[gs:image-transfer] number=11776 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,304,16,16
+[gs:image-transfer] number=12032 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,352,16,16
+[gs:image-transfer] number=12288 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,32,16,16
+[gs:image-transfer] number=12544 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,80,16,16
+[gs:image-transfer] number=12800 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,128,16,16
+[gs:image-transfer] number=13056 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,176,16,16
+[gs:image-transfer] number=13312 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,224,16,16
+[gs:image-transfer] number=13568 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,272,16,16
+[gs:image-transfer] number=13824 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,320,16,16
+[gs:image-transfer] number=14080 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,0,16,16
+[gs:image-transfer] number=14336 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,48,16,16
+[gs:image-transfer] number=14592 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,96,16,16
+[gs:image-transfer] number=14848 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,144,16,16
+[gs:image-transfer] number=15104 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,192,16,16
+[gs:image-transfer] number=15360 direction=0 dpsm=0 dbp=8960 dbw=10 rect=432,240,16,16
+[gs:image-transfer] number=15616 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,288,16,16
+[gs:image-transfer] number=15872 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,336,16,16
+[gs:image-transfer] number=16128 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,16,16,16
+[gs:image-transfer] number=16384 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,64,16,16
+[gs:image-transfer] number=16640 direction=0 dpsm=0 dbp=8960 dbw=10 rect=48,112,16,16
+[gs:image-transfer] number=16896 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,160,16,16
+[gs:image-transfer] number=17152 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,208,16,16
+[gs:image-transfer] number=17408 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,256,16,16
+[gs:image-transfer] number=17664 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,304,16,16
+[gs:image-transfer] number=17920 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,352,16,16
+[gs:image-transfer] number=18176 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,32,16,16
+[gs:image-transfer] number=18432 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,80,16,16
+[gs:image-transfer] number=18688 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,128,16,16
+[gs:image-transfer] number=18944 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,176,16,16
+[gs:image-transfer] number=19200 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,224,16,16
+[gs:image-transfer] number=19456 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,272,16,16
+[gs:image-transfer] number=19712 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,320,16,16
+[gs:image-transfer] number=19968 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,0,16,16
+[gs:image-transfer] number=20224 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,48,16,16
+[gs:image-transfer] number=20480 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,96,16,16
+[gs:image-transfer] number=20736 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,144,16,16
+[gs:image-transfer] number=20992 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,192,16,16
+[gs:image-transfer] number=21248 direction=0 dpsm=0 dbp=8960 dbw=10 rect=48,240,16,16
+[gs:image-transfer] number=21504 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,288,16,16
+[gs:image-transfer] number=21760 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,336,16,16
+[gs:image-transfer] number=22016 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,16,16,16
+[gs:image-transfer] number=22272 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,64,16,16
+[gs:image-transfer] number=22528 direction=0 dpsm=0 dbp=8960 dbw=10 rect=304,112,16,16
+[gs:image-transfer] number=22784 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,160,16,16
+[gs:image-transfer] number=23040 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,208,16,16
+[gs:image-transfer] number=23296 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,256,16,16
+[gs:image-transfer] number=23552 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,304,16,16
+[gs:image-transfer] number=23808 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,352,16,16
+[gs:image-transfer] number=24064 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,32,16,16
+[gs:image-transfer] number=24320 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,80,16,16
+[gs:image-transfer] number=24576 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,128,16,16
+[gs:image-transfer] number=24832 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,176,16,16
+[gs:image-transfer] number=25088 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,224,16,16
+[gs:image-transfer] number=25344 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,272,16,16
+[gs:image-transfer] number=25600 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,320,16,16
+[gs:image-transfer] number=25856 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,0,16,16
+[gs:image-transfer] number=26112 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,48,16,16
+[gs:image-transfer] number=26368 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,96,16,16
+[gs:image-transfer] number=26624 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,144,16,16
+[gs:image-transfer] number=26880 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,192,16,16
+[gs:image-transfer] number=27136 direction=0 dpsm=0 dbp=8960 dbw=10 rect=304,240,16,16
+[gs:image-transfer] number=27392 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,288,16,16
+[gs:image-transfer] number=27648 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,336,16,16
+[gs:image-transfer] number=27904 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,16,16,16
+[gs:image-transfer] number=28160 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,64,16,16
+[gs:image-transfer] number=28416 direction=0 dpsm=0 dbp=8960 dbw=10 rect=560,112,16,16
+[gs:image-transfer] number=28672 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,160,16,16
+[gs:image-transfer] number=28928 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,208,16,16
+[gs:image-transfer] number=29184 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,256,16,16
+[gs:image-transfer] number=29440 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,304,16,16
+[gs:image-transfer] number=29696 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,352,16,16
+[gs:image-transfer] number=29952 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,32,16,16
+[gs:image-transfer] number=30208 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,80,16,16
+[gs:image-transfer] number=30464 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,128,16,16
+[gs:image-transfer] number=30720 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,176,16,16
+[gs:image-transfer] number=30976 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,224,16,16
+[gs:image-transfer] number=31232 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,272,16,16
+[gs:image-transfer] number=31488 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,320,16,16
+[gs:image-transfer] number=31744 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,0,16,16
+[gs:image-transfer] number=32000 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,48,16,16
+[gs:image-transfer] number=32256 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,96,16,16
+[gs:image-transfer] number=32512 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,144,16,16
+[gs:image-transfer] number=32768 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,192,16,16
+[gs:image-transfer] number=33024 direction=0 dpsm=0 dbp=8960 dbw=10 rect=560,240,16,16
+[gs:image-transfer] number=33280 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,288,16,16
+[gs:image-transfer] number=33536 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,336,16,16
+[gs:image-transfer] number=33792 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,16,16,16
+[gs:image-transfer] number=34048 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,64,16,16
+[gs:image-transfer] number=34304 direction=0 dpsm=0 dbp=8960 dbw=10 rect=176,112,16,16
+[gs:image-transfer] number=34560 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,160,16,16
+[gs:image-transfer] number=34816 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,208,16,16
+[gs:image-transfer] number=35072 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,256,16,16
+[gs:image-transfer] number=35328 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,304,16,16
+[gs:image-transfer] number=35584 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,352,16,16
+[gs:image-transfer] number=35840 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,32,16,16
+[gs:image-transfer] number=36096 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,80,16,16
+[gs:image-transfer] number=36352 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,128,16,16
+[gs:image-transfer] number=36608 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,176,16,16
+[gs:image-transfer] number=36864 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,224,16,16
+[gs:image-transfer] number=37120 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,272,16,16
+[gs:image-transfer] number=37376 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,320,16,16
+[gs:image-transfer] number=37632 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,0,16,16
+[gs:image-transfer] number=37888 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,48,16,16
+[gs:image-transfer] number=38144 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,96,16,16
+[gs:image-transfer] number=38400 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,144,16,16
+[gs:image-transfer] number=38656 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,192,16,16
+[gs:image-transfer] number=38912 direction=0 dpsm=0 dbp=8960 dbw=10 rect=176,240,16,16
+[gs:image-transfer] number=39168 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,288,16,16
+[gs:image-transfer] number=39424 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,336,16,16
+[gs:image-transfer] number=39680 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,16,16,16
+[gs:image-transfer] number=39936 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,64,16,16
+[gs:image-transfer] number=40192 direction=0 dpsm=0 dbp=8960 dbw=10 rect=432,112,16,16
+[gs:image-transfer] number=40448 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,160,16,16
+[gs:image-transfer] number=40704 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,208,16,16
+[gs:image-transfer] number=40960 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,256,16,16
+[gs:image-transfer] number=41216 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,304,16,16
+[gs:image-transfer] number=41472 direction=0 dpsm=0 dbp=8960 dbw=10 rect=32,352,16,16
+[gs:image-transfer] number=41728 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,32,16,16
+[gs:image-transfer] number=41984 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,80,16,16
+[gs:image-transfer] number=42240 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,128,16,16
+[gs:image-transfer] number=42496 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,176,16,16
+[gs:image-transfer] number=42752 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,224,16,16
+[gs:image-transfer] number=43008 direction=0 dpsm=0 dbp=8960 dbw=10 rect=464,272,16,16
+[gs:image-transfer] number=43264 direction=0 dpsm=0 dbp=8960 dbw=10 rect=0,320,16,16
+[gs:image-transfer] number=43520 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,0,16,16
+[gs:image-transfer] number=43776 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,48,16,16
+[gs:image-transfer] number=44032 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,96,16,16
+[gs:image-transfer] number=44288 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,144,16,16
+[gs:image-transfer] number=44544 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,192,16,16
+[gs:image-transfer] number=44800 direction=0 dpsm=0 dbp=8960 dbw=10 rect=432,240,16,16
+[gs:image-transfer] number=45056 direction=0 dpsm=0 dbp=8960 dbw=10 rect=608,288,16,16
+[gs:image-transfer] number=45312 direction=0 dpsm=0 dbp=8960 dbw=10 rect=144,336,16,16
+[gs:image-transfer] number=45568 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,16,16,16
+[gs:image-transfer] number=45824 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,64,16,16
+[gs:image-transfer] number=46080 direction=0 dpsm=0 dbp=8960 dbw=10 rect=48,112,16,16
+[gs:image-transfer] number=46336 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,160,16,16
+[gs:image-transfer] number=46592 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,208,16,16
+[gs:image-transfer] number=46848 direction=0 dpsm=0 dbp=8960 dbw=10 rect=576,256,16,16
+[gs:image-transfer] number=47104 direction=0 dpsm=0 dbp=8960 dbw=10 rect=112,304,16,16
+[gs:image-transfer] number=47360 direction=0 dpsm=0 dbp=8960 dbw=10 rect=288,352,16,16
+[gs:image-transfer] number=47616 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,32,16,16
+[gs:image-transfer] number=47872 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,80,16,16
+[gs:image-transfer] number=48128 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,128,16,16
+[gs:image-transfer] number=48384 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,176,16,16
+[gs:image-transfer] number=48640 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,224,16,16
+[gs:image-transfer] number=48896 direction=0 dpsm=0 dbp=8960 dbw=10 rect=80,272,16,16
+[gs:image-transfer] number=49152 direction=0 dpsm=0 dbp=8960 dbw=10 rect=256,320,16,16
+[gs:image-transfer] number=49408 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,0,16,16
+[gs:image-transfer] number=49664 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,48,16,16
+[gs:image-transfer] number=49920 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,96,16,16
+[gs:image-transfer] number=50176 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,144,16,16
+[gs:image-transfer] number=50432 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,192,16,16
+[gs:image-transfer] number=50688 direction=0 dpsm=0 dbp=8960 dbw=10 rect=48,240,16,16
+[gs:image-transfer] number=50944 direction=0 dpsm=0 dbp=8960 dbw=10 rect=224,288,16,16
+[gs:image-transfer] number=51200 direction=0 dpsm=0 dbp=8960 dbw=10 rect=400,336,16,16
+[gs:image-transfer] number=51456 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,16,16,16
+[gs:image-transfer] number=51712 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,64,16,16
+[gs:image-transfer] number=51968 direction=0 dpsm=0 dbp=8960 dbw=10 rect=304,112,16,16
+[gs:image-transfer] number=52224 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,160,16,16
+[gs:image-transfer] number=52480 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,208,16,16
+[gs:image-transfer] number=52736 direction=0 dpsm=0 dbp=8960 dbw=10 rect=192,256,16,16
+[gs:image-transfer] number=52992 direction=0 dpsm=0 dbp=8960 dbw=10 rect=368,304,16,16
+[gs:image-transfer] number=53248 direction=0 dpsm=0 dbp=8960 dbw=10 rect=544,352,16,16
+[gs:image-transfer] number=53504 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,32,16,16
+[gs:image-transfer] number=53760 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,80,16,16
+[gs:image-transfer] number=54016 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,128,16,16
+[gs:image-transfer] number=54272 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,176,16,16
+[gs:image-transfer] number=54528 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,224,16,16
+[gs:image-transfer] number=54784 direction=0 dpsm=0 dbp=8960 dbw=10 rect=336,272,16,16
+[gs:image-transfer] number=55040 direction=0 dpsm=0 dbp=8960 dbw=10 rect=512,320,16,16
+[gs:image-transfer] number=55296 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,0,16,16
+[gs:image-transfer] number=55552 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,48,16,16
+[gs:image-transfer] number=55808 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,96,16,16
+[gs:image-transfer] number=56064 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,144,16,16
+[gs:image-transfer] number=56320 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,192,16,16
+[gs:image-transfer] number=56576 direction=0 dpsm=0 dbp=8960 dbw=10 rect=304,240,16,16
+[gs:image-transfer] number=56832 direction=0 dpsm=0 dbp=8960 dbw=10 rect=480,288,16,16
+[gs:image-transfer] number=57088 direction=0 dpsm=0 dbp=8960 dbw=10 rect=16,336,16,16
+[gs:image-transfer] number=57344 direction=0 dpsm=0 dbp=8960 dbw=10 rect=208,16,16,16
+[gs:image-transfer] number=57600 direction=0 dpsm=0 dbp=8960 dbw=10 rect=384,64,16,16
+[gs:image-transfer] number=57856 direction=0 dpsm=0 dbp=8960 dbw=10 rect=560,112,16,16
+[gs:image-transfer] number=58112 direction=0 dpsm=0 dbp=8960 dbw=10 rect=96,160,16,16
+[gs:image-transfer] number=58368 direction=0 dpsm=0 dbp=8960 dbw=10 rect=272,208,16,16
+[gs:image-transfer] number=58624 direction=0 dpsm=0 dbp=8960 dbw=10 rect=448,256,16,16
+[gs:image-transfer] number=58880 direction=0 dpsm=0 dbp=8960 dbw=10 rect=624,304,16,16
+[gs:image-transfer] number=59136 direction=0 dpsm=0 dbp=8960 dbw=10 rect=160,352,16,16
+[gs:image-transfer] number=59392 direction=0 dpsm=0 dbp=8960 dbw=10 rect=352,32,16,16
+[gs:image-transfer] number=59648 direction=0 dpsm=0 dbp=8960 dbw=10 rect=528,80,16,16
+[gs:image-transfer] number=59904 direction=0 dpsm=0 dbp=8960 dbw=10 rect=64,128,16,16
+[gs:image-transfer] number=60160 direction=0 dpsm=0 dbp=8960 dbw=10 rect=240,176,16,16
+[gs:image-transfer] number=60416 direction=0 dpsm=0 dbp=8960 dbw=10 rect=416,224,16,16
+[gs:image-transfer] number=60672 direction=0 dpsm=0 dbp=8960 dbw=10 rect=592,272,16,16
+[gs:image-transfer] number=60928 direction=0 dpsm=0 dbp=8960 dbw=10 rect=128,320,16,16
+[gs:image-transfer] number=61184 direction=0 dpsm=0 dbp=8960 dbw=10 rect=320,0,16,16
+[gs:image-transfer] number=61440 direction=0 dpsm=0 dbp=8960 dbw=10 rect=496,48,16,16

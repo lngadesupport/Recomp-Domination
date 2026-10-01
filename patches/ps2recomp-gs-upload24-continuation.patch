@@ -1,0 +1,85 @@
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -537,6 +537,7 @@
+     m_clutCbp.fill(0u);
+     m_texturePageCache.Invalidate();
+     m_transfer = {};
++    m_upload24PartialBytes = 0;
+     m_transfer.direction = 3u;
+     m_transferState = {};
+     m_transferState.direction = 3u;
+@@ -1481,6 +1482,7 @@
+ {
+     std::lock_guard<std::mutex> lock(m_mutex);
+     m_transfer = command;
++    m_upload24PartialBytes = 0;
+     m_transferState.x = command.trxpos.dsax;
+     m_transferState.y = command.trxpos.dsay;
+     m_transferState.totalPixels = static_cast<uint32_t>(command.trxreg.rrw) * static_cast<uint32_t>(command.trxreg.rrh);
+@@ -1488,6 +1490,19 @@
+     m_transferState.direction = command.direction;
+     m_transferState.localToHostPendingBytes = 0u;
+ 
++    static const bool traceImages = std::getenv("PS2_TRACE_GS_IMAGE_TRANSFERS") != nullptr;
++    static std::atomic<uint64_t> transferCount{0}, transferLogs{0};
++    if (traceImages)
++    {
++        const uint64_t count = transferCount.fetch_add(1, std::memory_order_relaxed) + 1;
++        if ((count <= 16 || count % 256 == 0 || command.bitbltbuf.dpsm == GS_PSM_CT24 || command.bitbltbuf.dpsm == GS_PSM_Z24) &&
++            transferLogs.fetch_add(1, std::memory_order_relaxed) < 256)
++            std::cerr << "[gs:image-transfer] number=" << count << " direction=" << command.direction
++                      << " dpsm=" << unsigned(command.bitbltbuf.dpsm) << " dbp=" << command.bitbltbuf.dbp
++                      << " dbw=" << unsigned(command.bitbltbuf.dbw) << " rect=" << command.trxpos.dsax << ','
++                      << command.trxpos.dsay << ',' << command.trxreg.rrw << ',' << command.trxreg.rrh << '\n';
++    }
++
+     if (command.direction == 2u)
+         PerformLocalToLocalTransfer();
+     else if (command.direction == 1u)
+@@ -1508,6 +1523,13 @@
+     const uint32_t rrw = m_transfer.trxreg.rrw;
+     const uint32_t dsax = m_transfer.trxpos.dsax;
+     uint32_t offset = 0u;
++
++    static const bool traceImages = std::getenv("PS2_TRACE_GS_IMAGE_TRANSFERS") != nullptr;
++    static std::atomic<uint64_t> uploadLogs{0};
++    if (traceImages && (dpsm == GS_PSM_CT24 || dpsm == GS_PSM_Z24) &&
++        uploadLogs.fetch_add(1, std::memory_order_relaxed) < 128)
++        std::cerr << "[gs:image-upload24] dpsm=" << unsigned(dpsm) << " bytes=" << sizeBytes
++                  << " copied=" << m_transferState.copiedPixels << " pending=" << unsigned(m_upload24PartialBytes) << '\n';
+ 
+     auto advancePixel = [&](uint32_t count)
+     {
+@@ -1545,13 +1567,16 @@
+         case GS_PSM_CT24:
+         case GS_PSM_Z24:
+         {
+-            if (sizeBytes - offset < 3u)
++            // IMAGE blocks need not end on a 24-bit pixel boundary.
++            while (offset < sizeBytes && m_upload24PartialBytes < 3u)
++                m_upload24Partial[m_upload24PartialBytes++] = data[offset++];
++            if (m_upload24PartialBytes < 3u)
+                 return;
+-            const uint32_t value = static_cast<uint32_t>(data[offset]) |
+-                                   (static_cast<uint32_t>(data[offset + 1u]) << 8u) |
+-                                   (static_cast<uint32_t>(data[offset + 2u]) << 16u);
++            const uint32_t value = static_cast<uint32_t>(m_upload24Partial[0]) |
++                                   (static_cast<uint32_t>(m_upload24Partial[1]) << 8u) |
++                                   (static_cast<uint32_t>(m_upload24Partial[2]) << 16u);
++            m_upload24PartialBytes = 0;
+             WriteVramUnlocked(dpsm, dbp, dbw, m_transferState.x, m_transferState.y, value);
+-            offset += 3u;
+             advancePixel(1u);
+             break;
+         }
+--- a/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
++++ b/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
+@@ -76,6 +76,8 @@
+ 
+     GSTransferCommand m_transfer{};
+     GSTransferSnapshot m_transferState{};
++    std::array<uint8_t, 3> m_upload24Partial{};
++    uint8_t m_upload24PartialBytes = 0;
+     std::vector<uint8_t> m_localToHostBuffer;
+     size_t m_localToHostReadPos = 0;
+ };

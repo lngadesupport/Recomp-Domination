@@ -1,0 +1,37 @@
+name: Production GS renderer regression
+on:
+  push:
+    branches: ['bringup/**', bootstrap/compiler]
+    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/gs*', 'tests/gs-renderer/**', '.github/workflows/gs-renderer-ci.yml']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  production-renderer:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout and patch pinned engine
+        shell: bash
+        run: |
+          git clone https://github.com/ran-j/PS2Recomp.git _ci/PS2Recomp
+          git -C _ci/PS2Recomp checkout 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+          python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+      - name: Configure production renderer without game assets
+        shell: bash
+        run: |
+          cmake -S tests/gs-renderer -B _ci/gs-build -DCMAKE_BUILD_TYPE=Debug \
+            -DPS2RECOMP_SOURCE="$PWD/_ci/PS2Recomp" \
+            -DGS_TEST_SANITIZE=${{ runner.os == 'Linux' && 'ON' || 'OFF' }}
+      - name: Build renderer and fixtures
+        run: cmake --build _ci/gs-build --config Debug --parallel 2
+      - name: Run renderer regressions
+        run: ctest --test-dir _ci/gs-build -C Debug --output-on-failure
