@@ -46,3 +46,7 @@ Optional diagnostics, disabled by default:
 The image-address correction is unconditional. Diagnostics preserve normal writes and rendering. The extra entry-1 sampler performs an additional read under the backend lock. Raw public evidence excludes game assets and generated retail C++.
 
 For independent register-unit context, the [ps2dev gsKit texture sender](https://github.com/ps2dev/gsKit/blob/master/ee/gs/src/gsTexture.c) packs both texture and BITBLTBUF addresses in byte-address/256 units.
+
+## Input continuation
+
+A further identity-verified 140.010-second native probe used the same corrected executable. An XTest controller in the probe's own Xvfb namespace sent Space, Return and Space, holding each for one second and recording each event's UTC time. Captures at 70 and 135 seconds show Single Player / Multi-Player / Options and Player One / Select Rider text. This establishes a visible menu transition following input, not a complete menu or race certification: models/backgrounds remain absent and interface layers overlap. The 180-second first input attempt received no keys because its controller ran outside the probe's display namespace; it is excluded from input-response evidence. The retry kept the controller and probe in the same execution context.
