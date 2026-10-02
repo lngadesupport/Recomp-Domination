@@ -96,3 +96,12 @@ foreach(mode IN ITEMS enabled disabled malformed)
     endif()
     set_tests_properties(vu_xgkick_error_${mode} PROPERTIES TIMEOUT 60)
 endforeach()
+
+add_test(NAME vu_xgkick_history COMMAND gif_image2_test oversized)
+set_tests_properties(vu_xgkick_history PROPERTIES TIMEOUT 60
+    ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=1;PS2_TRACE_VU_XGKICK_HISTORY=1;PS2_TRACE_VU_XGKICK_SOURCE_QW=0"
+    PASS_REGULAR_EXPRESSION "vu:xgkick-step.*pc=0x0.*lower=0x800006fc")
+add_test(NAME vu_xgkick_history_bad_source COMMAND gif_image2_test oversized)
+set_tests_properties(vu_xgkick_history_bad_source PROPERTIES TIMEOUT 60
+    ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=1;PS2_TRACE_VU_XGKICK_HISTORY=1;PS2_TRACE_VU_XGKICK_SOURCE_QW=bad"
+    FAIL_REGULAR_EXPRESSION "vu:xgkick-history|vu:xgkick-step|vu:xgkick-store")
