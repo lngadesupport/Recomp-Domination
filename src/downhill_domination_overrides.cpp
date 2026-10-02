@@ -268,6 +268,10 @@ namespace
 
     PS2Runtime::RecompiledFunction originalResourceReturn = nullptr;
     PS2Runtime::RecompiledFunction originalResourceCaller = nullptr;
+    PS2Runtime::RecompiledFunction originalResourceParent = nullptr;
+    PS2Runtime::RecompiledFunction originalResourceChild = nullptr;
+    uint64_t resourceParentCalls = 0, resourceParentAnomalies = 0;
+    uint64_t resourceChildCalls = 0, resourceChildAnomalies = 0;
     uint64_t resourceReturnCalls = 0, resourceReturnAnomalies = 0;
     uint64_t resourceCallerCalls = 0, resourceCallerAnomalies = 0;
     void traceResourceFrame(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime,
@@ -277,12 +281,16 @@ namespace
         const uint32_t entryPc = ctx->pc, entrySp = GPR_U32(ctx, 29), entryRa = GPR_U32(ctx, 31);
         const uint32_t frame = entryPc == base ? entrySp - size : entrySp;
         const uint32_t savedBefore = Ps2FastRead32(rdram, frame + raOffset);
+        const uint32_t entryA0 = GPR_U32(ctx, 4), entryA1 = GPR_U32(ctx, 5);
+        const uint32_t expectedSp = frame + size;
+        const uint32_t expectedRa = entryPc == base ? entryRa : savedBefore;
         const uint64_t call = ++calls;
         original(rdram, ctx, runtime);
         const uint32_t savedAfter = Ps2FastRead32(rdram, frame + raOffset);
         const bool invalidTarget = ctx->pc != 0u && !runtime->hasFunction(ctx->pc);
         const bool invalidSaved = savedAfter != 0u && !runtime->hasFunction(savedAfter);
-        const uint64_t anomaly = (invalidTarget || invalidSaved) ? ++anomalies : 0u;
+        const bool stackMismatch = ctx->pc == expectedRa && GPR_U32(ctx, 29) != expectedSp;
+        const uint64_t anomaly = (invalidTarget || invalidSaved || stackMismatch) ? ++anomalies : 0u;
         const bool sample = call <= 16u || (call & (call - 1u)) == 0u;
         const bool sampleAnomaly = anomaly && (anomaly <= 32u || (anomaly & (anomaly - 1u)) == 0u);
         if (!sample && !sampleAnomaly) return;
@@ -291,6 +299,8 @@ namespace
              << " thread=" << runtime->eeScheduler().currentThreadId()
              << std::hex << " routine=0x" << base << " entry_pc=0x" << entryPc << " entry_sp=0x" << entrySp
              << " entry_ra=0x" << entryRa << " frame=0x" << frame
+             << " a0=0x" << entryA0 << " a1=0x" << entryA1
+             << " expected_sp=0x" << expectedSp << " expected_ra=0x" << expectedRa
              << " saved_before=0x" << savedBefore << " saved_after=0x" << savedAfter
              << " exit_pc=0x" << ctx->pc << " exit_ra=0x" << GPR_U32(ctx, 31)
              << " exit_sp=0x" << GPR_U32(ctx, 29) << " branch_pc=0x" << ctx->branch_pc << std::dec << '\n';
@@ -306,6 +316,17 @@ namespace
     {
         traceResourceFrame(rdram, ctx, runtime, originalResourceCaller, 0x00205F40u, 64u, 48u,
                            resourceCallerCalls, resourceCallerAnomalies);
+    }
+
+    void downhillTraceResourceParent(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        traceResourceFrame(rdram, ctx, runtime, originalResourceParent, 0x00204C40u, 16u, 0u,
+                           resourceParentCalls, resourceParentAnomalies);
+    }
+    void downhillTraceResourceChild(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        traceResourceFrame(rdram, ctx, runtime, originalResourceChild, 0x00204CE0u, 16u, 0u,
+                           resourceChildCalls, resourceChildAnomalies);
     }
 
     uint64_t dmaWaitCalls = 0;
@@ -332,6 +353,17 @@ namespace
         const char *returnTrace = std::getenv("PS2_TRACE_DOWNHILL_RESOURCE_RETURN");
         if (returnTrace && std::strcmp(returnTrace, "1") == 0)
         {
+            originalResourceParent = runtime.lookupFunction(0x00204C40u);
+            originalResourceChild = runtime.lookupFunction(0x00204CE0u);
+            resourceParentCalls = resourceParentAnomalies = 0;
+            resourceChildCalls = resourceChildAnomalies = 0;
+            if (originalResourceParent)
+                for (const uint32_t pc : {0x00204C40u, 0x00204C9Cu, 0x00204CD0u})
+                    runtime.replaceFunction(pc, downhillTraceResourceParent);
+            if (originalResourceChild)
+                for (const uint32_t pc : {0x00204CE0u, 0x00204D3Cu, 0x00204D50u, 0x00204DB8u,
+                                          0x00204DCCu, 0x00204DE0u, 0x00204DF4u, 0x00204E08u, 0x00204E1Cu})
+                    runtime.replaceFunction(pc, downhillTraceResourceChild);
             originalResourceReturn = runtime.lookupFunction(0x00203D18u);
             resourceReturnCalls = resourceReturnAnomalies = 0;
             originalResourceCaller = runtime.lookupFunction(0x00205F40u);
