@@ -50,3 +50,9 @@ For independent register-unit context, the [ps2dev gsKit texture sender](https:/
 ## Input continuation
 
 A further identity-verified 140.010-second native probe used the same corrected executable. An XTest controller in the probe's own Xvfb namespace sent Space, Return and Space, holding each for one second and recording each event's UTC time. Captures at 70 and 135 seconds show Single Player / Multi-Player / Options and Player One / Select Rider text. This establishes a visible menu transition following input, not a complete menu or race certification: models/backgrounds remain absent and interface layers overlap. The 180-second first input attempt received no keys because its controller ran outside the probe's display namespace; it is excluded from input-response evidence. The retry kept the controller and probe in the same execution context.
+
+## Hosted validation
+
+The production renderer workflow passed on Linux and Windows (run [37004910277](https://github.com/lngadesupport/Recomp-Domination/actions/runs/37004910277)); the COP0 DMA condition workflow also passed (run [37004910302](https://github.com/lngadesupport/Recomp-Domination/actions/runs/37004910302)).
+
+The first recovery workflow exposed a Windows PowerShell 5 failure in expected negative reverse-patch checks. The canonical script now suppresses native stderr only for those checks and restores its error preference before applying patches. At source commit `9bdf5fc2525e488a11bb79fbeecc986de276c822`, recovery run [37005364982](https://github.com/lngadesupport/Recomp-Domination/actions/runs/37005364982) passed on both Linux and Windows, including MSVC handler compilation and 100,000 native cases per platform. This validates the patched runtime components, not a complete Windows game executable or playable race.
