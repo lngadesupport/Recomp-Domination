@@ -64,3 +64,17 @@ else()
 endif()
 add_test(NAME guest_checkpoint_return COMMAND guest_checkpoint_return_test)
 set_tests_properties(guest_checkpoint_return PROPERTIES TIMEOUT 60)
+
+add_executable(gif_image2_test
+    "${CMAKE_CURRENT_LIST_DIR}/gif_image2_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(gif_image2_test PRIVATE cxx_std_20)
+target_link_libraries(gif_image2_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(gif_image2_test PRIVATE /arch:AVX2)
+    target_link_options(gif_image2_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(gif_image2_test PRIVATE -mavx2)
+endif()
+add_test(NAME gif_image2 COMMAND gif_image2_test)
+set_tests_properties(gif_image2 PROPERTIES TIMEOUT 60)
