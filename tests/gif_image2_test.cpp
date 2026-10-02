@@ -10,7 +10,18 @@
 static uint64_t tag(unsigned format, unsigned loops=1) {
     return loops | (1ull<<15) | (uint64_t(format)<<58);
 }
-int main() {
+int main(int argc, char**) {
+    if(argc>1) {
+        PS2Memory mem; if(!mem.initialize()) return 10;
+        GS gs;gs.init(mem.getGSVRAM(),PS2_GS_VRAM_SIZE,&mem.gs());
+        const uint64_t oversized=tag(0,4096);std::memcpy(mem.getVU1Data(),&oversized,8);
+        const uint32_t kick=(0x40u<<25)|(0x6cu<<4)|0x3cu,nop=0x2ffu;
+        std::memcpy(mem.getVU1Code(),&kick,4);std::memcpy(mem.getVU1Code()+4,&nop,4);
+        unsigned packets=0;mem.setGifPacketCallback([&](const uint8_t*,uint32_t){++packets;});
+        VU1Interpreter vu;vu.execute(mem.getVU1Code(),PS2_VU1_CODE_SIZE,mem.getVU1Data(),PS2_VU1_DATA_SIZE,gs,&mem,0,0,0,3);
+        if(packets!=0) return 11;
+        std::puts("Oversized XGKICK remains rejected");return 0;
+    }
     unsigned cases=0;
     for(unsigned format : {2u,3u}) {
         PS2Memory mem;

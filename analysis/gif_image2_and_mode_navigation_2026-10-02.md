@@ -35,6 +35,21 @@ This probe has no nonzero missing target or resource-return anomaly.
 the clean patched runtime diff has SHA-256
 `7724c4aeaca48b0144ac27509ab6ee5921a1c8a93a6c0438bd7be4520b477528`.
 The IMAGE2 fixture is included in the Linux/Windows production runtime CI.
-The new native Release build and delayed-navigation comparison are pending.
+All four hosted workflows pass for source commit
+`b9f21c379f6737810eb13e842e9dd2622b9aa183`: recovery 37076047126,
+production GS 37076047124, VIF/SDK/guest/IMAGE2 37076047314 and COP0
+37076047150. The IMAGE2 fixture passes on both Linux and Windows.
+The new FFmpeg-enabled native Release runner is 44,620,984 bytes with SHA-256
+`da2f77f37695e272dd17ec16a04bebf34de18232eea7aacedd065830ea91a2b5`.
+The delayed-navigation probe completed 420.038 seconds with unchanged runner
+identity. It reaches Event Race (Race/Freeride/Time Trial) at 150 seconds and
+Inventory/Bikes at 310 seconds. A capture at 230 seconds remains mostly empty
+between these milestones. No nonzero missing target or resource-return
+anomaly occurs; the last EE thread remains Ready at 0x238C50. No IMAGE2 reject
+marker remains, but 110272 oversized-packet markers are recorded.
+Changing the format support does not establish that the remaining packet
+contents are valid. The late Start command was not delivered to this probe,
+so it is not part of its input evidence. A separate 480-second sequence includes
+Start at 360 seconds and is pending.
 Incorrect colors, a playable race, game FPS and Windows retail boot remain
 unverified.

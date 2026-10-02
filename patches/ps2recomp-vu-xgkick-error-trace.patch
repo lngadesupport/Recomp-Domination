@@ -1,0 +1,49 @@
+diff --git a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+index feb92bf..5e0a9aa 100644
+--- a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
++++ b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+@@ -845,12 +845,34 @@ void VU1Interpreter::progressXgkick()
+     if (!m_xgkick.active || !m_activeVuData || m_activeVuDataSize == 0u)
+         return;
+
++    // This runs on the VU execution thread; do not sample its live state from UI.
++    auto traceLimit = [&](const char *reason, uint32_t tagOffset, uint64_t tagLo, uint64_t tagHi, uint64_t requested) {
++        static const bool enabled = [] {
++            const char *value = std::getenv("PS2_TRACE_VU_XGKICK_ERRORS");
++            return value && std::strcmp(value, "1") == 0;
++        }();
++        static uint64_t samples = 0u;
++        if (!enabled) return;
++        const uint64_t sample = ++samples;
++        if (sample > 32u && (sample & (sample - 1u)) != 0u) return;
++        std::fprintf(stderr,
++            "[vu:xgkick-error] sample=%llu reason=%s cycle=%llu pc=0x%x source_qw=%u tag_offset=%u copied=%u tag_lo=0x%016llx tag_hi=0x%016llx nloop=%u format=%u nreg=%u requested=%llu limit=%u\n",
++            static_cast<unsigned long long>(sample), reason,
++            static_cast<unsigned long long>(m_cycle), m_state.pc,
++            m_xgkick.sourceAddress / 16u, tagOffset, m_xgkick.copiedBytes,
++            static_cast<unsigned long long>(tagLo), static_cast<unsigned long long>(tagHi),
++            static_cast<unsigned>(tagLo & 0x7fffu), static_cast<unsigned>((tagLo >> 58u) & 3u),
++            static_cast<unsigned>((tagLo >> 60u) & 15u),
++            static_cast<unsigned long long>(requested), XgkickPipeline::kBufferSize);
++    };
++
+     ++m_xgkick.cycleCredit;
+     while (m_xgkick.active && m_xgkick.cycleCredit >= 2u)
+     {
+         m_xgkick.cycleCredit -= 2u;
+         if (m_xgkick.copiedBytes > XgkickPipeline::kBufferSize - 16u)
+         {
++            traceLimit("packet-limit", m_xgkick.copiedBytes, 0u, 0u, m_xgkick.copiedBytes + 16ull);
+             reportReservedInstruction(false, 0xFFFFFFFBu);
+             m_xgkick.active = false;
+             return;
+@@ -890,6 +912,9 @@ void VU1Interpreter::progressXgkick()
+
+             if (tagBytes > XgkickPipeline::kBufferSize - qwordOffset)
+             {
++                uint64_t tagHi = 0u;
++                std::memcpy(&tagHi, m_xgkick.packet.data() + qwordOffset + 8u, sizeof(tagHi));
++                traceLimit("tag-limit", qwordOffset, tagLo, tagHi, tagBytes);
+                 reportReservedInstruction(false, 0xFFFFFFFBu);
+                 m_xgkick.active = false;
+                 return;

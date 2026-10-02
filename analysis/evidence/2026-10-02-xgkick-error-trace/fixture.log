@@ -1,0 +1,19 @@
+normal
+GIF IMAGE/IMAGE2: 12 direct/native uploads, wrapped PATH1, split DIRECT and arbitration cases passed
+exit_code=0
+
+enabled
+Oversized XGKICK remains rejected
+[vu:xgkick-error] sample=1 reason=tag-limit cycle=1 pc=0x8 source_qw=0 tag_offset=0 copied=16 tag_lo=0x0000000000009000 tag_hi=0x0000000000000000 nloop=4096 format=0 nreg=0 requested=1048592 limit=65536
+[VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
+exit_code=0
+
+disabled
+Oversized XGKICK remains rejected
+[VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
+exit_code=0
+
+malformed
+Oversized XGKICK remains rejected
+[VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
+exit_code=0

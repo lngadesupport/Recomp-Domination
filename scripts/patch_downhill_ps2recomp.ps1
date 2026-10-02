@@ -156,14 +156,14 @@ function Test-RuntimePatchApplied([string]$PatchFile) {
 
 # Host transfer memory, physical ISO extents, and terminal PSS markers.
 # Unwind overlapping diagnostic additions before verifying earlier patches.
-foreach ($name in @('gif-image2', 'guest-checkpoint-return', 'guest-missing-target-trace', 'gs-sdk-clear', 'vif-v45-color', 'gs-clear-depth-trace', 'gs-triangle-trace', 'gs-palette-upload-trace', 'gs-clut-entry1-trace', 'gs-vram-watch')) {
+foreach ($name in @('vu-xgkick-error-trace', 'gif-image2', 'guest-checkpoint-return', 'guest-missing-target-trace', 'gs-sdk-clear', 'vif-v45-color', 'gs-clear-depth-trace', 'gs-triangle-trace', 'gs-palette-upload-trace', 'gs-clut-entry1-trace', 'gs-vram-watch')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
     if (Test-RuntimePatchApplied $patchFile) {
         & git -C $root apply --reverse $patchFile
         if ($LASTEXITCODE -ne 0) { throw "Failed to unwind diagnostic patch: $name" }
     }
 }
-foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace', 'dmac-interrupt-trace', 'cop0-dmac-condition', 'vif1-command-trace', 'gs-pipeline-trace', 'auto-intro-skip', 'gs-texture-trace', 'intro-stream-window', 'gs-clut-reload', 'gs-upload24-continuation', 'gs-clut-trace', 'gs-vram-watch', 'gs-clut-entry1-trace', 'gs-palette-upload-trace', 'gs-image-block-address', 'gs-triangle-trace', 'gs-clear-depth-trace', 'vif-v45-color', 'gs-sdk-clear', 'guest-missing-target-trace', 'guest-checkpoint-return', 'gif-image2')) {
+foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace', 'dmac-interrupt-trace', 'cop0-dmac-condition', 'vif1-command-trace', 'gs-pipeline-trace', 'auto-intro-skip', 'gs-texture-trace', 'intro-stream-window', 'gs-clut-reload', 'gs-upload24-continuation', 'gs-clut-trace', 'gs-vram-watch', 'gs-clut-entry1-trace', 'gs-palette-upload-trace', 'gs-image-block-address', 'gs-triangle-trace', 'gs-clear-depth-trace', 'vif-v45-color', 'gs-sdk-clear', 'guest-missing-target-trace', 'guest-checkpoint-return', 'gif-image2', 'vu-xgkick-error-trace')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
     if (Test-RuntimePatchApplied $patchFile) { continue }
     & git -C $root apply --check $patchFile

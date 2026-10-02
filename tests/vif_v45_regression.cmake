@@ -78,3 +78,21 @@ else()
 endif()
 add_test(NAME gif_image2 COMMAND gif_image2_test)
 set_tests_properties(gif_image2 PROPERTIES TIMEOUT 60)
+
+foreach(mode IN ITEMS enabled disabled malformed)
+    add_test(NAME vu_xgkick_error_${mode} COMMAND gif_image2_test oversized)
+    if(mode STREQUAL "enabled")
+        set_tests_properties(vu_xgkick_error_${mode} PROPERTIES
+            ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=1"
+            PASS_REGULAR_EXPRESSION "reason=tag-limit.*source_qw=0.*nloop=4096.*format=0.*nreg=0.*requested=1048592.*limit=65536")
+    elseif(mode STREQUAL "disabled")
+        set_tests_properties(vu_xgkick_error_${mode} PROPERTIES
+            ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=0"
+            FAIL_REGULAR_EXPRESSION "vu:xgkick-error")
+    else()
+        set_tests_properties(vu_xgkick_error_${mode} PROPERTIES
+            ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=garbage"
+            FAIL_REGULAR_EXPRESSION "vu:xgkick-error")
+    endif()
+    set_tests_properties(vu_xgkick_error_${mode} PROPERTIES TIMEOUT 60)
+endforeach()
