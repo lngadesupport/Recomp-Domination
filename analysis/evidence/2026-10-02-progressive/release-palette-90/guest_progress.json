@@ -1,0 +1,18 @@
+{
+  "wait_samples": 0,
+  "irq_samples": 0,
+  "malformed_samples": 0,
+  "last_wait": null,
+  "masked_vif1_completions_observed": false,
+  "vif1_queue_wait_observed": false,
+  "limits": "Sampled observations do not establish cause, elapsed stall duration, a playable menu, or game FPS.",
+  "boot_status": "passed",
+  "boot_reason": "guest execution observed; gameplay remains unverified",
+  "menu_status": "blocked",
+  "menu_reason": "no validated menu scenario/checkpoint",
+  "race_status": "blocked",
+  "performance_status": "blocked",
+  "sprite_records": 128,
+  "palette_texel_records": 64,
+  "last_thread_snapshot": "[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0"
+}

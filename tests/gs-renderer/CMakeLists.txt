@@ -28,3 +28,23 @@ foreach(fixture IN ITEMS gs_clut_reload gs_upload24)
     add_test(NAME ${fixture} COMMAND ${fixture}_test)
     set_tests_properties(${fixture} PROPERTIES TIMEOUT 30 ENVIRONMENT "ASAN_OPTIONS=detect_leaks=0")
 endforeach()
+
+# The actual fixture uses CBP=32. Unrelated/invalid selectors must not consume
+# the bounded palette log budget or emit records for another palette.
+function(add_clut_trace_case name value matches)
+    add_test(NAME clut_trace_${name} COMMAND gs_clut_reload_test)
+    set_tests_properties(clut_trace_${name} PROPERTIES TIMEOUT 30
+        ENVIRONMENT "ASAN_OPTIONS=detect_leaks=0;PS2_TRACE_GS_CLUT_LOADS=1;PS2_TRACE_GS_CLUT_CBP=${value}")
+    if(matches)
+        set_tests_properties(clut_trace_${name} PROPERTIES PASS_REGULAR_EXPRESSION "\\[gs:clut-load\\] cbp=32")
+    else()
+        set_tests_properties(clut_trace_${name} PROPERTIES FAIL_REGULAR_EXPRESSION "\\[gs:clut-load\\]")
+    endif()
+endfunction()
+add_clut_trace_case(match "32" TRUE)
+add_clut_trace_case(other "33" FALSE)
+add_clut_trace_case(empty "" FALSE)
+add_clut_trace_case(negative "-1" FALSE)
+add_clut_trace_case(range "16384" FALSE)
+add_clut_trace_case(overflow "999999999999999999999" FALSE)
+add_clut_trace_case(suffix "32x" FALSE)

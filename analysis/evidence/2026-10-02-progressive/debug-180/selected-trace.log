@@ -1,0 +1,156 @@
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[intro-skip] guest Start injected during decoded movie
+[gs:sprite] xyoffset=1728,1936 rect=202,199,227,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=217,199,242,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=231,199,256,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=246,199,271,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=261,199,286,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=290,199,315,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=319,199,344,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=334,199,359,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=2016,2016 rect=42,42,51,51 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=51,36,66,51 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=104,47,108,49 fbp=140 tbp=16320 tex_psm=0 cbp=0 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=10,39,20,49 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,0,57,15 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=34,13,47,26 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,39,21,49 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,40,56,52 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,10,23,22 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=10,6,20,17 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=17,3,31,18 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,43,24,53 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=39,14,51,25 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,45,28,59 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,12,51,21 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,42,51,51 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,14,55,25 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,43,51,51 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,11,53,20 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,43,20,52 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=35,49,48,62 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=50,37,65,51 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=105,47,108,49 fbp=70 tbp=7648 tex_psm=20 cbp=6819 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=45,45,55,55 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,43,53,52 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=103,46,110,50 fbp=140 tbp=16320 tex_psm=0 cbp=0 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=6,38,17,49 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,11,52,20 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=383,199,406,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=2016,2016 rect=51,37,65,51 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=45,51,60,66 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,9,51,18 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=39,49,52,61 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=12,42,21,51 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=15,42,28,55 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,43,52,53 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=45,12,55,22 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,44,19,53 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,42,28,56 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=103,47,109,49 fbp=70 tbp=7648 tex_psm=20 cbp=6819 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=7,46,18,57 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=39,48,52,61 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=295,199,318,207 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=2016,2016 rect=41,20,54,33 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=-1,42,13,57 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=46,46,57,57 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,41,53,50 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,39,54,52 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=7,13,17,24 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=47,36,61,50 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,38,22,49 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,43,52,51 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,12,21,21 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=9,8,21,21 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=13,39,25,51 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=41,19,55,33 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=103,46,109,50 fbp=70 tbp=7648 tex_psm=20 cbp=6819 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=36,11,48,23 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,38,22,49 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=102,45,114,51 fbp=140 tbp=16320 tex_psm=0 cbp=0 cpsm=0 csm=0 csa=0 test=458765
+[gs:sprite] xyoffset=2016,2016 rect=4,44,15,55 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=12,40,22,50 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=233,199,255,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=2016,2016 rect=39,42,51,53 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,43,52,52 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,11,19,19 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=12,44,20,52 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,49,28,63 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,11,51,19 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,43,52,51 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,43,52,53 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,14,54,25 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,41,24,51 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=16,46,31,61 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,11,52,20 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=11,30,25,44 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=12,44,21,53 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=33,14,47,27 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=47,49,61,64 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,36,27,48 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,42,25,53 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=7,13,19,25 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=9,38,20,49 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=36,10,47,21 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=14,42,24,53 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=37,46,49,58 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,39,54,52 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=42,38,53,49 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=5,37,17,49 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=9,8,21,21 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=13,40,22,50 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=12,44,21,53 fbp=510 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=5,37,18,50 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=43,11,52,20 fbp=510 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=41,43,50,53 fbp=508 tbp=0 tex_psm=27 cbp=6820 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=2016,2016 rect=44,14,55,25 fbp=508 tbp=64 tex_psm=27 cbp=6824 cpsm=0 csm=0 csa=0 test=208897
+[gs:sprite] xyoffset=1728,1936 rect=267,199,291,208 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=213,199,236,208 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=374,199,397,208 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=294,199,317,208 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=223,199,247,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=382,199,404,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=319,199,344,209 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=247,199,269,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=408,199,433,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=331,199,353,206 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=246,199,271,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=404,199,427,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=362,199,387,209 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=270,199,292,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=208,199,232,209 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=371,199,394,208 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=292,199,316,208 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=227,199,251,208 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=385,199,408,208 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=319,199,343,208 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=243,199,266,207 fbp=70 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=404,199,429,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=332,199,355,207 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[gs:sprite] xyoffset=1728,1936 rect=248,199,272,209 fbp=140 tbp=128 tex_psm=36 cbp=6805 cpsm=0 csm=0 csa=0 test=196749
+[boot-snapshot] host_tick=6960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:pipeline] host_tick=1784 dma=7488 gif=3876 vif=10 display_fbp=70 source_fbp=70 width=640 height=224 preferred=0 ctx0_fbp=140 ctx1_fbp=140 transfer_total=0 transfer_copied=4096
+[boot-snapshot] host_tick=7080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:pipeline] host_tick=1904 dma=8208 gif=4116 vif=10 display_fbp=70 source_fbp=70 width=640 height=224 preferred=0 ctx0_fbp=140 ctx1_fbp=140 transfer_total=0 transfer_copied=4096
+[boot-snapshot] host_tick=7440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:pipeline] host_tick=2024 dma=8928 gif=4356 vif=10 display_fbp=70 source_fbp=70 width=640 height=224 preferred=0 ctx0_fbp=140 ctx1_fbp=140 transfer_total=0 transfer_copied=4096
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:pipeline] host_tick=2144 dma=9648 gif=4596 vif=10 display_fbp=70 source_fbp=70 width=640 height=224 preferred=0 ctx0_fbp=140 ctx1_fbp=140 transfer_total=0 transfer_copied=4096
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
