@@ -8,6 +8,32 @@ ELF_SHA256 = "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c"
 WAIT_PC = 0x1B4648
 
 
+def thread_observations(text):
+    snapshots = []
+    events = []
+    malformed = 0
+    for match in re.finditer(r"\[boot-snapshot\]([^\n]*)", text):
+        header = re.search(r"host_tick=(\d+) running=(\d+)", match[1])
+        threads = re.findall(r"thread=(\d+):pc=(0x[0-9a-fA-F]+):ra=(0x[0-9a-fA-F]+):priority=(\d+):status=(\d+):wait=(\d+):wait_id=(-?\d+)", match[1])
+        if not header or not threads or len(threads) != match[1].count("thread="):
+            malformed += 1
+            events.append(None)
+            continue
+        states = [{"id": int(t[0]), "pc": int(t[1], 16), "status": int(t[4])} for t in threads]
+        if any(t["status"] > 5 or t["id"] < 1 or t["pc"] > 0xffffffff for t in states):
+            malformed += 1
+            events.append(None)
+            continue
+        snapshots.append({"host_tick": int(header[1]), "running": int(header[2]), "threads": states})
+        events.append(snapshots[-1])
+    tail = events[-2:]
+    all_dormant = lambda row: row["running"] == 0 and all(t["status"] == 5 for t in row["threads"])
+    return {"thread_snapshot_samples": len(snapshots), "malformed_thread_snapshots": malformed,
+            "last_thread_state": snapshots[-1] if snapshots else None,
+            "repeated_all_dormant_snapshots": len(tail) == 2 and all(row is not None for row in tail) and
+                tail[1]["host_tick"] > tail[0]["host_tick"] and all(all_dormant(row) for row in tail)}
+
+
 def observations(text):
     waits, interrupts, malformed = [], [], 0
     for prefix, destination in [("[downhill:dma-wait]", waits), ("[dmac:irq]", interrupts)]:
@@ -46,6 +72,7 @@ def observations(text):
 
 def classify(probe, text):
     result = observations(text)
+    result.update(thread_observations(text))
     identity = (probe.get("elf_sha256") == ELF_SHA256 and
                 bool(re.fullmatch(r"[0-9a-f]{64}", str(probe.get("runner_sha256", "")))) and
                 probe.get("runner_sha256") == probe.get("runner_sha256_after") and
@@ -63,7 +90,8 @@ def classify(probe, text):
         status, reason = "passed", "guest execution observed; gameplay remains unverified"
     result.update({"boot_status": status, "boot_reason": reason,
                    "menu_status": "blocked",
-                   "menu_reason": "VIF1 queue wait observed" if result["vif1_queue_wait_observed"] else "no validated menu scenario/checkpoint",
+                   "menu_reason": "last two snapshots contain only dormant EE threads" if result["repeated_all_dormant_snapshots"] else
+                       "VIF1 queue wait observed" if result["vif1_queue_wait_observed"] else "no validated menu scenario/checkpoint",
                    "race_status": "blocked", "performance_status": "blocked"})
     return result
 

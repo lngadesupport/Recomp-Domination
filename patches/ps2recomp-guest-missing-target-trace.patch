@@ -1,0 +1,40 @@
+--- a/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -1319,7 +1319,14 @@
+         readGuestU32Offset(a0Word0, 0x08u, vtableSlot8) &&
+         readGuestU32Offset(a0Word0, 0x0cu, vtableSlotC);
+ 
+-    if (firstReport)
++    static const bool traceTargets = [] {
++        const char *value = std::getenv("PS2_TRACE_GUEST_MISSING_TARGETS");
++        return value && std::strcmp(value, "1") == 0;
++    }();
++    static std::atomic<uint64_t> targetReports{0};
++    const uint64_t report = traceTargets && targetPc != 0u ? targetReports.fetch_add(1, std::memory_order_relaxed) + 1 : 0;
++    const bool sampled = report != 0u && (report <= 32 || (report & (report - 1)) == 0);
++    if (firstReport || sampled)
+     {
+         std::ostringstream oss;
+         oss << "[guest-branch:missing-target] kind=" << describeGuestBranchKind(kind)
+@@ -1359,8 +1366,19 @@
+             << " vtbl[8]=0x" << vtableSlot8
+             << " vtbl[c]=0x" << vtableSlotC
+             << " codeRegion=" << (m_memory.isCodeAddress(targetPc) ? "yes" : "no")
+-            << " policy=" << static_cast<uint32_t>(policy)
+-            << " trace=" << formatDispatchHistory()
++            << " policy=" << static_cast<uint32_t>(policy);
++        if (sampled)
++        {
++            uint32_t words[4]{};
++            bool readable = true;
++            for (uint32_t i = 0; i < 4; ++i)
++                readable = readGuestU32Offset(targetPc, i * 4, words[i]) && readable;
++            oss << " sample=" << std::dec << report << std::hex
++                << " targetReadable=" << (readable ? "yes" : "no")
++                << " target[0]=0x" << words[0] << " target[4]=0x" << words[1]
++                << " target[8]=0x" << words[2] << " target[c]=0x" << words[3];
++        }
++        oss << " trace=" << formatDispatchHistory()
+             << std::dec;
+ 
+         static std::mutex s_missingFunctionLogMutex;
