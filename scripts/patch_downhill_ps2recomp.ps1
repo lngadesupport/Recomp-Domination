@@ -140,20 +140,32 @@ if($verifyMemory -notmatch 'savedRow\[4\]' -or
 
 Write-Host 'Applied and verified Downhill VIF1 ROW/COL patch, regression test, and FileIO failure trace.' -ForegroundColor Green
 
+# A reverse check normally fails for a patch that has not been applied yet.
+# Windows PowerShell 5 treats native stderr as an error even with 2>$null.
+function Test-RuntimePatchApplied([string]$PatchFile) {
+    $savedPreference = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'SilentlyContinue'
+        & git -C $root apply --reverse --check $PatchFile 2>$null
+        $checkExitCode = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $savedPreference
+    }
+    return ($checkExitCode -eq 0)
+}
+
 # Host transfer memory, physical ISO extents, and terminal PSS markers.
 # Unwind overlapping diagnostic additions before verifying earlier patches.
 foreach ($name in @('gs-palette-upload-trace', 'gs-clut-entry1-trace', 'gs-vram-watch')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
-    & git -C $root apply --reverse --check $patchFile 2>$null
-    if ($LASTEXITCODE -eq 0) {
+    if (Test-RuntimePatchApplied $patchFile) {
         & git -C $root apply --reverse $patchFile
         if ($LASTEXITCODE -ne 0) { throw "Failed to unwind diagnostic patch: $name" }
     }
 }
 foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace', 'dmac-interrupt-trace', 'cop0-dmac-condition', 'vif1-command-trace', 'gs-pipeline-trace', 'auto-intro-skip', 'gs-texture-trace', 'intro-stream-window', 'gs-clut-reload', 'gs-upload24-continuation', 'gs-clut-trace', 'gs-vram-watch', 'gs-clut-entry1-trace', 'gs-palette-upload-trace', 'gs-image-block-address')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
-    & git -C $root apply --reverse --check $patchFile 2>$null
-    if ($LASTEXITCODE -eq 0) { continue }
+    if (Test-RuntimePatchApplied $patchFile) { continue }
     & git -C $root apply --check $patchFile
     if ($LASTEXITCODE -ne 0) { throw "Runtime patch does not match pinned source: $name" }
     & git -C $root apply $patchFile
