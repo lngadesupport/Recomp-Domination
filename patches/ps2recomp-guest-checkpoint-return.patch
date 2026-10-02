@@ -1,0 +1,55 @@
+diff --git a/ps2xRuntime/include/ps2_runtime.h b/ps2xRuntime/include/ps2_runtime.h
+index 7b6b997..b9a1453 100644
+--- a/ps2xRuntime/include/ps2_runtime.h
++++ b/ps2xRuntime/include/ps2_runtime.h
+@@ -518,6 +518,8 @@ private:
+ 
+     std::atomic<uint32_t> m_missingFunctionPolicy{static_cast<uint32_t>(MissingFunctionPolicy::ContinueToTarget)};
+     std::atomic<bool> m_missingFunctionReported{false};
++    // EE-thread-only serial: distinguish a yielded callee from an inline leaf.
++    uint64_t m_guestCheckpointGeneration = 0;
+     std::atomic<bool> m_stopRequested{false};
+     DebugUiCallback m_debugUiInitCallback = nullptr;
+     DebugUiCallback m_debugUiDrawCallback = nullptr;
+diff --git a/ps2xRuntime/src/lib/ps2_runtime.cpp b/ps2xRuntime/src/lib/ps2_runtime.cpp
+index 897ffde..39b60c7 100644
+--- a/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/ps2xRuntime/src/lib/ps2_runtime.cpp
+@@ -1423,6 +1423,7 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+     // this charge bounds straight-line call chains that have no local loop.
+     if (m_eeScheduler && m_eeScheduler->checkpointDue(EeScheduler::kGuestDispatchCycles))
+     {
++        ++m_guestCheckpointGeneration;
+         return false;
+     }
+ 
+@@ -1461,6 +1462,7 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+ 
+     RecompiledFunction targetFn = lookupFunction(targetPc);
+     const uint32_t entryPc = ctx->pc;
++    const uint64_t checkpointGeneration = m_guestCheckpointGeneration;
+     targetFn(rdram, ctx, this);
+ 
+     if (isStopRequested() || ctx->pc == 0u)
+@@ -1470,6 +1472,10 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+ 
+     if (ctx->pc == entryPc)
+     {
++        // A safe point may leave a resumable guest function at its own entry.
++        // Its live stack must not be consumed by the caller's continuation.
++        if (m_guestCheckpointGeneration != checkpointGeneration)
++            return false;
+         ctx->pc = fallthroughPc;
+     }
+ 
+@@ -2291,7 +2297,9 @@ bool PS2Runtime::eeCheckpointDue(uint32_t cycles) noexcept
+             recent.dump("downhill-queue-wait");
+         }
+     }
+-    return m_eeScheduler->checkpointDue(cycles);
++    const bool due = m_eeScheduler->checkpointDue(cycles);
++    if (due) ++m_guestCheckpointGeneration;
++    return due;
+ }
+ 
+ [[noreturn]] void PS2Runtime::eeWaitVSyncTicks(uint32_t ticks, uint32_t resumePc)

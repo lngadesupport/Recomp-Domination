@@ -50,3 +50,17 @@ foreach(mode IN ITEMS enabled disabled malformed)
     endif()
     set_tests_properties(guest_missing_target_${mode} PROPERTIES TIMEOUT 60)
 endforeach()
+
+add_executable(guest_checkpoint_return_test
+    "${CMAKE_CURRENT_LIST_DIR}/guest_checkpoint_return_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(guest_checkpoint_return_test PRIVATE cxx_std_20)
+target_link_libraries(guest_checkpoint_return_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(guest_checkpoint_return_test PRIVATE /arch:AVX2)
+    target_link_options(guest_checkpoint_return_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(guest_checkpoint_return_test PRIVATE -mavx2)
+endif()
+add_test(NAME guest_checkpoint_return COMMAND guest_checkpoint_return_test)
+set_tests_properties(guest_checkpoint_return PROPERTIES TIMEOUT 60)
