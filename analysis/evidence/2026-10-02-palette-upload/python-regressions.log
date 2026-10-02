@@ -1,0 +1,37 @@
+..................................
+----------------------------------------------------------------------
+Ran 34 tests in 0.731s
+
+OK
+{
+  "termination": "exited",
+  "exit_code": 0,
+  "process_signal": null,
+  "elapsed_seconds": 0.051,
+  "timeout_seconds": 3.0,
+  "max_log_bytes": 33554432,
+  "execution_stage": "guest",
+  "elf_sha256": "02be1ac886780c006806f1bdab7dcac5fed3ed65cbb3069aa7b1f255a5570f60",
+  "runner_sha256": "f74af4e8aaad3dac0b5d4cb80a2fd469bbc5786d595f26728aee8ad82b1a62d8",
+  "runner_sha256_after": "95713e9cbdd1dfcb2d4080c2537f418d43ca0da25f0d7d6631f4f7c97b89dc47",
+  "runner_changed_during_probe": true,
+  "runner_identity_verified": false,
+  "host": "posix",
+  "windows_boot_verified": false
+}
+{
+  "termination": "exited",
+  "exit_code": 0,
+  "process_signal": null,
+  "elapsed_seconds": 0.05,
+  "timeout_seconds": 3.0,
+  "max_log_bytes": 33554432,
+  "execution_stage": "guest",
+  "elf_sha256": "02be1ac886780c006806f1bdab7dcac5fed3ed65cbb3069aa7b1f255a5570f60",
+  "runner_sha256": "6f3eec428d54d4cf65aaaa579e1616dd31ced063ec6bfe6082c9b22d01756945",
+  "runner_sha256_after": "6f3eec428d54d4cf65aaaa579e1616dd31ced063ec6bfe6082c9b22d01756945",
+  "runner_changed_during_probe": false,
+  "runner_identity_verified": true,
+  "host": "posix",
+  "windows_boot_verified": false
+}

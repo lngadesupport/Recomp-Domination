@@ -4,7 +4,7 @@ from pathlib import Path
 import subprocess
 
 PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
-PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace", "gs-pipeline-trace", "auto-intro-skip", "gs-texture-trace", "intro-stream-window", "gs-clut-reload", "gs-upload24-continuation", "gs-clut-trace")
+PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace", "gs-pipeline-trace", "auto-intro-skip", "gs-texture-trace", "intro-stream-window", "gs-clut-reload", "gs-upload24-continuation", "gs-clut-trace", "gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address")
 
 
 def apply(source):
@@ -13,6 +13,13 @@ def apply(source):
     if head != PIN:
         raise ValueError("PS2Recomp revision mismatch; refusing to apply runtime patches")
     directory = Path(__file__).resolve().parents[1] / "patches"
+    # New diagnostics overlap context in older fixes. Temporarily unwind only
+    # these owned additions so earlier reverse checks remain valid on reapply.
+    for name in reversed(("gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address")):
+        patch = directory / f"ps2recomp-{name}.patch"
+        command = ["git", "-C", str(source), "apply"]
+        if subprocess.run([*command, "--reverse", "--check", str(patch)], capture_output=True).returncode == 0:
+            subprocess.run([*command, "--reverse", str(patch)], check=True)
     for name in PATCHES:
         patch = directory / f"ps2recomp-{name}.patch"
         command = ["git", "-C", str(source), "apply"]

@@ -1,0 +1,22 @@
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -1575,6 +1575,19 @@
+         std::cerr << "[gs:image-upload24] dpsm=" << unsigned(dpsm) << " bytes=" << sizeBytes
+                   << " copied=" << m_transferState.copiedPixels << " pending=" << unsigned(m_upload24PartialBytes) << '\n';
+ 
++    static const bool tracePalettes = std::getenv("PS2_TRACE_GS_PALETTE_UPLOADS") != nullptr;
++    static std::atomic<uint64_t> paletteUploads{0};
++    if (tracePalettes && dpsm == GS_PSM_CT32 && dbw == 1u && rrw <= 16u &&
++        m_transferState.totalPixels <= 256u && paletteUploads.fetch_add(1, std::memory_order_relaxed) < 128u)
++    {
++        uint32_t words[2]{};
++        std::memcpy(words, data, std::min<size_t>(sizeBytes, sizeof(words)));
++        std::cerr << "[gs:palette-upload] dbp=" << dbp << " dbw=" << dbw << " x=" << m_transferState.x
++                  << " y=" << m_transferState.y << " bytes=" << sizeBytes
++                  << " copied=" << m_transferState.copiedPixels << " total=" << m_transferState.totalPixels
++                  << " word0=" << words[0] << " word1=" << words[1] << '\n';
++    }
++
+     auto advancePixel = [&](uint32_t count)
+     {
+         const uint32_t totalPixels = m_transferState.totalPixels;

@@ -1,0 +1,22 @@
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
+@@ -635,7 +635,8 @@
+             return;
+         }
+ 
+-        uint32_t dbp = (static_cast<uint32_t>(img.vram_addr) * 2048u) / 256u;
++        // Image descriptors already use GS 256-byte block units.
++        uint32_t dbp = static_cast<uint32_t>(img.vram_addr);
+         uint32_t dsax = static_cast<uint32_t>(img.x);
+         uint32_t dsay = static_cast<uint32_t>(img.y);
+ 
+@@ -704,7 +705,8 @@
+             return;
+         }
+ 
+-        uint32_t sbp = (static_cast<uint32_t>(img.vram_addr) * 2048u) / 256u;
++        // Image descriptors already use GS 256-byte block units.
++        uint32_t sbp = static_cast<uint32_t>(img.vram_addr);
+         uint64_t bitbltbuf = (static_cast<uint64_t>(sbp & 0x3FFFu) << 0) |
+                              (static_cast<uint64_t>(fbw & 0x3Fu) << 16) |
+                              (static_cast<uint64_t>(img.psm & 0x3Fu) << 24) |

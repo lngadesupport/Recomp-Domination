@@ -1,0 +1,46 @@
+Internal ctest changing into directory: /workspace/scratch/650802733e96/gs-build
+Test project /workspace/scratch/650802733e96/gs-build
+      Start  1: gs_clut_reload
+ 1/20 Test  #1: gs_clut_reload ...................   Passed    0.05 sec
+      Start  2: gs_upload24
+ 2/20 Test  #2: gs_upload24 ......................   Passed    0.05 sec
+      Start  3: gs_palette_upload
+ 3/20 Test  #3: gs_palette_upload ................   Passed    0.06 sec
+      Start  4: gs_vram_watch
+ 4/20 Test  #4: gs_vram_watch ....................   Passed    0.05 sec
+      Start  5: clut_trace_match
+ 5/20 Test  #5: clut_trace_match .................   Passed    0.05 sec
+      Start  6: clut_trace_other
+ 6/20 Test  #6: clut_trace_other .................   Passed    0.06 sec
+      Start  7: clut_trace_empty
+ 7/20 Test  #7: clut_trace_empty .................   Passed    0.05 sec
+      Start  8: clut_trace_negative
+ 8/20 Test  #8: clut_trace_negative ..............   Passed    0.05 sec
+      Start  9: clut_trace_range
+ 9/20 Test  #9: clut_trace_range .................   Passed    0.05 sec
+      Start 10: clut_trace_overflow
+10/20 Test #10: clut_trace_overflow ..............   Passed    0.05 sec
+      Start 11: clut_trace_suffix
+11/20 Test #11: clut_trace_suffix ................   Passed    0.06 sec
+      Start 12: vram_watch_alias
+12/20 Test #12: vram_watch_alias .................   Passed    0.05 sec
+      Start 13: vram_watch_wrap
+13/20 Test #13: vram_watch_wrap ..................   Passed    0.05 sec
+      Start 14: vram_watch_other
+14/20 Test #14: vram_watch_other .................   Passed    0.05 sec
+      Start 15: vram_watch_empty
+15/20 Test #15: vram_watch_empty .................   Passed    0.05 sec
+      Start 16: vram_watch_negative
+16/20 Test #16: vram_watch_negative ..............   Passed    0.05 sec
+      Start 17: vram_watch_range
+17/20 Test #17: vram_watch_range .................   Passed    0.05 sec
+      Start 18: vram_watch_overflow
+18/20 Test #18: vram_watch_overflow ..............   Passed    0.05 sec
+      Start 19: vram_watch_suffix
+19/20 Test #19: vram_watch_suffix ................   Passed    0.08 sec
+      Start 20: palette_trace_source
+20/20 Test #20: palette_trace_source .............   Passed    0.06 sec
+
+100% tests passed, 0 tests failed out of 20
+
+Total Test time (real) =   1.08 sec

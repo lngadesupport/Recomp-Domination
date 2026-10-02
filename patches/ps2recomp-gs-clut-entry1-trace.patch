@@ -1,0 +1,20 @@
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -625,6 +625,17 @@
+ 
+     const bool loadCsm1Suffix = tex0.csm == 0u && thirtyTwoBit && !fourBit;
+     const uint32_t firstEntry = loadCsm1Suffix ? destinationBase : 0u;
++
++    if (logClut && firstEntry <= 1u)
++    {
++        const uint32_t width = tex0.csm == 0u ? 1u : std::max<uint32_t>(texclut.cbw, 1u);
++        const uint32_t x = tex0.csm == 0u ? 1u : (static_cast<uint32_t>(texclut.cou) << 4u) + 1u;
++        const uint32_t y = tex0.csm == 0u ? 0u : texclut.cov;
++        const uint32_t raw = ReadVramUnlocked(tex0.cpsm, tex0.cbp, width, x, y);
++        std::cerr << "[gs:clut-load] cbp=" << tex0.cbp << " cpsm=" << unsigned(tex0.cpsm)
++                  << " csm=" << unsigned(tex0.csm) << " csa=" << unsigned(tex0.csa)
++                  << " cld=" << unsigned(tex0.cld) << " entry=1 raw=" << raw << '\n';
++    }
+ 
+     for (uint32_t entry = firstEntry; entry < entryCount; ++entry)
+     {

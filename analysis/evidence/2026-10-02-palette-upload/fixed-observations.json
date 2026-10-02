@@ -1,0 +1,13 @@
+{
+  "fixed_palette_upload": "[gs:palette-upload] dbp=6805 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=721420288",
+  "physical_writes_logged": 16,
+  "load_entries": 512,
+  "nonzero_load_entries": 256,
+  "entry1_colors": [
+    721420288
+  ],
+  "texel_samples": 64,
+  "nonzero_texel_samples": 64,
+  "gameplay_verified": false,
+  "game_fps_verified": false
+}

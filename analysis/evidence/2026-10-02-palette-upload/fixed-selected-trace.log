@@ -1,0 +1,720 @@
+[gs:palette-upload] dbp=6753 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=721420288
+[gs:palette-upload] dbp=6754 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2151825986 word1=2151497021
+[gs:palette-upload] dbp=8753 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=721420288
+[gs:palette-upload] dbp=8754 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2153880549 word1=2154334170
+[gs:palette-upload] dbp=6752 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=5712155 word1=1079453979
+[gs:palette-upload] dbp=6753 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=16777215 word1=16382456
+[gs:palette-upload] dbp=6754 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2154786927 word1=2155050099
+[gs:palette-upload] dbp=6758 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2151102263 word1=2150904884
+[gs:palette-upload] dbp=6759 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=0 word1=1076044580
+[gs:palette-upload] dbp=6763 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2153733983 word1=2153339225
+[gs:palette-upload] dbp=6764 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2162681573 word1=2149983929
+[gs:palette-upload] dbp=6765 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8355711 word1=2157023633
+[gs:palette-upload] dbp=6769 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2152153150 word1=2151889977
+[gs:palette-upload] dbp=6773 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=4276545 word1=4540489
+[gs:palette-upload] dbp=6777 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2149088166 word1=2149088421
+[gs:palette-upload] dbp=6781 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=0 word1=328966
+[gs:palette-upload] dbp=6785 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=7039851 word1=2154523499
+[gs:palette-upload] dbp=6786 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=1508613 word1=1378568
+[gs:palette-upload] dbp=6790 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=1508613 word1=6904902
+[gs:palette-upload] dbp=6794 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=7039851 word1=2154523499
+[gs:palette-upload] dbp=6795 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=2151430971
+[gs:palette-upload] dbp=6796 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2153141846 word1=2152747088
+[gs:palette-upload] dbp=6797 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2158211763 word1=2158212019
+[gs:palette-upload] dbp=6801 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2158140457 word1=2157548582
+[gs:palette-upload] dbp=6805 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=721420288
+[gs:vram-write] number=1 block=6805 psm=0 bp=6805 bw=1 x=0 y=0 address=1742080 shift=0 value=0 stored=0
+[gs:vram-write] number=2 block=6805 psm=0 bp=6805 bw=1 x=1 y=0 address=1742084 shift=0 value=721420288 stored=721420288
+[gs:vram-write] number=3 block=6805 psm=0 bp=6805 bw=1 x=2 y=0 address=1742096 shift=0 value=1073741824 stored=1073741824
+[gs:vram-write] number=4 block=6805 psm=0 bp=6805 bw=1 x=3 y=0 address=1742100 shift=0 value=1079531608 stored=1079531608
+[gs:vram-write] number=5 block=6805 psm=0 bp=6805 bw=1 x=4 y=0 address=1742112 shift=0 value=1090519039 stored=1090519039
+[gs:vram-write] number=6 block=6805 psm=0 bp=6805 bw=1 x=5 y=0 address=1742116 shift=0 value=1084531876 stored=1084531876
+[gs:vram-write] number=7 block=6805 psm=0 bp=6805 bw=1 x=6 y=0 address=1742128 shift=0 value=352321536 stored=352321536
+[gs:vram-write] number=8 block=6805 psm=0 bp=6805 bw=1 x=7 y=0 address=1742132 shift=0 value=727210072 stored=727210072
+[gs:vram-write] number=9 block=6805 psm=0 bp=6805 bw=1 x=0 y=1 address=1742088 shift=0 value=732210340 stored=732210340
+[gs:vram-write] number=10 block=6805 psm=0 bp=6805 bw=1 x=1 y=1 address=1742092 shift=0 value=352321536 stored=352321536
+[gs:vram-write] number=11 block=6805 psm=0 bp=6805 bw=1 x=2 y=1 address=1742104 shift=0 value=486539264 stored=486539264
+[gs:vram-write] number=12 block=6805 psm=0 bp=6805 bw=1 x=3 y=1 address=1742108 shift=0 value=167772160 stored=167772160
+[gs:vram-write] number=13 block=6805 psm=0 bp=6805 bw=1 x=4 y=1 address=1742120 shift=0 value=16777216 stored=16777216
+[gs:vram-write] number=14 block=6805 psm=0 bp=6805 bw=1 x=5 y=1 address=1742124 shift=0 value=1073741824 stored=1073741824
+[gs:vram-write] number=15 block=6805 psm=0 bp=6805 bw=1 x=6 y=1 address=1742136 shift=0 value=16777216 stored=16777216
+[gs:vram-write] number=16 block=6805 psm=0 bp=6805 bw=1 x=7 y=1 address=1742140 shift=0 value=0 stored=0
+[gs:palette-upload] dbp=6806 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=85 word1=50331738
+[gs:palette-upload] dbp=6807 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=11642111 word1=28419327
+[gs:palette-upload] dbp=6811 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7305087 word1=8160396
+[gs:palette-upload] dbp=6815 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16181987 word1=150267615
+[gs:palette-upload] dbp=6819 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=14803425 word1=165798369
+[gs:palette-upload] dbp=6820 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16777215 word1=50331647
+[gs:palette-upload] dbp=6824 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16777215 word1=33554431
+[gs:palette-upload] dbp=6828 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=407480 word1=17184954
+[gs:palette-upload] dbp=6832 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=0 word1=2147483651
+[gs:palette-upload] dbp=6836 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=0 word1=2147483651
+[gs:palette-upload] dbp=6840 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=11192812 word1=735768315
+[gs:palette-upload] dbp=6841 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=0 word1=1074331648
+[gs:palette-upload] dbp=6845 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2164260863 word1=2164063484
+[gs:palette-upload] dbp=6846 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=1175062016 word1=1191839232
+[gs:palette-upload] dbp=6850 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=728085 word1=1916972
+[gs:palette-upload] dbp=6854 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10986648 word1=10526096
+[gs:palette-upload] dbp=6858 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=5460819 word1=2162616038
+[gs:palette-upload] dbp=6862 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2147483648 word1=2147549441
+[gs:palette-upload] dbp=6866 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=560359014 word1=560359014
+[gs:palette-upload] dbp=6870 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8355711
+[gs:palette-upload] dbp=6874 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=8289918
+[gs:palette-upload] dbp=6878 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8421504
+[gs:palette-upload] dbp=6882 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8289917
+[gs:palette-upload] dbp=6886 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8355454
+[gs:palette-upload] dbp=6890 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8355711
+[gs:palette-upload] dbp=6894 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8289918
+[gs:palette-upload] dbp=6898 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8289919
+[gs:palette-upload] dbp=6902 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8421249 word1=8421504
+[gs:palette-upload] dbp=6906 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6500138 word1=6762029
+[gs:palette-upload] dbp=6910 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6564908 word1=6184542
+[gs:palette-upload] dbp=6914 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8355711
+[gs:palette-upload] dbp=6918 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8421249 word1=8355711
+[gs:palette-upload] dbp=6922 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8421249
+[gs:palette-upload] dbp=6926 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=8289918
+[gs:palette-upload] dbp=6930 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=8224382
+[gs:palette-upload] dbp=6934 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=8223870
+[gs:palette-upload] dbp=6938 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8355711
+[gs:palette-upload] dbp=6942 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8487297 word1=8289918
+[gs:palette-upload] dbp=6946 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2152548423 word1=2152482373
+[gs:palette-upload] dbp=6950 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2152548422 word1=2152680008
+[gs:palette-upload] dbp=6954 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2152745802 word1=2152877387
+[gs:palette-upload] dbp=6958 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2152614215 word1=2152680008
+[gs:palette-upload] dbp=6962 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2148207371 word1=2148667665
+[gs:palette-upload] dbp=6966 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=6970 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=6974 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=6978 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=6982 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16447222 word1=1090189046
+[gs:palette-upload] dbp=6986 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16710390 word1=1090452214
+[gs:palette-upload] dbp=6990 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16184058 word1=1089925882
+[gs:palette-upload] dbp=6994 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16710398 word1=1090452222
+[gs:palette-upload] dbp=6998 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16186106 word1=1089927930
+[gs:palette-upload] dbp=7002 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16577788 word1=1090319612
+[gs:palette-upload] dbp=7006 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16710398 word1=1090452222
+[gs:palette-upload] dbp=7010 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=7014 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=7018 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=16316664 word1=83425528
+[gs:palette-upload] dbp=7022 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7631988 word1=8685448
+[gs:palette-upload] dbp=7026 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6974058 word1=7368554
+[gs:palette-upload] dbp=7030 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6974058 word1=728722280
+[gs:palette-upload] dbp=7034 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7763574 word1=8617331
+[gs:palette-upload] dbp=7038 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6974058 word1=730233704
+[gs:palette-upload] dbp=7042 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6974058 word1=731483513
+[gs:palette-upload] dbp=7046 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6974058 word1=8027775
+[gs:palette-upload] dbp=7050 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8289404 word1=7501438
+[gs:palette-upload] dbp=7054 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=9208696
+[gs:palette-upload] dbp=7058 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=8094085
+[gs:palette-upload] dbp=7062 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8618883 word1=9606035
+[gs:palette-upload] dbp=7066 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8420990 word1=8553604
+[gs:palette-upload] dbp=7070 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6643551 word1=727009091
+[gs:palette-upload] dbp=7074 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=8026751
+[gs:palette-upload] dbp=7078 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=8026490
+[gs:palette-upload] dbp=7082 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=8943720
+[gs:palette-upload] dbp=7086 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=8750727
+[gs:palette-upload] dbp=7090 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=8092544
+[gs:palette-upload] dbp=7094 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8684676 word1=2153799314
+[gs:palette-upload] dbp=7098 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8553090 word1=9276556
+[gs:palette-upload] dbp=7102 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8618883 word1=8094850
+[gs:palette-upload] dbp=7106 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=3947580 word1=1080321124
+[gs:palette-upload] dbp=7110 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=3947580 word1=3552822
+[gs:palette-upload] dbp=7111 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8355711 word1=2151500375
+[gs:palette-upload] dbp=7115 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=9427166 word1=26204382
+[gs:palette-upload] dbp=7119 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=9427166 word1=26204382
+[gs:palette-upload] dbp=7123 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=2150674883 word1=2154786920
+[gs:palette-upload] dbp=7124 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2151957572 word1=2152152639
+[gs:palette-upload] dbp=7128 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7631988 word1=7697781
+[gs:palette-upload] dbp=7132 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7566195 word1=7434613
+[gs:palette-upload] dbp=7136 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7566195 word1=6579300
+[gs:palette-upload] dbp=7140 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7631988 word1=241591914
+[gs:palette-upload] dbp=7144 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7566195 word1=7370103
+[gs:palette-upload] dbp=7148 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=6710886 word1=7631988
+[gs:palette-upload] dbp=7152 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=7631988 word1=7501423
+[gs:palette-upload] dbp=7156 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2155905152 word1=2151694401
+[gs:palette-upload] dbp=7160 dbw=1 x=0 y=0 bytes=64 copied=0 total=16 word0=0 word1=2151430971
+[gs:palette-upload] dbp=7161 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=2147549602 word1=2159131063
+[gs:palette-upload] dbp=7165 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10724259
+[gs:palette-upload] dbp=7169 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10790052
+[gs:palette-upload] dbp=7173 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10724259
+[gs:palette-upload] dbp=7177 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10592673 word1=10658466
+[gs:palette-upload] dbp=7181 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10790052
+[gs:palette-upload] dbp=7185 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10790052
+[gs:palette-upload] dbp=7189 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=8355711 word1=8486785
+[gs:palette-upload] dbp=7193 dbw=1 x=0 y=0 bytes=1024 copied=0 total=256 word0=10658466 word1=10724259
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=1079531608
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=1 raw=721420288
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=732210340
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0

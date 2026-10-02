@@ -1,0 +1,133 @@
+--- a/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
++++ b/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
+@@ -1,4 +1,7 @@
+ #include <array>
++#include <atomic>
++#include <cstdlib>
++#include <cstdio>
+ 
+ #include "runtime/gs/ps2_gs_memory.h"
+ 
+@@ -255,69 +258,122 @@
+         }
+     }
+ 
++    // Opt-in physical block watch: catches writes whose source base differs
++    // from the CLUT base, including page offsets and four-MiB VRAM wrap.
++    int watchedVramBlock()
++    {
++        static const int block = []() {
++            const char* text = std::getenv("PS2_TRACE_GS_VRAM_BLOCK");
++            if (!text || !*text) return -1;
++            u32 value = 0;
++            for (; *text; ++text)
++            {
++                if (*text < '0' || *text > '9') return -1;
++                value = value * 10u + static_cast<u32>(*text - '0');
++                if (value > 0x3FFFu) return -1;
++            }
++            return static_cast<int>(value);
++        }();
++        return block;
++    }
++
++    template<PixelStorageMode mode, typename Table>
++    void TraceWrite(const Table& table, const u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
++    {
++        const int watched = watchedVramBlock();
++        if (watched < 0) return;
++        using Traits = PixelStorageTraits<mode>;
++        const u32 bits = Traits::Address(table, bp, bw, x, y) * UnpackedBitWidth(mode) + Traits::BitOffset();
++        const u32 address = (bits / 8u) & (MEMORY_SIZE - sizeof(typename Traits::PackedT));
++        if (address / 256u != static_cast<u32>(watched)) return;
++        // Shared across formats: one cap for the physical watch, not each PSM.
++        static_cast<void>(value);
++        extern std::atomic<uint64_t> vramWatchWrites;
++        const uint64_t count = vramWatchWrites.fetch_add(1, std::memory_order_relaxed) + 1u;
++        if (count > 128u && (count & (count - 1u)) != 0u) return;
++        u32 stored = 0u;
++        std::memcpy(&stored, data + address, sizeof(typename Traits::PackedT));
++        std::fprintf(stderr, "[gs:vram-write] number=%llu block=%d psm=%u bp=%u bw=%u x=%u y=%u address=%u shift=%u value=%u stored=%u\n",
++                     static_cast<unsigned long long>(count), watched, unsigned(mode), bp, bw, x, y, address, bits % 8u, value, stored);
++    }
++    std::atomic<uint64_t> vramWatchWrites{0};
++
+     void WriteCT32(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<C32>::Write(PageTableC32, data, bp, bw, x, y, value);
++        TraceWrite<C32>(PageTableC32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteCT24(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<C24>::Write(PageTableC32, data, bp, bw, x, y, value);
++        TraceWrite<C24>(PageTableC32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteZ32(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<Z32>::Write(PageTableZ32, data, bp, bw, x, y, value);
++        TraceWrite<Z32>(PageTableZ32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteZ24(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<Z24>::Write(PageTableZ32, data, bp, bw, x, y, value);
++        TraceWrite<Z24>(PageTableZ32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteCT16(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<C16>::Write(PageTableC16, data, bp, bw, x, y, value);
++        TraceWrite<C16>(PageTableC16, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteCT16S(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<C16S>::Write(PageTableC16S, data, bp, bw, x, y, value);
++        TraceWrite<C16S>(PageTableC16S, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteZ16(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<Z16>::Write(PageTableZ16, data, bp, bw, x, y, value);
++        TraceWrite<Z16>(PageTableZ16, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteZ16S(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<Z16S>::Write(PageTableZ16S, data, bp, bw, x, y, value);
++        TraceWrite<Z16S>(PageTableZ16S, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteP8(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<P8>::Write(PageTableP8, data, bp, bw, x, y, value);
++        TraceWrite<P8>(PageTableP8, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteP8H(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<P8H>::Write(PageTableC32, data, bp, bw, x, y, value);
++        TraceWrite<P8H>(PageTableC32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteP4(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<P4>::Write(PageTableP4, data, bp, bw, x, y, value);
++        TraceWrite<P4>(PageTableP4, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteP4HL(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<P4HL>::Write(PageTableC32, data, bp, bw, x, y, value);
++        TraceWrite<P4HL>(PageTableC32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteP4HH(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
+     {
+         PixelStorageTraits<P4HH>::Write(PageTableC32, data, bp, bw, x, y, value);
++        TraceWrite<P4HH>(PageTableC32, data, bp, bw, x, y, value);
+     }
+ 
+     void WriteNull(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
