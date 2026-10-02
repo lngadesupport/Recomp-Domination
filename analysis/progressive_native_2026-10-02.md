@@ -22,6 +22,14 @@ Snapshots repeatedly show PC/RA=0x238C50 at sceGsSyncV continuation, alternating
 
 `scripts/run_native_progression.py` runs fixed-configuration probes with increasing durations, preserves each result, caps logs, stages disc sidecars beside the ELF, owns/cleans up Xvfb, and checks the runner against a retained successful-build hash before and after each probe. Identity change or host/boot failure stops the batch. A normal probe timeout permits the next run. It never promotes host tick frequency to game FPS.
 
-The 7,500-second batch was started with schedule 60,120,240,480,600 seconds, repeating the final duration, and a maximum of 32 probes. At this report snapshot, 60- and 120-second runs were complete and the batch was still running. This report does not certify completion of two hours. The live local summary is `analysis/local/native-125min-release-v2/summary.json`; each completed run remains independently reviewable.
+The 7,500-second batch was started with schedule 60,120,240,480,600 seconds, repeating the final duration, and a maximum of 32 probes. At this report snapshot, 60-, 120- and 240-second runs were complete and the batch was still running. This report does not certify completion of two hours. The live local summary is `analysis/local/native-125min-release-v2/summary.json`; each completed run remains independently reviewable.
 
 No 60 FPS, 75 FPS, Windows retail execution, or playable gameplay is certified. Concurrent diagnostic runs use software graphics and cannot support a fair performance comparison. Public evidence excludes retail assets and generated retail C++.
+
+## Hosted checks
+
+Source commit `97841498c251cc6e6ba430f24b4097d52dee73f6` passed the production renderer workflow on Linux and Windows (run `36946671981`) and runtime recovery checks (run `36946671875`). COP0 regression run `36946671855` also passed. The Release checkpoint runner predates the optional CBP-filter addition and corresponds to source commit `955dc65b19249ff31fe7824fe4f237d691ebf8a3`; it is the fixed executable used by the long batch.
+
+## Targeted native result
+
+The CBP-filtered runner SHA256 `40c88187a4183f7171b4fb4500f7fb472700a448fe3c832799b2192a2e04b2f5` completed a verified 90.027-second native probe. It logged 384 sampled palette-load entries at CBP=6805 (entries 0, 8 and 15 across 128 forced loads), all raw=0, and 64 nonzero-index font samples, all RGBA=0. This confirms that sampled zero colors are already present at the actual palette-load reads rather than being inferred from an early unrelated palette. Entry 1 was not included in the load sampler. It does not distinguish absent uploads from incorrect upload addressing, incorrect palette-read addressing, or other upstream defects. The image remains black.

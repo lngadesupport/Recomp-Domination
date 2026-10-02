@@ -1,0 +1,448 @@
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=6 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=6 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=6 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=6 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=1 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=5 rgba=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=0 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=8 raw=0
+[gs:clut-load] cbp=6805 cpsm=0 csm=0 csa=0 cld=1 entry=15 raw=0
