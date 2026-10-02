@@ -1,0 +1,312 @@
+[guest-branch:missing-target] kind=Return op=JR $ra source=0x25ef70 target=0x0 pc=0x0 ra=0x0 sp=0x1fffff0 gp=0x2a40f0 a0=0x8001218c a1=0x80080000 a2=0x25ef38 a3=0x29e580 s0=0x282218 s1=0x0 v0=0x8001218c v1=0x83 a0Readable=no a0[0]=0x0 a0[4]=0x0 a0[8]=0x0 a0[c]=0x0 s0Readable=yes s0[0]=0x83 s0[4]=0x25ef38 s0[8]=0x5a s0[c]=0x25ef00 recordReadable=yes record[0]=0x8c820000 record[4]=0x1046000b record[8]=0x85102b record[c]=0x5040000a vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=no policy=1 trace=0x10a008 -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x10a12c -> 0x25f0a0 -> 0x25eeb8 -> 0x25a6e0 -> 0x25a6e0 -> 0x25ef90 -> 0x25f090 -> 0x25f090 -> 0x25ef78 -> 0x25ef38
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=840 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=960 running=12 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=3 rgba=1079531608
+[gs:palette-texel] tbp=128 psm=36 cbp=6805 index=2 rgba=1073741824
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2280 running=1 thread=1:pc=0x20ff20:ra=0x20fef0:priority=0:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=2400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=3000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=3120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=3240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=3360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=1 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.164062
+[gs:triangle-state] number=2 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.164062
+[gs:triangle-state] number=3 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.246093
+[gs:triangle-state] number=4 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.320312
+[gs:triangle-state] number=5 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.398437
+[gs:triangle-state] number=6 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.210937
+[gs:triangle-state] number=7 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.402343
+[gs:triangle-state] number=8 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.546875
+[gs:triangle-state] number=9 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.42187
+[gs:triangle-pixel] number=1 result=write tbp=8800 xy=376,31 z=950324 stored_z=0 rgba=115,82,61,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=10 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.46484
+[gs:triangle-pixel] number=2 result=write tbp=8800 xy=375,32 z=950177 stored_z=0 rgba=115,90,69,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=11 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.76953
+[gs:triangle-state] number=12 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.67578
+[gs:triangle-pixel] number=3 result=write tbp=8800 xy=375,33 z=949910 stored_z=0 rgba=119,101,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=13 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.58203
+[gs:triangle-pixel] number=4 result=write tbp=8800 xy=374,33 z=950188 stored_z=0 rgba=120,100,80,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=14 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.34765
+[gs:triangle-state] number=15 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.91796
+[gs:triangle-pixel] number=5 result=write tbp=8800 xy=373,32 z=950802 stored_z=0 rgba=118,88,66,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.71875
+[gs:triangle-pixel] number=6 result=write tbp=8800 xy=373,31 z=951414 stored_z=0 rgba=124,67,47,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=17 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.8125
+[gs:triangle-pixel] number=7 result=write tbp=8800 xy=372,31 z=951983 stored_z=0 rgba=123,70,46,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=18 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0273437
+[gs:triangle-state] number=19 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0078125
+[gs:triangle-state] number=20 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0078125
+[gs:triangle-state] number=21 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0078125
+[gs:triangle-state] number=22 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.00390625
+[gs:triangle-state] number=23 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.00390625
+[gs:triangle-state] number=24 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.195312
+[gs:triangle-state] number=25 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.273437
+[gs:triangle-state] number=26 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.28125
+[gs:triangle-state] number=27 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.25
+[gs:triangle-state] number=28 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.25
+[gs:triangle-pixel] number=8 result=write tbp=8800 xy=374,36 z=953019 stored_z=0 rgba=76,53,39,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=255 fge=1
+[gs:triangle-state] number=29 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.203125
+[gs:triangle-state] number=30 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0703125
+[gs:triangle-state] number=31 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0898437
+[gs:triangle-state] number=32 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.046875
+[gs:triangle-pixel] number=9 result=write tbp=8800 xy=370,32 z=953797 stored_z=0 rgba=78,71,55,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=10 result=write tbp=8800 xy=377,31 z=950376 stored_z=0 rgba=115,69,48,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=11 result=write tbp=8800 xy=377,31 z=950376 stored_z=950376 rgba=115,69,48,128 fb=3163507 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=12 result=write tbp=8800 xy=377,32 z=949721 stored_z=0 rgba=118,95,73,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=13 result=write tbp=8800 xy=378,33 z=949270 stored_z=0 rgba=120,102,76,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=14 result=write tbp=8800 xy=378,34 z=948952 stored_z=0 rgba=123,106,81,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=15 result=write tbp=8800 xy=379,34 z=948869 stored_z=0 rgba=113,87,61,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=16 result=write tbp=8800 xy=378,35 z=948567 stored_z=0 rgba=114,84,64,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=17 result=write tbp=8800 xy=377,35 z=948853 stored_z=0 rgba=118,96,74,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=18 result=write tbp=8800 xy=375,36 z=949125 stored_z=0 rgba=104,63,45,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=64 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.03125
+[gs:triangle-pixel] number=19 result=write tbp=8800 xy=373,31 z=951414 stored_z=951414 rgba=123,67,47,127 fb=3097468 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=20 result=write tbp=8800 xy=375,38 z=952501 stored_z=0 rgba=66,38,26,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=21 result=write tbp=8800 xy=374,37 z=951557 stored_z=0 rgba=68,39,27,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=22 result=depth-test tbp=8800 xy=374,36 z=949601 stored_z=953019 rgba=94,65,45,127 fb=2569548 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=23 result=write tbp=8800 xy=374,35 z=949725 stored_z=0 rgba=109,100,76,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=24 result=write tbp=8800 xy=374,34 z=949965 stored_z=0 rgba=115,100,77,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=25 result=write tbp=8800 xy=373,33 z=950460 stored_z=0 rgba=118,96,76,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=26 result=write tbp=8800 xy=375,34 z=949692 stored_z=0 rgba=119,100,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=27 result=write tbp=8800 xy=372,32 z=951122 stored_z=0 rgba=114,85,62,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=28 result=write tbp=8800 xy=371,31 z=952585 stored_z=0 rgba=128,75,49,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=29 result=write tbp=8800 xy=376,39 z=948357 stored_z=0 rgba=83,47,31,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=30 result=write tbp=8800 xy=376,38 z=948359 stored_z=0 rgba=90,53,34,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=31 result=write tbp=8800 xy=377,38 z=948032 stored_z=0 rgba=92,53,34,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32 result=write tbp=8800 xy=377,37 z=948261 stored_z=0 rgba=99,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=33 result=write tbp=8800 xy=378,37 z=947984 stored_z=0 rgba=100,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=34 result=write tbp=8800 xy=379,37 z=947715 stored_z=0 rgba=99,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=35 result=write tbp=8800 xy=378,36 z=948271 stored_z=0 rgba=103,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=36 result=write tbp=8800 xy=377,36 z=948564 stored_z=0 rgba=103,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=37 result=write tbp=8800 xy=373,35 z=954083 stored_z=0 rgba=67,49,35,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=38 result=write tbp=8800 xy=372,34 z=954568 stored_z=0 rgba=69,49,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=39 result=write tbp=8800 xy=377,40 z=951221 stored_z=0 rgba=53,31,19,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=128 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.273437
+[gs:triangle-pixel] number=40 result=depth-test tbp=8800 xy=374,37 z=949493 stored_z=951557 rgba=83,48,31,127 fb=1779524 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=41 result=write tbp=8800 xy=371,32 z=955655 stored_z=0 rgba=93,84,69,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=42 result=write tbp=8800 xy=372,32 z=955620 stored_z=951122 rgba=109,98,75,128 fb=4085106 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=43 result=write tbp=8800 xy=373,32 z=955394 stored_z=950802 rgba=109,100,77,128 fb=4348022 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=44 result=write tbp=8800 xy=374,32 z=955122 stored_z=0 rgba=109,100,78,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=45 result=write tbp=8800 xy=375,32 z=954840 stored_z=950177 rgba=110,100,78,127 fb=4545139 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=46 result=write tbp=8800 xy=374,33 z=954881 stored_z=950188 rgba=94,54,37,128 fb=5268600 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=47 result=write tbp=8800 xy=375,33 z=954598 stored_z=949910 rgba=93,54,37,127 fb=5203319 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=48 result=write tbp=8800 xy=376,33 z=954319 stored_z=0 rgba=92,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=49 result=write tbp=8800 xy=377,33 z=954041 stored_z=0 rgba=92,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=50 result=write tbp=8800 xy=378,33 z=953758 stored_z=949270 rgba=93,54,37,127 fb=5006968 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=51 result=depth-test tbp=8800 xy=370,32 z=952051 stored_z=953797 rgba=88,49,34,128 fb=3622734 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=52 result=depth-test tbp=8800 xy=373,35 z=950191 stored_z=954083 rgba=97,86,64,128 fb=2306371 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=53 result=write tbp=8800 xy=373,34 z=950239 stored_z=0 rgba=110,99,73,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=54 result=write tbp=8800 xy=372,33 z=950789 stored_z=0 rgba=112,89,67,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=55 result=depth-test tbp=8800 xy=371,32 z=951462 stored_z=955655 rgba=111,79,56,127 fb=4543581 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=56 result=write tbp=8800 xy=375,37 z=953575 stored_z=0 rgba=85,59,41,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=57 result=write tbp=8800 xy=371,31 z=955068 stored_z=952585 rgba=136,114,95,127 fb=3230592 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=58 result=write tbp=8800 xy=377,31 z=954403 stored_z=950376 rgba=124,112,87,128 fb=3163507 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=59 result=write tbp=8800 xy=378,32 z=953890 stored_z=0 rgba=123,103,82,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=60 result=write tbp=8800 xy=377,32 z=954268 stored_z=949721 rgba=111,102,80,128 fb=4808566 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=61 result=write tbp=8800 xy=374,31 z=955219 stored_z=0 rgba=126,109,88,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=62 result=write tbp=8800 xy=375,31 z=955050 stored_z=0 rgba=114,103,82,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=63 result=write tbp=8800 xy=376,31 z=954730 stored_z=950324 rgba=119,107,85,127 fb=4018803 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=64 result=write tbp=8800 xy=376,32 z=954557 stored_z=0 rgba=110,101,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=256 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.535156
+[gs:triangle-pixel] number=128 result=write tbp=8800 xy=379,36 z=952865 stored_z=947994 rgba=105,57,39,127 fb=2439016 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=512 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.246093
+[gs:triangle-pixel] number=256 result=write tbp=8800 xy=397,9 z=956632 stored_z=0 rgba=151,63,47,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=255 fge=1
+[gs:triangle-pixel] number=512 result=write tbp=8800 xy=398,17 z=924860 stored_z=0 rgba=93,46,34,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=1024 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.945312
+[gs:triangle-pixel] number=1024 result=depth-test tbp=8800 xy=387,13 z=921521 stored_z=962199 rgba=134,62,45,128 fb=2304854 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=2048 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.08593
+[gs:triangle-pixel] number=2048 result=write tbp=8800 xy=370,30 z=916699 stored_z=0 rgba=131,65,50,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=4096 result=write tbp=8800 xy=366,41 z=932470 stored_z=0 rgba=80,45,39,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=8192 result=depth-test tbp=8800 xy=404,84 z=899146 stored_z=928268 rgba=132,61,44,127 fb=1977174 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=4096 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.75
+[boot-snapshot] host_tick=3480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=8192 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.476562
+[gs:triangle-pixel] number=16384 result=write tbp=8800 xy=405,71 z=1049429 stored_z=0 rgba=72,39,26,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32768 result=write tbp=8800 xy=392,83 z=1135677 stored_z=0 rgba=72,40,29,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16384 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0195312
+[gs:triangle-pixel] number=65536 result=write tbp=8800 xy=392,92 z=1338320 stored_z=1228688 rgba=103,52,47,127 fb=1976652 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=32768 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-16.6406
+[gs:triangle-pixel] number=131072 result=depth-test tbp=8800 xy=443,43 z=1495859 stored_z=1536453 rgba=138,63,46,127 fb=2306927 test=327680 alpha=549755813956 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=262144 result=write tbp=8800 xy=432,60 z=1584166 stored_z=1569925 rgba=138,63,47,127 fb=4607609 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=65536 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.585937
+[gs:triangle-pixel] number=524288 result=depth-test tbp=8800 xy=438,105 z=1421096 stored_z=1564825 rgba=133,62,47,128 fb=3358084 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=131072 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.07812
+[boot-snapshot] host_tick=3600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-pixel] number=1048576 result=depth-test tbp=8800 xy=445,23 z=1594825 stored_z=1597037 rgba=145,62,42,127 fb=2636942 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=3720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=262144 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.40625
+[gs:triangle-pixel] number=2097152 result=write tbp=8800 xy=476,119 z=1508805 stored_z=1460061 rgba=141,60,43,127 fb=3953560 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=3840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=3960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=524288 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=14
+[boot-snapshot] host_tick=4080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-pixel] number=4194304 result=write tbp=8800 xy=431,63 z=1580697 stored_z=1566766 rgba=111,64,44,127 fb=2703214 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=4200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=4320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=4440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=1048576 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-14.4023
+[boot-snapshot] host_tick=4560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=4680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=4800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-pixel] number=8388608 result=write tbp=8800 xy=446,37 z=1547702 stored_z=1482843 rgba=130,56,40,128 fb=2175081 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=5880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=6960 running=1 thread=1:pc=0x20fd78:ra=0x20fd78:priority=0:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=7080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=8880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=9960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=10920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=11880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12840 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=12960 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=13920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=14040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=14160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=14280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
