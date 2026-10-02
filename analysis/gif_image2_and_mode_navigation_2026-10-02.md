@@ -49,7 +49,13 @@ anomaly occurs; the last EE thread remains Ready at 0x238C50. No IMAGE2 reject
 marker remains, but 110272 oversized-packet markers are recorded.
 Changing the format support does not establish that the remaining packet
 contents are valid. The late Start command was not delivered to this probe,
-so it is not part of its input evidence. A separate 480-second sequence includes
-Start at 360 seconds and is pending.
+so it is not part of its input evidence. The separate sequence completed 480.062 seconds and includes Start at 360
+seconds. The 390-second capture shows Select Level; the final 475-second capture is
+black. This last image does not establish loading or a playable race. It records
+no nonzero missing target or resource-return anomaly, no IMAGE2 reject marker,
+and 107708 oversized-packet markers. The last EE thread remains Ready.
+Race rendering is still unverified. This is a navigation milestone, not proof
+that IMAGE2 support alone caused the advance: input timing and guest progress
+vary between executions.
 Incorrect colors, a playable race, game FPS and Windows retail boot remain
 unverified.

@@ -1,0 +1,46 @@
+[vu:xgkick-error] sample=1 reason=tag-limit cycle=217386 pc=0x1040 source_qw=856 tag_offset=65296 copied=65312 tag_lo=0x000000ff000000ff tag_hi=0xbfa14480000000ff nloop=255 format=0 nreg=0 requested=65296 limit=65536
+[vu:xgkick-error] sample=2 reason=tag-limit cycle=306661 pc=0x2448 source_qw=800 tag_offset=16 copied=32 tag_lo=0x00007cf900007f51 tag_hi=0xffffffec00000000 nloop=32593 format=0 nreg=0 requested=8343824 limit=65536
+[vu:xgkick-error] sample=3 reason=tag-limit cycle=307485 pc=0x2220 source_qw=108 tag_offset=0 copied=16 tag_lo=0x7f7fffff44fea2f2 tag_hi=0xffffffff3f800000 nloop=8946 format=3 nreg=7 requested=143152 limit=65536
+[vu:xgkick-error] sample=4 reason=tag-limit cycle=643550 pc=0x2220 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=5 reason=tag-limit cycle=643618 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=6 reason=tag-limit cycle=652752 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=7 reason=tag-limit cycle=652756 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=8 reason=tag-limit cycle=661546 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=9 reason=tag-limit cycle=661550 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=10 reason=tag-limit cycle=670684 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=11 reason=tag-limit cycle=670688 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=12 reason=tag-limit cycle=677472 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=13 reason=tag-limit cycle=677540 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=14 reason=tag-limit cycle=685214 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=15 reason=tag-limit cycle=685282 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=16 reason=tag-limit cycle=694452 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=17 reason=tag-limit cycle=694456 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=18 reason=tag-limit cycle=703586 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=19 reason=tag-limit cycle=703590 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=20 reason=tag-limit cycle=712918 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=21 reason=tag-limit cycle=712986 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=22 reason=tag-limit cycle=716022 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=23 reason=tag-limit cycle=716090 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=24 reason=tag-limit cycle=722096 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=25 reason=tag-limit cycle=722164 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=26 reason=tag-limit cycle=731238 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=27 reason=tag-limit cycle=731242 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=28 reason=tag-limit cycle=737254 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=29 reason=tag-limit cycle=737322 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=30 reason=tag-limit cycle=740284 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[vu:xgkick-error] sample=31 reason=tag-limit cycle=740352 pc=0x60 source_qw=108 tag_offset=0 copied=16 tag_lo=0x43aa148fc3996ea7 tag_hi=0x00000000c3996ea7 nloop=28327 format=0 nreg=4 requested=1812944 limit=65536
+[vu:xgkick-error] sample=32 reason=tag-limit cycle=746358 pc=0x1000 source_qw=563 tag_offset=0 copied=16 tag_lo=0x0000990300005e5b tag_hi=0x0000000000000000 nloop=24155 format=0 nreg=0 requested=6183696 limit=65536
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=2:wait=4:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=840 running=10 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=960 running=12 thread=1:pc=0x23147c:ra=0x23147c:priority=0:status=2:wait=4:wait_id=0 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0

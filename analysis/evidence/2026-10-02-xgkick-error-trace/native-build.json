@@ -1,0 +1,9 @@
+{
+  "source_commit": "0f7d9a96745bac7752450c9801cd8f368d546fab",
+  "runner_sha256": "66e4e2d96f064af8502a5b9eba1a70323eca93453cf0042ceff7131a6f0ebf37",
+  "runner_bytes": 44621456,
+  "build_type": "Release",
+  "ffmpeg_enabled": true,
+  "link_method": "Successful original production runner link command with isolated output path",
+  "diagnostic_only_change": "Opt-in VU XGKICK error fields; packet limit and behavior unchanged"
+}
