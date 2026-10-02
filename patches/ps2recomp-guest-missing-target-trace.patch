@@ -16,7 +16,7 @@
      {
          std::ostringstream oss;
          oss << "[guest-branch:missing-target] kind=" << describeGuestBranchKind(kind)
-@@ -1359,8 +1366,19 @@
+@@ -1359,8 +1366,20 @@
              << " vtbl[8]=0x" << vtableSlot8
              << " vtbl[c]=0x" << vtableSlotC
              << " codeRegion=" << (m_memory.isCodeAddress(targetPc) ? "yes" : "no")
@@ -30,6 +30,7 @@
 +            for (uint32_t i = 0; i < 4; ++i)
 +                readable = readGuestU32Offset(targetPc, i * 4, words[i]) && readable;
 +            oss << " sample=" << std::dec << report << std::hex
++                << " branch_pc=0x" << ctx->branch_pc
 +                << " targetReadable=" << (readable ? "yes" : "no")
 +                << " target[0]=0x" << words[0] << " target[4]=0x" << words[1]
 +                << " target[8]=0x" << words[2] << " target[c]=0x" << words[3];

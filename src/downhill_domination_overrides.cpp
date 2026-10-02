@@ -265,6 +265,49 @@ namespace
     }
 
     PS2Runtime::RecompiledFunction originalDmaQueueWait = nullptr;
+
+    PS2Runtime::RecompiledFunction originalResourceReturn = nullptr;
+    PS2Runtime::RecompiledFunction originalResourceCaller = nullptr;
+    uint64_t resourceReturnCalls = 0, resourceReturnAnomalies = 0;
+    uint64_t resourceCallerCalls = 0, resourceCallerAnomalies = 0;
+    void traceResourceFrame(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime,
+                            PS2Runtime::RecompiledFunction original, uint32_t base, uint32_t size,
+                            uint32_t raOffset, uint64_t &calls, uint64_t &anomalies)
+    {
+        const uint32_t entryPc = ctx->pc, entrySp = GPR_U32(ctx, 29), entryRa = GPR_U32(ctx, 31);
+        const uint32_t frame = entryPc == base ? entrySp - size : entrySp;
+        const uint32_t savedBefore = Ps2FastRead32(rdram, frame + raOffset);
+        const uint64_t call = ++calls;
+        original(rdram, ctx, runtime);
+        const uint32_t savedAfter = Ps2FastRead32(rdram, frame + raOffset);
+        const bool invalidTarget = ctx->pc != 0u && !runtime->hasFunction(ctx->pc);
+        const bool invalidSaved = savedAfter != 0u && !runtime->hasFunction(savedAfter);
+        const uint64_t anomaly = (invalidTarget || invalidSaved) ? ++anomalies : 0u;
+        const bool sample = call <= 16u || (call & (call - 1u)) == 0u;
+        const bool sampleAnomaly = anomaly && (anomaly <= 32u || (anomaly & (anomaly - 1u)) == 0u);
+        if (!sample && !sampleAnomaly) return;
+        std::ostringstream line;
+        line << "[downhill:resource-return] call=" << call << " anomaly=" << anomaly
+             << " thread=" << runtime->eeScheduler().currentThreadId()
+             << std::hex << " routine=0x" << base << " entry_pc=0x" << entryPc << " entry_sp=0x" << entrySp
+             << " entry_ra=0x" << entryRa << " frame=0x" << frame
+             << " saved_before=0x" << savedBefore << " saved_after=0x" << savedAfter
+             << " exit_pc=0x" << ctx->pc << " exit_ra=0x" << GPR_U32(ctx, 31)
+             << " exit_sp=0x" << GPR_U32(ctx, 29) << " branch_pc=0x" << ctx->branch_pc << std::dec << '\n';
+        std::cerr << line.str();
+    }
+
+    void downhillTraceResourceReturn(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        traceResourceFrame(rdram, ctx, runtime, originalResourceReturn, 0x00203D18u, 32u, 16u,
+                           resourceReturnCalls, resourceReturnAnomalies);
+    }
+    void downhillTraceResourceCaller(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        traceResourceFrame(rdram, ctx, runtime, originalResourceCaller, 0x00205F40u, 64u, 48u,
+                           resourceCallerCalls, resourceCallerAnomalies);
+    }
+
     uint64_t dmaWaitCalls = 0;
     void downhillTraceDmaQueueWait(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
     {
@@ -286,6 +329,20 @@ namespace
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
+        const char *returnTrace = std::getenv("PS2_TRACE_DOWNHILL_RESOURCE_RETURN");
+        if (returnTrace && std::strcmp(returnTrace, "1") == 0)
+        {
+            originalResourceReturn = runtime.lookupFunction(0x00203D18u);
+            resourceReturnCalls = resourceReturnAnomalies = 0;
+            originalResourceCaller = runtime.lookupFunction(0x00205F40u);
+            resourceCallerCalls = resourceCallerAnomalies = 0;
+            if (originalResourceReturn)
+                for (const uint32_t pc : {0x00203D18u, 0x00203D9Cu, 0x00203DACu, 0x00203DBCu})
+                    runtime.replaceFunction(pc, downhillTraceResourceReturn);
+            if (originalResourceCaller)
+                for (const uint32_t pc : {0x00205F40u, 0x00206020u, 0x00206058u, 0x00206110u, 0x002061B0u})
+                    runtime.replaceFunction(pc, downhillTraceResourceCaller);
+        }
         const char *dmaTrace = std::getenv("PS2_TRACE_DMAC_IRQ");
         if (dmaTrace != nullptr && std::strcmp(dmaTrace, "1") == 0)
         {

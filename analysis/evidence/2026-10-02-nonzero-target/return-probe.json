@@ -1,0 +1,59 @@
+{
+  "status": "probe-limit",
+  "runs": [
+    {
+      "directory": "run-001",
+      "probe": {
+        "termination": "timeout",
+        "exit_code": -9,
+        "process_signal": 9,
+        "elapsed_seconds": 100.044,
+        "timeout_seconds": 100.0,
+        "max_log_bytes": 33554432,
+        "execution_stage": "guest",
+        "elf_sha256": "adfda7b73a8f05fb20a3f0f318772e9d3797fd4d6c0a6c0078ae392df0f0cf0c",
+        "runner_sha256": "2a3e4e9a16032180cba27a7b1c8416ac30c4c2fa49fc55a52f6428ab21e07e9f",
+        "runner_sha256_after": "2a3e4e9a16032180cba27a7b1c8416ac30c4c2fa49fc55a52f6428ab21e07e9f",
+        "runner_identity_verified": true,
+        "runner_changed_during_probe": false,
+        "host": "posix",
+        "windows_boot_verified": false
+      },
+      "progress": {
+        "wait_samples": 0,
+        "irq_samples": 0,
+        "malformed_samples": 0,
+        "last_wait": null,
+        "masked_vif1_completions_observed": false,
+        "vif1_queue_wait_observed": false,
+        "limits": "Sampled observations do not establish cause, elapsed stall duration, a playable menu, or game FPS.",
+        "thread_snapshot_samples": 49,
+        "malformed_thread_snapshots": 0,
+        "last_thread_state": {
+          "host_tick": 5880,
+          "running": 0,
+          "threads": [
+            {
+              "id": 1,
+              "pc": 16978448,
+              "status": 5
+            }
+          ]
+        },
+        "repeated_all_dormant_snapshots": true,
+        "boot_status": "passed",
+        "boot_reason": "guest execution observed; gameplay remains unverified",
+        "menu_status": "blocked",
+        "menu_reason": "last two snapshots contain only dormant EE threads",
+        "race_status": "blocked",
+        "performance_status": "blocked",
+        "sprite_records": 128,
+        "palette_texel_records": 0,
+        "last_thread_snapshot": "[boot-snapshot] host_tick=5880 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0"
+      }
+    }
+  ],
+  "gameplay_verified": false,
+  "game_fps_verified": false,
+  "elapsed_seconds": 102.114
+}
