@@ -1,0 +1,415 @@
+[gs:clear-depth] number=1 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=2 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=3 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=4 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=5 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=6 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=7 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=8 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=9 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=10 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=11 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=12 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clear-depth] number=13 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=14 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=15 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=16 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=17 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=18 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=19 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=20 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=21 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=22 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=23 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=24 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=25 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=26 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=27 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clear-depth] number=28 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=29 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=30 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[gs:clear-depth] number=31 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[gs:clear-depth] number=32 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[gs:clear-depth] number=64 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetDir port=0 '*' maxent=100 -> result=2[MC] Sync cmd=13 result=2[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[gs:clear-depth] number=128 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=16777000 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=327680
+[boot-snapshot] host_tick=120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[gs:clear-depth] number=256 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[boot-snapshot] host_tick=240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=2:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=3:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[gs:clear-depth] number=512 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=0 test=196608
+[boot-snapshot] host_tick=480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0 thread=4:pc=0x2243c0:ra=0x0:priority=1:status=1:wait=0:wait_id=0 thread=5:pc=0x224058:ra=0x23c4e0:priority=1:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=840 running=10 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=8 thread=10:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=960 running=12 thread=1:pc=0x25a728:ra=0x23144c:priority=0:status=2:wait=2:wait_id=28 thread=12:pc=0x25a708:ra=0x254fdc:priority=2:status=0:wait=0:wait_id=0
+[boot-snapshot] host_tick=1080 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:clear-depth] number=1024 rect=0,0,640,224 fbp=70 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=128 test=196608
+[boot-snapshot] host_tick=1200 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1320 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1440 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1560 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1680 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1800 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=1920 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:clear-depth] number=2048 rect=0,0,640,224 fbp=140 psm=1 fbmsk=0 z=0 zbp=0 zpsm=49 zmask=0 tme=0 tbp=128 test=196608
+[boot-snapshot] host_tick=2040 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2160 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2280 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2400 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2520 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=2640 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2760 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=2880 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[boot-snapshot] host_tick=3000 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=3120 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=3240 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[boot-snapshot] host_tick=3360 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=2:wait=4:wait_id=0
+[gs:triangle-state] number=1 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.167968
+[gs:triangle-vertex] number=1 vertex=0 xy=379.125,32.4375 z=953609 stq=-0.0282613,-0.00502238,0.0568278 rgba=107,95,104,128
+[gs:triangle-vertex] number=1 vertex=1 xy=378.437,31.5625 z=953868 stq=-0.0283383,-0.00502374,0.0568432 rgba=109,96,106,128
+[gs:triangle-vertex] number=1 vertex=2 xy=379.562,32.75 z=952461 stq=-0.0281857,-0.0047669,0.0567594 rgba=117,112,115,128
+[gs:triangle-state] number=2 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0898437
+[gs:triangle-vertex] number=2 vertex=0 xy=378.437,31.5625 z=953868 stq=-0.0283383,-0.00502374,0.0568432 rgba=109,96,106,128
+[gs:triangle-vertex] number=2 vertex=1 xy=379.562,32.75 z=952461 stq=-0.0281857,-0.0047669,0.0567594 rgba=117,112,115,128
+[gs:triangle-vertex] number=2 vertex=2 xy=378.75,31.8125 z=952705 stq=-0.0282761,-0.0047404,0.056774 rgba=117,112,115,128
+[gs:triangle-state] number=3 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.261718
+[gs:triangle-vertex] number=3 vertex=0 xy=379.562,32.75 z=952461 stq=-0.0281857,-0.0047669,0.0567594 rgba=117,112,115,128
+[gs:triangle-vertex] number=3 vertex=1 xy=378.75,31.8125 z=952705 stq=-0.0282761,-0.0047404,0.056774 rgba=117,112,115,128
+[gs:triangle-vertex] number=3 vertex=2 xy=378.687,32.0625 z=951587 stq=-0.0282291,-0.00452718,0.0567074 rgba=123,117,121,128
+[gs:triangle-state] number=4 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.320312
+[gs:triangle-vertex] number=4 vertex=0 xy=378.75,31.8125 z=952705 stq=-0.0282761,-0.0047404,0.056774 rgba=117,112,115,128
+[gs:triangle-vertex] number=4 vertex=1 xy=378.687,32.0625 z=951587 stq=-0.0282291,-0.00452718,0.0567074 rgba=123,117,121,128
+[gs:triangle-vertex] number=4 vertex=2 xy=377.687,30.9375 z=952167 stq=-0.0283571,-0.00452993,0.0567419 rgba=128,122,126,128
+[gs:triangle-state] number=5 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.335937
+[gs:triangle-vertex] number=5 vertex=0 xy=378.687,32.0625 z=951587 stq=-0.0282291,-0.00452718,0.0567074 rgba=123,117,121,128
+[gs:triangle-vertex] number=5 vertex=1 xy=377.687,30.9375 z=952167 stq=-0.0283571,-0.00452993,0.0567419 rgba=128,122,126,128
+[gs:triangle-vertex] number=5 vertex=2 xy=377.5,31.0625 z=950987 stq=-0.028322,-0.00427528,0.0566717 rgba=128,123,128,128
+[gs:triangle-state] number=6 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.167968
+[gs:triangle-vertex] number=6 vertex=0 xy=377.687,30.9375 z=952167 stq=-0.0283571,-0.00452993,0.0567419 rgba=128,122,126,128
+[gs:triangle-vertex] number=6 vertex=1 xy=377.5,31.0625 z=950987 stq=-0.028322,-0.00427528,0.0566717 rgba=128,123,128,128
+[gs:triangle-vertex] number=6 vertex=2 xy=376.812,30.625 z=951310 stq=-0.0284838,-0.00427673,0.0566909 rgba=136,131,136,128
+[gs:triangle-state] number=7 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.445312
+[gs:triangle-vertex] number=7 vertex=0 xy=377.5,31.0625 z=950987 stq=-0.028322,-0.00427528,0.0566717 rgba=128,123,128,128
+[gs:triangle-vertex] number=7 vertex=1 xy=376.812,30.625 z=951310 stq=-0.0284838,-0.00427673,0.0566909 rgba=136,131,136,128
+[gs:triangle-vertex] number=7 vertex=2 xy=376.875,31.3125 z=950271 stq=-0.0284528,-0.00402321,0.0566291 rgba=102,99,105,128
+[gs:triangle-state] number=8 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.558593
+[gs:triangle-vertex] number=8 vertex=0 xy=376.812,30.625 z=951310 stq=-0.0284838,-0.00427673,0.0566909 rgba=136,131,136,128
+[gs:triangle-vertex] number=8 vertex=1 xy=376.875,31.3125 z=950271 stq=-0.0284528,-0.00402321,0.0566291 rgba=102,99,105,128
+[gs:triangle-vertex] number=8 vertex=2 xy=376.062,31.3125 z=950500 stq=-0.0285979,-0.00402417,0.0566427 rgba=100,98,103,128
+[gs:triangle-state] number=9 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.32031
+[gs:triangle-vertex] number=9 vertex=0 xy=376.875,31.3125 z=950271 stq=-0.0284528,-0.00402321,0.0566291 rgba=102,99,105,128
+[gs:triangle-vertex] number=9 vertex=1 xy=376.062,31.3125 z=950500 stq=-0.0285979,-0.00402417,0.0566427 rgba=100,98,103,128
+[gs:triangle-vertex] number=9 vertex=2 xy=376.312,32.9375 z=949769 stq=-0.0287279,-0.00389672,0.0565992 rgba=96,86,92,128
+[gs:triangle-pixel] number=1 result=write tbp=8800 xy=376,31 z=950300 stored_z=0 rgba=115,82,61,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=10 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.47656
+[gs:triangle-vertex] number=10 vertex=0 xy=376.062,31.3125 z=950500 stq=-0.0285979,-0.00402417,0.0566427 rgba=100,98,103,128
+[gs:triangle-vertex] number=10 vertex=1 xy=376.312,32.9375 z=949769 stq=-0.0287279,-0.00389672,0.0565992 rgba=96,86,92,128
+[gs:triangle-vertex] number=10 vertex=2 xy=375.375,32.75 z=950079 stq=-0.0287926,-0.00391182,0.0566177 rgba=96,87,92,128
+[gs:triangle-pixel] number=2 result=write tbp=8800 xy=375,32 z=950151 stored_z=0 rgba=115,90,69,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=11 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.71093
+[gs:triangle-vertex] number=11 vertex=0 xy=376.312,32.9375 z=949769 stq=-0.0287279,-0.00389672,0.0565992 rgba=96,86,92,128
+[gs:triangle-vertex] number=11 vertex=1 xy=375.375,32.75 z=950079 stq=-0.0287926,-0.00391182,0.0566177 rgba=96,87,92,128
+[gs:triangle-vertex] number=11 vertex=2 xy=375.937,34.6875 z=949491 stq=-0.0288577,-0.00377126,0.0565827 rgba=95,86,91,128
+[gs:triangle-state] number=12 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.6289
+[gs:triangle-vertex] number=12 vertex=0 xy=375.375,32.75 z=950079 stq=-0.0287926,-0.00391182,0.0566177 rgba=96,87,92,128
+[gs:triangle-vertex] number=12 vertex=1 xy=375.937,34.6875 z=949491 stq=-0.0288577,-0.00377126,0.0565827 rgba=95,86,91,128
+[gs:triangle-vertex] number=12 vertex=2 xy=374.625,33.0625 z=950222 stq=-0.0288799,-0.00389858,0.0566262 rgba=96,86,92,128
+[gs:triangle-pixel] number=3 result=write tbp=8800 xy=375,33 z=949878 stored_z=0 rgba=119,101,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=13 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.52343
+[gs:triangle-vertex] number=13 vertex=0 xy=375.937,34.6875 z=949491 stq=-0.0288577,-0.00377126,0.0565827 rgba=95,86,91,128
+[gs:triangle-vertex] number=13 vertex=1 xy=374.625,33.0625 z=950222 stq=-0.0288799,-0.00389858,0.0566262 rgba=96,86,92,128
+[gs:triangle-vertex] number=13 vertex=2 xy=373.687,33.0625 z=950479 stq=-0.0289706,-0.00391346,0.0566414 rgba=96,86,92,128
+[gs:triangle-pixel] number=4 result=write tbp=8800 xy=374,33 z=950156 stored_z=0 rgba=119,100,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=14 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.34765
+[gs:triangle-vertex] number=14 vertex=0 xy=374.625,33.0625 z=950222 stq=-0.0288799,-0.00389858,0.0566262 rgba=96,86,92,128
+[gs:triangle-vertex] number=14 vertex=1 xy=373.687,33.0625 z=950479 stq=-0.0289706,-0.00391346,0.0566414 rgba=96,86,92,128
+[gs:triangle-vertex] number=14 vertex=2 xy=373.562,31.625 z=951120 stq=-0.0289071,-0.0040268,0.0566796 rgba=108,97,102,128
+[gs:triangle-state] number=15 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.91796
+[gs:triangle-vertex] number=15 vertex=0 xy=373.687,33.0625 z=950479 stq=-0.0289706,-0.00391346,0.0566414 rgba=96,86,92,128
+[gs:triangle-vertex] number=15 vertex=1 xy=373.562,31.625 z=951120 stq=-0.0289071,-0.0040268,0.0566796 rgba=108,97,102,128
+[gs:triangle-vertex] number=15 vertex=2 xy=372.25,31.875 z=951430 stq=-0.0290688,-0.00402811,0.0566981 rgba=99,97,94,128
+[gs:triangle-pixel] number=5 result=write tbp=8800 xy=373,32 z=950774 stored_z=0 rgba=118,88,66,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.785156
+[gs:triangle-vertex] number=16 vertex=0 xy=373.562,31.625 z=951120 stq=-0.0289071,-0.0040268,0.0566796 rgba=108,97,102,128
+[gs:triangle-vertex] number=16 vertex=1 xy=372.25,31.875 z=951430 stq=-0.0290688,-0.00402811,0.0566981 rgba=99,97,94,128
+[gs:triangle-vertex] number=16 vertex=2 xy=373.375,31.0625 z=952175 stq=-0.0289392,-0.00428062,0.0567425 rgba=132,120,132,128
+[gs:triangle-pixel] number=6 result=write tbp=8800 xy=373,31 z=951366 stored_z=0 rgba=122,68,46,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=17 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.816406
+[gs:triangle-vertex] number=17 vertex=0 xy=372.25,31.875 z=951430 stq=-0.0290688,-0.00402811,0.0566981 rgba=99,97,94,128
+[gs:triangle-vertex] number=17 vertex=1 xy=373.375,31.0625 z=952175 stq=-0.0289392,-0.00428062,0.0567425 rgba=132,120,132,128
+[gs:triangle-vertex] number=17 vertex=2 xy=371.937,31.375 z=952505 stq=-0.0291016,-0.0042821,0.056762 rgba=122,119,123,128
+[gs:triangle-pixel] number=7 result=write tbp=8800 xy=372,31 z=951939 stored_z=0 rgba=122,69,46,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=18 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.03125
+[gs:triangle-vertex] number=18 vertex=0 xy=373.375,31.0625 z=952175 stq=-0.0289392,-0.00428062,0.0567425 rgba=132,120,132,128
+[gs:triangle-vertex] number=18 vertex=1 xy=371.937,31.375 z=952505 stq=-0.0291016,-0.0042821,0.056762 rgba=122,119,123,128
+[gs:triangle-vertex] number=18 vertex=2 xy=372.125,31.3125 z=953642 stq=-0.0291363,-0.00453694,0.0568297 rgba=123,113,128,128
+[gs:triangle-state] number=19 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.015625
+[gs:triangle-vertex] number=19 vertex=0 xy=371.937,31.375 z=952505 stq=-0.0291016,-0.0042821,0.056762 rgba=122,119,123,128
+[gs:triangle-vertex] number=19 vertex=1 xy=372.125,31.3125 z=953642 stq=-0.0291363,-0.00453694,0.0568297 rgba=123,113,128,128
+[gs:triangle-vertex] number=19 vertex=2 xy=370.75,31.6875 z=952757 stq=-0.0292479,-0.00428323,0.0567771 rgba=121,119,123,128
+[gs:triangle-state] number=20 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0078125
+[gs:triangle-vertex] number=20 vertex=0 xy=372.125,31.3125 z=953642 stq=-0.0291363,-0.00453694,0.0568297 rgba=123,113,128,128
+[gs:triangle-vertex] number=20 vertex=1 xy=370.75,31.6875 z=952757 stq=-0.0292479,-0.00428323,0.0567771 rgba=121,119,123,128
+[gs:triangle-vertex] number=20 vertex=2 xy=371,31.625 z=953894 stq=-0.0292828,-0.00453814,0.0568448 rgba=117,108,123,128
+[gs:triangle-state] number=21 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0078125
+[gs:triangle-vertex] number=21 vertex=0 xy=370.75,31.6875 z=952757 stq=-0.0292479,-0.00428323,0.0567771 rgba=121,119,123,128
+[gs:triangle-vertex] number=21 vertex=1 xy=371,31.625 z=953894 stq=-0.0292828,-0.00453814,0.0568448 rgba=117,108,123,128
+[gs:triangle-vertex] number=21 vertex=2 xy=370.375,31.8125 z=954027 stq=-0.0294396,-0.00453877,0.0568527 rgba=88,83,91,128
+[gs:triangle-state] number=22 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0078125
+[gs:triangle-vertex] number=22 vertex=0 xy=371,31.625 z=953894 stq=-0.0292828,-0.00453814,0.0568448 rgba=117,108,123,128
+[gs:triangle-vertex] number=22 vertex=1 xy=370.375,31.8125 z=954027 stq=-0.0294396,-0.00453877,0.0568527 rgba=88,83,91,128
+[gs:triangle-vertex] number=22 vertex=2 xy=371.25,31.5625 z=955035 stq=-0.0293178,-0.00477977,0.0569127 rgba=109,100,115,128
+[gs:triangle-state] number=23 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0078125
+[gs:triangle-vertex] number=23 vertex=0 xy=370.375,31.8125 z=954027 stq=-0.0294396,-0.00453877,0.0568527 rgba=88,83,91,128
+[gs:triangle-vertex] number=23 vertex=1 xy=371.25,31.5625 z=955035 stq=-0.0293178,-0.00477977,0.0569127 rgba=109,100,115,128
+[gs:triangle-vertex] number=23 vertex=2 xy=370.625,31.75 z=955168 stq=-0.0294747,-0.00478044,0.0569206 rgba=84,80,94,128
+[gs:triangle-state] number=24 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.195312
+[gs:triangle-vertex] number=24 vertex=0 xy=371.25,31.5625 z=955035 stq=-0.0293178,-0.00477977,0.0569127 rgba=109,100,115,128
+[gs:triangle-vertex] number=24 vertex=1 xy=370.625,31.75 z=955168 stq=-0.0294747,-0.00478044,0.0569206 rgba=84,80,94,128
+[gs:triangle-vertex] number=24 vertex=2 xy=371.875,31.6875 z=955718 stq=-0.0293387,-0.00503347,0.0569533 rgba=103,100,110,128
+[gs:triangle-state] number=25 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.273437
+[gs:triangle-vertex] number=25 vertex=0 xy=370.625,31.75 z=955168 stq=-0.0294747,-0.00478044,0.0569206 rgba=84,80,94,128
+[gs:triangle-vertex] number=25 vertex=1 xy=371.875,31.6875 z=955718 stq=-0.0293387,-0.00503347,0.0569533 rgba=103,100,110,128
+[gs:triangle-vertex] number=25 vertex=2 xy=371.25,31.9375 z=955836 stq=-0.0294953,-0.00503409,0.0569603 rgba=91,83,93,128
+[gs:triangle-state] number=26 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.277343
+[gs:triangle-vertex] number=26 vertex=0 xy=375.062,37 z=953529 stq=-0.0302982,-0.00502196,0.056823 rgba=74,73,78,128
+[gs:triangle-vertex] number=26 vertex=1 xy=375,36.5625 z=953460 stq=-0.0302128,-0.00502159,0.0568189 rgba=74,73,77,128
+[gs:triangle-vertex] number=26 vertex=2 xy=374.375,36.625 z=952748 stq=-0.0301902,-0.00476834,0.0567765 rgba=70,67,72,128
+[gs:triangle-state] number=27 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.242187
+[gs:triangle-vertex] number=27 vertex=0 xy=375,36.5625 z=953460 stq=-0.0302128,-0.00502159,0.0568189 rgba=74,73,77,128
+[gs:triangle-vertex] number=27 vertex=1 xy=374.375,36.625 z=952748 stq=-0.0301902,-0.00476834,0.0567765 rgba=70,67,72,128
+[gs:triangle-vertex] number=27 vertex=2 xy=374.875,36.1875 z=953576 stq=-0.0301471,-0.0050222,0.0568258 rgba=64,64,66,128
+[gs:triangle-state] number=28 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.183593
+[gs:triangle-vertex] number=28 vertex=0 xy=374.375,36.625 z=952748 stq=-0.0301902,-0.00476834,0.0567765 rgba=70,67,72,128
+[gs:triangle-vertex] number=28 vertex=1 xy=374.875,36.1875 z=953576 stq=-0.0301471,-0.0050222,0.0568258 rgba=64,64,66,128
+[gs:triangle-vertex] number=28 vertex=2 xy=374.312,36.3125 z=952862 stq=-0.0301245,-0.00476891,0.0567833 rgba=62,60,66,128
+[gs:triangle-pixel] number=8 result=write tbp=8800 xy=374,36 z=952964 stored_z=0 rgba=77,53,40,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=29 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.230468
+[gs:triangle-vertex] number=29 vertex=0 xy=374.875,36.1875 z=953576 stq=-0.0301471,-0.0050222,0.0568258 rgba=64,64,66,128
+[gs:triangle-vertex] number=29 vertex=1 xy=374.312,36.3125 z=952862 stq=-0.0301245,-0.00476891,0.0567833 rgba=62,60,66,128
+[gs:triangle-vertex] number=29 vertex=2 xy=373.875,36 z=953145 stq=-0.0299809,-0.00477033,0.0568002 rgba=56,56,58,128
+[gs:triangle-state] number=30 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.105468
+[gs:triangle-vertex] number=30 vertex=0 xy=374.312,36.3125 z=952862 stq=-0.0301245,-0.00476891,0.0567833 rgba=62,60,66,128
+[gs:triangle-vertex] number=30 vertex=1 xy=373.875,36 z=953145 stq=-0.0299809,-0.00477033,0.0568002 rgba=56,56,58,128
+[gs:triangle-vertex] number=30 vertex=2 xy=374.062,36.375 z=951784 stq=-0.0300905,-0.00452811,0.0567191 rgba=62,59,62,128
+[gs:triangle-state] number=31 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.105468
+[gs:triangle-vertex] number=31 vertex=0 xy=373.875,36 z=953145 stq=-0.0299809,-0.00477033,0.0568002 rgba=56,56,58,128
+[gs:triangle-vertex] number=31 vertex=1 xy=374.062,36.375 z=951784 stq=-0.0300905,-0.00452811,0.0567191 rgba=62,59,62,128
+[gs:triangle-vertex] number=31 vertex=2 xy=373.625,36.0625 z=952049 stq=-0.0299604,-0.00452938,0.056735 rgba=55,55,57,128
+[gs:triangle-state] number=32 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0859375
+[gs:triangle-vertex] number=32 vertex=0 xy=374.062,36.375 z=951784 stq=-0.0300905,-0.00452811,0.0567191 rgba=62,59,62,128
+[gs:triangle-vertex] number=32 vertex=1 xy=373.625,36.0625 z=952049 stq=-0.0299604,-0.00452938,0.056735 rgba=55,55,57,128
+[gs:triangle-vertex] number=32 vertex=2 xy=373.437,36.125 z=950961 stq=-0.0299123,-0.00427516,0.0566701 rgba=54,54,55,128
+[gs:triangle-pixel] number=9 result=write tbp=8800 xy=370,32 z=953755 stored_z=0 rgba=78,71,55,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=10 result=write tbp=8800 xy=377,31 z=950305 stored_z=0 rgba=114,69,48,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=11 result=write tbp=8800 xy=377,32 z=949693 stored_z=0 rgba=118,95,73,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=12 result=write tbp=8800 xy=378,33 z=949243 stored_z=0 rgba=120,101,76,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=13 result=write tbp=8800 xy=378,34 z=948909 stored_z=0 rgba=122,103,80,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=14 result=write tbp=8800 xy=379,34 z=948842 stored_z=0 rgba=113,86,61,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=15 result=write tbp=8800 xy=378,35 z=948544 stored_z=0 rgba=114,84,64,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=16 result=write tbp=8800 xy=377,35 z=948833 stored_z=0 rgba=118,96,74,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=17 result=write tbp=8800 xy=375,36 z=949116 stored_z=0 rgba=104,63,45,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=64 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0351562
+[gs:triangle-vertex] number=64 vertex=0 xy=375.062,30.8125 z=952949 stq=-0.028824,-0.00453365,0.0567885 rgba=135,123,136,128
+[gs:triangle-vertex] number=64 vertex=1 xy=376.125,30.6875 z=951499 stq=-0.0286279,-0.00427758,0.0567022 rgba=134,121,132,128
+[gs:triangle-vertex] number=64 vertex=2 xy=374.812,30.875 z=951814 stq=-0.0287897,-0.00427899,0.0567209 rgba=132,120,132,128
+[gs:triangle-pixel] number=18 result=write tbp=8800 xy=376,39 z=952522 stored_z=0 rgba=65,37,26,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=19 result=write tbp=8800 xy=375,38 z=952403 stored_z=0 rgba=67,39,27,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=20 result=write tbp=8800 xy=374,37 z=951457 stored_z=0 rgba=68,39,27,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=21 result=depth-test tbp=8800 xy=374,36 z=949599 stored_z=952964 rgba=93,65,45,128 fb=2635085 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=22 result=write tbp=8800 xy=374,35 z=949699 stored_z=0 rgba=109,100,76,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=23 result=write tbp=8800 xy=374,34 z=949934 stored_z=0 rgba=115,100,77,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=24 result=write tbp=8800 xy=375,34 z=949654 stored_z=0 rgba=119,100,78,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=25 result=write tbp=8800 xy=373,33 z=950434 stored_z=0 rgba=119,96,76,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=26 result=write tbp=8800 xy=372,32 z=951093 stored_z=0 rgba=114,85,62,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=27 result=write tbp=8800 xy=371,31 z=952581 stored_z=0 rgba=129,75,50,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=28 result=depth-test tbp=8800 xy=376,39 z=948337 stored_z=952522 rgba=83,47,31,128 fb=1713473 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=29 result=write tbp=8800 xy=376,38 z=948344 stored_z=0 rgba=90,53,34,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=30 result=write tbp=8800 xy=377,38 z=948018 stored_z=0 rgba=92,53,34,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=31 result=write tbp=8800 xy=377,37 z=948257 stored_z=0 rgba=99,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32 result=write tbp=8800 xy=378,37 z=947977 stored_z=0 rgba=100,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=33 result=write tbp=8800 xy=379,37 z=947700 stored_z=0 rgba=99,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=34 result=write tbp=8800 xy=378,36 z=948241 stored_z=0 rgba=103,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=35 result=write tbp=8800 xy=377,36 z=948525 stored_z=0 rgba=103,54,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=36 result=write tbp=8800 xy=373,35 z=954003 stored_z=0 rgba=67,50,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=37 result=write tbp=8800 xy=372,34 z=954540 stored_z=0 rgba=69,49,37,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=38 result=write tbp=8800 xy=377,40 z=951187 stored_z=0 rgba=53,31,19,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=128 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.273437
+[gs:triangle-vertex] number=128 vertex=0 xy=375.625,38.8125 z=952037 stq=-0.0303894,-0.00476479,0.0567342 rgba=63,60,67,128
+[gs:triangle-vertex] number=128 vertex=1 xy=375.375,38.875 z=950891 stq=-0.0303528,-0.00452387,0.056666 rgba=62,60,66,128
+[gs:triangle-vertex] number=128 vertex=2 xy=374.75,37.9375 z=951269 stq=-0.0302956,-0.00452567,0.0566885 rgba=63,61,67,128
+[gs:triangle-pixel] number=39 result=depth-test tbp=8800 xy=374,37 z=949526 stored_z=951457 rgba=82,47,30,128 fb=1779524 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=40 result=write tbp=8800 xy=371,32 z=955612 stored_z=0 rgba=92,83,68,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=41 result=write tbp=8800 xy=372,32 z=955593 stored_z=951093 rgba=109,97,74,127 fb=4085106 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=42 result=write tbp=8800 xy=373,32 z=955362 stored_z=950774 rgba=110,99,76,127 fb=4348022 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=43 result=write tbp=8800 xy=374,32 z=955083 stored_z=0 rgba=109,100,78,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=44 result=write tbp=8800 xy=375,32 z=954801 stored_z=950151 rgba=110,100,78,127 fb=4545139 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=45 result=write tbp=8800 xy=374,33 z=954846 stored_z=950156 rgba=94,54,37,128 fb=5203063 test=328716 alpha=274877907012 abe=1 fog=255 fge=1
+[gs:triangle-pixel] number=46 result=write tbp=8800 xy=375,33 z=954570 stored_z=949878 rgba=93,54,37,127 fb=5203319 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=47 result=write tbp=8800 xy=376,33 z=954291 stored_z=0 rgba=92,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=48 result=write tbp=8800 xy=377,33 z=954014 stored_z=0 rgba=92,53,36,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=49 result=write tbp=8800 xy=378,33 z=953732 stored_z=949243 rgba=93,54,37,127 fb=5006712 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=50 result=depth-test tbp=8800 xy=370,32 z=952087 stored_z=953755 rgba=86,48,32,128 fb=3622734 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=51 result=depth-test tbp=8800 xy=373,35 z=950165 stored_z=954003 rgba=97,86,64,128 fb=2372163 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=52 result=write tbp=8800 xy=373,34 z=950213 stored_z=0 rgba=111,100,74,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=53 result=write tbp=8800 xy=372,33 z=950762 stored_z=0 rgba=111,89,68,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=54 result=depth-test tbp=8800 xy=371,32 z=951433 stored_z=955612 rgba=111,80,56,127 fb=4477788 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=55 result=write tbp=8800 xy=375,37 z=953553 stored_z=0 rgba=85,59,41,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=56 result=write tbp=8800 xy=371,31 z=955002 stored_z=952581 rgba=137,117,99,127 fb=3296129 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=57 result=write tbp=8800 xy=377,31 z=954379 stored_z=950305 rgba=122,109,86,127 fb=3163506 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=58 result=write tbp=8800 xy=378,32 z=953869 stored_z=0 rgba=120,102,80,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=59 result=write tbp=8800 xy=374,31 z=955196 stored_z=0 rgba=127,110,89,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=60 result=write tbp=8800 xy=374,31 z=955196 stored_z=955196 rgba=127,110,89,128 fb=5860991 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=61 result=write tbp=8800 xy=375,31 z=955030 stored_z=0 rgba=116,104,83,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=62 result=write tbp=8800 xy=376,31 z=954701 stored_z=950300 rgba=119,107,85,127 fb=4018803 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=63 result=write tbp=8800 xy=376,32 z=954521 stored_z=0 rgba=110,101,79,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=64 result=write tbp=8800 xy=377,32 z=954245 stored_z=949693 rgba=111,101,79,127 fb=4808566 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=256 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.449218
+[gs:triangle-vertex] number=256 vertex=0 xy=375.812,37.875 z=953568 stq=-0.0295641,-0.00174804,0.0568253 rgba=79,78,80,128
+[gs:triangle-vertex] number=256 vertex=1 xy=376.5,38.6875 z=953253 stq=-0.0295544,-0.00180294,0.0568066 rgba=75,70,76,128
+[gs:triangle-vertex] number=256 vertex=2 xy=376,38.75 z=952915 stq=-0.0295439,-0.0018023,0.0567865 rgba=63,63,67,128
+[gs:triangle-pixel] number=128 result=write tbp=8800 xy=376,35 z=953672 stored_z=949122 rgba=88,48,33,127 fb=5137527 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=512 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.246093
+[gs:triangle-vertex] number=512 vertex=0 xy=383.875,38.5 z=948668 stq=-0.0272455,-0.00451331,0.0565337 rgba=106,102,106,128
+[gs:triangle-vertex] number=512 vertex=1 xy=383.812,39.5 z=947388 stq=-0.0270571,-0.00425912,0.0564575 rgba=74,68,71,128
+[gs:triangle-vertex] number=512 vertex=2 xy=383.625,38.5625 z=947564 stq=-0.0272138,-0.00425991,0.0564679 rgba=106,103,107,128
+[gs:triangle-pixel] number=256 result=write tbp=8800 xy=399,11 z=956186 stored_z=0 rgba=122,54,38,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=512 result=depth-test tbp=8800 xy=401,9 z=939131 stored_z=948883 rgba=140,62,43,127 fb=2702987 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=1024 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.03125
+[gs:triangle-vertex] number=1024 vertex=0 xy=402.562,14.9375 z=932267 stq=-0.0452895,-0.0277244,0.0555573 rgba=104,80,87,128
+[gs:triangle-vertex] number=1024 vertex=1 xy=403.312,13.625 z=935046 stq=-0.0485125,-0.0274396,0.0557227 rgba=122,90,92,128
+[gs:triangle-vertex] number=1024 vertex=2 xy=402.562,13.5625 z=932652 stq=-0.0468008,-0.026596,0.0555803 rgba=144,103,115,128
+[gs:triangle-pixel] number=1024 result=depth-test tbp=8800 xy=385,9 z=929634 stored_z=953627 rgba=148,69,53,127 fb=2830946 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=2048 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.05468
+[gs:triangle-vertex] number=2048 vertex=0 xy=382.187,15.75 z=955155 stq=-0.0457054,-0.0050583,0.0569198 rgba=74,69,85,128
+[gs:triangle-vertex] number=2048 vertex=1 xy=382.187,15.125 z=955234 stq=-0.0458481,-0.00358558,0.0569245 rgba=89,75,98,128
+[gs:triangle-vertex] number=2048 vertex=2 xy=383.875,15.25 z=956344 stq=-0.0438421,-0.00420194,0.0569906 rgba=99,81,103,128
+[gs:triangle-pixel] number=2048 result=depth-test tbp=8800 xy=375,31 z=911099 stored_z=955030 rgba=129,64,48,128 fb=5466228 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=4096 result=depth-test tbp=8800 xy=372,33 z=947948 stored_z=955281 rgba=88,46,41,127 fb=4412253 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=8192 result=write tbp=8800 xy=402,83 z=899100 stored_z=0 rgba=130,60,43,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=4096 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.78125
+[gs:triangle-vertex] number=4096 vertex=0 xy=389.312,75.75 z=916450 stq=-0.0387751,-0.037655,0.0546158 rgba=82,74,91,128
+[gs:triangle-vertex] number=4096 vertex=1 xy=389.187,72.25 z=923677 stq=-0.0376694,-0.03478,0.055046 rgba=50,50,50,128
+[gs:triangle-vertex] number=4096 vertex=2 xy=389.687,72 z=907967 stq=-0.0388525,-0.0344269,0.0541108 rgba=93,82,93,128
+[boot-snapshot] host_tick=3480 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=8192 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.421875
+[gs:triangle-vertex] number=8192 vertex=0 xy=397.187,19.75 z=1.05865e+06 stq=-0.049559,-0.00919415,0.0630808 rgba=115,91,107,128
+[gs:triangle-vertex] number=8192 vertex=1 xy=398.062,19.4375 z=1.05928e+06 stq=-0.0502669,-0.00873738,0.0631187 rgba=75,69,81,128
+[gs:triangle-vertex] number=8192 vertex=2 xy=398.187,19.875 z=1.05905e+06 stq=-0.0505024,-0.00956743,0.063105 rgba=104,84,107,128
+[gs:triangle-pixel] number=16384 result=write tbp=8800 xy=402,70 z=1051445 stored_z=0 rgba=81,41,29,128 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32768 result=write tbp=8800 xy=385,68 z=1140914 stored_z=0 rgba=74,41,31,127 fb=987173 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16384 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0273437
+[gs:triangle-vertex] number=16384 vertex=0 xy=402.062,97.8125 z=1.20864e+06 stq=-0.0134139,-0.054693,0.0720098 rgba=154,108,112,128
+[gs:triangle-vertex] number=16384 vertex=1 xy=404,100.5 z=1.20358e+06 stq=-0.0133928,-0.0584557,0.0717085 rgba=144,102,106,128
+[gs:triangle-vertex] number=16384 vertex=2 xy=402.187,98 z=1.21736e+06 stq=-0.0152104,-0.0543434,0.0725287 rgba=135,97,100,128
+[gs:triangle-pixel] number=65536 result=write tbp=8800 xy=397,95 z=1348534 stored_z=1230795 rgba=131,61,51,127 fb=1581887 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=32768 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-16.6406
+[gs:triangle-vertex] number=32768 vertex=0 xy=444.375,69.5 z=1.45465e+06 stq=-0.0128839,-0.00313107,0.0866545 rgba=67,61,67,128
+[gs:triangle-vertex] number=32768 vertex=1 xy=453.125,69.1875 z=1.45381e+06 stq=-0.012073,-0.00511675,0.0866042 rgba=81,73,84,128
+[gs:triangle-vertex] number=32768 vertex=2 xy=452.375,67.3125 z=1.44899e+06 stq=-0.0128548,-0.00507872,0.0863173 rgba=107,92,113,128
+[gs:triangle-pixel] number=131072 result=write tbp=8800 xy=423,24 z=1571090 stored_z=1488236 rgba=87,46,41,128 fb=3423870 test=327680 alpha=549755813956 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=262144 result=depth-test tbp=8800 xy=460,73 z=1581561 stored_z=1588928 rgba=63,35,24,127 fb=3950425 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=65536 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.515625
+[gs:triangle-vertex] number=65536 vertex=0 xy=448,23.3125 z=1.50576e+06 stq=-0.0886894,-0.0365707,0.0896968 rgba=125,91,93,128
+[gs:triangle-vertex] number=65536 vertex=1 xy=446.75,22.1875 z=1.49932e+06 stq=-0.0843199,-0.0392272,0.0893133 rgba=151,113,128,128
+[gs:triangle-vertex] number=65536 vertex=2 xy=442.125,18.4375 z=1.51707e+06 stq=-0.0809051,-0.0368232,0.0903702 rgba=143,115,120,128
+[gs:triangle-pixel] number=524288 result=write tbp=8800 xy=467,129 z=1518236 stored_z=1426416 rgba=116,54,41,127 fb=2767748 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=3600 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=131072 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.13281
+[gs:triangle-vertex] number=131072 vertex=0 xy=436.25,30.6875 z=1.58063e+06 stq=-0.0783156,-0.0110565,0.0941534 rgba=93,78,87,128
+[gs:triangle-vertex] number=131072 vertex=1 xy=434.5,30.5625 z=1.58018e+06 stq=-0.0767308,-0.0102951,0.0941268 rgba=75,66,81,128
+[gs:triangle-vertex] number=131072 vertex=2 xy=434.812,29.9375 z=1.58112e+06 stq=-0.0774432,-0.00942747,0.0941827 rgba=59,56,58,128
+[gs:triangle-pixel] number=1048576 result=write tbp=8800 xy=454,29 z=1570680 stored_z=1524153 rgba=118,52,34,127 fb=2241395 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[boot-snapshot] host_tick=3720 running=0 thread=1:pc=0x238c50:ra=0x238c50:priority=0:status=1:wait=0:wait_id=0
+[gs:triangle-state] number=262144 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.33984
+[gs:triangle-vertex] number=262144 vertex=0 xy=471.125,58.3125 z=1.56381e+06 stq=-0.00488957,-0.0675443,0.093152 rgba=106,87,95,128
+[gs:triangle-vertex] number=262144 vertex=1 xy=474.25,59.125 z=1.5709e+06 stq=-0.00477467,-0.0686273,0.0935745 rgba=54,53,53,128
+[gs:triangle-vertex] number=262144 vertex=2 xy=473.562,59.375 z=1.55568e+06 stq=-0.00307687,-0.0671256,0.0926682 rgba=100,84,94,128
+[boot-snapshot] host_tick=3840 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=3960 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4080 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4200 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4320 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4440 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4560 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4680 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4800 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=4920 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5040 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5160 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5280 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5400 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5520 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5640 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5760 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=5880 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6000 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6120 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6240 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6360 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6480 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6600 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6720 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6840 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=6960 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7080 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7200 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7320 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7440 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7560 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7680 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7800 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=7920 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8040 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8160 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8280 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8400 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8520 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8640 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8760 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=8880 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9000 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9120 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9240 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9360 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9480 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9600 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9720 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9840 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=9960 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10080 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10200 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10320 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10440 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10560 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10680 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10800 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=10920 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11040 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11160 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11280 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11400 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11520 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11640 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11760 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=11880 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12000 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12120 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12240 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12360 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12480 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12600 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12720 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12840 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=12960 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13080 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13200 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13320 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13440 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13560 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13680 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13800 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=13920 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=14040 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=14160 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0
+[boot-snapshot] host_tick=14280 running=0 thread=1:pc=0x1031210:ra=0x1031210:priority=0:status=5:wait=0:wait_id=0

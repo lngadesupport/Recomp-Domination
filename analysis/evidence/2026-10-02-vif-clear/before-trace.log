@@ -1,0 +1,278 @@
+[gs:triangle-state] number=1 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0390625
+[gs:triangle-vertex] number=1 vertex=0 xy=383.875,31.6875 z=947366 stq=-0.0280764,-0.00498953,0.0564562 rgba=57,55,57,1
+[gs:triangle-vertex] number=1 vertex=1 xy=383.25,30.8125 z=947498 stq=-0.0281493,-0.00499022,0.056464 rgba=57,55,57,1
+[gs:triangle-vertex] number=1 vertex=2 xy=384.187,32.0625 z=946225 stq=-0.0280014,-0.00473573,0.0563882 rgba=58,58,58,1
+[gs:triangle-state] number=2 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0585937
+[gs:triangle-vertex] number=2 vertex=0 xy=383.25,30.8125 z=947498 stq=-0.0281493,-0.00499022,0.056464 rgba=57,55,57,1
+[gs:triangle-vertex] number=2 vertex=1 xy=384.187,32.0625 z=946225 stq=-0.0280014,-0.00473573,0.0563882 rgba=58,58,58,1
+[gs:triangle-vertex] number=2 vertex=2 xy=383.437,31.125 z=946335 stq=-0.0280872,-0.00470874,0.0563948 rgba=58,58,58,1
+[gs:triangle-state] number=3 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.363281
+[gs:triangle-vertex] number=3 vertex=0 xy=384.187,32.0625 z=946225 stq=-0.0280014,-0.00473573,0.0563882 rgba=58,58,58,1
+[gs:triangle-vertex] number=3 vertex=1 xy=383.437,31.125 z=946335 stq=-0.0280872,-0.00470874,0.0563948 rgba=58,58,58,1
+[gs:triangle-vertex] number=3 vertex=2 xy=383.25,31.375 z=945288 stq=-0.0280424,-0.00449724,0.0563325 rgba=59,58,58,1
+[gs:triangle-pixel] number=1 result=depth-test tbp=8800 xy=383,31 z=945667 stored_z=16777000 rgba=62,36,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=4 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.429687
+[gs:triangle-vertex] number=4 vertex=0 xy=383.437,31.125 z=946335 stq=-0.0280872,-0.00470874,0.0563948 rgba=58,58,58,1
+[gs:triangle-vertex] number=4 vertex=1 xy=383.25,31.375 z=945288 stq=-0.0280424,-0.00449724,0.0563325 rgba=59,58,58,1
+[gs:triangle-vertex] number=4 vertex=2 xy=382.375,30.25 z=945719 stq=-0.0281653,-0.00449929,0.0563581 rgba=59,59,59,1
+[gs:triangle-state] number=5 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.445312
+[gs:triangle-vertex] number=5 vertex=0 xy=383.25,31.375 z=945288 stq=-0.0280424,-0.00449724,0.0563325 rgba=59,58,58,1
+[gs:triangle-vertex] number=5 vertex=1 xy=382.375,30.25 z=945719 stq=-0.0281653,-0.00449929,0.0563581 rgba=59,59,59,1
+[gs:triangle-vertex] number=5 vertex=2 xy=382.125,30.4375 z=944599 stq=-0.0281319,-0.00424659,0.0562914 rgba=59,58,59,1
+[gs:triangle-pixel] number=2 result=depth-test tbp=8800 xy=382,30 z=945439 stored_z=16777000 rgba=65,45,30,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=6 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.226562
+[gs:triangle-vertex] number=6 vertex=0 xy=382.375,30.25 z=945719 stq=-0.0281653,-0.00449929,0.0563581 rgba=59,59,59,1
+[gs:triangle-vertex] number=6 vertex=1 xy=382.125,30.4375 z=944599 stq=-0.0281319,-0.00424659,0.0562914 rgba=59,58,59,1
+[gs:triangle-vertex] number=6 vertex=2 xy=381.5,30 z=944914 stq=-0.0282925,-0.00424801,0.0563102 rgba=60,59,60,1
+[gs:triangle-state] number=7 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.417968
+[gs:triangle-vertex] number=7 vertex=0 xy=382.125,30.4375 z=944599 stq=-0.0281319,-0.00424659,0.0562914 rgba=59,58,59,1
+[gs:triangle-vertex] number=7 vertex=1 xy=381.5,30 z=944914 stq=-0.0282925,-0.00424801,0.0563102 rgba=60,59,60,1
+[gs:triangle-vertex] number=7 vertex=2 xy=381.437,30.625 z=944040 stq=-0.0282664,-0.00399685,0.0562581 rgba=56,56,56,1
+[gs:triangle-pixel] number=3 result=depth-test tbp=8800 xy=381,30 z=944237 stored_z=16777000 rgba=60,36,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=8 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.507812
+[gs:triangle-vertex] number=8 vertex=0 xy=381.5,30 z=944914 stq=-0.0282925,-0.00424801,0.0563102 rgba=60,59,60,1
+[gs:triangle-vertex] number=8 vertex=1 xy=381.437,30.625 z=944040 stq=-0.0282664,-0.00399685,0.0562581 rgba=56,56,56,1
+[gs:triangle-vertex] number=8 vertex=2 xy=380.625,30.625 z=944407 stq=-0.0284148,-0.00399841,0.05628 rgba=56,55,56,1
+[gs:triangle-state] number=9 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.32031
+[gs:triangle-vertex] number=9 vertex=0 xy=381.437,30.625 z=944040 stq=-0.0282664,-0.00399685,0.0562581 rgba=56,56,56,1
+[gs:triangle-vertex] number=9 vertex=1 xy=380.625,30.625 z=944407 stq=-0.0284148,-0.00399841,0.05628 rgba=56,55,56,1
+[gs:triangle-vertex] number=9 vertex=2 xy=380.812,32.25 z=944085 stq=-0.0285562,-0.00387342,0.0562608 rgba=55,54,54,1
+[gs:triangle-state] number=10 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.47656
+[gs:triangle-vertex] number=10 vertex=0 xy=380.625,30.625 z=944407 stq=-0.0284148,-0.00399841,0.05628 rgba=56,55,56,1
+[gs:triangle-vertex] number=10 vertex=1 xy=380.812,32.25 z=944085 stq=-0.0285562,-0.00387342,0.0562608 rgba=55,54,54,1
+[gs:triangle-vertex] number=10 vertex=2 xy=379.875,32 z=944499 stq=-0.0286237,-0.00388886,0.0562855 rgba=55,54,54,1
+[gs:triangle-pixel] number=4 result=depth-test tbp=8800 xy=380,31 z=944324 stored_z=16777000 rgba=65,52,37,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=11 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.70703
+[gs:triangle-vertex] number=11 vertex=0 xy=380.812,32.25 z=944085 stq=-0.0285562,-0.00387342,0.0562608 rgba=55,54,54,1
+[gs:triangle-vertex] number=11 vertex=1 xy=379.875,32 z=944499 stq=-0.0286237,-0.00388886,0.0562855 rgba=55,54,54,1
+[gs:triangle-vertex] number=11 vertex=2 xy=380.312,33.9375 z=944359 stq=-0.0287019,-0.00375089,0.0562772 rgba=55,54,54,1
+[gs:triangle-pixel] number=5 result=depth-test tbp=8800 xy=380,32 z=944233 stored_z=16777000 rgba=67,61,45,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=12 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.4414
+[gs:triangle-vertex] number=12 vertex=0 xy=379.875,32 z=944499 stq=-0.0286237,-0.00388886,0.0562855 rgba=55,54,54,1
+[gs:triangle-vertex] number=12 vertex=1 xy=380.312,33.9375 z=944359 stq=-0.0287019,-0.00375089,0.0562772 rgba=55,54,54,1
+[gs:triangle-vertex] number=12 vertex=2 xy=379.187,32.25 z=944843 stq=-0.0287166,-0.00387653,0.056306 rgba=55,54,54,1
+[gs:triangle-pixel] number=6 result=depth-test tbp=8800 xy=379,32 z=944700 stored_z=16777000 rgba=67,61,45,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=13 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.58203
+[gs:triangle-vertex] number=13 vertex=0 xy=380.312,33.9375 z=944359 stq=-0.0287019,-0.00375089,0.0562772 rgba=55,54,54,1
+[gs:triangle-vertex] number=13 vertex=1 xy=379.187,32.25 z=944843 stq=-0.0287166,-0.00387653,0.056306 rgba=55,54,54,1
+[gs:triangle-vertex] number=13 vertex=2 xy=378.25,32.25 z=945263 stq=-0.0288118,-0.00389201,0.056331 rgba=55,54,54,1
+[gs:triangle-state] number=14 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.34765
+[gs:triangle-vertex] number=14 vertex=0 xy=379.187,32.25 z=944843 stq=-0.0287166,-0.00387653,0.056306 rgba=55,54,54,1
+[gs:triangle-vertex] number=14 vertex=1 xy=378.25,32.25 z=945263 stq=-0.0288118,-0.00389201,0.056331 rgba=55,54,54,1
+[gs:triangle-vertex] number=14 vertex=2 xy=378.25,30.8125 z=945520 stq=-0.0287371,-0.00400312,0.0563463 rgba=57,55,56,1
+[gs:triangle-pixel] number=7 result=depth-test tbp=8800 xy=378,31 z=945285 stored_z=16777000 rgba=66,51,37,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=15 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.79687
+[gs:triangle-vertex] number=15 vertex=0 xy=378.25,32.25 z=945263 stq=-0.0288118,-0.00389201,0.056331 rgba=55,54,54,1
+[gs:triangle-vertex] number=15 vertex=1 xy=378.25,30.8125 z=945520 stq=-0.0287371,-0.00400312,0.0563463 rgba=57,55,56,1
+[gs:triangle-vertex] number=15 vertex=2 xy=377,31 z=946112 stq=-0.0289065,-0.00400562,0.0563815 rgba=55,55,55,1
+[gs:triangle-pixel] number=8 result=depth-test tbp=8800 xy=377,31 z=945772 stored_z=16777000 rgba=63,49,35,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.726562
+[gs:triangle-vertex] number=16 vertex=0 xy=378.25,30.8125 z=945520 stq=-0.0287371,-0.00400312,0.0563463 rgba=57,55,56,1
+[gs:triangle-vertex] number=16 vertex=1 xy=377,31 z=946112 stq=-0.0289065,-0.00400562,0.0563815 rgba=55,55,55,1
+[gs:triangle-vertex] number=16 vertex=2 xy=378.125,30.25 z=946472 stq=-0.028766,-0.00425501,0.0564029 rgba=60,58,60,1
+[gs:triangle-state] number=17 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.75
+[gs:triangle-vertex] number=17 vertex=0 xy=377,31 z=946112 stq=-0.0289065,-0.00400562,0.0563815 rgba=55,55,55,1
+[gs:triangle-vertex] number=17 vertex=1 xy=378.125,30.25 z=946472 stq=-0.028766,-0.00425501,0.0564029 rgba=60,58,60,1
+[gs:triangle-vertex] number=17 vertex=2 xy=376.75,30.5 z=947122 stq=-0.0289373,-0.00425793,0.0564417 rgba=59,58,59,1
+[gs:triangle-pixel] number=9 result=depth-test tbp=8800 xy=377,30 z=946544 stored_z=16777000 rgba=62,36,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=18 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.09375
+[gs:triangle-vertex] number=18 vertex=0 xy=378.125,30.25 z=946472 stq=-0.028766,-0.00425501,0.0564029 rgba=60,58,60,1
+[gs:triangle-vertex] number=18 vertex=1 xy=376.75,30.5 z=947122 stq=-0.0289373,-0.00425793,0.0564417 rgba=59,58,59,1
+[gs:triangle-vertex] number=18 vertex=2 xy=377.062,30.375 z=948215 stq=-0.0289707,-0.00451115,0.0565067 rgba=59,58,60,1
+[gs:triangle-state] number=19 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0546875
+[gs:triangle-vertex] number=19 vertex=0 xy=376.75,30.5 z=947122 stq=-0.0289373,-0.00425793,0.0564417 rgba=59,58,59,1
+[gs:triangle-vertex] number=19 vertex=1 xy=377.062,30.375 z=948215 stq=-0.0289707,-0.00451115,0.0565067 rgba=59,58,60,1
+[gs:triangle-vertex] number=19 vertex=2 xy=375.687,30.75 z=947645 stq=-0.0290912,-0.00426027,0.0564728 rgba=58,58,59,1
+[gs:triangle-state] number=20 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.0546875
+[gs:triangle-vertex] number=20 vertex=0 xy=377.062,30.375 z=948215 stq=-0.0289707,-0.00451115,0.0565067 rgba=59,58,60,1
+[gs:triangle-vertex] number=20 vertex=1 xy=375.687,30.75 z=947645 stq=-0.0290912,-0.00426027,0.0564728 rgba=58,58,59,1
+[gs:triangle-vertex] number=20 vertex=2 xy=376,30.625 z=948739 stq=-0.0291247,-0.00451364,0.0565379 rgba=59,57,59,1
+[gs:triangle-state] number=21 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0195312
+[gs:triangle-vertex] number=21 vertex=0 xy=375.687,30.75 z=947645 stq=-0.0290912,-0.00426027,0.0564728 rgba=58,58,59,1
+[gs:triangle-vertex] number=21 vertex=1 xy=376,30.625 z=948739 stq=-0.0291247,-0.00451364,0.0565379 rgba=59,57,59,1
+[gs:triangle-vertex] number=21 vertex=2 xy=375.375,30.8125 z=949029 stq=-0.0292855,-0.00451502,0.0565551 rgba=54,54,55,1
+[gs:triangle-state] number=22 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0195312
+[gs:triangle-vertex] number=22 vertex=0 xy=376,30.625 z=948739 stq=-0.0291247,-0.00451364,0.0565379 rgba=59,57,59,1
+[gs:triangle-vertex] number=22 vertex=1 xy=375.375,30.8125 z=949029 stq=-0.0292855,-0.00451502,0.0565551 rgba=54,54,55,1
+[gs:triangle-vertex] number=22 vertex=2 xy=376.312,30.5625 z=949835 stq=-0.0291583,-0.00475378,0.0566031 rgba=58,57,58,1
+[gs:triangle-state] number=23 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.0390625
+[gs:triangle-vertex] number=23 vertex=0 xy=375.375,30.8125 z=949029 stq=-0.0292855,-0.00451502,0.0565551 rgba=54,54,55,1
+[gs:triangle-vertex] number=23 vertex=1 xy=376.312,30.5625 z=949835 stq=-0.0291583,-0.00475378,0.0566031 rgba=58,57,58,1
+[gs:triangle-vertex] number=23 vertex=2 xy=375.687,30.6875 z=950125 stq=-0.0293193,-0.00475523,0.0566204 rgba=54,53,55,1
+[gs:triangle-state] number=24 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.164062
+[gs:triangle-vertex] number=24 vertex=0 xy=376.312,30.5625 z=949835 stq=-0.0291583,-0.00475378,0.0566031 rgba=58,57,58,1
+[gs:triangle-vertex] number=24 vertex=1 xy=375.687,30.6875 z=950125 stq=-0.0293193,-0.00475523,0.0566204 rgba=54,53,55,1
+[gs:triangle-vertex] number=24 vertex=2 xy=377,30.6875 z=950460 stq=-0.0291775,-0.00500581,0.0566404 rgba=57,56,58,1
+[gs:triangle-state] number=25 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.246093
+[gs:triangle-vertex] number=25 vertex=0 xy=375.687,30.6875 z=950125 stq=-0.0293193,-0.00475523,0.0566204 rgba=54,53,55,1
+[gs:triangle-vertex] number=25 vertex=1 xy=377,30.6875 z=950460 stq=-0.0291775,-0.00500581,0.0566404 rgba=57,56,58,1
+[gs:triangle-vertex] number=25 vertex=2 xy=376.375,30.875 z=950749 stq=-0.0293385,-0.00500733,0.0566576 rgba=56,54,56,1
+[gs:triangle-state] number=26 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.277343
+[gs:triangle-vertex] number=26 vertex=0 xy=379.75,36 z=949233 stq=-0.0301618,-0.00499936,0.0565673 rgba=53,53,54,1
+[gs:triangle-vertex] number=26 vertex=1 xy=379.687,35.5625 z=949040 stq=-0.0300729,-0.00499834,0.0565558 rgba=53,53,54,1
+[gs:triangle-vertex] number=26 vertex=2 xy=379.062,35.625 z=948448 stq=-0.0300541,-0.00474684,0.0565205 rgba=52,52,52,1
+[gs:triangle-state] number=27 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.242187
+[gs:triangle-vertex] number=27 vertex=0 xy=379.687,35.5625 z=949040 stq=-0.0300729,-0.00499834,0.0565558 rgba=53,53,54,1
+[gs:triangle-vertex] number=27 vertex=1 xy=379.062,35.625 z=948448 stq=-0.0300541,-0.00474684,0.0565205 rgba=52,52,52,1
+[gs:triangle-vertex] number=27 vertex=2 xy=379.562,35.1875 z=949085 stq=-0.0300052,-0.00499857,0.0565585 rgba=52,52,52,1
+[gs:triangle-pixel] number=10 result=depth-test tbp=8800 xy=379,35 z=948897 stored_z=16777000 rgba=56,35,23,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=28 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.210937
+[gs:triangle-vertex] number=28 vertex=0 xy=379.062,35.625 z=948448 stq=-0.0300541,-0.00474684,0.0565205 rgba=52,52,52,1
+[gs:triangle-vertex] number=28 vertex=1 xy=379.562,35.1875 z=949085 stq=-0.0300052,-0.00499857,0.0565585 rgba=52,52,52,1
+[gs:triangle-vertex] number=28 vertex=2 xy=378.937,35.3125 z=948488 stq=-0.0299864,-0.00474704,0.0565229 rgba=51,51,52,1
+[gs:triangle-state] number=29 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.242187
+[gs:triangle-vertex] number=29 vertex=0 xy=379.562,35.1875 z=949085 stq=-0.0300052,-0.00499857,0.0565585 rgba=52,52,52,1
+[gs:triangle-vertex] number=29 vertex=1 xy=378.937,35.3125 z=948488 stq=-0.0299864,-0.00474704,0.0565229 rgba=51,51,52,1
+[gs:triangle-vertex] number=29 vertex=2 xy=378.562,35 z=948759 stq=-0.0298431,-0.0047484,0.0565391 rgba=50,50,51,1
+[gs:triangle-state] number=30 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.144531
+[gs:triangle-vertex] number=30 vertex=0 xy=378.937,35.3125 z=948488 stq=-0.0299864,-0.00474704,0.0565229 rgba=51,51,52,1
+[gs:triangle-vertex] number=30 vertex=1 xy=378.562,35 z=948759 stq=-0.0298431,-0.0047484,0.0565391 rgba=50,50,51,1
+[gs:triangle-vertex] number=30 vertex=2 xy=378.625,35.4375 z=947450 stq=-0.0299536,-0.00450752,0.0564612 rgba=51,51,51,1
+[gs:triangle-state] number=31 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.144531
+[gs:triangle-vertex] number=31 vertex=0 xy=378.562,35 z=948759 stq=-0.0298431,-0.0047484,0.0565391 rgba=50,50,51,1
+[gs:triangle-vertex] number=31 vertex=1 xy=378.625,35.4375 z=947450 stq=-0.0299536,-0.00450752,0.0564612 rgba=51,51,51,1
+[gs:triangle-vertex] number=31 vertex=2 xy=378.25,35.125 z=947703 stq=-0.0298237,-0.00450872,0.0564762 rgba=50,50,51,1
+[gs:triangle-state] number=32 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-0.121093
+[gs:triangle-vertex] number=32 vertex=0 xy=378.625,35.4375 z=947450 stq=-0.0299536,-0.00450752,0.0564612 rgba=51,51,51,1
+[gs:triangle-vertex] number=32 vertex=1 xy=378.25,35.125 z=947703 stq=-0.0298237,-0.00450872,0.0564762 rgba=50,50,51,1
+[gs:triangle-vertex] number=32 vertex=2 xy=377.937,35.1875 z=946655 stq=-0.029777,-0.00425583,0.0564138 rgba=50,50,50,1
+[gs:triangle-pixel] number=11 result=depth-test tbp=8800 xy=376,33 z=947641 stored_z=16777000 rgba=54,32,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=12 result=depth-test tbp=8800 xy=375,31 z=948899 stored_z=16777000 rgba=63,56,42,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=13 result=depth-test tbp=8800 xy=382,32 z=943455 stored_z=16777000 rgba=69,62,47,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=14 result=depth-test tbp=8800 xy=382,33 z=943389 stored_z=16777000 rgba=68,63,47,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=15 result=depth-test tbp=8800 xy=383,33 z=943153 stored_z=16777000 rgba=64,54,39,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=16 result=depth-test tbp=8800 xy=383,34 z=943048 stored_z=16777000 rgba=65,55,41,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=17 result=depth-test tbp=8800 xy=379,35 z=944727 stored_z=16777000 rgba=61,43,30,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=64 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.109375
+[gs:triangle-vertex] number=64 vertex=0 xy=379.875,30 z=946890 stq=-0.028641,-0.00450486,0.0564278 rgba=61,59,61,1
+[gs:triangle-vertex] number=64 vertex=1 xy=380.75,30 z=945238 stq=-0.0284398,-0.00424947,0.0563295 rgba=60,58,60,1
+[gs:triangle-vertex] number=64 vertex=2 xy=379.562,30.125 z=945801 stq=-0.028608,-0.00425199,0.056363 rgba=60,58,60,1
+[gs:triangle-pixel] number=18 result=depth-test tbp=8800 xy=379,30 z=945159 stored_z=16777000 rgba=61,35,24,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=19 result=depth-test tbp=8800 xy=378,30 z=945825 stored_z=16777000 rgba=62,35,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=20 result=depth-test tbp=8800 xy=379,36 z=948726 stored_z=16777000 rgba=54,32,20,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=21 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=57,39,26,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=255 fge=1
+[gs:triangle-pixel] number=22 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=58,44,31,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=23 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=58,44,31,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=24 result=depth-test tbp=8800 xy=378,34 z=945270 stored_z=16777000 rgba=66,61,45,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=25 result=depth-test tbp=8800 xy=379,34 z=944744 stored_z=16777000 rgba=68,62,46,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=26 result=depth-test tbp=8800 xy=378,33 z=945196 stored_z=16777000 rgba=68,62,46,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=27 result=depth-test tbp=8800 xy=378,32 z=945155 stored_z=16777000 rgba=67,59,44,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=28 result=depth-test tbp=8800 xy=379,33 z=944725 stored_z=16777000 rgba=68,62,46,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=29 result=depth-test tbp=8800 xy=376,31 z=946298 stored_z=16777000 rgba=62,47,33,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=30 result=depth-test tbp=8800 xy=377,31 z=945772 stored_z=16777000 rgba=63,49,35,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=31 result=depth-test tbp=8800 xy=380,38 z=944494 stored_z=16777000 rgba=55,32,21,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32 result=depth-test tbp=8800 xy=380,37 z=944249 stored_z=16777000 rgba=56,33,21,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=33 result=depth-test tbp=8800 xy=381,37 z=943723 stored_z=16777000 rgba=56,33,21,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=34 result=depth-test tbp=8800 xy=382,37 z=943251 stored_z=16777000 rgba=56,33,21,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=35 result=depth-test tbp=8800 xy=383,36 z=942781 stored_z=16777000 rgba=58,33,21,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=36 result=depth-test tbp=8800 xy=382,36 z=943253 stored_z=16777000 rgba=58,33,21,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=37 result=depth-test tbp=8800 xy=381,35 z=943752 stored_z=16777000 rgba=59,37,25,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=38 result=depth-test tbp=8800 xy=382,35 z=943271 stored_z=16777000 rgba=58,35,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=39 result=depth-test tbp=8800 xy=378,34 z=949650 stored_z=16777000 rgba=56,37,25,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=40 result=depth-test tbp=8800 xy=377,33 z=950014 stored_z=16777000 rgba=56,39,27,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=41 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=57,39,26,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=255 fge=1
+[gs:triangle-pixel] number=42 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=56,38,26,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=43 result=depth-test tbp=8800 xy=378,35 z=945459 stored_z=16777000 rgba=56,38,26,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=44 result=depth-test tbp=8800 xy=380,38 z=947653 stored_z=16777000 rgba=53,31,20,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=128 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.371093
+[gs:triangle-vertex] number=128 vertex=0 xy=380.125,37.8125 z=948146 stq=-0.0302653,-0.00474533,0.0565026 rgba=51,51,52,1
+[gs:triangle-vertex] number=128 vertex=1 xy=379.812,37.9375 z=947041 stq=-0.03023,-0.00450557,0.0564368 rgba=51,51,52,1
+[gs:triangle-vertex] number=128 vertex=2 xy=379.187,37 z=947267 stq=-0.0301683,-0.00450665,0.0564503 rgba=51,51,52,1
+[gs:triangle-pixel] number=45 result=depth-test tbp=8800 xy=379,37 z=947092 stored_z=16777000 rgba=53,31,20,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=46 result=depth-test tbp=8800 xy=376,31 z=950620 stored_z=16777000 rgba=65,61,46,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=47 result=depth-test tbp=8800 xy=377,31 z=950482 stored_z=16777000 rgba=69,62,47,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=48 result=depth-test tbp=8800 xy=378,31 z=950080 stored_z=16777000 rgba=68,63,47,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=49 result=depth-test tbp=8800 xy=379,31 z=949617 stored_z=16777000 rgba=68,63,47,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=50 result=depth-test tbp=8800 xy=380,31 z=949147 stored_z=16777000 rgba=68,63,47,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=51 result=depth-test tbp=8800 xy=384,33 z=943985 stored_z=16777000 rgba=61,35,23,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=52 result=depth-test tbp=8800 xy=379,32 z=949645 stored_z=16777000 rgba=58,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=53 result=depth-test tbp=8800 xy=380,32 z=949171 stored_z=16777000 rgba=58,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=54 result=depth-test tbp=8800 xy=381,32 z=948699 stored_z=16777000 rgba=58,33,22,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=55 result=depth-test tbp=8800 xy=382,32 z=948236 stored_z=16777000 rgba=58,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=56 result=depth-test tbp=8800 xy=383,32 z=947770 stored_z=16777000 rgba=58,34,22,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=57 result=depth-test tbp=8800 xy=377,33 z=945666 stored_z=16777000 rgba=66,61,45,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=58 result=depth-test tbp=8800 xy=377,34 z=945982 stored_z=16777000 rgba=65,60,44,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=59 result=depth-test tbp=8800 xy=376,32 z=946200 stored_z=16777000 rgba=65,54,39,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=60 result=depth-test tbp=8800 xy=375,31 z=946824 stored_z=16777000 rgba=61,43,30,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=61 result=depth-test tbp=8800 xy=377,32 z=945673 stored_z=16777000 rgba=66,57,42,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=62 result=depth-test tbp=8800 xy=377,30 z=950168 stored_z=16777000 rgba=61,35,23,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=63 result=depth-test tbp=8800 xy=380,36 z=949329 stored_z=16777000 rgba=60,41,28,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=64 result=depth-test tbp=8800 xy=380,37 z=949056 stored_z=16777000 rgba=59,48,34,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=256 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.472656
+[gs:triangle-vertex] number=256 vertex=0 xy=380.5,36.8125 z=949384 stq=-0.0294346,-0.00174038,0.0565763 rgba=54,54,54,1
+[gs:triangle-vertex] number=256 vertex=1 xy=381.062,37.6875 z=949197 stq=-0.0294288,-0.00179528,0.0565652 rgba=54,53,53,1
+[gs:triangle-vertex] number=256 vertex=2 xy=380.562,37.75 z=948962 stq=-0.0294215,-0.00179483,0.0565511 rgba=51,51,52,1
+[gs:triangle-pixel] number=128 result=depth-test tbp=8800 xy=382,33 z=948255 stored_z=16777000 rgba=58,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=512 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.300781
+[gs:triangle-vertex] number=512 vertex=0 xy=387.875,37.875 z=943315 stq=-0.0270919,-0.00448787,0.056215 rgba=56,56,56,1
+[gs:triangle-vertex] number=512 vertex=1 xy=387.687,38.875 z=942310 stq=-0.0269122,-0.00423632,0.0561552 rgba=52,51,52,1
+[gs:triangle-vertex] number=512 vertex=2 xy=387.562,37.9375 z=942252 stq=-0.0270614,-0.00423605,0.0561517 rgba=56,56,56,1
+[gs:triangle-pixel] number=256 result=depth-test tbp=8800 xy=405,12 z=939576 stored_z=16777000 rgba=62,34,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=512 result=depth-test tbp=8800 xy=396,15 z=910815 stored_z=16777000 rgba=61,35,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=1024 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.64062
+[gs:triangle-vertex] number=1024 vertex=0 xy=402.812,16.0625 z=915865 stq=-0.0444936,-0.0272372,0.054581 rgba=56,53,54,1
+[gs:triangle-vertex] number=1024 vertex=1 xy=403.937,14.75 z=918086 stq=-0.0476336,-0.0269425,0.0547131 rgba=60,55,56,1
+[gs:triangle-vertex] number=1024 vertex=2 xy=402.687,14.75 z=916080 stq=-0.0459702,-0.0261239,0.0545938 rgba=61,56,58,1
+[gs:triangle-pixel] number=1024 result=depth-test tbp=8800 xy=402,20 z=925009 stored_z=16777000 rgba=68,60,45,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=2048 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=1.15625
+[gs:triangle-vertex] number=2048 vertex=0 xy=390.562,16.4375 z=946551 stq=-0.0452941,-0.00501279,0.0564076 rgba=52,52,53,1
+[gs:triangle-vertex] number=2048 vertex=1 xy=390.437,15.8125 z=946744 stq=-0.0454411,-0.00355374,0.0564191 rgba=56,54,56,1
+[gs:triangle-vertex] number=2048 vertex=2 xy=392.312,15.9375 z=947004 stq=-0.0434144,-0.00416095,0.0564346 rgba=57,54,57,1
+[gs:triangle-pixel] number=2048 result=depth-test tbp=8800 xy=375,65 z=909412 stored_z=16777000 rgba=58,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=4096 result=depth-test tbp=8800 xy=376,47 z=936345 stored_z=16777000 rgba=55,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=8192 result=depth-test tbp=8800 xy=393,81 z=920893 stored_z=16777000 rgba=55,32,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=4096 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=3.9375
+[gs:triangle-vertex] number=4096 vertex=0 xy=391.062,75.375 z=911614 stq=-0.0385707,-0.0374565,0.0543279 rgba=54,53,55,1
+[gs:triangle-vertex] number=4096 vertex=1 xy=391.062,72.375 z=918216 stq=-0.0374469,-0.0345746,0.0547209 rgba=50,50,50,1
+[gs:triangle-vertex] number=4096 vertex=2 xy=392.375,71.75 z=903879 stq=-0.0386777,-0.0342721,0.0538674 rgba=55,54,55,1
+[gs:triangle-state] number=8192 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.421875
+[gs:triangle-vertex] number=8192 vertex=0 xy=405.625,20.25 z=1.04506e+06 stq=-0.0489238,-0.0090763,0.0622722 rgba=59,55,57,1
+[gs:triangle-vertex] number=8192 vertex=1 xy=406.5,19.9375 z=1.04521e+06 stq=-0.0495998,-0.00862143,0.0622811 rgba=55,53,55,1
+[gs:triangle-vertex] number=8192 vertex=2 xy=406.625,20.375 z=1.04498e+06 stq=-0.0498322,-0.00944045,0.0622674 rgba=58,55,57,1
+[gs:triangle-pixel] number=16384 result=depth-test tbp=8800 xy=396,44 z=1051726 stored_z=16777000 rgba=60,36,25,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=32768 result=depth-test tbp=8800 xy=410,51 z=1188145 stored_z=16777000 rgba=61,39,27,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=16384 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.5625
+[gs:triangle-vertex] number=16384 vertex=0 xy=402.562,99.25 z=1.19374e+06 stq=-0.0132487,-0.0540193,0.0711229 rgba=62,56,57,1
+[gs:triangle-vertex] number=16384 vertex=1 xy=404.062,101.875 z=1.18801e+06 stq=-0.0132197,-0.0577002,0.0707817 rgba=61,56,56,1
+[gs:triangle-vertex] number=16384 vertex=2 xy=402.562,99.625 z=1.20212e+06 stq=-0.0150202,-0.0536636,0.0716214 rgba=60,55,55,1
+[gs:triangle-pixel] number=65536 result=depth-test tbp=8800 xy=398,113 z=1288304 stored_z=16777000 rgba=55,31,20,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=32768 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-14.5
+[gs:triangle-vertex] number=32768 vertex=0 xy=448.625,68.8125 z=1.43947e+06 stq=-0.0127495,-0.0030984,0.0857505 rgba=50,50,50,1
+[gs:triangle-vertex] number=32768 vertex=1 xy=456.875,68.75 z=1.4363e+06 stq=-0.0119277,-0.00505518,0.0855621 rgba=52,52,53,1
+[gs:triangle-vertex] number=32768 vertex=2 xy=455.875,67 z=1.43083e+06 stq=-0.0126938,-0.00501512,0.0852363 rgba=56,54,56,1
+[gs:triangle-pixel] number=131072 result=depth-test tbp=8800 xy=404,64 z=1509490 stored_z=16777000 rgba=54,32,21,0 fb=0 test=327680 alpha=549755813956 abe=1 fog=254 fge=1
+[gs:triangle-pixel] number=262144 result=depth-test tbp=8800 xy=414,57 z=1435924 stored_z=16777000 rgba=68,55,41,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=65536 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=9.02343
+[gs:triangle-vertex] number=65536 vertex=0 xy=443.625,25.125 z=1.46337e+06 stq=-0.0861945,-0.0355419,0.0871735 rgba=60,56,56,1
+[gs:triangle-vertex] number=65536 vertex=1 xy=441,24.125 z=1.45816e+06 stq=-0.0820067,-0.038151,0.0868631 rgba=61,57,59,1
+[gs:triangle-vertex] number=65536 vertex=2 xy=439.687,20.1875 z=1.47814e+06 stq=-0.0788304,-0.0358789,0.0880527 rgba=61,58,58,1
+[gs:triangle-pixel] number=524288 result=depth-test tbp=8800 xy=404,98 z=1484266 stored_z=16777215 rgba=59,33,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=131072 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=0.902343
+[gs:triangle-vertex] number=131072 vertex=0 xy=452.875,30.75 z=1.54078e+06 stq=-0.0763426,-0.010778,0.0917815 rgba=58,55,56,1
+[gs:triangle-vertex] number=131072 vertex=1 xy=451.375,30.5625 z=1.54234e+06 stq=-0.0748946,-0.0100487,0.0918743 rgba=56,53,55,1
+[gs:triangle-vertex] number=131072 vertex=2 xy=451.687,30 z=1.54263e+06 stq=-0.075559,-0.0091981,0.0918912 rgba=54,53,53,1
+[gs:triangle-pixel] number=1048576 result=depth-test tbp=8800 xy=433,46 z=1455450 stored_z=16777000 rgba=71,61,47,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=262144 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=3.41796
+[gs:triangle-vertex] number=262144 vertex=0 xy=474.687,58.1875 z=1.52793e+06 stq=-0.00477746,-0.0659957,0.0910163 rgba=55,53,54,1
+[gs:triangle-vertex] number=262144 vertex=1 xy=478.125,58.8125 z=1.53445e+06 stq=-0.00466394,-0.0670358,0.0914044 rgba=50,50,50,1
+[gs:triangle-vertex] number=262144 vertex=2 xy=476.437,59.5 z=1.5198e+06 stq=-0.00300595,-0.0655785,0.0905324 rgba=55,53,54,1
+[gs:triangle-pixel] number=2097152 result=depth-test tbp=8800 xy=438,48 z=1506906 stored_z=16777000 rgba=60,33,23,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=524288 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=140 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=11.0468
+[gs:triangle-vertex] number=524288 vertex=0 xy=451.875,18.25 z=1.53243e+06 stq=-0.0839745,-0.0438593,0.0912844 rgba=60,56,58,1
+[gs:triangle-vertex] number=524288 vertex=1 xy=451.187,19.875 z=1.53564e+06 stq=-0.0841058,-0.0458718,0.0914757 rgba=59,56,57,1
+[gs:triangle-vertex] number=524288 vertex=2 xy=445.5,17.25 z=1.53458e+06 stq=-0.087574,-0.0430058,0.0914126 rgba=58,56,58,1
+[gs:triangle-pixel] number=4194304 result=depth-test tbp=8800 xy=431,17 z=1524501 stored_z=16777000 rgba=55,32,22,1 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=1048576 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-11.8906
+[gs:triangle-vertex] number=1048576 vertex=0 xy=428.375,35.9375 z=1.47772e+06 stq=-0.0721243,-0.0441858,0.0880278 rgba=51,51,51,1
+[gs:triangle-vertex] number=1048576 vertex=1 xy=426,31.6875 z=1.47387e+06 stq=-0.0770595,-0.0412199,0.0877986 rgba=53,52,54,1
+[gs:triangle-vertex] number=1048576 vertex=2 xy=424.25,33.5625 z=1.48336e+06 stq=-0.0751389,-0.0409672,0.0883632 rgba=52,52,54,1
+[gs:triangle-pixel] number=8388608 result=depth-test tbp=8800 xy=460,117 z=1423013 stored_z=16777000 rgba=61,33,22,0 fb=0 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=2097152 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-1.73437
+[gs:triangle-vertex] number=2097152 vertex=0 xy=444.312,30.9375 z=1.47361e+06 stq=-0.0765314,-0.0483705,0.0877828 rgba=54,52,52,1
+[gs:triangle-vertex] number=2097152 vertex=1 xy=441.937,32.1875 z=1.46277e+06 stq=-0.0733308,-0.0443346,0.0871375 rgba=57,54,55,1
+[gs:triangle-vertex] number=2097152 vertex=2 xy=441.187,33.3125 z=1.47038e+06 stq=-0.0724291,-0.0460193,0.0875907 rgba=50,50,50,1
+[gs:triangle-pixel] number=16777216 result=depth-test tbp=8800 xy=434,132 z=1662242 stored_z=16777215 rgba=60,33,22,0 fb=4539717 test=328716 alpha=274877907012 abe=1 fog=254 fge=1
+[gs:triangle-state] number=4194304 tbp=8800 tbw=4 psm=19 cbp=7362 cpsm=0 csa=0 tcc=1 tfx=0 fbp=70 zbp=0 zpsm=49 test=328716 alpha=274877907012 denom=-6.29687
+[gs:triangle-vertex] number=4194304 vertex=0 xy=427.125,17.875 z=1.57956e+06 stq=-0.0751158,-0.044679,0.09409 rgba=61,57,60,1
+[gs:triangle-vertex] number=4194304 vertex=1 xy=422.25,18.875 z=1.57486e+06 stq=-0.0792439,-0.0474318,0.0938102 rgba=59,56,58,1
+[gs:triangle-vertex] number=4194304 vertex=2 xy=430.375,18.5 z=1.57248e+06 stq=-0.0726297,-0.046011,0.0936685 rgba=61,56,58,1

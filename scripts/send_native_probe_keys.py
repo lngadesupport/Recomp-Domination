@@ -14,7 +14,8 @@ def main():
     p.add_argument("--display", required=True)
     p.add_argument("--xtst", type=Path, required=True)
     p.add_argument("--out", type=Path, required=True)
-    p.add_argument("--keys", nargs="+", default=["space"])
+    p.add_argument("--keys", nargs="+", default=["x"],
+                   help="X11 key names; SDK pad Cross=X, Start=Return")
     p.add_argument("--interval", type=float, default=20)
     args = p.parse_args()
     if not re.fullmatch(r"127\.0\.0\.1:[0-9]+", args.display) or not 0 <= args.interval <= 60:
