@@ -1,0 +1,45 @@
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp
+@@ -850,10 +850,37 @@
+ 
+     void sceGsSetDefClear(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
+-        (void)rdram;
+-        (void)ctx;
+-        (void)runtime;
+-        setReturnS32(ctx, 0);
++        const uint32_t address = getRegU32(ctx, 4);
++        uint8_t *const destination = getMemPtr(rdram, address);
++        if (!destination)
++        {
++            setReturnS32(ctx, -1);
++            return;
++        }
++        const uint32_t ztest = static_cast<uint16_t>(getRegU32(ctx, 5));
++        const int32_t x = static_cast<int16_t>(getRegU32(ctx, 6));
++        const int32_t y = static_cast<int16_t>(getRegU32(ctx, 7));
++        const int32_t width = static_cast<int16_t>(getRegU32(ctx, 8));
++        const int32_t height = static_cast<int16_t>(getRegU32(ctx, 9));
++        const uint32_t rgba = (getRegU32(ctx, 10) & 0xFFu) |
++                             ((getRegU32(ctx, 11) & 0xFFu) << 8) |
++                             ((readStackU32(rdram, ctx, 0) & 0xFFu) << 16) |
++                             ((readStackU32(rdram, ctx, 8) & 0xFFu) << 24);
++        const uint64_t depth = static_cast<uint64_t>(readStackU32(rdram, ctx, 16)) << 32;
++        auto xyz = [depth](int32_t px, int32_t py) {
++            return static_cast<uint64_t>(static_cast<uint16_t>(px * 16)) |
++                   (static_cast<uint64_t>(static_cast<uint16_t>(py * 16)) << 16) | depth;
++        };
++        GsClearMem clear{};
++        clear.testa = {0x30000u, GS_REG_TEST_1};
++        clear.prim = {GS_PRIM_SPRITE, GS_REG_PRIM};
++        clear.rgbaq = {static_cast<uint64_t>(rgba) | (0x3F800000ull << 32), GS_REG_RGBAQ};
++        clear.xyz2a = {xyz(x, y), GS_REG_XYZ2};
++        clear.xyz2b = {xyz(x + width, y + height), GS_REG_XYZ2};
++        clear.testb = {ztest != 0u ? (static_cast<uint64_t>(ztest & 3u) << 17) | 0x10000u : 0x30000u,
++                       GS_REG_TEST_1};
++        std::memcpy(destination, &clear, sizeof(clear));
++        setReturnS32(ctx, 6);
+     }
+ 
+     void sceGsSetDefDBuffDc(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)

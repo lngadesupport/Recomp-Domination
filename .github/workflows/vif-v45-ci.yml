@@ -2,7 +2,7 @@ name: VIF compressed color regression
 on:
   push:
     branches: ['bringup/**', bootstrap/compiler]
-    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/vif_v45*', '.github/workflows/vif-v45-ci.yml']
+    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/vif_v45*', 'tests/gs_sdk_clear_packet_test.cpp', '.github/workflows/vif-v45-ci.yml']
   pull_request:
     branches: [main]
 permissions:
@@ -37,6 +37,6 @@ jobs:
             -DPS2X_ENABLE_AGRESSIVE_LOGS=OFF \
             -DCMAKE_PROJECT_INCLUDE="$PWD/tests/vif_v45_regression.cmake"
       - name: Compile real VIF unpack fixture
-        run: cmake --build _ci/vif-build --config Debug --target vif_v45_color_test --parallel 2
+        run: cmake --build _ci/vif-build --config Debug --target vif_v45_color_test gs_sdk_clear_packet_test --parallel 2
       - name: Verify all compressed colors and masking
         run: ctest --test-dir _ci/vif-build -C Debug --output-on-failure

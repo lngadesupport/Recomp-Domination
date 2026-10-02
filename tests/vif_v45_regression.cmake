@@ -13,3 +13,17 @@ endif()
 enable_testing()
 add_test(NAME vif_v45_all_colors COMMAND vif_v45_color_test)
 set_tests_properties(vif_v45_all_colors PROPERTIES TIMEOUT 60)
+
+add_executable(gs_sdk_clear_packet_test
+    "${CMAKE_CURRENT_LIST_DIR}/gs_sdk_clear_packet_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(gs_sdk_clear_packet_test PRIVATE cxx_std_20)
+target_link_libraries(gs_sdk_clear_packet_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(gs_sdk_clear_packet_test PRIVATE /arch:AVX2)
+    target_link_options(gs_sdk_clear_packet_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(gs_sdk_clear_packet_test PRIVATE -mavx2)
+endif()
+add_test(NAME gs_sdk_clear_packet COMMAND gs_sdk_clear_packet_test)
+set_tests_properties(gs_sdk_clear_packet PROPERTIES TIMEOUT 60)
