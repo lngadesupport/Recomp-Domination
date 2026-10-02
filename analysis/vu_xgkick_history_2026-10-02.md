@@ -26,9 +26,24 @@ emits no history. Those cases are included in the production runtime fixture
 CI. All 42 Python tests pass. Fresh and repeated pinned patch application
 succeed; the resulting clean runtime diff has SHA-256
 `f2bbff8f585b2a5bff28f30b080b06f695c69caba28667392bf13f0b8ffe6964`.
-The isolated native history runner is being linked. A separate 620-second
-navigation probe uses the previously verified immutable IMAGE2 runner and
-adds confirmations after Select Level; it is still running.
+The isolated native history runner completed a 30-second bounded guest probe,
+with immutable SHA-256 `37f4ae9040672b1833e6acf8c746ee2c6b0526298c3fe70ece2c037713068eff`.
+The first captured history ends at XGKICK PC `0x2218`, with VI4 `0x006c`
+(source qword 108). The preceding IADDIU at `0x21f8` explicitly installs
+108 into VI4. Thus the source is present in the executed microprogram;
+it is not an arbitrary uninitialized register at this observation.
+The recent store window in that sample covers byte addresses `0x350`
+through `0x560`, not the rejected tag at byte address `0x6c0`.
+It does not identify the last writer of that tag. Repeated histories may
+restart counters when execution uses a different thread-local history.
+All four CI workflows for source commit 7e299a passed, including Linux and
+Windows synthetic VU/runtime cases.
+
+The independent 620-second navigation probe completed with unchanged
+IMAGE2 runner identity. After additional track confirmations it records
+`JR $ra` at `0x177efc` targeting `0x30303030`; final EE snapshots are dormant.
+No race or FPS was verified. This is distinct from the previously corrected
+checkpoint-return bug.
 
 No new root cause, playable race, correct colors, game FPS or Windows retail
 boot is established by the diagnostic instrumentation alone.

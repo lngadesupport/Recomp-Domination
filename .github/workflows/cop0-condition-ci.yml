@@ -2,7 +2,7 @@ name: COP0 DMA condition regression
 on:
   push:
     branches: ['bringup/**', bootstrap/compiler]
-    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/cop0*', 'tests/intro_skip*', '.github/workflows/cop0-condition-ci.yml']
+    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/cop0*', 'tests/fpu*', 'tests/intro_skip*', '.github/workflows/cop0-condition-ci.yml']
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -33,6 +33,6 @@ jobs:
             -DCOP0_TEST_SANITIZE=${{ runner.os == 'Linux' && 'ON' || 'OFF' }} \
             -DCMAKE_PROJECT_INCLUDE="$PWD/tests/cop0_regression.cmake"
       - name: Compile generated regression
-        run: cmake --build _ci/cop0-build --config Debug --target cop0_generated_execution vif1_command_trace_test intro_skip_test --parallel 2
+        run: cmake --build _ci/cop0-build --config Debug --target fpu_generated_execution cop0_generated_execution vif1_command_trace_test intro_skip_test --parallel 2
       - name: Execute exhaustive DMA condition cases
         run: ctest --test-dir _ci/cop0-build -C Debug --output-on-failure

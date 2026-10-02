@@ -1,0 +1,7 @@
+{
+  "runner_bytes": 44625808,
+  "runner_sha256": "37f4ae9040672b1833e6acf8c746ee2c6b0526298c3fe70ece2c037713068eff",
+  "source_commit": "7e299a298391a780cef85b709622b2fd46668285",
+  "build_type": "Release",
+  "ffmpeg": true
+}
