@@ -1,0 +1,118 @@
+diff --git a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -20,6 +20,30 @@
+ 
+ namespace
+ {
++    bool traceTriangleTexture(const GSDrawState &state)
++    {
++        static const int filter = []() {
++            const char *text = std::getenv("PS2_TRACE_GS_TRIANGLE_TBP");
++            if (!text || !*text) return -1;
++            uint32_t value = 0;
++            for (; *text; ++text)
++            {
++                if (*text < '0' || *text > '9') return -1;
++                value = value * 10u + static_cast<uint32_t>(*text - '0');
++                if (value > 0x3FFFu) return -1;
++            }
++            return static_cast<int>(value);
++        }();
++        return filter >= 0 && state.prim.tme &&
++            (state.prim.type == GS_PRIM_TRIANGLE || state.prim.type == GS_PRIM_TRISTRIP || state.prim.type == GS_PRIM_TRIFAN) &&
++            state.context.tex0.tbp0 == static_cast<uint32_t>(filter);
++    }
++
++    bool traceSample(uint64_t sequence, uint64_t initial)
++    {
++        return sequence <= initial || (sequence & (sequence - 1u)) == 0u;
++    }
++
+     bool matchesClutTraceBase(uint32_t cbp)
+     {
+         static const int filter = []() {
+@@ -887,8 +911,24 @@
+ void GSCpuBackend::WritePixel(const GSDrawState &state, int x, int y, int z, uint8_t r, uint8_t g, uint8_t b, uint8_t a, uint8_t fog)
+ {
+     const auto &ctx = state.context;
++    static std::atomic<uint64_t> pixelSequence{0};
++    const uint64_t traceNumber = traceTriangleTexture(state) ? pixelSequence.fetch_add(1u, std::memory_order_relaxed) + 1u : 0u;
++    const bool logPixel = traceNumber && traceSample(traceNumber, 64u);
++    auto traceResult = [&](const char *reason, uint32_t storedZ = 0u, uint32_t framebuffer = 0u) {
++        if (!logPixel) return;
++        std::cerr << "[gs:triangle-pixel] number=" << traceNumber << " result=" << reason
++                  << " tbp=" << ctx.tex0.tbp0 << " xy=" << x << ',' << y
++                  << " z=" << static_cast<uint32_t>(z) << " stored_z=" << storedZ
++                  << " rgba=" << unsigned(r) << ',' << unsigned(g) << ',' << unsigned(b) << ',' << unsigned(a)
++                  << " fb=" << framebuffer << " test=" << ctx.test << " alpha=" << ctx.alpha
++                  << " abe=" << unsigned(state.prim.abe) << " fog=" << unsigned(fog)
++                  << " fge=" << unsigned(state.prim.fge) << '\n';
++    };
+     if (x < ctx.scissor.x0 || x > ctx.scissor.x1 || y < ctx.scissor.y0 || y > ctx.scissor.y1)
++    {
++        traceResult("scissor");
+         return;
++    }
+ 
+     if (state.prim.fge)
+     {
+@@ -912,6 +952,7 @@
+     const PixelWriteMask writeMask = classifyAlphaTest(ctx.test, a, static_cast<uint8_t>(fpsm));
+     if (!writeMask.writesAnything())
+     {
++        traceResult("alpha-test");
+         return;
+     }
+ 
+@@ -944,6 +985,7 @@
+ 
+     if (!passesDestinationAlphaTest(ctx.test, static_cast<uint8_t>(fpsm), rawFramebufferPixel))
+     {
++        traceResult("destination-alpha", 0u, rawFramebufferPixel);
+         return;
+     }
+ 
+@@ -969,6 +1011,7 @@
+ 
+     if (!zpass)
+     {
++        traceResult("depth-test", storedZ, rawFramebufferPixel);
+         return;
+     }
+ 
+@@ -1044,6 +1087,7 @@
+         WriteVramUnlocked(fpsm, fbp, fbw, x, y, pixel);
+     }
+ 
++    traceResult(writeMask.writesFramebuffer() ? "write" : "depth-only", storedZ, rawFramebufferPixel);
+     if (writeMask.writeDepth && !ctx.zbuf.zmask)
+     {
+         WriteVramUnlocked(zpsm, zbp, fbw, x, y, z);
+@@ -1366,6 +1410,26 @@
+     maxY = clampInt(maxY, ctx.scissor.y0, ctx.scissor.y1);
+ 
+     float denom = (fy1 - fy2) * (fx0 - fx2) + (fx2 - fx1) * (fy0 - fy2);
++    static std::atomic<uint64_t> triangleSequence{0};
++    const uint64_t traceNumber = traceTriangleTexture(state) ? triangleSequence.fetch_add(1u, std::memory_order_relaxed) + 1u : 0u;
++    if (traceNumber && traceSample(traceNumber, 32u))
++    {
++        const auto &tex = ctx.tex0;
++        std::cerr << "[gs:triangle-state] number=" << traceNumber
++                  << " tbp=" << tex.tbp0 << " tbw=" << unsigned(tex.tbw) << " psm=" << unsigned(tex.psm)
++                  << " cbp=" << tex.cbp << " cpsm=" << unsigned(tex.cpsm) << " csa=" << unsigned(tex.csa)
++                  << " tcc=" << unsigned(tex.tcc) << " tfx=" << unsigned(tex.tfx)
++                  << " fbp=" << ctx.frame.fbp << " zbp=" << ctx.zbuf.zbp << " zpsm=" << unsigned(ctx.zbuf.psm)
++                  << " test=" << ctx.test << " alpha=" << ctx.alpha << " denom=" << denom << '\n';
++        for (unsigned i = 0; i < 3u; ++i)
++        {
++            const auto &v = batch.vertices[i];
++            std::cerr << "[gs:triangle-vertex] number=" << traceNumber << " vertex=" << i
++                      << " xy=" << v.x - ofx << ',' << v.y - ofy << " z=" << v.z
++                      << " stq=" << v.s << ',' << v.t << ',' << v.q
++                      << " rgba=" << unsigned(v.r) << ',' << unsigned(v.g) << ',' << unsigned(v.b) << ',' << unsigned(v.a) << '\n';
++        }
++    }
+     if (std::fabs(denom) < 0.001f)
+         return;
+ 

@@ -4,7 +4,7 @@ from pathlib import Path
 import subprocess
 
 PIN = "75d729ce40d7eed9649fd4bb05628dee520f3d0c"
-PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace", "gs-pipeline-trace", "auto-intro-skip", "gs-texture-trace", "intro-stream-window", "gs-clut-reload", "gs-upload24-continuation", "gs-clut-trace", "gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address")
+PATCHES = ("gs-host-transfer", "cdvd-iso-extents", "mpeg-program-end", "ready-queue-snapshot", "boot-performance-trace", "dmac-interrupt-trace", "cop0-dmac-condition", "vif1-command-trace", "gs-pipeline-trace", "auto-intro-skip", "gs-texture-trace", "intro-stream-window", "gs-clut-reload", "gs-upload24-continuation", "gs-clut-trace", "gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address", "gs-triangle-trace")
 
 
 def apply(source):
@@ -15,7 +15,7 @@ def apply(source):
     directory = Path(__file__).resolve().parents[1] / "patches"
     # New diagnostics overlap context in older fixes. Temporarily unwind only
     # these owned additions so earlier reverse checks remain valid on reapply.
-    for name in reversed(("gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address")):
+    for name in reversed(("gs-vram-watch", "gs-clut-entry1-trace", "gs-palette-upload-trace", "gs-image-block-address", "gs-triangle-trace")):
         patch = directory / f"ps2recomp-{name}.patch"
         command = ["git", "-C", str(source), "apply"]
         if subprocess.run([*command, "--reverse", "--check", str(patch)], capture_output=True).returncode == 0:
