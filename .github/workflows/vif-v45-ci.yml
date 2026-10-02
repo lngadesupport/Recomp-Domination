@@ -1,0 +1,42 @@
+name: VIF compressed color regression
+on:
+  push:
+    branches: ['bringup/**', bootstrap/compiler]
+    paths: ['patches/**', 'scripts/apply_runtime_bringup_patches.py', 'tests/vif_v45*', '.github/workflows/vif-v45-ci.yml']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  production-unpack:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ran-j/PS2Recomp
+          ref: 75d729ce40d7eed9649fd4bb05628dee520f3d0c
+          path: _ci/PS2Recomp
+      - name: Install Linux window system build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev
+      - name: Apply pinned production fixes
+        run: python scripts/apply_runtime_bringup_patches.py _ci/PS2Recomp
+      - name: Configure production runtime fixture
+        shell: bash
+        run: |
+          cmake -S _ci/PS2Recomp -B _ci/vif-build -DCMAKE_BUILD_TYPE=Debug \
+            -DPS2X_BUILD_RECOMP=OFF -DPS2X_BUILD_RUNTIME=ON -DPS2X_BUILD_ANALYZER=OFF \
+            -DPS2X_BUILD_TEST=OFF -DPS2X_BUILD_STUDIO=OFF \
+            -DPS2X_ENABLE_DEBUG_UI=OFF -DPS2X_ENABLE_FFMPEG=OFF \
+            -DPS2X_ENABLE_AGRESSIVE_LOGS=OFF \
+            -DCMAKE_PROJECT_INCLUDE="$PWD/tests/vif_v45_regression.cmake"
+      - name: Compile real VIF unpack fixture
+        run: cmake --build _ci/vif-build --config Debug --target vif_v45_color_test --parallel 2
+      - name: Verify all compressed colors and masking
+        run: ctest --test-dir _ci/vif-build -C Debug --output-on-failure

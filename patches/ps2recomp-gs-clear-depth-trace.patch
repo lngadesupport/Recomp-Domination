@@ -1,0 +1,23 @@
+diff --git a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -1271,6 +1271,19 @@
+     int y1 = static_cast<int>(v1.y) - ofy;
+     u32 z1 = static_cast<u32>(v1.z);
+ 
++    static const bool traceClear = std::getenv("PS2_TRACE_GS_CLEAR_DEPTH") != nullptr;
++    static std::atomic<uint64_t> clearSequence{0};
++    if (traceClear && std::abs(x1 - x0) >= 512 && std::abs(y1 - y0) >= 200)
++    {
++        const uint64_t number = clearSequence.fetch_add(1u, std::memory_order_relaxed) + 1u;
++        if (number <= 32u || (number & (number - 1u)) == 0u)
++            std::cerr << "[gs:clear-depth] number=" << number << " rect=" << x0 << ',' << y0 << ',' << x1 << ',' << y1
++                      << " fbp=" << ctx.frame.fbp << " psm=" << unsigned(ctx.frame.psm) << " fbmsk=" << ctx.frame.fbmsk
++                      << " z=" << z1 << " zbp=" << ctx.zbuf.zbp << " zpsm=" << unsigned(ctx.zbuf.psm)
++                      << " zmask=" << unsigned(ctx.zbuf.zmask) << " tme=" << unsigned(state.prim.tme)
++                      << " tbp=" << ctx.tex0.tbp0 << " test=" << ctx.test << '\n';
++    }
++
+     if (x0 > x1)
+         std::swap(x0, x1);
+     if (y0 > y1)

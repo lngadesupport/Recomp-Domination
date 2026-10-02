@@ -12,6 +12,7 @@ def main():
     parser.add_argument("--build", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--stub-override", type=Path, help="Compile an alternate GS.cpp for a negative control")
+    parser.add_argument("--fixture", type=Path, help="Alternate production-runtime fixture source")
     args = parser.parse_args()
     source, build, output = args.source.resolve(), args.build.resolve(), args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -24,7 +25,7 @@ def main():
             flags[key] = shlex.split(value)
     includes = flags["CXX_INCLUDES"]
     repo = Path(__file__).resolve().parents[1]
-    files = [repo / "tests/gs_sdk_image_address_test.cpp", source / "ps2xTest/src/test_function_table.cpp"]
+    files = [args.fixture.resolve() if args.fixture else repo / "tests/gs_sdk_image_address_test.cpp", source / "ps2xTest/src/test_function_table.cpp"]
     if args.stub_override:
         files.append(args.stub_override.resolve())
         includes = [*includes, "-I" + str(source / "ps2xRuntime/src/lib/Kernel/Stubs")]
@@ -36,7 +37,7 @@ def main():
         objects.append(str(object_file))
     command = [part.replace("-flto=auto", "-flto=2") for part in command
                if not (part.endswith(".o") and "ps2EntryRunner.dir/" in part)]
-    executable = output / "gs_sdk_image_address_test"
+    executable = output / (args.fixture.stem if args.fixture else "gs_sdk_image_address_test")
     command[command.index("-o") + 1] = str(executable)
     command[1:1] = objects
     subprocess.run(command, cwd=directory, check=True)

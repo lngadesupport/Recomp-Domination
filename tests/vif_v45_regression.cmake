@@ -1,0 +1,15 @@
+include_guard(GLOBAL)
+add_executable(vif_v45_color_test
+    "${CMAKE_CURRENT_LIST_DIR}/vif_v45_color_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(vif_v45_color_test PRIVATE cxx_std_20)
+target_link_libraries(vif_v45_color_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(vif_v45_color_test PRIVATE /arch:AVX2)
+    target_link_options(vif_v45_color_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(vif_v45_color_test PRIVATE -mavx2)
+endif()
+enable_testing()
+add_test(NAME vif_v45_all_colors COMMAND vif_v45_color_test)
+set_tests_properties(vif_v45_all_colors PROPERTIES TIMEOUT 60)

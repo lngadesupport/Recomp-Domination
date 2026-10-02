@@ -71,7 +71,8 @@ jobs:
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/GS.cpp',
             '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/Stubs/MPEG.cpp',
             '_ci/PS2Recomp/ps2xIOP/src/emulator/imports/iop_cdvd.cpp',
-            '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp')
+            '_ci/PS2Recomp/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp',
+            '_ci/PS2Recomp/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp')
           $index = 0
           foreach ($file in $files) {
             & cl.exe @flags ("/Fo_ci/handler-" + $index + '.obj') $file
