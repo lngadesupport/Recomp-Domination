@@ -25,7 +25,6 @@ $memoryOld = @'
             {
                 const bool wasPath3Masked = m_path3Masked;
                 std::memset(&vif1_regs, 0, sizeof(vif1_regs));
-                m_vif1PendingPath2ImageQwc = 0u;
 '@
 $memoryNew = @'
         case 0x10003C10u:     // VIF1_FBRST
@@ -43,7 +42,6 @@ $memoryNew = @'
                 std::memset(&vif1_regs, 0, sizeof(vif1_regs));
                 std::memcpy(vif1_regs.row, savedRow, sizeof(savedRow));
                 std::memcpy(vif1_regs.col, savedCol, sizeof(savedCol));
-                m_vif1PendingPath2ImageQwc = 0u;
 '@
 
 if(!$memoryText.Contains($memoryNew)){
@@ -156,14 +154,14 @@ function Test-RuntimePatchApplied([string]$PatchFile) {
 
 # Host transfer memory, physical ISO extents, and terminal PSS markers.
 # Unwind overlapping diagnostic additions before verifying earlier patches.
-foreach ($name in @('fpu-sqrt-operands', 'vu-xgkick-history', 'vu-xgkick-error-trace', 'gif-image2', 'guest-checkpoint-return', 'guest-missing-target-trace', 'gs-sdk-clear', 'vif-v45-color', 'gs-clear-depth-trace', 'gs-triangle-trace', 'gs-palette-upload-trace', 'gs-clut-entry1-trace', 'gs-vram-watch')) {
+foreach ($name in @('vif-unpack-continuation', 'vif-mpg-continuation', 'fpu-sqrt-operands', 'vu-xgkick-history', 'vu-xgkick-error-trace', 'gif-image2', 'guest-checkpoint-return', 'guest-missing-target-trace', 'gs-sdk-clear', 'vif-v45-color', 'gs-clear-depth-trace', 'gs-triangle-trace', 'gs-palette-upload-trace', 'gs-clut-entry1-trace', 'gs-vram-watch')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
     if (Test-RuntimePatchApplied $patchFile) {
         & git -C $root apply --reverse $patchFile
         if ($LASTEXITCODE -ne 0) { throw "Failed to unwind diagnostic patch: $name" }
     }
 }
-foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace', 'dmac-interrupt-trace', 'cop0-dmac-condition', 'vif1-command-trace', 'gs-pipeline-trace', 'auto-intro-skip', 'gs-texture-trace', 'intro-stream-window', 'gs-clut-reload', 'gs-upload24-continuation', 'gs-clut-trace', 'gs-vram-watch', 'gs-clut-entry1-trace', 'gs-palette-upload-trace', 'gs-image-block-address', 'gs-triangle-trace', 'gs-clear-depth-trace', 'vif-v45-color', 'gs-sdk-clear', 'guest-missing-target-trace', 'guest-checkpoint-return', 'gif-image2', 'vu-xgkick-error-trace', 'vu-xgkick-history', 'fpu-sqrt-operands')) {
+foreach ($name in @('gs-host-transfer', 'cdvd-iso-extents', 'mpeg-program-end', 'ready-queue-snapshot', 'boot-performance-trace', 'dmac-interrupt-trace', 'cop0-dmac-condition', 'vif1-command-trace', 'gs-pipeline-trace', 'auto-intro-skip', 'gs-texture-trace', 'intro-stream-window', 'gs-clut-reload', 'gs-upload24-continuation', 'gs-clut-trace', 'gs-vram-watch', 'gs-clut-entry1-trace', 'gs-palette-upload-trace', 'gs-image-block-address', 'gs-triangle-trace', 'gs-clear-depth-trace', 'vif-v45-color', 'gs-sdk-clear', 'guest-missing-target-trace', 'guest-checkpoint-return', 'gif-image2', 'vu-xgkick-error-trace', 'vu-xgkick-history', 'fpu-sqrt-operands', 'vif-mpg-continuation', 'vif-unpack-continuation')) {
     $patchFile = Join-Path (Split-Path -Parent $PSScriptRoot) ("patches/ps2recomp-" + $name + ".patch")
     if (Test-RuntimePatchApplied $patchFile) { continue }
     & git -C $root apply --check $patchFile

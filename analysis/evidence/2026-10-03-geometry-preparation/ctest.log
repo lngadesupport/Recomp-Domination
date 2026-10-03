@@ -1,0 +1,36 @@
+Internal ctest changing into directory: /workspace/scratch/650802733e96/native-build
+Test project /workspace/scratch/650802733e96/native-build
+      Start  1: vif_v45_all_colors
+ 1/15 Test  #1: vif_v45_all_colors .................   Passed    0.04 sec
+      Start  2: gs_sdk_clear_packet
+ 2/15 Test  #2: gs_sdk_clear_packet ................   Passed    0.05 sec
+      Start  3: guest_missing_target_enabled
+ 3/15 Test  #3: guest_missing_target_enabled .......   Passed    0.02 sec
+      Start  4: guest_missing_target_disabled
+ 4/15 Test  #4: guest_missing_target_disabled ......   Passed    0.02 sec
+      Start  5: guest_missing_target_malformed
+ 5/15 Test  #5: guest_missing_target_malformed .....   Passed    0.02 sec
+      Start  6: guest_checkpoint_return
+ 6/15 Test  #6: guest_checkpoint_return ............   Passed    0.02 sec
+      Start  7: gif_image2
+ 7/15 Test  #7: gif_image2 .........................   Passed    0.03 sec
+      Start  8: vu_xgkick_error_enabled
+ 8/15 Test  #8: vu_xgkick_error_enabled ............   Passed    0.04 sec
+      Start  9: vu_xgkick_error_disabled
+ 9/15 Test  #9: vu_xgkick_error_disabled ...........   Passed    0.02 sec
+      Start 10: vu_xgkick_error_malformed
+10/15 Test #10: vu_xgkick_error_malformed ..........   Passed    0.04 sec
+      Start 11: vu_xgkick_history
+11/15 Test #11: vu_xgkick_history ..................   Passed    0.02 sec
+      Start 12: vu_xgkick_history_bad_source
+12/15 Test #12: vu_xgkick_history_bad_source .......   Passed    0.04 sec
+      Start 13: downhill_frame_state_passthrough
+13/15 Test #13: downhill_frame_state_passthrough ...   Passed    0.84 sec
+      Start 14: vif_mpg_continuation
+14/15 Test #14: vif_mpg_continuation ...............   Passed    0.14 sec
+      Start 15: vif_unpack_continuation
+15/15 Test #15: vif_unpack_continuation ............   Passed    2.33 sec
+
+100% tests passed, 0 tests failed out of 15
+
+Total Test time (real) =   3.66 sec

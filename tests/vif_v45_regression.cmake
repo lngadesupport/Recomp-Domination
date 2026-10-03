@@ -120,3 +120,31 @@ else()
 endif()
 add_test(NAME downhill_frame_state_passthrough COMMAND downhill_frame_state_test)
 set_tests_properties(downhill_frame_state_passthrough PROPERTIES TIMEOUT 60)
+
+add_executable(vif_mpg_continuation_test
+    "${CMAKE_CURRENT_LIST_DIR}/vif_mpg_continuation_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(vif_mpg_continuation_test PRIVATE cxx_std_20)
+target_link_libraries(vif_mpg_continuation_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(vif_mpg_continuation_test PRIVATE /arch:AVX2)
+    target_link_options(vif_mpg_continuation_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(vif_mpg_continuation_test PRIVATE -mavx2)
+endif()
+add_test(NAME vif_mpg_continuation COMMAND vif_mpg_continuation_test)
+set_tests_properties(vif_mpg_continuation PROPERTIES TIMEOUT 60)
+
+add_executable(vif_unpack_continuation_test
+    "${CMAKE_CURRENT_LIST_DIR}/vif_unpack_continuation_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(vif_unpack_continuation_test PRIVATE cxx_std_20)
+target_link_libraries(vif_unpack_continuation_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(vif_unpack_continuation_test PRIVATE /arch:AVX2)
+    target_link_options(vif_unpack_continuation_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(vif_unpack_continuation_test PRIVATE -mavx2)
+endif()
+add_test(NAME vif_unpack_continuation COMMAND vif_unpack_continuation_test)
+set_tests_properties(vif_unpack_continuation PROPERTIES TIMEOUT 60)

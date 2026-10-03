@@ -1,0 +1,153 @@
+diff --git a/ps2xRuntime/include/runtime/ps2_memory.h b/ps2xRuntime/include/runtime/ps2_memory.h
+--- a/ps2xRuntime/include/runtime/ps2_memory.h
++++ b/ps2xRuntime/include/runtime/ps2_memory.h
+@@ -409,6 +409,8 @@
+     uint8_t *m_vu1Code = nullptr;
+     uint8_t *m_vu1Data = nullptr;
+     bool m_path3Masked = false;
++    struct MpgContinuation { uint32_t remaining = 0u; uint32_t destination = 0u; };
++    MpgContinuation m_vif0PendingMpg, m_vif1PendingMpg;
+     uint32_t m_vif1PendingPath2ImageQwc = 0u;
+     bool m_vif1PendingPath2DirectHl = false;
+     std::vector<std::vector<uint8_t>> m_path3MaskedFifo;
+diff --git a/ps2xRuntime/src/lib/ps2_memory.cpp b/ps2xRuntime/src/lib/ps2_memory.cpp
+--- a/ps2xRuntime/src/lib/ps2_memory.cpp
++++ b/ps2xRuntime/src/lib/ps2_memory.cpp
+@@ -329,6 +329,8 @@
+     m_codeRegions.clear();
+     m_path3Masked = false;
+     m_path3MaskedFifo.clear();
++    m_vif0PendingMpg = {};
++    m_vif1PendingMpg = {};
+     m_vif1PendingPath2ImageQwc = 0u;
+     m_vif1PendingPath2DirectHl = false;
+     resetEeTimers();
+@@ -1239,3 +1241,4 @@
++                m_vif1PendingMpg = {};
+                 m_vif1PendingPath2ImageQwc = 0u;
+                 m_vif1PendingPath2DirectHl = false;
+                 m_path3Masked = false;
+diff --git a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+--- a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
++++ b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+@@ -1,5 +1,6 @@
+ // Based on Blackline Interactive implementation
+ #include "runtime/ps2_memory.h"
++#include <algorithm>
+ #include <cstring>
+ #include <cstdlib>
+ 
+@@ -100,8 +101,28 @@
+         return;
+ 
+     uint32_t pos = 0;
+-    while (pos + 4 <= sizeBytes)
++    while (pos < sizeBytes)
+     {
++        // MPG is a byte stream; a DMA segment boundary is not a command boundary.
++        if (m_vif0PendingMpg.remaining != 0u)
++        {
++            auto &pending = m_vif0PendingMpg;
++            const uint32_t consumed = std::min(pending.remaining, sizeBytes - pos);
++            const uint32_t capacity = PS2_VU0_CODE_SIZE;
++            const uint32_t copied = pending.destination < capacity
++                ? std::min(consumed, capacity - pending.destination) : 0u;
++            if (m_vu0Code && copied != 0u)
++            {
++                std::memcpy(m_vu0Code + pending.destination, data + pos, copied);
++                markVU0CodeModified();
++            }
++            pending.destination += consumed;
++            pending.remaining -= consumed;
++            pos += consumed;
++            continue;
++        }
++        if (sizeBytes - pos < 4u) break;
++
+         uint32_t cmd = 0u;
+         std::memcpy(&cmd, data + pos, sizeof(cmd));
+         pos += 4u;
+@@ -171,25 +192,9 @@
+         }
+         else if (opcode == VIF_MPG)
+         {
+-            const uint32_t destAddr = static_cast<uint32_t>(imm & 0x1FFu) * 8u;
+             const uint32_t instructionCount = (num == 0u) ? 256u : static_cast<uint32_t>(num);
+-            const uint32_t mpgBytes = instructionCount * 8u;
+-            uint32_t copyBytes = 0u;
+-            if (m_vu0Code && destAddr < PS2_VU0_CODE_SIZE && mpgBytes > 0u)
+-            {
+-                copyBytes = mpgBytes;
+-                if (destAddr + copyBytes > PS2_VU0_CODE_SIZE)
+-                    copyBytes = PS2_VU0_CODE_SIZE - destAddr;
+-                if (pos + copyBytes <= sizeBytes)
+-                {
+-                    std::memcpy(m_vu0Code + destAddr, data + pos, copyBytes);
+-                    markVU0CodeModified();
+-                }
+-            }
+-
+-            pos += mpgBytes;
+-            if (pos > sizeBytes)
+-                break;
++            m_vif0PendingMpg.destination = static_cast<uint32_t>(imm & 0x1FFu) * 8u;
++            m_vif0PendingMpg.remaining = instructionCount * 8u;
+             continue;
+         }
+         else if ((opcode & 0x60u) == 0x60u)
+@@ -303,8 +308,28 @@
+ 
+     uint32_t pos = 0;
+ 
+-    while (pos + 4 <= sizeBytes)
++    while (pos < sizeBytes)
+     {
++        // MPG is a byte stream; a DMA segment boundary is not a command boundary.
++        if (m_vif1PendingMpg.remaining != 0u)
++        {
++            auto &pending = m_vif1PendingMpg;
++            const uint32_t consumed = std::min(pending.remaining, sizeBytes - pos);
++            const uint32_t capacity = PS2_VU1_CODE_SIZE;
++            const uint32_t copied = pending.destination < capacity
++                ? std::min(consumed, capacity - pending.destination) : 0u;
++            if (m_vu1Code && copied != 0u)
++            {
++                std::memcpy(m_vu1Code + pending.destination, data + pos, copied);
++                markVU1CodeModified();
++            }
++            pending.destination += consumed;
++            pending.remaining -= consumed;
++            pos += consumed;
++            continue;
++        }
++        if (sizeBytes - pos < 4u) break;
++
+         if (m_vif1PendingPath2ImageQwc != 0u)
+         {
+             const uint32_t availableQw = (sizeBytes - pos) / 16u;
+@@ -471,23 +496,9 @@
+         }
+         else if (opcode == VIF_MPG)
+         {
+-            uint32_t destAddr = (uint32_t)imm * 8u;
+             const uint32_t instructionCount = (num == 0u) ? 256u : static_cast<uint32_t>(num);
+-            const uint32_t mpgBytes = instructionCount * 8u;
+-            if (m_vu1Code && destAddr < PS2_VU1_CODE_SIZE && mpgBytes > 0)
+-            {
+-                uint32_t copyBytes = mpgBytes;
+-                if (destAddr + copyBytes > PS2_VU1_CODE_SIZE)
+-                    copyBytes = PS2_VU1_CODE_SIZE - destAddr;
+-                if (pos + copyBytes <= sizeBytes)
+-                {
+-                    std::memcpy(m_vu1Code + destAddr, data + pos, copyBytes);
+-                    markVU1CodeModified();
+-                }
+-            }
+-            pos += mpgBytes;
+-            if (pos > sizeBytes)
+-                break;
++            m_vif1PendingMpg.destination = static_cast<uint32_t>(imm) * 8u;
++            m_vif1PendingMpg.remaining = instructionCount * 8u;
+             continue;
+         }
+         else if (opcode == VIF_DIRECT || opcode == VIF_DIRECTHL)

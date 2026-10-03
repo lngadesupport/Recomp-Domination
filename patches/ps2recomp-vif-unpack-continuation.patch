@@ -1,0 +1,115 @@
+diff --git a/ps2xRuntime/include/runtime/ps2_memory.h b/ps2xRuntime/include/runtime/ps2_memory.h
+--- a/ps2xRuntime/include/runtime/ps2_memory.h
++++ b/ps2xRuntime/include/runtime/ps2_memory.h
+@@ -411,6 +411,8 @@
+     bool m_path3Masked = false;
+     struct MpgContinuation { uint32_t remaining = 0u; uint32_t destination = 0u; };
+     MpgContinuation m_vif0PendingMpg, m_vif1PendingMpg;
++    struct UnpackContinuation { std::vector<uint8_t> bytes; uint32_t expected = 0u; };
++    UnpackContinuation m_vif0PendingUnpack, m_vif1PendingUnpack;
+     uint32_t m_vif1PendingPath2ImageQwc = 0u;
+     bool m_vif1PendingPath2DirectHl = false;
+     std::vector<std::vector<uint8_t>> m_path3MaskedFifo;
+diff --git a/ps2xRuntime/src/lib/ps2_memory.cpp b/ps2xRuntime/src/lib/ps2_memory.cpp
+--- a/ps2xRuntime/src/lib/ps2_memory.cpp
++++ b/ps2xRuntime/src/lib/ps2_memory.cpp
+@@ -329,6 +329,8 @@
+     m_codeRegions.clear();
+     m_path3Masked = false;
+     m_path3MaskedFifo.clear();
++    m_vif0PendingUnpack = {};
++    m_vif1PendingUnpack = {};
+     m_vif0PendingMpg = {};
+     m_vif1PendingMpg = {};
+     m_vif1PendingPath2ImageQwc = 0u;
+@@ -1239,4 +1241,5 @@
++                m_vif1PendingUnpack = {};
+                 m_vif1PendingMpg = {};
+                 m_vif1PendingPath2ImageQwc = 0u;
+                 m_vif1PendingPath2DirectHl = false;
+                 m_path3Masked = false;
+diff --git a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+--- a/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
++++ b/ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp
+@@ -103,6 +103,22 @@
+     uint32_t pos = 0;
+     while (pos < sizeBytes)
+     {
++        if (!m_vif0PendingUnpack.bytes.empty())
++        {
++            auto &pending = m_vif0PendingUnpack;
++            const uint32_t consumed = std::min(pending.expected - static_cast<uint32_t>(pending.bytes.size()), sizeBytes - pos);
++            pending.bytes.insert(pending.bytes.end(), data + pos, data + pos + consumed);
++            pos += consumed;
++            if (pending.bytes.size() == pending.expected)
++            {
++                auto completed = std::move(pending.bytes);
++                pending = {};
++                // Reuse the production decoder, preserving MODE/ROW/mask semantics.
++                processVIF0Data(completed.data(), static_cast<uint32_t>(completed.size()));
++            }
++            continue;
++        }
++
+         // MPG is a byte stream; a DMA segment boundary is not a command boundary.
+         if (m_vif0PendingMpg.remaining != 0u)
+         {
+@@ -240,6 +256,17 @@
+             }
+             uint32_t totalBytes = sourceVectorCount * bytesPerVector;
+             totalBytes = (totalBytes + 3u) & ~3u;
++            if (totalBytes > sizeBytes - pos)
++            {
++                // NUM limits this buffer to one command plus 4096 payload bytes.
++                auto &pending = m_vif0PendingUnpack;
++                pending.expected = totalBytes + 4u;
++                pending.bytes.resize(4u);
++                std::memcpy(pending.bytes.data(), &cmd, 4u);
++                pending.bytes.insert(pending.bytes.end(), data + pos, data + sizeBytes);
++                return;
++            }
++
+ 
+             if (m_vu0Data && pos + totalBytes <= sizeBytes && vl == 0u)
+             {
+@@ -310,6 +337,22 @@
+ 
+     while (pos < sizeBytes)
+     {
++        if (!m_vif1PendingUnpack.bytes.empty())
++        {
++            auto &pending = m_vif1PendingUnpack;
++            const uint32_t consumed = std::min(pending.expected - static_cast<uint32_t>(pending.bytes.size()), sizeBytes - pos);
++            pending.bytes.insert(pending.bytes.end(), data + pos, data + pos + consumed);
++            pos += consumed;
++            if (pending.bytes.size() == pending.expected)
++            {
++                auto completed = std::move(pending.bytes);
++                pending = {};
++                // Reuse the production decoder, preserving MODE/ROW/mask semantics.
++                processVIF1Data(completed.data(), static_cast<uint32_t>(completed.size()));
++            }
++            continue;
++        }
++
+         // MPG is a byte stream; a DMA segment boundary is not a command boundary.
+         if (m_vif1PendingMpg.remaining != 0u)
+         {
+@@ -581,6 +624,17 @@
+ 
+             uint32_t totalBytes = sourceVectorCount * bytesPerVector;
+             totalBytes = (totalBytes + 3) & ~3u;
++            if (totalBytes > sizeBytes - pos)
++            {
++                // NUM limits this buffer to one command plus 4096 payload bytes.
++                auto &pending = m_vif1PendingUnpack;
++                pending.expected = totalBytes + 4u;
++                pending.bytes.resize(4u);
++                std::memcpy(pending.bytes.data(), &cmd, 4u);
++                pending.bytes.insert(pending.bytes.end(), data + pos, data + sizeBytes);
++                return;
++            }
++
+ 
+             uint32_t vuAddr = (uint32_t)imm & 0x3FFu;
+             if ((imm & 0x8000u) != 0u)

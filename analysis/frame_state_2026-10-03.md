@@ -35,3 +35,38 @@ Its five tests cover empty, valid, truncated, invalid/negative and numeric
 records after wait sampling stops. All 47 Python tests pass after recovery.
 No playable race, correct image, native mode coverage or game FPS is yet
 certified by this observer.
+
+## Completed recovery rerun
+
+The rebuilt instrumented Linux Release runner (`33302a42de77f9b1afe169c0656f96305cde34e8658cdbc0d3b4dbbe9183eb96`,
+44622128 bytes, FFmpeg enabled) ran for 620.058 seconds.
+The bounded probe ended at its timeout, and runner identity matched before
+and after execution. All 13 requested key events were recorded.
+The controller fix separates metadata from the progression output directory;
+its recovery CI run 37092923928 passed.
+
+The complete log contains 14 valid frame-state samples,
+0 malformed samples and 0 numeric-return records.
+Observed callers: `{"0x1b5344": 2, "0x1ebf6c": 1, "0x1ec350": 11}`.
+Maximum sampled numeric wrapper count: 0.
+The final sampled invocation is call 1440,
+VSync tick 892; no further sampled wait-return records
+were emitted. This does not identify the active mode or prove a scheduler deadlock.
+There was no observed 0x30303030 return in this rerun, but the numerical
+HUD routine was not exercised by its observer; this is not native HUD validation.
+
+There are 16013 reserved VU1 lower-instruction records:
+`{"0xfffffffb": 16013}`. Captures show black
+frames and corrupted isolated geometry; no playable race is established.
+Host refresh counters are not game FPS. This run omitted the earlier
+triangle/palette trace filters and is not a controlled FPU A/B comparison.
+
+The next discriminating graphics investigation is to capture the complete
+upper/lower instruction pair at the first reserved VU1 issue and its last
+code upload (MPG or direct VU code write), including source/destination bytes
+and code generation. Repeated 0xFFFFFFFB alone does not distinguish a bad
+upload, wrong microprogram control flow, or incorrect instruction decoding.
+
+Completed receipts, selected log, inputs and capture hashes are under
+`analysis/evidence/2026-10-03-frame-state/completed-*`. Full runtime log and
+captures are retained with the diagnostic executable package.

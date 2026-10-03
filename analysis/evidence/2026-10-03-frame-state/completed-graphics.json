@@ -1,0 +1,229 @@
+{
+  "runtime_log_bytes": 1253693,
+  "runtime_log_sha256": "8dc46290b3625c6dfedc3edc7521079bacb29e63539d598c12e2e6c3ef22d882",
+  "reserved_lower_records": 16013,
+  "reserved_instructions": {
+    "0xfffffffb": 16013
+  },
+  "reserved_pcs": {
+    "0x2430": 351,
+    "0x1010": 1088,
+    "0x1000": 2259,
+    "0x1020": 299,
+    "0x2230": 447,
+    "0x2220": 1986,
+    "0x60": 1285,
+    "0x2268": 65,
+    "0x2240": 59,
+    "0x23f0": 2,
+    "0x78": 4273,
+    "0x70": 864,
+    "0x1040": 2763,
+    "0x2250": 9,
+    "0x1038": 39,
+    "0x2cd0": 50,
+    "0x2258": 9,
+    "0x2408": 73,
+    "0x2280": 6,
+    "0x2410": 1,
+    "0x2248": 1,
+    "0x800": 3,
+    "0x2ce8": 6,
+    "0x2290": 1,
+    "0x2260": 3,
+    "0x2238": 3,
+    "0x23e8": 3,
+    "0x2418": 4,
+    "0x23f8": 1,
+    "0x22e8": 3,
+    "0x22c0": 2,
+    "0x2308": 1,
+    "0x22d8": 1,
+    "0x22f8": 2,
+    "0x22b0": 1,
+    "0x2420": 1,
+    "0x2400": 1,
+    "0x2218": 35,
+    "0x2610": 1,
+    "0x1950": 1,
+    "0x170": 1,
+    "0x26e0": 1,
+    "0x1a0": 1,
+    "0x2428": 1,
+    "0x22a0": 1,
+    "0x2300": 1,
+    "0x6e0": 1,
+    "0x23d0": 1,
+    "0x2270": 3
+  },
+  "ascii_zero_return_seen": false,
+  "input_events": 13,
+  "captures": [
+    {
+      "name": "dense-110.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-130.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-150.png",
+      "sha256": "647100c11623a196162f4d37844e3b95f4ff7c714ea941279d205a28f6f05ed9",
+      "nonblack_pixels": 97920
+    },
+    {
+      "name": "dense-170.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-190.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-210.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-230.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-250.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-270.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-290.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-30.png",
+      "sha256": "3cd0fe01f6d4a914aab4a0de7bd49637acab950970014503d25254fca1b5fa38",
+      "nonblack_pixels": 276781
+    },
+    {
+      "name": "dense-310.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-330.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-350.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-370.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-390.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-410.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-430.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-450.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-470.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-490.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-50.png",
+      "sha256": "f8299c8785b87f8a163f9002e3160e84ca9347fa0861d2cef6bc10ddd9ab1067",
+      "nonblack_pixels": 133441
+    },
+    {
+      "name": "dense-510.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-530.png",
+      "sha256": "63a62578a77d2453e893fcca101928b9c6438bc5a48daad91dc16004f7b08aa2",
+      "nonblack_pixels": 16784
+    },
+    {
+      "name": "dense-550.png",
+      "sha256": "63a62578a77d2453e893fcca101928b9c6438bc5a48daad91dc16004f7b08aa2",
+      "nonblack_pixels": 16784
+    },
+    {
+      "name": "dense-570.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-590.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-610.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "dense-70.png",
+      "sha256": "63373382cfa36078355ba24feb69e5e94474e40ec28f26bb01c8bfd7f4ed18e6",
+      "nonblack_pixels": 0
+    },
+    {
+      "name": "dense-90.png",
+      "sha256": "ec216155c24d78fd27c86cf95a0822bc00b93e340a4e7cf511110e65b137804e",
+      "nonblack_pixels": 143360
+    },
+    {
+      "name": "frame-10.png",
+      "sha256": "675a3cb93bccd05e7eca3ac07b85159501c95b51bfb97e06ea6ce3ff9c159227",
+      "nonblack_pixels": 48728
+    },
+    {
+      "name": "frame-310.png",
+      "sha256": "0859959275f6b83486cd3cd5070f1c238fbaebcfdac70369fccdc695cb14a9a6",
+      "nonblack_pixels": 124855
+    },
+    {
+      "name": "frame-615.png",
+      "sha256": "63a62578a77d2453e893fcca101928b9c6438bc5a48daad91dc16004f7b08aa2",
+      "nonblack_pixels": 16784
+    }
+  ],
+  "limits": "No gameplay, HUD coverage, original ISO layout, Windows retail boot or game FPS certification."
+}
