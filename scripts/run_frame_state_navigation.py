@@ -25,6 +25,8 @@ def main():
     if runner.stat().st_size!=receipt['runner_bytes'] or hashlib.sha256(runner.read_bytes()).hexdigest()!=expected:
         raise ValueError('Runner identity mismatch')
     out.mkdir(parents=True,exist_ok=True)
+    probe_out=out/'probe'
+    if probe_out.exists():raise ValueError('Use a new output directory for each navigation run')
     (out/'build-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
     env={**os.environ,'LD_LIBRARY_PATH':str(root/'deps/usr/lib/x86_64-linux-gnu'),
          'PYTHONPATH':str(root/'python-deps'),'LIBGL_ALWAYS_SOFTWARE':'1',
@@ -32,7 +34,7 @@ def main():
          'PS2_TRACE_GS_PIPELINE':'1','PS2_TRACE_DOWNHILL_RESOURCE_RETURN':'1'}
     cmd=[sys.executable,str(scripts/'run_native_progression.py'),'--runner',str(runner),
          '--elf',str(root/'retail/SCUS_971.77'),'--root',str(root/'disc'),'--iso',str(root/'probe.iso'),
-         '--out',str(out),'--budget-seconds','630','--probe-seconds','620','--max-probes','1',
+         '--out',str(probe_out),'--budget-seconds','630','--probe-seconds','620','--max-probes','1',
          '--expected-runner-sha256',expected,'--auto-intro-skip',
          '--xvfb',str(root/'deps/usr/bin/Xvfb-local'),'--display',args.display,'--captures']
     started=time.monotonic();process=subprocess.Popen(cmd,env=env)
@@ -41,7 +43,7 @@ def main():
         for deadline in range(30,620,20):
             time.sleep(max(0,deadline-(time.monotonic()-started)))
             if process.poll() is not None:return
-            try:ImageGrab.grab(xdisplay=args.display).save(out/'run-001'/f'dense-{deadline}.png')
+            try:ImageGrab.grab(xdisplay=args.display).save(probe_out/'run-001'/f'dense-{deadline}.png')
             except Exception as error:print('capture error:',error,flush=True)
     threading.Thread(target=capture,daemon=True).start()
     def keys(values,path,interval=None):
@@ -64,7 +66,7 @@ def main():
             try:process.wait(timeout=10)
             except subprocess.TimeoutExpired:process.kill();process.wait()
     subprocess.run([sys.executable,str(scripts/'analyze_frame_state.py'),'--log',
-                    str(out/'run-001/runtime.log'),'--out',str(out/'frame-observations.json')],check=True)
+                    str(probe_out/'run-001/runtime.log'),'--out',str(out/'frame-observations.json')],check=True)
 
 
 if __name__=='__main__':main()
