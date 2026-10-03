@@ -1,0 +1,17 @@
+{
+  "source_commit": "61b2e85cfef2dabbe445231feefe070be75d62d9",
+  "runtime_files_sha256": {
+    "ps2xRuntime/include/runtime/ps2_memory.h": "efa281bbde6ff5948c979e1e68d9f93e1aaa0bb897ea23a75cc86f447ef67d30",
+    "ps2xRuntime/src/lib/ps2_memory.cpp": "8d1de6b018c637c10a41df2add521436271879199edf5699b2e926c1f2a261b0",
+    "ps2xRuntime/src/lib/ps2_vif1_interpreter.cpp": "49f5daa4190c5ecc80fc79c365df434ad46ac03793d9fcc0f68ab9ac63e738b6"
+  },
+  "patches_sha256": {
+    "ps2recomp-gs-upload24-continuation.patch": "03abbfcf2018dc19a5d9d365b80e6969725e35a8872551bac87fba3cdf50162d",
+    "ps2recomp-vif-unpack-continuation.patch": "8f23699ffd46c4f348d026747780d0d31429def5e96969b924f204efcc952b0f",
+    "ps2recomp-vif-mpg-continuation.patch": "2dac07c85c2fd8e712169dcab6df5d48dbc4dfde5e46f634ba0c62514f00a8f0"
+  },
+  "patch_chain_reapply_identical": true,
+  "python_tests": 47,
+  "ctest_tests": 15,
+  "retail_run_with_new_patches": false
+}

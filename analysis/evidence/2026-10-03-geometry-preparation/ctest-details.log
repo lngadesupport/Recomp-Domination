@@ -1,18 +1,18 @@
-Start testing: Oct 03 12:37 KST
+Start testing: Oct 03 12:45 KST
 ----------------------------------------------------------
 1/15 Testing: vif_v45_all_colors
 1/15 Test: vif_v45_all_colors
 Command: "/workspace/scratch/650802733e96/native-build/vif_v45_color_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"vif_v45_all_colors" start time: Oct 03 12:37 KST
+"vif_v45_all_colors" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 VIF V4-5: 131136 cases passed (all colors, USN, MODE, masks, wrap, NUM=0)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"vif_v45_all_colors" end time: Oct 03 12:37 KST
+"vif_v45_all_colors" end time: Oct 03 12:45 KST
 "vif_v45_all_colors" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -20,15 +20,15 @@ Test Passed.
 2/15 Test: gs_sdk_clear_packet
 Command: "/workspace/scratch/650802733e96/native-build/gs_sdk_clear_packet_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"gs_sdk_clear_packet" start time: Oct 03 12:37 KST
+"gs_sdk_clear_packet" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 SDK clear: 16 packet cases and stale-depth reset passed
 <end of output>
-Test time =   0.05 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"gs_sdk_clear_packet" end time: Oct 03 12:37 KST
+"gs_sdk_clear_packet" end time: Oct 03 12:45 KST
 "gs_sdk_clear_packet" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -36,7 +36,7 @@ Test Passed.
 3/15 Test: guest_missing_target_enabled
 Command: "/workspace/scratch/650802733e96/native-build/guest_missing_target_trace_test" "enabled"
 Directory: /workspace/scratch/650802733e96/native-build
-"guest_missing_target_enabled" start time: Oct 03 12:37 KST
+"guest_missing_target_enabled" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 Missing-target trace: sampling, target words, boundary and PC preservation passed
@@ -44,7 +44,7 @@ Missing-target trace: sampling, target words, boundary and PC preservation passe
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"guest_missing_target_enabled" end time: Oct 03 12:37 KST
+"guest_missing_target_enabled" end time: Oct 03 12:45 KST
 "guest_missing_target_enabled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -52,7 +52,7 @@ Test Passed.
 4/15 Test: guest_missing_target_disabled
 Command: "/workspace/scratch/650802733e96/native-build/guest_missing_target_trace_test" "disabled"
 Directory: /workspace/scratch/650802733e96/native-build
-"guest_missing_target_disabled" start time: Oct 03 12:37 KST
+"guest_missing_target_disabled" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 Missing-target trace: sampling, target words, boundary and PC preservation passed
@@ -60,7 +60,7 @@ Missing-target trace: sampling, target words, boundary and PC preservation passe
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"guest_missing_target_disabled" end time: Oct 03 12:37 KST
+"guest_missing_target_disabled" end time: Oct 03 12:45 KST
 "guest_missing_target_disabled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -68,7 +68,7 @@ Test Passed.
 5/15 Test: guest_missing_target_malformed
 Command: "/workspace/scratch/650802733e96/native-build/guest_missing_target_trace_test" "malformed"
 Directory: /workspace/scratch/650802733e96/native-build
-"guest_missing_target_malformed" start time: Oct 03 12:37 KST
+"guest_missing_target_malformed" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 Missing-target trace: sampling, target words, boundary and PC preservation passed
@@ -76,7 +76,7 @@ Missing-target trace: sampling, target words, boundary and PC preservation passe
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"guest_missing_target_malformed" end time: Oct 03 12:37 KST
+"guest_missing_target_malformed" end time: Oct 03 12:45 KST
 "guest_missing_target_malformed" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -84,7 +84,7 @@ Test Passed.
 6/15 Test: guest_checkpoint_return
 Command: "/workspace/scratch/650802733e96/native-build/guest_checkpoint_return_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"guest_checkpoint_return" start time: Oct 03 12:37 KST
+"guest_checkpoint_return" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 Leaf completion and both checkpoint return paths preserve guest PC/SP
@@ -92,7 +92,7 @@ Leaf completion and both checkpoint return paths preserve guest PC/SP
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"guest_checkpoint_return" end time: Oct 03 12:37 KST
+"guest_checkpoint_return" end time: Oct 03 12:45 KST
 "guest_checkpoint_return" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -100,7 +100,7 @@ Test Passed.
 7/15 Test: gif_image2
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"gif_image2" start time: Oct 03 12:37 KST
+"gif_image2" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 GIF IMAGE/IMAGE2: 12 direct/native uploads, wrapped PATH1, split DIRECT and arbitration cases passed
@@ -108,7 +108,7 @@ GIF IMAGE/IMAGE2: 12 direct/native uploads, wrapped PATH1, split DIRECT and arbi
 Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"gif_image2" end time: Oct 03 12:37 KST
+"gif_image2" end time: Oct 03 12:45 KST
 "gif_image2" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -116,18 +116,18 @@ Test Passed.
 8/15 Test: vu_xgkick_error_enabled
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test" "oversized"
 Directory: /workspace/scratch/650802733e96/native-build
-"vu_xgkick_error_enabled" start time: Oct 03 12:37 KST
+"vu_xgkick_error_enabled" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [vu:xgkick-error] sample=1 reason=tag-limit cycle=1 pc=0x8 source_qw=0 tag_offset=0 copied=16 tag_lo=0x0000000000009000 tag_hi=0x0000000000000000 nloop=4096 format=0 nreg=0 requested=1048592 limit=65536
 [VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
 Oversized XGKICK remains rejected
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found. Regex=[reason=tag-limit.*source_qw=0.*nloop=4096.*format=0.*nreg=0.*requested=1048592.*limit=65536]
-"vu_xgkick_error_enabled" end time: Oct 03 12:37 KST
+"vu_xgkick_error_enabled" end time: Oct 03 12:45 KST
 "vu_xgkick_error_enabled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -135,7 +135,7 @@ Required regular expression found. Regex=[reason=tag-limit.*source_qw=0.*nloop=4
 9/15 Test: vu_xgkick_error_disabled
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test" "oversized"
 Directory: /workspace/scratch/650802733e96/native-build
-"vu_xgkick_error_disabled" start time: Oct 03 12:37 KST
+"vu_xgkick_error_disabled" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
@@ -144,7 +144,7 @@ Oversized XGKICK remains rejected
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"vu_xgkick_error_disabled" end time: Oct 03 12:37 KST
+"vu_xgkick_error_disabled" end time: Oct 03 12:45 KST
 "vu_xgkick_error_disabled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -152,16 +152,16 @@ Test Passed.
 10/15 Test: vu_xgkick_error_malformed
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test" "oversized"
 Directory: /workspace/scratch/650802733e96/native-build
-"vu_xgkick_error_malformed" start time: Oct 03 12:37 KST
+"vu_xgkick_error_malformed" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
 Oversized XGKICK remains rejected
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"vu_xgkick_error_malformed" end time: Oct 03 12:37 KST
+"vu_xgkick_error_malformed" end time: Oct 03 12:45 KST
 "vu_xgkick_error_malformed" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -169,7 +169,7 @@ Test Passed.
 11/15 Test: vu_xgkick_history
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test" "oversized"
 Directory: /workspace/scratch/650802733e96/native-build
-"vu_xgkick_history" start time: Oct 03 12:37 KST
+"vu_xgkick_history" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [vu:xgkick-error] sample=1 reason=tag-limit cycle=1 pc=0x8 source_qw=0 tag_offset=0 copied=16 tag_lo=0x0000000000009000 tag_hi=0x0000000000000000 nloop=4096 format=0 nreg=0 requested=1048592 limit=65536
@@ -182,7 +182,7 @@ Test time =   0.02 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Required regular expression found. Regex=[vu:xgkick-step.*pc=0x0.*lower=0x800006fc]
-"vu_xgkick_history" end time: Oct 03 12:37 KST
+"vu_xgkick_history" end time: Oct 03 12:45 KST
 "vu_xgkick_history" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -190,17 +190,17 @@ Required regular expression found. Regex=[vu:xgkick-step.*pc=0x0.*lower=0x800006
 12/15 Test: vu_xgkick_history_bad_source
 Command: "/workspace/scratch/650802733e96/native-build/gif_image2_test" "oversized"
 Directory: /workspace/scratch/650802733e96/native-build
-"vu_xgkick_history_bad_source" start time: Oct 03 12:37 KST
+"vu_xgkick_history_bad_source" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [vu:xgkick-error] sample=1 reason=tag-limit cycle=1 pc=0x8 source_qw=0 tag_offset=0 copied=16 tag_lo=0x0000000000009000 tag_hi=0x0000000000000000 nloop=4096 format=0 nreg=0 requested=1048592 limit=65536
 [VU1 reserved lower] cycle=1 pc=0x8 instruction=0xfffffffb
 Oversized XGKICK remains rejected
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"vu_xgkick_history_bad_source" end time: Oct 03 12:37 KST
+"vu_xgkick_history_bad_source" end time: Oct 03 12:45 KST
 "vu_xgkick_history_bad_source" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -208,7 +208,7 @@ Test Passed.
 13/15 Test: downhill_frame_state_passthrough
 Command: "/workspace/scratch/650802733e96/native-build/downhill_frame_state_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"downhill_frame_state_passthrough" start time: Oct 03 12:37 KST
+"downhill_frame_state_passthrough" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 [downhill:frame-state] call=1 vsync=0 numeric_calls=0 entry_pc=0x238c00 caller=0x1000 frame=0x8000 exit_pc=0x238c70 exit_sp=0x8020 stack=0,0,0,0,0,0,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, gpr=0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8020,0,1000,
@@ -232,10 +232,10 @@ Output:
 [downhill:resource-return] call=1 anomaly=0 thread=0 routine=0x177da0 entry_pc=0x177e78 entry_sp=0x8000 entry_ra=0x1000 frame=0x8000 a0=0x0 a1=0x0 expected_sp=0x8030 expected_ra=0x0 saved_before=0x0 saved_after=0x0 exit_pc=0x1000 exit_ra=0x1000 exit_sp=0x8020 branch_pc=0x0
 PASS frame_state_passthrough_cases=27
 <end of output>
-Test time =   0.84 sec
+Test time =   0.83 sec
 ----------------------------------------------------------
 Test Passed.
-"downhill_frame_state_passthrough" end time: Oct 03 12:37 KST
+"downhill_frame_state_passthrough" end time: Oct 03 12:45 KST
 "downhill_frame_state_passthrough" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -243,15 +243,15 @@ Test Passed.
 14/15 Test: vif_mpg_continuation
 Command: "/workspace/scratch/650802733e96/native-build/vif_mpg_continuation_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"vif_mpg_continuation" start time: Oct 03 12:37 KST
+"vif_mpg_continuation" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 VIF MPG: 1055 fragmented/whole upload cases passed
 <end of output>
-Test time =   0.14 sec
+Test time =   0.13 sec
 ----------------------------------------------------------
 Test Passed.
-"vif_mpg_continuation" end time: Oct 03 12:37 KST
+"vif_mpg_continuation" end time: Oct 03 12:45 KST
 "vif_mpg_continuation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -259,16 +259,16 @@ Test Passed.
 15/15 Test: vif_unpack_continuation
 Command: "/workspace/scratch/650802733e96/native-build/vif_unpack_continuation_test"
 Directory: /workspace/scratch/650802733e96/native-build
-"vif_unpack_continuation" start time: Oct 03 12:37 KST
+"vif_unpack_continuation" start time: Oct 03 12:45 KST
 Output:
 ----------------------------------------------------------
 VIF UNPACK: 36710 split/whole geometry cases plus known vertex and reset passed
 <end of output>
-Test time =   2.33 sec
+Test time =   2.39 sec
 ----------------------------------------------------------
 Test Passed.
-"vif_unpack_continuation" end time: Oct 03 12:37 KST
+"vif_unpack_continuation" end time: Oct 03 12:45 KST
 "vif_unpack_continuation" time elapsed: 00:00:02
 ----------------------------------------------------------
 
-End testing: Oct 03 12:37 KST
+End testing: Oct 03 12:45 KST

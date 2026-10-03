@@ -36,7 +36,14 @@ int main() {
         // Every word-aligned DMA boundary, including an MPG-only command fragment.
         for(size_t split=4;split<packet.size();split+=4) {
             std::memset(code,0xa5,capacity);auto& regs=unit?memory.vif1_regs:memory.vif0_regs;regs.mark=0;
-            send(memory,unit,packet.data(),split);send(memory,unit,packet.data()+split,packet.size()-split);
+            const auto generationBefore=unit?memory.getVU1CodeGeneration():memory.getVU0CodeGeneration();
+            send(memory,unit,packet.data(),split);
+            const auto generationPartial=unit?memory.getVU1CodeGeneration():memory.getVU0CodeGeneration();
+            const size_t firstPayload=std::min(split-4,expected.size());
+            if(generationPartial!=generationBefore+(firstPayload?1:0))return 12;
+            send(memory,unit,packet.data()+split,packet.size()-split);
+            const auto generationAfter=unit?memory.getVU1CodeGeneration():memory.getVU0CodeGeneration();
+            if(generationAfter!=generationPartial+(firstPayload<expected.size()?1:0))return 13;
             if(!check()) {std::fprintf(stderr,"MPG split failed: VIF%u count=%u split=%zu\n",unit,count,split);return 3;}
             if(code[destination*8-1]!=0xa5 || code[destination*8+expected.size()]!=0xa5)return 4;
             ++cases;

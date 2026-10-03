@@ -44,3 +44,21 @@ Windows retail boot and game FPS remain unverified.
 The optimized executable preparation and CI outcomes are appended once
 available. The next visual test should use that retained executable identity
 and capture the first invalid VU instruction pair with its code-upload origin.
+
+## Prepared Release build
+
+The Linux x64 Release runner linked with FFmpeg enabled, 44622368
+bytes, SHA-256 `df7b263d1168f127875c4d6e3ceff75de16fed8413d3177aa9bd95c4ea40603a`.
+Its source identities and patch checksums are retained with the receipt.
+The final native fixtures were rebuilt and all 15 tests passed, including
+a stricter MPG check that every partial code write advances cache generation.
+This executable has not been run against the retail game.
+
+## CI validation
+
+For production patch commit `61b2e85cfef2dabbe445231feefe070be75d62d9`,
+all four source workflows passed: recovery 37094022162, production GS
+37094022251, COP0 37094022256, and VIF 37094022288. The VIF workflow passed
+on both Linux and Windows, including the two new production-runtime fixtures.
+The subsequent checkpoint strengthens the MPG fixture cache-generation
+assertions and retains the prepared Release receipt; production patches are unchanged.
