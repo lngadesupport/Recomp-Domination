@@ -105,3 +105,18 @@ add_test(NAME vu_xgkick_history_bad_source COMMAND gif_image2_test oversized)
 set_tests_properties(vu_xgkick_history_bad_source PROPERTIES TIMEOUT 60
     ENVIRONMENT "PS2_TRACE_VU_XGKICK_ERRORS=1;PS2_TRACE_VU_XGKICK_HISTORY=1;PS2_TRACE_VU_XGKICK_SOURCE_QW=bad"
     FAIL_REGULAR_EXPRESSION "vu:xgkick-history|vu:xgkick-step|vu:xgkick-store")
+
+add_executable(downhill_frame_state_test
+    "${CMAKE_CURRENT_LIST_DIR}/downhill_frame_state_test.cpp"
+    "${CMAKE_SOURCE_DIR}/ps2xTest/src/test_function_table.cpp")
+target_compile_features(downhill_frame_state_test PRIVATE cxx_std_20)
+target_include_directories(downhill_frame_state_test PRIVATE "${CMAKE_SOURCE_DIR}/ps2xRuntime/src/lib/Kernel")
+target_link_libraries(downhill_frame_state_test PRIVATE ps2_runtime)
+if(MSVC)
+    target_compile_options(downhill_frame_state_test PRIVATE /arch:AVX2)
+    target_link_options(downhill_frame_state_test PRIVATE /STACK:8388608)
+else()
+    target_compile_options(downhill_frame_state_test PRIVATE -mavx2)
+endif()
+add_test(NAME downhill_frame_state_passthrough COMMAND downhill_frame_state_test)
+set_tests_properties(downhill_frame_state_passthrough PROPERTIES TIMEOUT 60)

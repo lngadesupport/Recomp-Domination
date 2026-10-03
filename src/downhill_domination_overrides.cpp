@@ -329,6 +329,44 @@ namespace
                            resourceChildCalls, resourceChildAnomalies);
     }
 
+    PS2Runtime::RecompiledFunction originalFrameWait = nullptr;
+    PS2Runtime::RecompiledFunction originalNumericDisplay = nullptr;
+    uint64_t frameStateCalls = 0, numericDisplayCalls = 0;
+    uint64_t numericDisplayAnomalies = 0;
+
+    void downhillTraceFrameState(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        const uint32_t entryPc = ctx->pc, entrySp = GPR_U32(ctx, 29);
+        const uint32_t frame = entryPc == 0x00238C00u ? entrySp - 32u : entrySp;
+        const uint32_t caller = entryPc == 0x00238C00u ? GPR_U32(ctx, 31)
+            : Ps2FastRead32(rdram, frame + 24u);
+        const uint64_t call = ++frameStateCalls;
+        originalFrameWait(rdram, ctx, runtime);
+        // These are executor-thread observations. A Ready snapshot at this
+        // continuation alone cannot establish either a stall or a game mode.
+        if (call > 4u && call % 120u != 0u) return;
+        if (call > 61440u) return; // At most 516 records per initialized run.
+        std::ostringstream line;
+        line << "[downhill:frame-state] call=" << call
+             << " vsync=" << runtime->eeScheduler().currentVSyncTick()
+             << " numeric_calls=" << numericDisplayCalls
+             << std::hex << " entry_pc=0x" << entryPc << " caller=0x" << caller
+             << " frame=0x" << frame << " exit_pc=0x" << ctx->pc
+             << " exit_sp=0x" << GPR_U32(ctx, 29) << " stack=";
+        for (uint32_t i = 0; i < 32u; ++i)
+            line << Ps2FastRead32(rdram, frame + i * 4u) << ',';
+        line << " gpr=";
+        for (uint32_t i = 0; i < 32u; ++i) line << GPR_U32(ctx, i) << ',';
+        line << std::dec << '\n';
+        std::cerr << line.str();
+    }
+
+    void downhillTraceNumericDisplay(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+    {
+        traceResourceFrame(rdram, ctx, runtime, originalNumericDisplay,
+            0x00177DA0u, 48u, 32u, numericDisplayCalls, numericDisplayAnomalies);
+    }
+
     uint64_t dmaWaitCalls = 0;
     void downhillTraceDmaQueueWait(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
     {
@@ -350,6 +388,21 @@ namespace
     void applyDownhillDominationOverrides(PS2Runtime &runtime)
     {
         configureDownhillIoPaths();
+        const char *frameTrace = std::getenv("PS2_TRACE_DOWNHILL_FRAME_STATE");
+        if (frameTrace && std::strcmp(frameTrace, "1") == 0)
+        {
+            originalFrameWait = runtime.lookupFunction(0x00238C00u);
+            originalNumericDisplay = runtime.lookupFunction(0x00177DA0u);
+            frameStateCalls = numericDisplayCalls = numericDisplayAnomalies = 0;
+            if (originalFrameWait)
+                for (const uint32_t pc : {0x00238C00u, 0x00238C50u, 0x00238C64u, 0x00238C70u})
+                    runtime.replaceFunction(pc, downhillTraceFrameState);
+            if (originalNumericDisplay)
+                for (const uint32_t pc : {0x00177DA0u, 0x00177E68u, 0x00177E78u})
+                    runtime.replaceFunction(pc, downhillTraceNumericDisplay);
+            std::cerr << "[downhill] frame state diagnostics wait=" << bool(originalFrameWait)
+                      << " numeric=" << bool(originalNumericDisplay) << '\n';
+        }
         const char *returnTrace = std::getenv("PS2_TRACE_DOWNHILL_RESOURCE_RETURN");
         if (returnTrace && std::strcmp(returnTrace, "1") == 0)
         {
