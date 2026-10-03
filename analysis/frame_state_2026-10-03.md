@@ -20,6 +20,18 @@ The production wrapper fixture passes 27 passthrough cases: four wait
 entry/resume PCs at six sampling/cap boundaries and three numeric entry/
 resume PCs. It compares the entire R5900 context and RAM against a direct
 call of the same test function. The fixture is included in Linux/Windows CI.
-Native linking and an instrumented navigation probe are pending.
+The instrumented Release runner linked (SHA-256
+`bb294d02a70f89dc3d15d120e1f67fc9a51459c72659d64103414e9c3c42578b`).
+Both source workflows for a879505 passed, including the observer fixture on
+Linux and Windows. A 620-second navigation probe started and its early
+samples show callers 0x1b5344 and 0x1ec350 with numeric_calls=0.
+The transient workspace was reset before its final result was preserved;
+there is no retained full log or final completion receipt for this run.
+Early values are recovered from the session tool output and labeled as such.
+The probe must be rerun before assessing late navigation coverage.
+
+The new parser groups sampled callers and reports numeric-routine coverage.
+Its five tests cover empty, valid, truncated, invalid/negative and numeric
+records after wait sampling stops. All 47 Python tests pass after recovery.
 No playable race, correct image, native mode coverage or game FPS is yet
 certified by this observer.

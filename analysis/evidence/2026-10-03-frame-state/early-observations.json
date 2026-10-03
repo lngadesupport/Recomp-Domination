@@ -1,0 +1,36 @@
+{
+  "status": "early observations recovered from tool output; full run files lost in workspace reset",
+  "runner_sha256": "bb294d02a70f89dc3d15d120e1f67fc9a51459c72659d64103414e9c3c42578b",
+  "observations": [
+    {
+      "call": 2,
+      "vsync": 5,
+      "caller": "0x1b5344",
+      "numeric_calls": 0
+    },
+    {
+      "call": 4,
+      "vsync": 6,
+      "caller": "0x1b5344",
+      "numeric_calls": 0
+    },
+    {
+      "call": 120,
+      "vsync": 67,
+      "caller": "0x1ec350",
+      "numeric_calls": 0
+    },
+    {
+      "call": 240,
+      "vsync": 129,
+      "caller": "0x1ec350",
+      "numeric_calls": 0
+    },
+    {
+      "call": 360,
+      "vsync": 189,
+      "caller": "0x1ec350",
+      "numeric_calls": 0
+    }
+  ]
+}
